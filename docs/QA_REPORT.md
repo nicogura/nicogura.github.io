@@ -1,6 +1,6 @@
 # QA / 2026-10-05
 
-正式35件、確認中4件、18カテゴリー。公開先は https://nicogura.github.io/ 、専用リポジトリは https://github.com/nicogura/nicogura.github.io 。
+正式35件、確認中5件、18カテゴリー。公開先は https://nicogura.github.io/ 、専用リポジトリは https://github.com/nicogura/nicogura.github.io 。
 
 公開前のJSON検査、JS構文、HTML5静的検査はPASS。重大度の不正値、表の列数不一致、危険な本文、重複ID、日付、URLの境界検査8件もPASS。
 

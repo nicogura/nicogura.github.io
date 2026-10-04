@@ -1,6 +1,6 @@
 {
   "name": "nicogura.github.io",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "NicoGura official website and rules — static, dependency-free",
   "type": "module",

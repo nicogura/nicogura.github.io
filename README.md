@@ -6,7 +6,7 @@ FiveM RPサーバー「NicoGura / にこぐら」の公式入口と、検索・�
 - 公式ルール: https://nicogura.github.io/rules/
 - 更新履歴: https://nicogura.github.io/changelog/
 - Web専用リポジトリ: https://github.com/nicogura/nicogura.github.io
-- ルール: **v1.0.0 / 2026-10-05 / 正式35件、確認中4件、18カテゴリー**
+- ルール: **v1.0.1 / 2026-10-05 / 正式35件、確認中5件、18カテゴリー**
 
 ゲームリポジトリとは別に管理します。外部の分析サービスやログインは使いません。公開サイトの編集画面で文章を変更しても、公開内容は自動で上書きされません。
 
