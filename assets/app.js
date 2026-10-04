@@ -341,7 +341,7 @@
     title.append(document.createTextNode('この街で、'), el('br'), el('span', 'text-gradient', 'あなたらしい物語を。'));
     const lead = el('p', 'hero-lead', 'にこぐらへようこそ。暮らしも、出会いも、あなたの物語の一部に。NicoGuraの公式情報を、この場所から。');
     const actions = el('div', 'hero-actions');
-    actions.append(link('ルール・ガイドラインを見る', 'rules/', 'button button-primary', 'arrow'), socialLink('Discordへ', 'discord', 'button button-secondary'));
+    actions.append(link('ルール・ガイドラインを見る', 'rules/', 'button button-primary', 'arrow'), socialLink('Discordへ', 'discord', 'button button-secondary'), link('街について', '#about', 'button button-secondary'));
     const homeSearch = el('form', 'search-box home-search');
     homeSearch.setAttribute('role', 'search');
     homeSearch.action = href('rules/');
@@ -374,7 +374,8 @@
     });
     content.append(stats);
     const quick = el('section', 'home-section');
-    quick.append(sectionHeading('EXPLORE THE CITY', 'この街のことを、もっと。', '知りたい情報に、迷わずたどり着ける公式ガイド。'));
+    quick.id = 'about';
+    quick.append(sectionHeading('EXPLORE THE CITY', 'この街のことを、もっと。', 'ゆるく、楽しく、あなたらしく。初めてのRPも、少しずつ一緒に。'));
     const grid = el('div', 'home-grid');
     [['book', 'RULES & GUIDELINES', '街のルールを探す', 'カテゴリーと全文検索から、必要な情報をすぐに。', 'rules/'], ['clock', 'CHANGELOG', '最新の更新を確認', '掲載・変更された内容を、時系列で確認できます。', 'changelog/'], ['star', 'YOUR BOOKMARKS', 'あとで読むを、手元に', '気になるルールを保存して、自分だけの一覧に。', 'rules/?saved=1']].forEach(([symbol, kicker, title, description, path]) => {
       const card = link('', path, 'feature-card');
