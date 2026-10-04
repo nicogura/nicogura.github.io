@@ -1,0 +1,58 @@
+name: Publish NicoGura website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v6
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate public content
+        run: npm run validate
+      - name: Collect public files only
+        run: |
+          mkdir _site
+          cp index.html 404.html robots.txt sitemap.xml .nojekyll _site/
+          cp -r rules changelog editor assets data _site/
+          node --input-type=module <<'NODE'
+          import { readFile, writeFile } from 'node:fs/promises';
+          const version = process.env.GITHUB_SHA;
+          if (!/^[a-f0-9]{40}$/.test(version)) throw new Error('Missing commit version');
+          for (const path of ['index.html', '404.html', 'rules/index.html', 'changelog/index.html', 'editor/index.html']) {
+            const source = await readFile(`_site/${path}`, 'utf8');
+            await writeFile(`_site/${path}`, source.replace(/((?:\.\.\/)?assets\/[^"'?\s]+\.(?:css|js))(["'])/g, `$1?v=${version}$2`));
+          }
+          for (const path of ['assets/app.js', 'assets/editor.js']) {
+            const source = await readFile(`_site/${path}`, 'utf8');
+            await writeFile(`_site/${path}`, source.replace(/(from\s+["'])(\.\/[^"']+\.js)(["'])/g, `$1$2?v=${version}$3`));
+          }
+          NODE
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4

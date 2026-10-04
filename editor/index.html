@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="color-scheme" content="dark light">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'">
+  <title>ルールデータ編集 | NicoGura</title>
+  <link rel="icon" href="../assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="../assets/editor.css">
+  <script type="module" src="../assets/editor.js"></script>
+</head>
+<body>
+  <a class="skip" href="#editor-main">編集画面へ移動</a>
+  <header class="editor-header">
+    <a class="brand" href="../"><span class="brand-symbol" aria-hidden="true">N</span><span>NicoGura<small>CONTENT EDITOR</small></span></a>
+    <a class="subtle" href="../rules/">公開サイトを見る ↗</a>
+  </header>
+  <main id="editor-main" class="editor-shell">
+    <div class="page-heading"><p class="eyebrow">FOR OPERATORS</p><h1>言葉を整えて、街へ届ける。</h1><p>ルールデータをブラウザで編集して、<code>rules.json</code> をダウンロードできます。</p></div>
+    <aside class="notice" aria-label="編集と公開について"><strong>この画面からは公開されません。</strong><p>編集内容はこのタブのメモリにだけ保存されます。ダウンロード後、運営で内容を確認し、GitHub の <code>data/rules.json</code> を置き換えてください。認証・サーバーへの保存機能はありません。</p></aside>
+    <div class="toolbar"><label class="button secondary file-button">JSONを読み込む<input id="import-file" type="file" accept=".json,application/json"></label><button id="download" class="button primary" type="button" disabled>rules.jsonをダウンロード ↓</button></div>
+    <div id="editor-message" class="message" role="status" aria-live="polite">サイトのデータを読み込んでいます…</div>
+    <div id="validation-errors" class="errors" role="alert" hidden></div>
+    <div class="editor-layout">
+      <aside class="rule-picker panel" aria-label="ルール一覧"><div class="panel-heading"><h2>ルール一覧</h2><button id="add-rule" type="button" class="button compact secondary" disabled>＋追加</button></div><label for="rule-search">タイトル・ID・重大度で検索</label><input id="rule-search" type="search" placeholder="ルールを探す"><p id="rule-count" class="helper"></p><div id="rule-list" class="rule-list"></div></aside>
+      <div class="editor-forms">
+        <section class="panel"><div class="panel-heading"><h2>ルールを編集</h2><span id="draft-status" class="helper">ルールを選択してください</span></div>
+          <form id="rule-form" hidden>
+            <div class="field-row"><label>ID（公開後は変更しない）<input type="text" name="id" required pattern="[a-z][a-z0-9-]*" maxlength="80" placeholder="crime-hostage"></label><label>番号<input name="number" type="number" min="0" step="1" required></label></div>
+            <label>タイトル<input type="text" name="title" required maxlength="500"></label>
+            <div class="field-row"><label>カテゴリー<select name="category" required></select></label><label>重大度<select name="severity" required><option value="guide">ガイド</option><option value="notice">お願い</option><option value="important">注意</option><option value="prohibited">禁止</option><option value="serious">重大違反</option></select></label></div>
+            <label>要約<textarea name="summary" rows="3" maxlength="5000"></textarea></label>
+            <label>本文の編集方法<select name="contentMode"><option value="paragraph">通常の文章（空行で段落を分ける）</option><option value="json">高度な編集（本文ブロックのJSON）</option></select></label>
+            <p id="content-help" class="helper">空行で段落を分けます。見出し・箇条書き・注記・表がある本文はJSONモードで構造を維持します。表は type: "table" と caption（任意）、headers（見出し配列）、rows（セル配列の配列）を指定します。最大12列・200行です。</p>
+            <label>本文<textarea name="content" rows="12" spellcheck="false" aria-describedby="content-help"></textarea></label>
+            <div class="field-row"><label>タグ（カンマ区切り）<input type="text" name="tags" placeholder="犯罪, 人質"></label><label>検索キーワード（カンマ区切り）<input type="text" name="keywords" placeholder="ひとじち, hostage"></label></div>
+            <div class="field-row"><label>更新日<input name="updatedAt" type="date" required></label><label>公開状態<select name="status"><option value="pending">運営確認中</option><option value="published">正式公開（運営承認済み）</option></select></label></div>
+            <p class="helper">「正式公開」は、運営が本文を承認したルールだけに設定してください。正式公開には1以上の重複しない番号・要約・本文が必要です。</p>
+            <div class="checkbox-row"><label><input name="new" type="checkbox">NEW（追加したルール）</label><label><input name="featured" type="checkbox">よく見られるルールに表示</label></div>
+            <div class="form-actions"><button class="button primary" type="submit">このルールの変更を適用</button><button id="delete-rule" class="button danger" type="button">選択したルールを削除</button></div>
+          </form>
+          <p id="empty-rule" class="helper">左の一覧からルールを選択するか、「＋追加」を押してください。</p>
+        </section>
+        <section class="panel"><h2>サイト設定</h2><form id="site-form"><div class="field-row"><label>ルールバージョン<input type="text" name="version" required placeholder="1.0.0"></label><label>サイト更新日<input name="updatedAt" type="date" required></label></div><label>お知らせ<textarea name="notice" rows="3"></textarea></label><label>NEW / UPDATEDの表示期間（日）<input name="newBadgeDays" type="number" min="0" max="365" required></label><button class="button secondary" type="submit">サイト設定を適用</button></form></section>
+        <details class="panel"><summary>カテゴリーを追加</summary><form id="category-form"><div class="field-row"><label>ID<input type="text" name="id" required pattern="[a-z][a-z0-9-]*" placeholder="new-category"></label><label>表示名<input type="text" name="label" required></label></div><div class="field-row"><label>短い表示名<input type="text" name="shortLabel"></label><label>グループ<input type="text" name="group" placeholder="暮らし"></label></div><label>説明<textarea name="description" rows="2"></textarea></label><div class="form-actions"><button class="button secondary" type="submit">カテゴリーを追加</button><button id="discard-category" class="button secondary" type="button">入力を破棄</button></div></form></details>
+        <details class="panel"><summary>更新履歴を追加</summary><form id="changelog-form"><div class="field-row"><label>日付<input name="date" type="date" required></label><label>種別<select name="type"><option value="追加">追加</option><option value="変更">変更</option><option value="削除">削除</option><option value="お知らせ">お知らせ</option></select></label></div><label>タイトル<input type="text" name="title" required></label><label>変更した内容（1行につき1項目）<textarea name="items" rows="4" required></textarea></label><div class="form-actions"><button class="button secondary" type="submit">更新履歴を追加</button><button id="discard-changelog" class="button secondary" type="button">入力を破棄</button></div></form><p id="changelog-count" class="helper"></p></details>
+      </div>
+    </div>
+    <footer class="editor-footer">編集が終わったら、必ずダウンロードしてください。タブを閉じると未保存の変更は失われます。<a href="../">NicoGura HOME</a></footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,1438 @@
+{
+  "site": {
+    "name": "NicoGura",
+    "tagline": "あなたらしい物語が、この街から。",
+    "version": "1.0.0",
+    "updatedAt": "2026-10-05",
+    "notice": "共通ルールと確認済みの基準料金を公開しました。「運営確認中」は、まだ確定していない項目です。",
+    "links": {
+      "discord": "",
+      "x": "",
+      "fivem": "",
+      "official": "https://nicogura.github.io/"
+    },
+    "assets": {
+      "logo": "assets/logo.webp",
+      "header": "assets/city.webp",
+      "icon": "assets/icon.webp"
+    }
+  },
+  "categories": [
+    {
+      "id": "intro",
+      "label": "はじめに",
+      "shortLabel": "はじめに",
+      "description": "最初に読んでほしい、街の考え方とこのページの使い方。",
+      "group": "はじめに"
+    },
+    {
+      "id": "basic",
+      "label": "基本ルール",
+      "shortLabel": "基本",
+      "description": "お互いが気持ちよく遊ぶための共通のお願い。",
+      "group": "はじめに"
+    },
+    {
+      "id": "rp",
+      "label": "RPについて",
+      "shortLabel": "RP",
+      "description": "完璧な演技より、相手と一緒に物語を楽しむこと。",
+      "group": "はじめに"
+    },
+    {
+      "id": "prohibited",
+      "label": "禁止事項",
+      "shortLabel": "禁止事項",
+      "description": "不正や悪質な嫌がらせから、みんなの遊びを守ります。",
+      "group": "はじめに"
+    },
+    {
+      "id": "character",
+      "label": "キャラクター",
+      "shortLabel": "キャラ",
+      "description": "キャラクターと現実の自分を分けて楽しみましょう。",
+      "group": "街の暮らし"
+    },
+    {
+      "id": "communication",
+      "label": "コミュニケーション / VC",
+      "shortLabel": "VC",
+      "description": "声のやり取りと、シーンに影響する情報共有について。",
+      "group": "街の暮らし"
+    },
+    {
+      "id": "vehicles",
+      "label": "車両",
+      "shortLabel": "車両",
+      "description": "事故と故意の攻撃を区別し、安全に車を楽しむために。",
+      "group": "街の暮らし"
+    },
+    {
+      "id": "weapons",
+      "label": "武器",
+      "shortLabel": "武器",
+      "description": "武器の扱いと、確認が必要な利用条件。",
+      "group": "街の暮らし"
+    },
+    {
+      "id": "crime",
+      "label": "犯罪",
+      "shortLabel": "犯罪",
+      "description": "犯罪RPの自由度を残しながら、公平なシーンを守ります。",
+      "group": "アクティビティ"
+    },
+    {
+      "id": "heist",
+      "label": "Heist",
+      "shortLabel": "Heist",
+      "description": "強盗の共通原則と、確認中の開始条件。",
+      "group": "アクティビティ"
+    },
+    {
+      "id": "pd",
+      "label": "PD",
+      "shortLabel": "PD",
+      "description": "警察の権限、説明、正規の処分について。",
+      "group": "暮らし・仕事"
+    },
+    {
+      "id": "ems",
+      "label": "EMS",
+      "shortLabel": "EMS",
+      "description": "救護要請の方法と、医療サービスの基準料金。",
+      "group": "暮らし・仕事"
+    },
+    {
+      "id": "mechanic",
+      "label": "Mechanic",
+      "shortLabel": "メカ",
+      "description": "修理・カスタムの基準料金と請求の考え方。",
+      "group": "暮らし・仕事"
+    },
+    {
+      "id": "business",
+      "label": "店舗 / Business",
+      "shortLabel": "店舗",
+      "description": "お店でのやり取りと、仕事の権限の扱い。",
+      "group": "暮らし・仕事"
+    },
+    {
+      "id": "streaming",
+      "label": "配信 / SNS",
+      "shortLabel": "配信",
+      "description": "街の外へ発信するときも、相手の楽しみを大切に。",
+      "group": "サポート"
+    },
+    {
+      "id": "administration",
+      "label": "運営対応",
+      "shortLabel": "運営",
+      "description": "相談・報告の方法と、段階的な運営対応。",
+      "group": "サポート"
+    },
+    {
+      "id": "penalties",
+      "label": "罰金・刑期",
+      "shortLabel": "罰金",
+      "description": "確認済みの基本罰金と、確認中の処分条件。",
+      "group": "サポート"
+    },
+    {
+      "id": "faq",
+      "label": "FAQ",
+      "shortLabel": "FAQ",
+      "description": "困ったとき、読み返したいときの案内。",
+      "group": "サポート"
+    }
+  ],
+  "rules": [
+    {
+      "id": "intro-welcome",
+      "number": 1,
+      "title": "あなたらしく、この街を楽しもう",
+      "category": "intro",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "にこぐらは、ゆるく楽しく遊べる街。初めから完璧なRPは求めません。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "仕事をしたり、友達と過ごしたり、事件の当事者になったり。キャラクターとして、あなたらしい物語を楽しんでください。ルールは、その楽しみをお互いに守るための共通の約束です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "初心者の戸惑いや悪意のないRPミスは、まず案内して一緒に解決します。分からないことは、近くの住民や担当者に聞いて大丈夫です。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "intro-reading",
+      "number": 2,
+      "title": "バッジと「運営確認中」の読み方",
+      "category": "intro",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "お願い・注意・禁止を分けて表示しています。未確定の案内は正式ルールと区別しています。",
+      "content": [
+        {
+          "type": "list",
+          "items": [
+            "ガイド：遊び方や仕組みの案内。",
+            "お願い：お互いに協力してほしいこと。",
+            "注意：状況や条件を確認してほしいこと。",
+            "禁止・重大違反：意図的な不正や実害のある行為。"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "「運営確認中」は、まだ正式な条件が決まっていない項目です。そこに書かれていない数字を、他の街のルールから補って使わないでください。バッジだけで処分が自動決定するわけではありません。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "basic-respect",
+      "number": 3,
+      "title": "相手の楽しみも大切に",
+      "category": "basic",
+      "tags": [
+        "お願い"
+      ],
+      "keywords": [],
+      "severity": "notice",
+      "summary": "役職や経験にかかわらず、一緒に遊ぶ相手を尊重しましょう。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "犯罪者、警察、救急、店員、お客さん。それぞれが遊ぶ人です。役の上で対立しても、現実の人格への攻撃にはつなげないようお願いします。"
+        },
+        {
+          "type": "paragraph",
+          "text": "相手が返事やRPを返せる余地を残し、困っている人には短く説明してあげましょう。嫌なことをされたときも、仕返しでシーンを壊さず、運営へ相談してください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "rp-back-and-forth",
+      "number": 4,
+      "title": "相手と一緒にRPをつくる",
+      "category": "rp",
+      "tags": [
+        "お願い"
+      ],
+      "keywords": [],
+      "severity": "notice",
+      "summary": "上手な演技より、会話や行動のやり取りを楽しみましょう。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "街の中で知ったことをもとに、キャラクターとして考えたり行動したりしてみてください。言い間違いや操作ミスがあっても、すぐに相手を責める必要はありません。"
+        },
+        {
+          "type": "paragraph",
+          "text": "相手の反応を無視して結果を一方的に決めたり、関係のない場面へ繰り返し割り込んで遊びを止めたりしないようお願いします。困ったときは短く確認し、必要なら担当者や運営の助けを借りてください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "rp-metagaming",
+      "number": 5,
+      "title": "ゲーム外の情報をRPに持ち込まない",
+      "category": "rp",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "メタ",
+        "Metagaming",
+        "ゴースティング",
+        "Ghosting",
+        "Stream Sniping"
+      ],
+      "severity": "prohibited",
+      "summary": "キャラクターが知らない情報を使って、シーンを有利に進めることは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Discord、配信、フレンド画面、別キャラクター、他の人の画面などで知った位置・計画・身元を、今のキャラクターが知っている情報として使わないでください。配信を見て追跡や待ち伏せをするゴースティングも含みます。"
+        },
+        {
+          "type": "note",
+          "text": "RPに影響しない普段の雑談まで禁止するものではありません。偶然情報が見えた場合は、その情報を行動や仲間への連絡に使わないようにしてください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "rp-rdm",
+      "number": 6,
+      "title": "理由のない攻撃をしない（RDM）",
+      "category": "rp",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "RDM",
+        "無差別",
+        "殺害"
+      ],
+      "severity": "prohibited",
+      "summary": "RP上の理由やシーンがないのに、他の住民を突然攻撃・殺害することは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "通りすがりの人への無差別な発砲など、相手にRPの関わりがない攻撃をしないでください。「犯罪者のキャラクターだから」だけで、誰でも攻撃できるわけではありません。"
+        },
+        {
+          "type": "note",
+          "text": "進行中の犯罪RPや正当な対立まで、自動的にRDMと扱うものではありません。前後のやり取り、故意かどうか、状況を含めて判断します。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "prohibited-cheating",
+      "number": 7,
+      "title": "チート・不正ツールを使わない",
+      "category": "prohibited",
+      "tags": [
+        "重大違反"
+      ],
+      "keywords": [
+        "チート",
+        "cheat",
+        "不正ツール"
+      ],
+      "severity": "serious",
+      "summary": "不正な優位を得るチートやツール、ゲームシステムを故意に壊す行為は禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "不正な照準・透視・改変などで他の人より有利になる行為、荒らし目的でシステムやプレイを妨害する行為は、重大な運営対応の対象です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "通常の補助機能や設定で判断に迷う場合は、使う前に運営へ確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "prohibited-exploit",
+      "number": 8,
+      "title": "バグ・複製を意図的に悪用しない",
+      "category": "prohibited",
+      "tags": [
+        "重大違反"
+      ],
+      "keywords": [
+        "バグ",
+        "Exploit",
+        "Duplication",
+        "デュープ",
+        "複製"
+      ],
+      "severity": "serious",
+      "summary": "バグを利用してお金・アイテム・能力などを不正に増やす行為は禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "アイテムの複製（Duplication）、同じ報酬の不正な重複受け取り、動作の隙を使った意図的な有利化をしないでください。見つけた不具合は、追加で試したり広めたりせず運営へ報告してください。"
+        },
+        {
+          "type": "note",
+          "text": "偶然の不具合や操作ミスそのものを、故意の不正利用と同じに扱いません。気づいた時点で利用を止め、発生時刻や状況を伝えてください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "prohibited-rmt",
+      "number": 9,
+      "title": "現実のお金でゲーム内資産を取引しない",
+      "category": "prohibited",
+      "tags": [
+        "重大違反"
+      ],
+      "keywords": [
+        "RMT",
+        "リアルマネー"
+      ],
+      "severity": "serious",
+      "summary": "ゲーム内のお金・アイテム・権利などを、現実の金銭や対価で売買するRMTは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "現実のお金や換金できる対価と引き換えに、ゲーム内資産を受け渡したり、取引を持ちかけたりしないでください。RMTは初回でも強い運営対応の対象になります。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "prohibited-harassment",
+      "number": 10,
+      "title": "悪質な嫌がらせをしない",
+      "category": "prohibited",
+      "tags": [
+        "重大違反"
+      ],
+      "keywords": [
+        "ハラスメント",
+        "暴言",
+        "差別",
+        "個人情報"
+      ],
+      "severity": "serious",
+      "summary": "差別、執拗な人格攻撃、性的な嫌がらせ、個人情報の暴露などは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "キャラクター同士の対立を理由に、相手本人を傷つける言動やつきまといを続けないでください。ゲーム内・配信・SNSのどこであっても、他の人の現実の情報をさらす行為や、悪質な嫌がらせは運営対応の対象です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "嫌な思いをしたときは無理にその場で解決しようとせず、距離を取り、状況を運営へ伝えてください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "prohibited-impersonation",
+      "number": 11,
+      "title": "運営や他のプレイヤーになりすまさない",
+      "category": "prohibited",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "なりすまし",
+        "偽装"
+      ],
+      "severity": "prohibited",
+      "summary": "運営の指示を装ったり、他人本人のふりをして誤認させたりする行為は禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "運営権限があると偽って従わせる、他のプレイヤーの本人確認を装う、といった行為をしないでください。キャラクターの設定や変装を楽しむ場合も、実在の運営・プレイヤー本人との誤認を狙わないようにしてください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "character-identity",
+      "number": 12,
+      "title": "キャラクターの情報を分けよう",
+      "category": "character",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "Character",
+        "別キャラ"
+      ],
+      "severity": "guide",
+      "summary": "別のキャラクターで知ったことは、今のキャラクターの記憶にはなりません。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "キャラクターごとに、街で経験したことや知り合った相手をもとに遊びましょう。別キャラクター経由の情報を使って有利になる行為は「ゲーム外の情報をRPに持ち込まない」の対象です。"
+        },
+        {
+          "type": "note",
+          "text": "キャラクター作成数や職業の組み合わせは、この案内だけでは決まりません。兼業などの条件は「職業・店舗の未確定条件」を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "communication-external-vc",
+      "number": 13,
+      "title": "シーン中の外部VCで情報を補わない",
+      "category": "communication",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "外部VC",
+        "Discord",
+        "ボイスチャット"
+      ],
+      "severity": "prohibited",
+      "summary": "犯罪・追跡・交渉などの進行中シーンに、外部VCの情報を持ち込むことは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Discordなどで、ゲーム内では聞けない位置や指示を共有してシーンを有利に進めないでください。ダウン中の仲間から、ゲーム内では伝えられない情報を受け取る行為も含みます。"
+        },
+        {
+          "type": "note",
+          "text": "シーンに影響しない日常の雑談は、全面禁止していません。雑談中にシーンの情報が入った場合は、切り分けて使わないようにしてください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "communication-voice",
+      "number": 14,
+      "title": "聞き取りやすい会話に協力しよう",
+      "category": "communication",
+      "tags": [
+        "お願い"
+      ],
+      "keywords": [],
+      "severity": "notice",
+      "summary": "音量や周囲の会話に気を配り、お互いに声を届けやすくしましょう。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "大きな音や連続した呼びかけで、他の人の会話を妨げないようお願いします。音量やマイクの不調に気づいたら、短く伝え合って調整しましょう。声の演技や話し方の上手さを評価するためのルールではありません。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "vehicles-vdm",
+      "number": 15,
+      "title": "車を使って故意に襲わない（VDM）",
+      "category": "vehicles",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "VDM",
+        "故意",
+        "車両攻撃"
+      ],
+      "severity": "prohibited",
+      "summary": "RP上の理由なく、車両を武器にして他の住民へ故意にぶつけることは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "嫌がらせのために人を狙ってひく、繰り返し体当たりで倒す、といった行為をしないでください。"
+        },
+        {
+          "type": "note",
+          "text": "交通事故、チェイス中の接触、RP上合理的な車両接触まで、自動的にVDMと扱いません。故意かどうかと、シーン全体の状況を確認します。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "vehicles-courtesy",
+      "number": 16,
+      "title": "周りの人と車に気を配ろう",
+      "category": "vehicles",
+      "tags": [
+        "お願い"
+      ],
+      "keywords": [],
+      "severity": "notice",
+      "summary": "人や仕事の動線をふさがず、事故が起きたら状況を伝え合いましょう。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "店舗や救護の近くでは周囲に気を配り、他の人の活動を長く妨げないようお願いします。仕事専用の車両や機能も、権限を悪用して他の人を困らせるために使わないでください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "この案内は、独自の速度制限や車種の禁止を追加するものではありません。個別の案内がある場所では、その場の説明を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "weapons-crime-use",
+      "number": 17,
+      "title": "銃刀法違反と武器の所持",
+      "category": "weapons",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "銃刀法",
+        "所持",
+        "合法",
+        "違法"
+      ],
+      "severity": "important",
+      "summary": "銃刀法違反は、武器を犯罪に使った場合が対象です。所持だけでは、この罪状に当たりません。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "武器を使う場面では、犯罪やRPの条件を確認してください。「所持だけでは銃刀法違反ではない」ことは、どんな場所・状況でも使用してよいという意味ではありません。"
+        },
+        {
+          "type": "note",
+          "text": "職業や保護観察などによる別の制限がある場合は、その案内に従ってください。ライセンスや武器の区分の詳細は運営確認中です。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "pending-weapons-license",
+      "number": 0,
+      "title": "武器ライセンス・区分の詳細",
+      "category": "weapons",
+      "tags": [
+        "運営確認中"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "ライセンス、狩猟用・犯罪用の区分、個別の利用条件は運営確認中です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "現時点で、このページに武器の一覧やライセンス条件を正式掲載していません。所持についての案内を、個別の武器の利用許可と読み替えないようにしてください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": false,
+      "featured": false,
+      "status": "pending"
+    },
+    {
+      "id": "crime-combat-log",
+      "number": 18,
+      "title": "シーンから逃れるために退出しない",
+      "category": "crime",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "Combat Log",
+        "コンバットログ",
+        "切断",
+        "回線落ち"
+      ],
+      "severity": "prohibited",
+      "summary": "逮捕・追跡・交渉などの結果を避けるため、故意にログアウトするCombat Logは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "不利な状況をリセットする目的で、退出や切断をしないでください。"
+        },
+        {
+          "type": "note",
+          "text": "クラッシュ、回線落ち、やむを得ない離席は、故意のCombat Logと区別します。戻れる場合は復帰し、関係者へ切断が起きたことを伝えて、再開方法を相談してください。戻れない場合も、可能になった時点で担当者や運営へ状況を伝えてください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "crime-third-party",
+      "number": 19,
+      "title": "関係のないシーンを不正に壊さない",
+      "category": "crime",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [],
+      "severity": "prohibited",
+      "summary": "第三者として割り込み、進行中の犯罪や追跡を不正に有利化・妨害することは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "当事者と関わりのない場面に、ゲーム外の情報を頼りに加勢したり、無関係な攻撃で結末を変えたりしないでください。"
+        },
+        {
+          "type": "note",
+          "text": "通りかかること、通常の通報や救護まで一律に禁止するものではありません。助けに入る場合は、場面の安全とゲーム内での関わりを確認し、PD・EMSや当事者の案内に合わせてください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "crime-rejoin-combat",
+      "number": 20,
+      "title": "蘇生後すぐ同じ戦闘へ戻らない",
+      "category": "crime",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [],
+      "severity": "prohibited",
+      "summary": "倒れて蘇生された直後に、同じ戦闘へ再参加して戦力を増やすことは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "蘇生を使って、同じ戦闘を何度も続ける行為をしないでください。まず治療や身柄の扱いなど、その場のPD・EMSの案内に従ってください。"
+        },
+        {
+          "type": "note",
+          "text": "クラッシュからの復帰は、蘇生による再参加とは区別します。運営が復旧や再開方法を案内した場合は、その指示に合わせてください。このルールに、独自の待機時間や記憶喪失の条件は設けていません。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "crime-probation",
+      "number": 21,
+      "title": "保護観察中は犯罪の制限を確認",
+      "category": "crime",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "保護観察中など、犯罪への参加が制限されている場合は、その制限に従ってください。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "制限中は、主催者だけでなく参加者としても犯罪に入れない場合があります。参加画面やPDからの説明を確認し、別の立場を使って制限を回避しないでください。"
+        },
+        {
+          "type": "note",
+          "text": "処分の時間や適用区分は運営確認中です。現在自分に適用されている内容は、PDへ確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "heist-duplicate",
+      "number": 22,
+      "title": "Heistの重複・リセットを悪用しない",
+      "category": "heist",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [],
+      "severity": "prohibited",
+      "summary": "同じHeistの報酬や進行を、意図的な重複・リセットで不正に利用することは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "正常な進行から外れて二重に報酬を受け取ったり、失敗や制限を不正に消したりしないでください。不具合に気づいたら追加の利用を止め、状況を運営へ報告してください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "一般的なバグ・複製の扱いは「バグ・複製を意図的に悪用しない」と同じです。この案内のために、Heistの内部手順や攻略情報は掲載していません。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "pending-crime-conditions",
+      "number": 0,
+      "title": "犯罪・Heistごとの条件",
+      "category": "heist",
+      "tags": [
+        "運営確認中"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "参加人数、PD人数、個別の開始条件・罰金・時間は運営確認中です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "犯罪ごとの条件、再起動前後の扱い、犯罪中の修理・救護の条件は、確認できたものから更新します。未掲載の数値を他の街から持ち込まないでください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "開始画面の案内や担当者の説明を確認し、資料や画面の案内が食い違う場合は、実行前に運営へ確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": false,
+      "featured": false,
+      "status": "pending"
+    },
+    {
+      "id": "pd-authority",
+      "number": 23,
+      "title": "警察の権限を私物化しない",
+      "category": "pd",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [],
+      "severity": "prohibited",
+      "summary": "PDの職権、押収品、専用機能を私的な利益のために使うことは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "職務の立場を使った汚職・収賄、押収品の私物化、不正な便宜供与をしないでください。警察の対応も相手とのRPの一部です。必要な説明を行い、威圧や現実の人格攻撃に頼らないようお願いします。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "pd-fines",
+      "number": 24,
+      "title": "罪状と処分の説明を確認しよう",
+      "category": "pd",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "PDは正規の罪状・料金を使い、住民が確認できるよう説明してください。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "罰金を独自に作ったり、私的な請求に置き換えたりしないでください。住民側も、どの罪状が適用され、何を支払うのか分からない場合は説明を求めて大丈夫です。"
+        },
+        {
+          "type": "note",
+          "text": "基本罰金は「基本罰金の一覧」に掲載しています。刑期・観察処分の時間や犯罪ごとの個別条件は、運営確認中のため、このページから独自に計算しないでください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "押収、白市民ID、指名手配などの細かな適用条件は、確認済みの案内がある範囲で扱います。未掲載の条件を、このページが新たに認めるものではありません。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "ems-request",
+      "number": 25,
+      "title": "ダウンしたら救護要請を送ろう",
+      "category": "ems",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "ダウン画面のGキーで救護要請を送れます。受付通知を確認し、EMSの案内を待ちましょう。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "キー割り当てを変更している場合は、対応するキーを使ってください。ダウンしただけで要請が届いたと思わず、画面の受付通知を確認しましょう。"
+        },
+        {
+          "type": "paragraph",
+          "text": "現場が危険な場合は、EMSとPDが安全を確認して対応します。蘇生後も治療が必要なことがあります。移動や治療について、その場の案内に合わせてください。"
+        },
+        {
+          "type": "note",
+          "text": "要請は到着時刻を保証するものではありません。分かる範囲で状況を伝え、落ち着いて待ちましょう。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "ems-care",
+      "number": 26,
+      "title": "救護の権限を悪用しない",
+      "category": "ems",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [],
+      "severity": "prohibited",
+      "summary": "EMSの仕事や医療機能を、汚職や不正な利益のために使うことは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "患者の立場や所属だけで不当に扱いを変えたり、仕事の権限を使って不正な取引をしたりしないでください。現場では安全確認やPDとの連携を行い、患者にも状況を説明しましょう。"
+        },
+        {
+          "type": "note",
+          "text": "この案内は、すべての場面で直ちに蘇生できるという保証ではありません。個別の犯罪現場の条件は、確定した案内を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "ems-fees",
+      "number": 27,
+      "title": "医療サービスの基準料金",
+      "category": "ems",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "医療の種類に合わせて、内容と料金を確認しましょう。",
+      "content": [
+        {
+          "type": "table",
+          "caption": "医療サービス（円）",
+          "headers": [
+            "サービス",
+            "基準料金"
+          ],
+          "rows": [
+            [
+              "通常治療",
+              "100,000円"
+            ],
+            [
+              "院内蘇生",
+              "500,000円"
+            ],
+            [
+              "現場蘇生・搬送",
+              "600,000円"
+            ],
+            [
+              "北対応",
+              "700,000円"
+            ],
+            [
+              "牢屋対応",
+              "650,000円"
+            ],
+            [
+              "EMS不在時のNPC治療",
+              "300,000円"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "利用前や請求時に、どのサービスが対象か担当者へ確認してください。対応場所・内容が変わった場合も、請求の説明を受けましょう。NPC受付が利用できるかどうかは、画面の案内を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "mechanic-billing",
+      "number": 28,
+      "title": "作業内容と請求を合わせよう",
+      "category": "mechanic",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "修理やカスタムは、内容と料金を確認してから依頼しましょう。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "メカニックは、説明した作業に対応する正規料金を請求してください。Job専用機能を不正に使ったり、説明のない作業を請求へ加えたりしないでください。"
+        },
+        {
+          "type": "note",
+          "text": "半カスタム・フルカスタムの料金には性能パーツ代が含まれます。パックに含まれる性能パーツを、さらに二重請求しないでください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "犯罪シーン中の修理について、ここでは新しい一律禁止を設けていません。個別条件は「犯罪・Heistごとの条件」の更新を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "mechanic-fees",
+      "number": 29,
+      "title": "修理・カスタムの基準料金",
+      "category": "mechanic",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "基準料金を目安に、作業の範囲と見積もりを確認してください。",
+      "content": [
+        {
+          "type": "table",
+          "caption": "修理・カスタム（円）",
+          "headers": [
+            "サービス",
+            "基準料金",
+            "備考"
+          ],
+          "rows": [
+            [
+              "通常修理",
+              "50,000円",
+              ""
+            ],
+            [
+              "全修理",
+              "200,000円",
+              ""
+            ],
+            [
+              "タイヤ交換",
+              "350,000円",
+              "タイヤ1本"
+            ],
+            [
+              "標準塗装",
+              "80,000円",
+              ""
+            ],
+            [
+              "特殊RGB塗装",
+              "150,000円",
+              ""
+            ],
+            [
+              "外装パーツ",
+              "300,000円",
+              "1部位"
+            ],
+            [
+              "ネオン・キセノン",
+              "80,000円",
+              ""
+            ],
+            [
+              "特殊ナンバー",
+              "1,000,000円",
+              ""
+            ],
+            [
+              "外装フル",
+              "4,200,000円",
+              "見積もりの目安"
+            ],
+            [
+              "半カスタム",
+              "20,000,000円",
+              "性能パーツ代込み"
+            ],
+            [
+              "フルカスタム",
+              "40,000,000円",
+              "性能パーツ代込み"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "外装フルは見積もりの目安です。実際の依頼内容と請求額は、作業前に担当者と確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "business-honest",
+      "number": 30,
+      "title": "お店では内容の分かる取引を",
+      "category": "business",
+      "tags": [
+        "お願い"
+      ],
+      "keywords": [],
+      "severity": "notice",
+      "summary": "商品・作業・料金を伝え合い、店内のやり取りを楽しみましょう。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "お店側は、商品やサービスの説明と請求が食い違わないようにしてください。意図的な詐欺的請求やJob権限の悪用は運営対応の対象です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "お客さんも、ほかの接客や仕事を長く妨げないようお願いします。行き違いがあれば、まず内容を確認し、解決が難しい場合は運営へ相談してください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "pending-job-conditions",
+      "number": 0,
+      "title": "職業・店舗の未確定条件",
+      "category": "business",
+      "tags": [
+        "運営確認中"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "兼業の適用範囲、雇用、営業時間、飲食の価格帯、組織制度は運営確認中です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "PD・EMS・メカニックの兼業に関する管理方針はありますが、職業の組み合わせや運用範囲は確認が必要です。就職・採用前に担当者へ確認してください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "飲食の価格帯、営業時間、組織・ギャングの制度は、確定した住民向け案内から追加します。現時点で独自の上限や登録条件は設けていません。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": false,
+      "featured": false,
+      "status": "pending"
+    },
+    {
+      "id": "streaming-respect",
+      "number": 31,
+      "title": "配信・SNSでも相手を大切に",
+      "category": "streaming",
+      "tags": [
+        "お願い"
+      ],
+      "keywords": [],
+      "severity": "notice",
+      "summary": "発信を楽しみながら、個人情報や相手への嫌がらせに気を配りましょう。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "配信を見て位置を得るなど、シーンに外部情報を持ち込む行為は「ゲーム外の情報をRPに持ち込まない」の対象です。他の配信者への嫌がらせも、ゲーム内と同じく禁止事項に含まれます。"
+        },
+        {
+          "type": "paragraph",
+          "text": "現実の個人情報や私的な画面が写り込まないよう気を配ってください。このページでは、独自の配信ノルマや命名コマンド、投稿頻度の義務は設けていません。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "administration-response",
+      "number": 32,
+      "title": "運営は状況に合わせて対応します",
+      "category": "administration",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "軽微な初回は案内・注意を基本に、繰り返しや悪質さに応じて対応します。",
+      "content": [
+        {
+          "type": "list",
+          "items": [
+            "軽微な初回や悪意のないミス：案内・注意を基本にします。",
+            "繰り返しの違反：警告や必要な対応を行います。",
+            "チート、意図的な不正利用、RMT、悪質なハラスメント、重大な荒らし：初回からBANを含む強い対応の対象です。"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "故意かどうか、前後の状況、実害などを確認して判断します。ここでは、未確定のBAN日数や自動処分の回数を設けていません。"
+        },
+        {
+          "type": "note",
+          "text": "ゲーム内の罪状・罰金と、サーバーの運営対応は別のものです。ゲーム内で支払いを済ませたことだけで、重大な不正への運営対応が終わるわけではありません。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "administration-report",
+      "number": 33,
+      "title": "困ったときは状況を伝えよう",
+      "category": "administration",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "報告",
+        "録画",
+        "相談",
+        "通報"
+      ],
+      "severity": "guide",
+      "summary": "日時・場所・起きたことを、分かる範囲で運営へ伝えてください。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "相手への公開批判や仕返しで解決しようとせず、運営の案内する相談窓口を使ってください。公式窓口のURLは確認でき次第、このサイトにも掲載します。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "いつ・どこで起きたか。",
+            "誰が関わり、何が起きたか。",
+            "切断や不具合など、補足できる状況。",
+            "映像や画像がある場合は、その確認できる箇所。"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "録画は確認の助けになるため推奨しますが、必須ではありません。映像がない場合も、覚えている内容を伝えてください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "penalties-basic-fines",
+      "number": 34,
+      "title": "基本罰金の一覧",
+      "category": "penalties",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "確認済みの基本罰金です。刑期・観察処分の時間と適用区分は運営確認中です。",
+      "content": [
+        {
+          "type": "table",
+          "caption": "基本罰金（1人あたり）",
+          "headers": [
+            "罪状",
+            "基本罰金",
+            "刑期・観察処分",
+            "備考"
+          ],
+          "rows": [
+            [
+              "銃刀法違反",
+              "1,500,000円",
+              "運営確認中",
+              "犯罪に使用した場合。所持だけでは対象外。"
+            ],
+            [
+              "誘拐拉致監禁罪",
+              "1,500,000円",
+              "運営確認中",
+              ""
+            ],
+            [
+              "NPC殺人・未遂罪",
+              "2,000,000円",
+              "運営確認中",
+              ""
+            ],
+            [
+              "プレイヤー殺人・未遂罪",
+              "30,000,000円",
+              "運営確認中",
+              ""
+            ],
+            [
+              "窃盗罪",
+              "1,000,000円",
+              "運営確認中",
+              ""
+            ],
+            [
+              "重窃盗罪",
+              "1,000,000,000円",
+              "運営確認中",
+              ""
+            ],
+            [
+              "公務執行妨害罪",
+              "1,500,000円",
+              "運営確認中",
+              ""
+            ],
+            [
+              "テロ罪",
+              "1,000,000,000円",
+              "運営確認中",
+              ""
+            ],
+            [
+              "汚職収賄罪",
+              "10,000,000,000円",
+              "運営確認中",
+              ""
+            ],
+            [
+              "業務妨害罪",
+              "10,000,000〜100,000,000円",
+              "運営確認中",
+              "店舗オーナーと相談して決定。"
+            ],
+            [
+              "逃走補助罪",
+              "1人分の報酬の半額",
+              "運営確認中",
+              "個人医への適用範囲を運営確認中。"
+            ],
+            [
+              "セクハラ / カスハラ / パワハラ / 暴言",
+              "10,000,000,000円",
+              "運営確認中",
+              ""
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "PDは適用した罪状と請求額を説明してください。業務妨害罪の金額は表の範囲で相談して決めます。逃走補助罪は、誰に適用するかを確認する必要があります。"
+        },
+        {
+          "type": "note",
+          "text": "この表は犯罪・Heistごとの個別罰金や、複数罪状・再犯の計算方法を確定するものではありません。処分時間は、名称と適用条件の確認が済むまで掲載を保留しています。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "pending-penalty-times",
+      "number": 0,
+      "title": "刑期・観察処分と計算方法",
+      "category": "penalties",
+      "tags": [
+        "運営確認中"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "刑期と観察処分の区分・時間、複数罪状・再犯の扱いは運営確認中です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "確定した基本罰金以外の数字は、ここでは正式掲載していません。自分に適用された処分や支払いの内訳は、PDへ確認してください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "運営の確認後に、区分・時間・計算方法を更新履歴と合わせて追加します。未確定の内容を理由に、独自の処分を作らないでください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": false,
+      "featured": false,
+      "status": "pending"
+    },
+    {
+      "id": "faq-find-share",
+      "number": 35,
+      "title": "読み返したいルールを探すには？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "検索、カテゴリー、☆保存、リンクコピーが使えます。",
+      "content": [
+        {
+          "type": "list",
+          "items": [
+            "検索：タイトルだけでなく、本文・タグ・カテゴリー・料金表の文字も探せます。",
+            "カテゴリー：知りたい仕事や場面に絞れます。",
+            "☆保存：このブラウザの「保存したルール」へ登録できます。ログインは不要です。",
+            "リンクをコピー：そのルールへ直接開けるURLを共有できます。"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "保存情報は端末・ブラウザごとに記録されます。ブラウザのデータを消すと、保存情報も消える場合があります。最新版は更新履歴で確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-05",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    }
+  ],
+  "changelog": [
+    {
+      "date": "2026-10-05",
+      "type": "NEW",
+      "title": "公式ルール v1.0.0 を公開",
+      "items": [
+        "初心者に分かりやすい共通ルールを、ガイド・お願い・注意・禁止・重大違反に分けて公開しました。",
+        "確認済みの基本罰金、医療・メカニックの基準料金を掲載しました。",
+        "未確定の犯罪条件・処分時間・職業条件・武器区分は「運営確認中」と明記しました。",
+        "全文検索、カテゴリー、ブックマーク、個別URL、更新履歴を用意しました。"
+      ]
+    }
+  ],
+  "settings": {
+    "newBadgeDays": 30,
+    "featuredRuleIds": [
+      "intro-welcome",
+      "rp-metagaming",
+      "crime-combat-log",
+      "administration-report"
+    ]
+  }
+}

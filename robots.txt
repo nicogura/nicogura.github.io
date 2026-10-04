@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /editor/
+Sitemap: https://nicogura.github.io/sitemap.xml
