@@ -1,0 +1,376 @@
+{
+  "categories": [
+    {
+      "id": "crime",
+      "label": "犯罪RP",
+      "shortLabel": "犯罪RP",
+      "description": "犯罪RPも街の楽しみのひとつ。共通の約束と基準を確認しましょう。",
+      "group": "街の暮らし"
+    },
+    {
+      "id": "heist",
+      "label": "Heist",
+      "shortLabel": "Heist",
+      "description": "仲間と楽しむHeistの案内。",
+      "group": "街の暮らし"
+    }
+  ],
+  "rules": [
+    {
+      "id": "crime-combat-log",
+      "number": 18,
+      "title": "シーンから逃れるために退出しない",
+      "category": "crime",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "Combat Log",
+        "コンバットログ",
+        "退出",
+        "切断",
+        "クラッシュ",
+        "回線落ち"
+      ],
+      "severity": "prohibited",
+      "summary": "進行中のRPから逃げる目的で、故意にサーバーから退出するCombat Logは禁止です。",
+      "content": [
+        {
+          "text": "警察対応、犯罪、戦闘、交渉、その他進行中のRPの結果を避けたり、不利な状況をリセットしたりする目的で、故意に退出・切断しないでください。",
+          "type": "paragraph"
+        },
+        {
+          "text": "クラッシュ、回線落ち、FiveMエラーなどの不可抗力は区別します。可能であれば再接続してRPを続け、関係者へ状況を伝えてください。戻れない場合は、可能になった時点でDiscordの「お問い合わせ窓口」へ連絡してください。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "crime-third-party",
+      "number": 19,
+      "title": "関係のないシーンを不正に壊さない",
+      "category": "crime",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "第三者",
+        "割り込み",
+        "妨害",
+        "不正な加勢"
+      ],
+      "severity": "prohibited",
+      "summary": "外部情報や無関係な攻撃で、進行中の犯罪や追跡を不正に有利にしたり妨げたりしないでください。",
+      "content": [
+        {
+          "text": "当事者とゲーム内での関わりがない場面へ、ゲーム外の情報を頼りに加勢したり、無関係な攻撃で結末を変えたりする行為は禁止です。",
+          "type": "paragraph"
+        },
+        {
+          "text": "通りかかること、通常の通報や救護まで一律に禁止するものではありません。助けに入るときは、その場の安全とゲーム内での関わりを確認してください。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "crime-rejoin-combat",
+      "number": 20,
+      "title": "復帰直後に同じ戦闘へ戻らない",
+      "category": "crime",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "復帰",
+        "蘇生",
+        "戦闘再参加",
+        "ダウン"
+      ],
+      "severity": "prohibited",
+      "summary": "ダウンから復帰した直後に、同じ戦闘へ戻って再参加する行為は禁止です。",
+      "content": [
+        {
+          "text": "蘇生や復帰を使って、同じ戦闘へ繰り返し参加しないでください。まず治療や身柄の扱いなど、その場の案内を確認してください。",
+          "type": "paragraph"
+        },
+        {
+          "text": "クラッシュからの再接続は、ダウンからの復帰とは区別します。再開方法が分からない場合は運営へ相談してください。独自の待機時間や記憶喪失の条件をこの案内で追加するものではありません。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "crime-probation",
+      "number": 21,
+      "title": "案内された参加制限を確認しよう",
+      "category": "crime",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "保護観察",
+        "制限",
+        "確認"
+      ],
+      "severity": "important",
+      "summary": "保護観察などの制限を案内された場合は、適用内容を確認して従ってください。",
+      "content": [
+        {
+          "text": "参加できる活動や適用期間など、実際に案内された制限の範囲を確認してください。制限を回避する目的で、別のアカウントや立場を使わないでください。",
+          "type": "paragraph"
+        },
+        {
+          "text": "自分に適用される内容が分からない場合は、PDや運営へ確認してください。ここでは一律の期間や条件を設けていません。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "heist-duplicate",
+      "number": 22,
+      "title": "Heistの重複・リセットを悪用しない",
+      "category": "heist",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "Heist",
+        "ヘイスト",
+        "重複",
+        "リセット",
+        "報酬",
+        "不正"
+      ],
+      "severity": "prohibited",
+      "summary": "同じHeistの報酬や進行を、意図的な重複・リセットで不正に利用することは禁止です。",
+      "content": [
+        {
+          "text": "正常な進行から外れて二重に報酬を受け取ったり、失敗や制限を不正に消したりしないでください。不具合に気づいたら追加利用を止め、Discordの「お問い合わせ窓口」へ状況を報告してください。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "crime-down-information",
+      "number": 107,
+      "title": "ダウン中に戦況を伝えて有利にしない",
+      "category": "crime",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "ダウン",
+        "戦況",
+        "敵の位置",
+        "生存",
+        "無線"
+      ],
+      "severity": "prohibited",
+      "summary": "ダウン中に敵の位置・人数・移動方向・作戦などを、生存している仲間へ伝える行為は禁止です。",
+      "content": [
+        {
+          "text": "自分がダウンしている間に戦況を共有し、生きている仲間を有利にしないでください。ゲーム内の会話や無線、外部VCなど、連絡手段にかかわらず同じです。",
+          "type": "paragraph"
+        },
+        {
+          "text": "RP上自然な会話まで完全に禁止するものではありません。復帰直後に同じ戦闘へ戻ることについては「復帰直後に同じ戦闘へ戻らない」を確認してください。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "pending-crime-conditions",
+      "number": 202,
+      "title": "犯罪・Heistを始める前に",
+      "category": "heist",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "犯罪",
+        "Heist",
+        "開始",
+        "人数",
+        "報酬"
+      ],
+      "severity": "guide",
+      "summary": "犯罪の種類、公開報酬基準、ゲーム内の罰金・刑務を確認して計画しましょう。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "犯罪RPはNicoGuraのゲームコンテンツです。街の仲間と計画し、警察とのやり取りやシーンを楽しみましょう。"
+        },
+        {
+          "type": "paragraph",
+          "text": "犯罪一覧で分類を確認し、公開報酬基準とゲーム内法律の罰金・刑務を読みましょう。開始に必要な参加人数やPD人数などは、ゲーム内の案内を確認してください。"
+        },
+        {
+          "type": "note",
+          "text": "報酬表の「6人時」「8人時」「15人時」は報酬の基準条件です。その数値だけで参加上限や開始条件を決めないでください。"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "crime-public-rewards",
+      "number": 211,
+      "title": "犯罪の公開報酬基準",
+      "category": "crime",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "犯罪",
+        "報酬",
+        "小型",
+        "準中型",
+        "中型",
+        "大型"
+      ],
+      "severity": "guide",
+      "summary": "犯罪の規模ごとの基準報酬です。人数条件とあわせて確認しましょう。",
+      "content": [
+        {
+          "type": "table",
+          "caption": "犯罪の基準報酬",
+          "headers": [
+            "分類",
+            "基準条件",
+            "1人の報酬"
+          ],
+          "rows": [
+            [
+              "小型",
+              "1人報酬基準",
+              "8,000,000円"
+            ],
+            [
+              "準中型チェイス",
+              "1人報酬基準",
+              "15,000,000円"
+            ],
+            [
+              "準中型撃ち合い",
+              "6人時・1人あたり",
+              "35,000,000円"
+            ],
+            [
+              "中型",
+              "8人時・1人あたり",
+              "70,000,000円"
+            ],
+            [
+              "大型",
+              "15人時・1人あたり",
+              "120,000,000円"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "この表は基準報酬の案内です。「6人時」「8人時」「15人時」は報酬の基準条件であり、参加上限や開始に必要な人数を決めるものではありません。"
+        },
+        {
+          "type": "paragraph",
+          "text": "犯罪を計画するときは、種類の一覧とゲーム内法律の罰金・刑務も確認しましょう。"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "crime-current-list",
+      "number": 212,
+      "title": "犯罪・Heistの種類",
+      "category": "crime",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "犯罪一覧",
+        "強盗",
+        "ブースティング",
+        "Heist",
+        "小型",
+        "準中型",
+        "中型",
+        "大型"
+      ],
+      "severity": "guide",
+      "summary": "小型から大型まで、街の犯罪コンテンツの分類を確認できます。",
+      "content": [
+        {
+          "type": "table",
+          "caption": "犯罪一覧",
+          "headers": [
+            "分類",
+            "犯罪・Heist"
+          ],
+          "rows": [
+            [
+              "小型",
+              "コンビニ強盗、ATM強盗、空き巣"
+            ],
+            [
+              "準中型チェイス",
+              "フリーカ強盗、現金両替強盗、クレーン強盗、ブースティング A / S"
+            ],
+            [
+              "準中型撃ち合い",
+              "コインランドリー、ヴァンジェリコ、列車強盗、パージ強盗"
+            ],
+            [
+              "中型",
+              "客船、飛行場襲撃、ボブキャット、パレト、貨物船強盗、ヒューマンラボ、美術館強盗、金庫強盗"
+            ],
+            [
+              "大型",
+              "アーティファクト、ユニオンヘイスト、カジノヘイスト、パシフィック、マウンテン・ボルト、アンダーグラウンド・ヘイスト、警察署襲撃、メイズバンク"
+            ],
+            [
+              "PDなし犯罪",
+              "自動販売機強盗、ポストロッカー強盗、ブースティング D / C / B"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "犯罪RPも街の遊び方の一つです。サーバールールを守りながら、仲間や警察とのシーンを楽しみましょう。"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "categories": [
+    {
+      "id": "pd",
+      "label": "PD・警察",
+      "shortLabel": "PD",
+      "description": "治安維持、犯罪対応、交通対応、捜査を担当する公務員。",
+      "group": "暮らし・仕事"
+    }
+  ],
+  "rules": [
+    {
+      "id": "pd-authority",
+      "number": 23,
+      "title": "PDは街の安全と犯罪対応を担当します",
+      "category": "pd",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "警察",
+        "公務員",
+        "治安",
+        "交通",
+        "捜査"
+      ],
+      "severity": "important",
+      "summary": "治安維持、犯罪対応、交通対応、捜査などを担当する公務員です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "PDは街の治安維持、犯罪への対応、交通対応、捜査などを担当します。犯罪RPでの追跡や逮捕も、街で起きるシーンの一つです。"
+        },
+        {
+          "type": "paragraph",
+          "text": "職務の権限、支給品、専用機能を不正な利益のために悪用する行為は禁止です。市民への説明を大切にし、プレイヤー本人への攻撃や嫌がらせにならないようにしましょう。"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "pd-fines",
+      "number": 24,
+      "title": "PDの対応とゲーム内法律",
+      "category": "pd",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "警察",
+        "罰金",
+        "刑務",
+        "法律"
+      ],
+      "severity": "important",
+      "summary": "適用された罪状・罰金・刑務の説明を確認しましょう。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "ゲーム内犯罪は、PDによる対応、罰金、刑務、押収、インパウンドなどの対象になります。犯罪RPをすること自体は街のコンテンツです。"
+        },
+        {
+          "type": "paragraph",
+          "text": "PDはゲーム内法律に基づく罪状と処分を説明してください。市民も、罪状・請求額・刑務時間が分からないときは、説明を求めて大丈夫です。"
+        },
+        {
+          "type": "note",
+          "text": "基本罰金・刑務、Heistの罰金・刑務、インパウンドの料金と待機時間は「ゲーム内法律・罰金」で確認できます。サーバールール違反は運営対応の対象です。"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    }
+  ]
+}

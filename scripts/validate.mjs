@@ -2,11 +2,11 @@ import { readFile, readdir, stat, realpath } from 'node:fs/promises';
 import { dirname, extname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validateData } from '../assets/data-validation.js';
+import { publicRoots, htmlPaths } from './site-config.mjs';
 
 const root = await realpath(resolve(dirname(fileURLToPath(import.meta.url)), '..'));
 const errors = [];
-const required = ['index.html', '404.html', 'rules/index.html', 'changelog/index.html', 'editor/index.html', 'assets/style.css', 'assets/app.js', 'data/rules.json', 'robots.txt', 'sitemap.xml'];
-const publicRoots = ['index.html', '404.html', 'rules', 'changelog', 'editor', 'assets', 'data', 'robots.txt', 'sitemap.xml'];
+const required = [...htmlPaths, 'assets/style.css', 'assets/app.js', 'data/rules.json', 'robots.txt', 'sitemap.xml'];
 const allowedExtensions = new Set(['.html', '.css', '.js', '.json', '.svg', '.png', '.webp', '.jpg', '.jpeg', '.ico', '.xml', '.txt', '.woff2']);
 const textExtensions = new Set(['.html', '.css', '.js', '.json', '.svg', '.xml', '.txt']);
 const secretPatterns = [
@@ -47,7 +47,7 @@ async function inspect(path) {
   }
   const name = relative(root, path).replaceAll('\\', '/');
   const extension = extname(path).toLowerCase();
-  if (!allowedExtensions.has(extension)) errors.push(`公開範囲に許可されていない拡張子があります: ${name}`);
+  if (name !== '.nojekyll' && !allowedExtensions.has(extension)) errors.push(`公開範囲に許可されていない拡張子があります: ${name}`);
   if (info.size > 5 * 1024 * 1024) errors.push(`公開ファイルが5MBを超えています: ${name}`);
   count++;
   if (!textExtensions.has(extension)) return;

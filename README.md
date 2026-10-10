@@ -1,108 +1,81 @@
-# NicoGura 公式Webサイト
+# NicoGura 公式ルール・参加ガイド
 
-FiveM RPサーバー「NicoGura / にこぐら」の公式入口と、検索・共有できる公式ルールサイトです。HTML・CSS・JavaScriptだけで動く静的サイトです。
+FiveMライトRPサーバー「NicoGura / にこぐら」の公式ガイドです。既存のHTML・CSS・JavaScriptによる静的サイトを継続しています。依存パッケージのインストールは不要です。
 
 - 公開サイト: https://nicogura.github.io/
-- 公式ルール: https://nicogura.github.io/rules/
-- 更新履歴: https://nicogura.github.io/changelog/
-- Web専用リポジトリ: https://github.com/nicogura/nicogura.github.io
-- ルール: **v1.0.1 / 2026-10-05 / 正式35件、確認中5件、18カテゴリー**
+- 公式ルール（既存URL）: https://nicogura.github.io/rules/
+- Web専用Repository: https://github.com/nicogura/nicogura.github.io
+- v2.0.0 / 最終更新 2026-10-10
 
-ゲームリポジトリとは別に管理します。外部の分析サービスやログインは使いません。公開サイトの編集画面で文章を変更しても、公開内容は自動で上書きされません。
+## 確認・ビルド
 
-## ローカルで確認する
-
-Node.js 20以上を用意し、このフォルダーで次を実行してください。パッケージのインストールは不要です。
+Node.js 20以上（Actionsは24）を使用します。
 
 ```sh
+npm run build
+npm test
 npm start
 ```
 
-ターミナルに表示されるアドレスをブラウザで開きます。停止は `Ctrl + C`。別ポートは `node scripts/serve.mjs 4174` で指定できます。ファイルのダブルクリックではJSONを読めない場合があります。サーバーは自分のPCだけで待ち受け、公開用ファイルのみ配信します。
+`npm start` のローカルURLを開きます。サーバーはループバックのみで待ち受け、公開用ファイルだけを配信します。停止は Ctrl+C。別ポートは `node scripts/serve.mjs 4174` です。
 
-## ブラウザでルールを変更する
+ビルドはコンテンツを検証し、17ページと配信用JSONを生成して、公開対象だけを `_site/` にコピーします。`content/`, `scripts/`, `docs/`, Repository内部のファイルはPagesへ配信しません。
 
-[編集画面](https://nicogura.github.io/editor/)を開くか、ローカル確認のアドレスに `/editor/` を付けます。
+## 文章の編集
 
-1. 左の一覧からルールを選びます。
-2. タイトル、カテゴリー、要約、本文、タグ、重大度、更新日を修正します。
-3. 「このルールの変更を適用」を押します。
-4. サイト設定のバージョン・更新日を変更し、「サイト設定を適用」を押します。
-5. 「更新履歴を追加」で、変更点を住民向けに記録します。
-6. 「rules.jsonをダウンロード」を押します。構造や危険な文字列に問題がある場合はエラーを直してください。
-7. 内容を運営内で確認してから、このリポジトリの `data/rules.json` を置き換え、Commitします。
+正本は `content/` のJSONです。
 
-編集中の内容はそのタブ内だけにあります。閉じる前に必ずダウンロードしてください。「JSONを読み込む」で手元のファイルから再開できます。編集画面にサーバー保存や認証の機能はありません。
+| ファイル | 内容 |
+| --- | --- |
+| `site.json` | 公式リンク、画像、更新日、バージョン、更新履歴、各ページの掲載順 |
+| `general.json` | ライトRP、基本ルール、不正行為、運営判断、お問い合わせ |
+| `join.json` / `character.json` | 参加方法 / 1人1キャラクター |
+| `economy.json` | 経済方針、初期資金、飲食、燃料、消耗品 |
+| `crime.json` / `law.json` | 犯罪RP・報酬 / ゲーム内法律・刑期 |
+| `pd.json` / `ems.json` | PD / EMSと医療料金 |
+| `mechanic.json` / `shops.json` | 修理・カスタム料金 / 店舗 |
+| `lifejobs.json` / `gangs.json` / `faq.json` | Life Job / ギャング / FAQ |
 
-段落だけの本文は空行で分けて入力できます。見出し・箇条書き・注記・表のある本文は「高度な編集（本文ブロックのJSON）」で編集します。既存の表があるルールを単純な段落へ変換しないよう注意してください。本文にHTMLは使えません。
+`data/rules.json`、各ページのHTML、`sitemap.xml` は生成物です。正本を変更したら `npm run build` を実行し、生成物も一緒にCommitしてください。ページのタイトル・説明は `scripts/site-config.mjs`、UIは `assets/app.js` と `assets/style.css` で管理します。
 
-## ルールを追加する
+本文は `paragraph`, `heading`, `list`, `note`, `table` のブロックです。表の各セルは文字列、列数は見出しに合わせます。本文にHTMLは使用しません。スマホでは表をラベル付きカードに切り替えます。
 
-「ルールを追加」で新しいカードを作り、内容を入力します。`id` は小文字英数字とハイフンで、既存と重ならないものを付けてください。例: `business-new-guide`。
+- `id` は既存の個別URL・保存機能に使います。公開後は維持してください。
+- `number` は重複しない正の整数です。
+- `status: published` は確認済みの公開本文です。
+- `updatedAt` は実在する日付を `YYYY-MM-DD` で記入します。
+- `severity` は `guide / notice / important / prohibited / serious` です。重大度だけで処分は決まりません。
+- `tags` と `keywords` も全文検索に使用します。
+- 各ページは `content/site.json` の `ruleIds` の順、続いて指定カテゴリーの項目を掲載します。
 
-- `id`: 個別URLの末尾になります。一度公開したIDは、文章を修正しても変えないことをおすすめします。
-- `number`: 正式公開は1以上の重複しない整数。確認中の項目は0も使えます。
-- `status`: `published` は正式公開、`pending` は運営確認中。
-- `severity`: `guide` ガイド / `notice` お願い / `important` 注意 / `prohibited` 禁止 / `serious` 重大違反。
-- `summary`: 折りたたんでも表示される、短い要約。
-- `tags` / `keywords`: 検索しやすい言葉。
-- `updatedAt`: `YYYY-MM-DD`。実在する日付を使います。
-- `new`: 新規なら `true`。更新なら `false` にして更新日を変更します。
-- `featured`: ピックアップの指定。`settings.featuredRuleIds` でも指定できます。
+## ブラウザー編集画面
 
-重大度だけで処分が決まるわけではありません。軽微な初回、繰り返し、悪質な不正を本文で区別してください。未確認の人数・時間・料金は正式本文に書かず、確認中として案内します。
+既存の `/editor/` を継続して使えます。編集内容はそのタブ内にだけ保存され、自動公開されません。
 
-## JSONを直接編集する
-
-文章・カテゴリー・設定・更新履歴は `data/rules.json` にまとまっています。UTF-8で保存し、末尾のカンマや引用符に注意してください。
-
-本文は次のブロックを組み合わせます。
-
-```json
-[
-  {"type":"paragraph","text":"通常の段落です。"},
-  {"type":"heading","text":"小見出し"},
-  {"type":"list","items":["一つ目","二つ目"]},
-  {"type":"note","text":"補足や例外です。"},
-  {"type":"table","caption":"料金の例","headers":["項目","料金"],"rows":[["確認済みサービス","確認した金額"]]}
-]
-```
-
-表は見出しと各行の列数をそろえ、すべてのセルを文字列にします。1〜12列、1〜200行が使えます。スマホでは表の内側を横にスクロールできます。表の内容も検索対象です。
-
-## カテゴリーを変更する
-
-`categories` の各項目は `id`, `label`, `shortLabel`, `description`, `group` を持ちます。配列の順が表示順です。カテゴリーのIDを変える場合は、そのカテゴリーに所属する全ルールの `category` も合わせて変えてください。既存の共有URLに使われるIDは維持することをおすすめします。
-
-## NEW・UPDATEDと更新履歴
-
-`settings.newBadgeDays` が表示日数です。初期値は30日です。新規の正式ルールは `new: true`、既存の更新は `new: false` と新しい `updatedAt` を使います。確認中の項目には新規ルールのバッジを付けません。
-
-`changelog` に `date`, `type`, `title`, `items` を追加します。`type` は `NEW` や `UPDATED`、`items` は変更点の文字列配列です。履歴は日付が新しい順に表示します。バージョンは `site.version`、全体の更新日は `site.updatedAt` に記録してください。
-
-## 画像とリンクを交換する
-
-ロゴ・ヘッダー・アイコンは `site.assets` で指定します。画像は `assets/` に置き、ブラウザでの重さを抑えるためWebP等に圧縮してください。ファビコン・Appleアイコン・OGP画像は各HTMLのメタ情報にも指定しています。OGPの標準画像は `assets/og.png`（1200×630）です。
-
-Discord・X・FiveMの正式リンクは `site.links` にHTTPSのURLで入力します。空欄は準備中として表示します。URLが未確認の場合は、推測で招待リンクを入れないでください。
-
-## GitHubへ反映・公開する
-
-1. `data/rules.json` を置き換えます。GitHubの編集画面でもアップロードでも構いません。
-2. ローカルなら次を実行して検査します。
+1. ルールやサイト設定、更新履歴を編集して適用します。
+2. `rules.jsonをダウンロード` を押します。
+3. ダウンロードしたファイルを正本へ取り込みます。
 
 ```sh
-npm run validate
+npm run import-content -- "ダウンロードしたrules.jsonのパス"
+npm run build
+npm test
 ```
 
-3. 変更をCommitして `main` へ反映します。
-4. `Actions` の **Publish NicoGura website** が成功したことを確認します。
-5. 公開サイトを再読み込みして、変更内容・個別URL・スマホ表示を確認します。
+取込はJSON構造を検証し、既存カテゴリーに応じて各ファイルに振り分けます。新しいカテゴリーは `general.json` に入ります。専用ファイルに分ける場合は `site.json` の `modules` に追加してください。ページから参照中の項目を削除すると取込を止めます。先に掲載構成を確認してください。
 
-PagesはSettings → Pagesで **GitHub Actions** を使います。ワークフローは検査後、公開用のHTML・画像・CSS・JS・JSONだけを配信し、CommitごとにCSS/JSの参照版を更新します。ルールJSONはページを開くときに読み直します。Actionsが失敗した場合は `Validate public content` のエラーを直してください。公開所要時間はGitHubの状態によります。
+## 公開
 
-## 公開範囲と運営資料
+1. 差分を読み、公式リンク・本文・金額・スマホ表示を確認します。
+2. `npm run build` と `npm test` を通します。
+3. 今回変更したファイルだけを明示してstageし、Commit・pushします。
+4. GitHub Actions **Publish NicoGura website** の成功を確認します。
+5. 公開サイトのルール、参加、料金、法律、FAQと個別URLを確認します。
 
-このリポジトリ自体も公開です。ゲームの設定ファイル、管理表、運営監査表、内部メモ、座標、認証情報、開発用データを追加しないでください。検査は構造・参照・日付・危険な文字列などを確認しますが、公開してよい情報かどうかも運営で確認してください。
+Pages設定はGitHub Actionsです。CSS/JSはCommit SHAで版を更新し、JSONは読み込み時に再取得します。公開URLやRepositoryを移行する必要はありません。未確認のFiveM接続URLは作らず、公式Discordの接続案内へ誘導します。
 
-今回のルール制作は管理表の採用済み情報と現行仕様を優先し、他街の人数・料金・刑期は移植していません。出典比較・採否監査の詳細は公開リポジトリ外で保管します。公開してよい引き継ぎ情報は [掲載状況](docs/CONTENT_STATUS.md)、検証結果は [QA記録](docs/QA_REPORT.md) にまとめています。
+## 公開範囲
+
+このRepository自体も公開です。運営の内部計算、ゲーム設定、認証情報、個人情報、非公開監査資料を追加しないでください。公開文面の変更はゲーム内の設定変更を伴いません。検索・保存・テーマ切替はブラウザー内で動作し、外部分析サービスは使用しません。
+
+公開内容の整理は [CONTENT_STATUS](docs/CONTENT_STATUS.md)、検証内容は [QA_REPORT](docs/QA_REPORT.md) を参照してください。

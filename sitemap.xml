@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://nicogura.github.io/</loc></url>
-  <url><loc>https://nicogura.github.io/rules/</loc></url>
-  <url><loc>https://nicogura.github.io/changelog/</loc></url>
+  <url><loc>https://nicogura.github.io/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/rules/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/join/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/character/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/economy/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/crime/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/law/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/guides/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/pd/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/ems/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/mechanic/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/shops/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/lifejobs/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/gangs/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/faq/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/contact/</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://nicogura.github.io/changelog/</loc><lastmod>2026-10-10</lastmod></url>
 </urlset>

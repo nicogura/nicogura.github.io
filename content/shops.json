@@ -1,0 +1,80 @@
+{
+  "categories": [
+    {
+      "id": "business",
+      "label": "店舗・仕事",
+      "shortLabel": "店舗",
+      "description": "市民が営むお店、サービス、仕事でのやり取り。",
+      "group": "暮らし・仕事"
+    }
+  ],
+  "rules": [
+    {
+      "id": "business-honest",
+      "number": 30,
+      "title": "市民が営むお店を楽しもう",
+      "category": "business",
+      "tags": [
+        "お願い"
+      ],
+      "keywords": [
+        "店舗",
+        "飲食",
+        "サービス",
+        "営業妨害"
+      ],
+      "severity": "notice",
+      "summary": "有人店舗では、飲食やサービスなど、市民同士のやり取りを楽しめます。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "有人店舗は街の市民が運営します。飲食、サービス、その他の店舗で、会話や買い物を楽しみましょう。"
+        },
+        {
+          "type": "paragraph",
+          "text": "商品・作業・料金を伝え合い、説明と請求が食い違わないようにしてください。意図的な詐欺的請求やJob権限の悪用は禁止です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "店舗荒らし、意図的な営業妨害、嫌がらせは禁止です。行き違いがあればまず内容を確認し、解決が難しい場合はDiscordのお問い合わせ窓口へ相談してください。"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "pending-job-conditions",
+      "number": 204,
+      "title": "街の仕事と公務員について",
+      "category": "business",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "仕事",
+        "公務員",
+        "兼業",
+        "就職",
+        "店舗"
+      ],
+      "severity": "guide",
+      "summary": "お店での仕事や生活の仕事を楽しめます。公務員は兼業禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "市民が営むお店の仕事やLife Jobなど、街での働き方を探してみましょう。お店では商品やサービスを通して、市民との交流を楽しめます。"
+        },
+        {
+          "type": "paragraph",
+          "text": "公務員は兼業禁止です。そのため、街の経済ではやや高めの収入帯を基準にしています。就職や採用については、担当者に案内を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "categories": [
+    {
+      "id": "character",
+      "label": "キャラクター",
+      "shortLabel": "キャラ",
+      "description": "1人につき1キャラクター。作り直しは運営へ相談。",
+      "group": "街の暮らし"
+    }
+  ],
+  "rules": [
+    {
+      "id": "character-identity",
+      "number": 12,
+      "title": "1人につき1キャラクター",
+      "category": "character",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "1人1キャラクター",
+        "一人一キャラ",
+        "サブキャラ",
+        "別アカウント",
+        "作り直し"
+      ],
+      "severity": "important",
+      "summary": "NicoGuraで使用できるキャラクターは、1人のプレイヤーにつき1人までです。",
+      "content": [
+        {
+          "text": "複数キャラクターやサブキャラクターを使い分けることはできません。別アカウントなどを利用して、実質的に複数キャラクターを使用する行為も禁止します。",
+          "type": "paragraph"
+        },
+        {
+          "text": "キャラクターを作り直したい場合などは、勝手に追加キャラクターを作らず、運営へ相談してください。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": true,
+      "status": "published"
+    }
+  ]
+}

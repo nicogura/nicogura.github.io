@@ -108,6 +108,23 @@ export function validateData(data) {
     if (!Array.isArray(data.settings.featuredRuleIds)) issue('settings.featuredRuleIds', 'ルールIDの配列にしてください');
     else data.settings.featuredRuleIds.forEach((value, i) => { if (!ruleIds.has(value)) issue(`settings.featuredRuleIds[${i}]`, '存在するルールIDを指定してください'); });
   }
+  if (data.pages !== undefined) {
+    if (!object(data.pages)) issue('pages', 'ページ設定はオブジェクトにしてください');
+    else for (const [key, page] of Object.entries(data.pages)) {
+      id(key, `pages.${key}`);
+      if (!object(page)) { issue(`pages.${key}`, 'ページ設定がありません'); continue; }
+      for (const field of ['kicker', 'title', 'description']) text(page[field], `pages.${key}.${field}`, true, 3000);
+      if (!Array.isArray(page.ruleIds)) issue(`pages.${key}.ruleIds`, 'ルールIDの配列にしてください');
+      else {
+        const seen = new Set();
+        for (const value of page.ruleIds) {
+          if (!ruleIds.has(value)) issue(`pages.${key}.ruleIds`, '存在するルールIDを指定してください');
+          if (seen.has(value)) issue(`pages.${key}.ruleIds`, 'ルールIDが重複しています');
+          seen.add(value);
+        }
+      }
+    }
+  }
   const inspect = (value, path) => {
     if (typeof value === 'string') {
       if (/<\s*\/?\s*(script|iframe|object|embed)\b|\bon\w+\s*=|(?:javascript|vbscript|data)\s*:/i.test(value)) issue(path, 'スクリプト・埋め込みHTML・危険なURLは使用できません');

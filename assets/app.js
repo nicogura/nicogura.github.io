@@ -36,6 +36,38 @@
   let tokens = [];
   const openRules = new Set();
   const state = { query: '', category: 'all', savedOnly: false };
+  const guidePages = {
+    join: ['JOIN', '参加方法', 'Discordから入国まで、順番にご案内します。', ['join', 'basic']],
+    character: ['CHARACTER', 'キャラクター', '1人につき1キャラクター。あなたらしく街で暮らしましょう。', ['character']],
+    economy: ['ECONOMY', '経済・料金', 'まったり暮らすための経済方針と、日々の料金を確認できます。', ['economy']],
+    crime: ['CRIME', '犯罪RP', '犯罪も街のゲームコンテンツ。規模や基準報酬をご案内します。', ['crime', 'heist']],
+    law: ['LAW', 'ゲーム内法律・罰金', 'PDが対応するゲーム内の法律です。サーバールールとは区別して確認しましょう。', ['law']],
+    guides: ['CITY GUIDES', '街ガイド', '仕事やサービスを知って、街での暮らしを楽しみましょう。', ['citizen']],
+    pd: ['POLICE', 'PD・警察', '街の治安や犯罪、交通を担当する公務員です。', ['pd']],
+    ems: ['EMERGENCY', 'EMS・救急', '治療・蘇生・搬送など、救急対応をご案内します。', ['ems']],
+    mechanic: ['MECHANIC', 'メカニック', '修理や整備、車のカスタムについて確認できます。', ['mechanic']],
+    shops: ['SHOPS', '有人店舗', '市民が営むお店で、食事やサービス、交流を楽しみましょう。', ['business', 'shops']],
+    lifejobs: ['LIFE JOBS', 'Life Job', '街での仕事についてご案内します。', ['lifejobs', 'citizen']],
+    gangs: ['GANGS', 'ギャング', 'ギャングに関する現在の公式案内です。', ['gang']],
+    faq: ['FAQ', 'よくある質問', 'はじめての参加や、街で困ったときの疑問にお答えします。', ['faq']],
+    contact: ['CONTACT', 'お問い合わせ', '困ったときは、公式Discordのお問い合わせ窓口へ。', ['contact', 'administration']],
+  };
+  function pageInfo(key) {
+    const fallback = guidePages[key] || ['OFFICIAL RULES', '公式ルール', '', []];
+    return { kicker: fallback[0], title: fallback[1], description: fallback[2], ...data.pages?.[key] };
+  }
+  function pageRules(key) {
+    const ids = data.pages?.[key]?.ruleIds;
+    if (Array.isArray(ids)) return ids.map(id => data.rules.find(rule => rule.id === id)).filter(Boolean);
+    if (key === 'rules') return data.rules;
+    const categories = guidePages[key]?.[3] || [];
+    return data.rules.filter(rule => rule.status === 'published' && categories.includes(rule.category));
+  }
+  function canonicalPage(rule) {
+    if (Array.isArray(data.pages?.rules?.ruleIds) && data.pages.rules.ruleIds.includes(rule.id)) return 'rules';
+    return Object.keys(guidePages).find(key => data.pages?.[key]?.ruleIds?.includes(rule.id)) || 'rules';
+  }
+  function renderCurrentResults() { views?.mode === 'guide' ? renderGuideResults() : renderResults(); }
   const severityLabels = { guide: 'ガイド', notice: 'お願い', important: '注意', prohibited: '禁止', serious: '重大違反' };
   function ruleSeverity(rule) {
     if (Object.hasOwn(severityLabels, rule.severity)) return rule.severity;
@@ -87,11 +119,10 @@
     } catch (_) { return null; }
   }
   function socialLink(label, key, className = 'button button-secondary') {
-    const url = externalUrl(data.site.links?.[key]);
+    const official = { discord: 'https://discord.gg/Fzhhp34JJy', x: 'https://x.com/NicoGura0810' };
+    const url = externalUrl(data.site.links?.[key]) || externalUrl(official[key]);
     if (!url) {
-      const node = el('span', `${className} disabled-link`, `${label} · 準備中`);
-      node.title = '公式URLは運営確認中です';
-      return node;
+      return link(key === 'fivem' ? '接続方法を見る' : '参加方法を見る', 'join/', className, 'arrow');
     }
     const node = el('a', className, label);
     node.href = url;
@@ -108,7 +139,7 @@
       return /^https?:$/.test(parsed.protocol) && parsed.origin === base.origin ? parsed.href : href(fallback);
     } catch (_) { return href(fallback); }
   }
-  function dateText(value) { return /^\d{4}-\d{2}-\d{2}$/.test(value || '') ? value.replaceAll('-', '.') : '確認中'; }
+  function dateText(value) { return /^\d{4}-\d{2}-\d{2}$/.test(value || '') ? value : '確認中'; }
   function time(value, className = '') {
     const node = el('time', className, dateText(value));
     if (/^\d{4}-\d{2}-\d{2}$/.test(value || '')) node.dateTime = value;
@@ -225,11 +256,12 @@
     logo.height = 44;
     logo.addEventListener('error', () => { logo.hidden = true; brand.append(el('span', 'brand-name', 'NicoGura')); }, { once: true });
     brand.append(logo);
-    const navItems = [['HOME', '', 'home'], ['RULES', 'rules/', 'rules'], ['CHANGELOG', 'changelog/', 'changelog']];
+    const navItems = [['はじめに', '', 'home'], ['参加方法', 'join/', 'join'], ['公式ルール', 'rules/', 'rules'], ['街ガイド', 'guides/', 'guides'], ['FAQ', 'faq/', 'faq']];
     function makeNav(className) {
       const nav = el('nav', className);
       nav.setAttribute('aria-label', 'メインナビゲーション');
-      navItems.forEach(([name, path, key]) => {
+      const items = className === 'mobile-nav' ? [['はじめに', '', 'home'], ['公式ルール', 'rules/', 'rules'], ...Object.keys(guidePages).map(key => [pageInfo(key).title, `${key}/`, key]), ['更新履歴', 'changelog/', 'changelog']] : navItems;
+      items.forEach(([name, path, key]) => {
         const node = link(name, path, 'nav-link');
         if (page === key) node.setAttribute('aria-current', 'page');
         nav.append(node);
@@ -238,10 +270,10 @@
     }
     const actions = el('div', 'header-actions');
     const search = button('', 'icon-button header-search', () => {
-      if (page === 'rules' && views) { views.input.focus(); scrollToNode(views.searchBox); }
+      if (views?.input) { views.input.focus(); scrollToNode(views.searchBox); }
       else location.href = href('rules/?focus=search');
     }, 'search');
-    search.setAttribute('aria-label', 'ルールを検索');
+    search.setAttribute('aria-label', Object.hasOwn(guidePages, page) ? 'このページの案内を検索' : 'ルール・案内を検索');
     const theme = button('', 'icon-button theme-toggle', () => {
       const selected = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
       document.documentElement.dataset.theme = selected;
@@ -285,7 +317,7 @@
     document.addEventListener('click', event => { if (!header.contains(event.target)) setMenu(false); });
     document.addEventListener('keydown', event => { if (event.key === 'Escape' && !mobile.hidden) { setMenu(false); menu.focus(); } });
     mobile.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
-    matchMedia('(min-width: 801px)').addEventListener('change', event => { if (event.matches) setMenu(false); });
+    matchMedia('(min-width: 1001px)').addEventListener('change', event => { if (event.matches) setMenu(false); });
     actions.append(search, socialLink('Discord', 'discord', 'button button-discord header-discord'), theme, menu);
     inner.append(brand, makeNav('header-nav'), actions);
     header.replaceChildren(inner, mobile);
@@ -295,9 +327,9 @@
     footerBrand.append(link(data.site.name || 'NicoGura', '', 'brand-name'), el('p', '', data.site.tagline || 'あなたらしい物語が、この街から。'));
     const links = el('nav', 'footer-links');
     links.setAttribute('aria-label', 'フッターナビゲーション');
-    links.append(link('HOME', ''), link('RULES', 'rules/'), link('CHANGELOG', 'changelog/'), socialLink('Discord', 'discord', 'footer-social'), socialLink('X', 'x', 'footer-social'));
+    links.append(link('参加方法', 'join/'), link('公式ルール', 'rules/'), link('経済・料金', 'economy/'), link('ゲーム内法律', 'law/'), link('FAQ', 'faq/'), link('お問い合わせ', 'contact/'), link('更新履歴', 'changelog/'), socialLink('Discord', 'discord', 'footer-social'), socialLink('公式X', 'x', 'footer-social'));
     const note = el('div', 'footer-note');
-    note.append(el('span', '', `ルール v${data.site.version} · 最終更新 ${dateText(data.site.updatedAt)}`), el('p', '', '確認済みの内容から更新します。「運営確認中」は確定したルールではありません。'), el('small', '', `© ${new Date().getFullYear()} NicoGura. All rights reserved.`));
+    note.append(el('span', '', `公式ガイド v${data.site.version} · 最終更新 ${dateText(data.site.updatedAt)}`), el('p', '', 'NicoGuraはライトRPサーバーです。分からないことは公式Discordへ。'), el('small', '', `© ${new Date().getFullYear()} NicoGura. All rights reserved.`));
     footerInner.append(footerBrand, links, note);
     footer.replaceChildren(footerInner);
     const top = document.getElementById('back-to-top');
@@ -313,7 +345,7 @@
     window.addEventListener('scroll', refreshScroll, { passive: true });
     refreshScroll();
     window.addEventListener('storage', event => {
-      if (event.key === bookmarkKey) { readBookmarks(); if (views) renderResults(); }
+      if (event.key === bookmarkKey) { readBookmarks(); if (views) renderCurrentResults(); }
       if (event.key === themeKey) {
         const value = event.newValue;
         document.documentElement.dataset.theme = value === 'dark' || value === 'light' ? value : scheme.matches ? 'dark' : 'light';
@@ -338,10 +370,12 @@
     const kicker = el('p', 'eyebrow');
     kicker.append(el('span', 'status-dot'), document.createTextNode('WELCOME TO NICOGURA'));
     const title = el('h1', 'hero-title');
-    title.append(document.createTextNode('この街で、'), el('br'), el('span', 'text-gradient', 'あなたらしい物語を。'));
-    const lead = el('p', 'hero-lead', 'にこぐらへようこそ。暮らしも、出会いも、あなたの物語の一部に。NicoGuraの公式情報を、この場所から。');
+    const titleLine = el('span', 'text-gradient');
+    titleLine.append(el('span', 'home-title-phrase', 'この街で、'), el('span', 'home-title-phrase', 'あなたらしく。'));
+    title.append(el('span', 'home-title-start', 'ゆっくり、気ままに。'), el('br'), titleLine);
+    const lead = el('p', 'hero-lead', 'NicoGuraは、みんなでゆっくり街での生活を楽しむライトRPサーバー。RP初心者・FiveM初心者も歓迎です。難しく考えなくて大丈夫。最低限のライトRPとマナーを守って、あとは街で自由に楽しもう。');
     const actions = el('div', 'hero-actions');
-    actions.append(link('ルール・ガイドラインを見る', 'rules/', 'button button-primary', 'arrow'), socialLink('Discordへ', 'discord', 'button button-secondary'), link('街について', '#about', 'button button-secondary'));
+    actions.append(link('公式ルールを読む', 'rules/', 'button button-primary', 'book'), link('参加方法を見る', 'join/', 'button button-secondary', 'arrow'), socialLink('Discordへ', 'discord', 'button button-secondary'), socialLink('公式Xへ', 'x', 'button button-secondary'));
     const homeSearch = el('form', 'search-box home-search');
     homeSearch.setAttribute('role', 'search');
     homeSearch.action = href('rules/');
@@ -352,7 +386,7 @@
     searchInput.name = 'q';
     searchInput.type = 'search';
     searchInput.maxLength = 500;
-    searchInput.placeholder = '気になるルールを検索…';
+    searchInput.placeholder = 'ルール・料金・法律を検索…';
     const searchSubmit = button('', 'icon-button', null, 'arrow');
     searchSubmit.type = 'submit';
     searchSubmit.setAttribute('aria-label', '検索結果を見る');
@@ -365,19 +399,31 @@
     hero.append(heroArt(), el('div', 'hero-overlay'), heroCopy);
     const content = el('div', 'home-content');
     content.append(notice());
-    const published = data.rules.filter(rule => rule.status === 'published').length;
     const stats = el('div', 'stat-strip');
-    [[`${published}`, '正式掲載ルール'], [`${data.categories.length}`, 'カテゴリー'], ['FREE', 'いつでも、すぐに確認']].forEach(([value, label]) => {
+    [['LIGHT RP', '気軽に、あなたらしく'], ['BEGINNER', 'RP・FiveM初心者歓迎'], ['1 CHARACTER', 'ひとりの市民として']].forEach(([value, label]) => {
       const item = el('div', 'stat-item');
       item.append(el('strong', 'stat-value', value), el('span', 'stat-label', label));
       stats.append(item);
     });
     content.append(stats);
+    const lightRp = el('section', 'home-section light-rp-section');
+    lightRp.id = 'light-rp';
+    lightRp.append(sectionHeading('EASY TO START', 'ライトRPって、どんな遊び方？', '完璧な演技も、細かいキャラクター設定も、声を変えることも必要ありません。街の一員として、目の前の人とのやりとりを自然に楽しみましょう。'));
+    const lightGrid = el('div', 'home-grid light-rp-grid');
+    [['spark', 'まずは、いつものあなたで', 'RPが初めてでも大丈夫。挨拶や会話から、街での暮らしを少しずつ始められます。'], ['shield', '最低限のルールとマナーを', '相手を思いやり、街のキャラクターとして行動することを大切にしています。'], ['book', '迷ったら、案内を見ながら', '参加方法や料金、仕事の案内はこのサイトから。困ったときは公式Discordへどうぞ。']].forEach(([symbol, heading, text]) => {
+      const card = el('article', 'feature-card');
+      const featureIcon = el('div', 'feature-icon');
+      featureIcon.append(icon(symbol));
+      card.append(featureIcon, el('h3', '', heading), el('p', '', text));
+      lightGrid.append(card);
+    });
+    lightRp.append(lightGrid, link('最初に知っておきたいルール', 'rules/', 'section-link', 'arrow'));
+    content.append(lightRp);
     const quick = el('section', 'home-section');
     quick.id = 'about';
-    quick.append(sectionHeading('EXPLORE THE CITY', 'この街のことを、もっと。', 'ゆるく、楽しく、あなたらしく。初めてのRPも、少しずつ一緒に。'));
+    quick.append(sectionHeading('YOUR FIRST DAY', 'はじめての街へ、迷わず。', '参加の流れを確認したら、ひとりの市民として暮らしを始めましょう。'));
     const grid = el('div', 'home-grid');
-    [['book', 'RULES & GUIDELINES', '街のルールを探す', 'カテゴリーと全文検索から、必要な情報をすぐに。', 'rules/'], ['clock', 'CHANGELOG', '最新の更新を確認', '掲載・変更された内容を、時系列で確認できます。', 'changelog/'], ['star', 'YOUR BOOKMARKS', 'あとで読むを、手元に', '気になるルールを保存して、自分だけの一覧に。', 'rules/?saved=1']].forEach(([symbol, kicker, title, description, path]) => {
+    [['arrow', 'JOIN NICOGURA', '入国までの10ステップ', 'Discordへの参加から、ルール確認・申請・接続までをご案内します。', 'join/'], ['book', 'YOUR CHARACTER', 'あなたらしいキャラクターを', '1人につき1キャラクター。街での基本的な過ごし方を確認しましょう。', 'character/'], ['star', 'YOUR BOOKMARKS', 'あとで読むを、手元に', '気になる案内を保存して、必要なときにすぐ確認できます。', 'rules/?saved=1']].forEach(([symbol, kicker, title, description, path]) => {
       const card = link('', path, 'feature-card');
       const featureIcon = el('div', 'feature-icon');
       featureIcon.append(icon(symbol));
@@ -390,17 +436,14 @@
     content.append(quick);
     const categories = el('section', 'home-section');
     const categoryHead = el('div', 'section-head');
-    categoryHead.append(sectionHeading('FIND YOUR WAY', 'カテゴリーから探す', '知りたい場面や仕事から、必要なルールへ。'), link('すべてのカテゴリー', 'rules/#categories', 'section-link', 'arrow'));
+    categoryHead.append(sectionHeading('LIFE IN THE CITY', '暮らしに合わせて、探してみよう。', '経済、犯罪RP、仕事やサービス。街での楽しみ方と必要な情報をここから。'), link('街ガイドを見る', 'guides/', 'section-link', 'arrow'));
     categories.append(categoryHead);
     const categoryGrid = el('div', 'home-grid category-grid');
-    const selected = ['basic', 'rp', 'crime', 'pd', 'ems', 'business'];
-    selected.forEach((id, index) => {
-      const category = categoryMap.get(id);
-      if (!category) return;
-      const card = link('', `rules/?category=${encodeURIComponent(id)}`, 'category-card');
+    const selected = [['economy', '経済・料金', 'まったり暮らすための案内'], ['crime', '犯罪RP', '街のゲームコンテンツ'], ['law', 'ゲーム内法律・罰金', 'PDが対応する法律'], ['guides', '仕事・街ガイド', '街を支える仕事やサービス'], ['shops', '有人店舗', 'お店で交流を楽しもう'], ['faq', 'よくある質問', 'はじめての疑問を解決']];
+    selected.forEach(([id, title, description], index) => {
+      const card = link('', `${id}/`, 'category-card');
       card.append(el('span', 'category-index', String(index + 1).padStart(2, '0')), el('div', 'category-card-copy'));
-      const categoryCount = data.rules.filter(rule => rule.category === id && rule.status === 'published').length;
-      card.lastChild.append(el('h3', '', category.label), el('span', 'category-meta', `${categoryCount} 件のルール`));
+      card.lastChild.append(el('h3', '', title), el('span', 'category-meta', description));
       card.append(icon('arrow'));
       categoryGrid.append(card);
     });
@@ -415,26 +458,26 @@
       const entry = link('', 'changelog/', 'changelog-entry news-entry');
       entry.append(time(latest.date), el('span', 'badge', changeType(latest.type)), el('h3', '', latest.title), icon('arrow'));
       news.append(entry);
-    } else news.append(el('p', 'empty-state', 'お知らせは準備中です。'));
+    } else news.append(socialLink('公式Xで最新のお知らせを見る', 'x', 'section-link'));
     content.append(news);
-    const future = el('section', 'home-section future-section');
-    future.append(sectionHeading('NEXT CHAPTER', '街のガイドも、これから。', 'GUIDE・JOBS・CITYなどの公式コンテンツは、確認できた情報から順次ご案内します。'));
-    const tags = el('div', 'future-tags');
-    ['GUIDE', 'JOBS', 'CITY'].forEach(label => tags.append(el('span', 'badge', `${label} · 準備中`)));
-    future.append(tags);
-    content.append(future);
+    const welcome = el('section', 'home-section welcome-section');
+    welcome.append(sectionHeading('SEE YOU IN THE CITY', 'ゆっくり、街の暮らしを楽しもう。', '参加や接続の案内は公式Discordから。街のお知らせは公式Xでも発信しています。'));
+    const welcomeActions = el('div', 'hero-actions');
+    welcomeActions.append(link('参加方法を見る', 'join/', 'button button-primary', 'arrow'), socialLink('Discordへ', 'discord'), socialLink('公式Xへ', 'x'));
+    welcome.append(welcomeActions);
+    content.append(welcome);
     main.replaceChildren(hero, content);
   }
-  function searchBox() {
+  function searchBox(labelText = 'ルール・案内を全文検索', placeholder = 'ルール・料金・法律を検索…') {
     const box = el('div', 'search-box');
-    const label = el('label', 'visually-hidden', 'ルールを全文検索');
+    const label = el('label', 'visually-hidden', labelText);
     label.htmlFor = 'rule-search';
     const input = el('input', 'search-input');
     input.id = 'rule-search';
     input.type = 'search';
     input.maxLength = 500;
     input.autocomplete = 'off';
-    input.placeholder = 'キーワードでルールを検索…';
+    input.placeholder = placeholder;
     input.setAttribute('aria-describedby', 'search-hint');
     const clear = button('', 'icon-button search-clear', () => { input.value = ''; state.query = ''; applyFilters(); input.focus(); }, 'close');
     clear.setAttribute('aria-label', '検索をクリア');
@@ -469,17 +512,29 @@
     const shell = el('div', 'rules-page');
     const hero = el('section', 'hero rules-hero');
     const heroCopy = el('div', 'hero-copy hero-panel');
-    const published = data.rules.filter(rule => rule.status === 'published').length;
+    const published = pageRules('rules').filter(rule => rule.status === 'published').length;
     const title = el('h1', 'hero-title');
     title.append(document.createTextNode('この街のルールを、'), el('br'), el('span', 'text-gradient', '迷わず、あなたに。'));
-    heroCopy.append(el('p', 'eyebrow', 'NICOGURA / OFFICIAL RULES'), title, el('p', 'hero-lead', 'にこぐらで楽しく過ごすためのルール・ガイドライン。カテゴリーとキーワードから、必要な情報へ。'), metaRow());
+    heroCopy.append(el('p', 'eyebrow', 'NICOGURA / OFFICIAL RULES'), title, el('p', 'hero-lead', pageInfo('rules').description || '街のみんなが気持ちよく遊ぶための、ライトRPとマナーの約束。'), metaRow());
     const search = searchBox();
     heroCopy.append(search.box);
-    const hint = el('p', 'search-hint', 'タイトル・本文・カテゴリー・キーワードから検索。複数の言葉で絞り込みできます。');
+    const hint = el('p', 'search-hint', '検索は公式ルール・料金・法律・街ガイドの全情報が対象です。複数の言葉で絞り込みできます。');
     hint.id = 'search-hint';
     heroCopy.append(hint);
     hero.append(heroCopy);
     shell.append(hero, notice());
+    const intro = el('section', 'rules-intro intro-panel');
+    intro.append(el('p', 'section-kicker', 'FOR YOUR FIRST DAY'), el('h2', '', '全部を暗記しなくても、大丈夫。'), el('p', '', '完璧な演技や細かい設定は必要ありません。相手を思いやることと、最低限のライトRP・マナーを確認して、街での暮らしを楽しみましょう。'));
+    const distinction = el('div', 'rules-distinction');
+    [['サーバールール', '街のみんなが遊ぶための約束。違反への対応は運営が判断します。'], ['ゲーム内法律', '犯罪RPなど、街の中でPDが対応する法律。罰金・刑務・インパウンドはこちら。']].forEach(([title, text]) => {
+      const item = el('div');
+      item.append(el('h3', '', title), el('p', '', text));
+      distinction.append(item);
+    });
+    const introLinks = el('div', 'intro-links');
+    introLinks.append(link('参加方法を見る', 'join/', 'section-link', 'arrow'), link('ゲーム内法律・罰金を見る', 'law/', 'section-link', 'arrow'), link('運営の判断について', 'rules/#administration-response', 'section-link', 'arrow'));
+    intro.append(distinction, introLinks);
+    shell.append(intro);
     const featured = data.settings.featuredRuleIds?.length ? data.settings.featuredRuleIds : data.rules.filter(rule => rule.featured && rule.status === 'published').map(rule => rule.id);
     if (featured?.length) {
       const quick = el('nav', 'featured-links');
@@ -517,16 +572,20 @@
     const categoryNav = el('nav', 'category-side-nav');
     categoryNav.setAttribute('aria-label', 'ルールカテゴリー（デスクトップ）');
     const desktopCategoryButtons = new Map();
-    let currentGroup;
-    [{ id: 'all', label: 'すべて', group: '' }, ...data.categories].forEach(category => {
-      if (category.group && currentGroup !== category.group) {
-        currentGroup = category.group;
-        categoryNav.append(el('p', 'category-side-group', category.group));
-      }
-      const node = button(category.label, 'category-side-link', () => { state.category = category.id; applyFilters(); });
-      node.setAttribute('aria-pressed', String(state.category === category.id));
-      desktopCategoryButtons.set(category.id, node);
-      categoryNav.append(node);
+    const groups = new Map([['', [{ id: 'all', label: 'すべて' }]]]);
+    data.categories.forEach(category => {
+      const group = category.group || '';
+      if (!groups.has(group)) groups.set(group, []);
+      groups.get(group).push(category);
+    });
+    groups.forEach((categories, group) => {
+      if (group) categoryNav.append(el('p', 'category-side-group', group));
+      categories.forEach(category => {
+        const node = button(category.label, 'category-side-link', () => { state.category = category.id; applyFilters(); });
+        node.setAttribute('aria-pressed', String(state.category === category.id));
+        desktopCategoryButtons.set(category.id, node);
+        categoryNav.append(node);
+      });
     });
     categorySidebar.append(sideTitle, categoryNav);
     const sidebar = el('aside', 'rules-sidebar');
@@ -535,7 +594,7 @@
     tocTitle.id = 'desktop-toc-title';
     const toc = el('nav', 'toc-list');
     toc.setAttribute('aria-label', 'ルールの目次');
-    const tocNote = el('p', 'toc-note', 'PREPは運営確認中の項目です。正式なルールとは区別しています。');
+    const tocNote = el('p', 'toc-note', '項目を選ぶと本文を開きます。「あとで読む」で気になる案内を保存できます。');
     sidebar.append(tocTitle, toc, tocNote);
     const rulesMain = el('section', 'rules-main');
     rulesMain.setAttribute('aria-label', 'ルール一覧');
@@ -566,15 +625,105 @@
     layout.append(categorySidebar, rulesMain, sidebar);
     shell.append(layout);
     main.replaceChildren(shell);
-    views = { input: search.input, searchBox: search.box, clear: search.clear, pillButtons, desktopCategoryButtons, saved, count, list, toc, mobileNav, mobileToc, expand, collapse };
+    views = { mode: 'rules', input: search.input, searchBox: search.box, clear: search.clear, pillButtons, desktopCategoryButtons, saved, count, list, toc, mobileNav, mobileToc, expand, collapse };
     renderResults();
     window.addEventListener('hashchange', () => openDeepLink(true));
     window.addEventListener('popstate', () => {
       readFiltersFromUrl();
+      delete state.deepRuleId;
       views.input.value = state.query;
       renderResults();
       openDeepLink(true);
     });
+    if (!openDeepLink(false) && focused) { views.input.focus(); scrollToNode(views.searchBox); reflectUrl(); }
+  }
+  function renderGuide() {
+    readFiltersFromUrl();
+    state.category = 'all';
+    const info = pageInfo(page);
+    const entries = pageRules(page);
+    if (page !== 'faq') entries.forEach(rule => openRules.add(rule.id));
+    const shell = el('div', `guide-page ${page}-page`);
+    const hero = el('section', 'hero rules-hero guide-hero');
+    const heroCopy = el('div', 'hero-copy');
+    heroCopy.append(el('p', 'eyebrow', info.kicker), el('h1', 'hero-title', info.title), el('p', 'hero-lead', info.description), metaRow());
+    const search = searchBox(page === 'law' ? 'このページの法律・罰金を検索' : `${info.title}の掲載情報を検索`, page === 'law' ? '違反名・罰金・刑務などで検索…' : 'このページの内容を検索…');
+    const hint = el('p', 'search-hint', page === 'law' ? 'このページ内を検索。表は一致する行だけを表示します。サーバールール違反への対応は「公式ルール」をご確認ください。' : 'このページ内の案内を検索できます。サイト全体から探す場合は、公式ルールの検索をご利用ください。');
+    hint.id = 'search-hint';
+    heroCopy.append(search.box, hint);
+    if (['join', 'contact'].includes(page)) {
+      const actions = el('div', 'hero-actions');
+      actions.append(socialLink('公式Discordへ', 'discord', 'button button-primary'), link(page === 'join' ? '先にルールを確認する' : 'よくある質問を見る', page === 'join' ? 'rules/' : 'faq/', 'button button-secondary', 'arrow'));
+      heroCopy.append(actions);
+    }
+    hero.append(heroCopy);
+    shell.append(hero);
+    if (['law', 'crime', 'pd'].includes(page)) {
+      const note = el('aside', 'notice guide-context');
+      note.append(icon('shield'), el('p', '', 'ゲーム内の犯罪と、サーバールール違反は別のものです。ゲーム内の法律はPDが対応し、ルール違反への対応は運営が判断します。'), link('公式ルール', 'rules/', 'section-link', 'arrow'));
+      shell.append(note);
+    }
+    if (page === 'guides') {
+      const navigation = el('nav', 'guide-page-links');
+      navigation.setAttribute('aria-label', '街の仕事・サービス');
+      ['pd', 'ems', 'mechanic', 'shops', 'lifejobs', 'gangs'].forEach(key => navigation.append(link(pageInfo(key).title, `${key}/`, 'pill', 'arrow')));
+      shell.append(navigation);
+    }
+    const layout = el('div', 'guide-layout');
+    const rulesMain = el('section', 'rules-main guide-main');
+    rulesMain.setAttribute('aria-label', `${info.title}の掲載情報`);
+    const toolbar = el('div', 'rules-toolbar');
+    const count = el('p', 'result-count');
+    count.setAttribute('role', 'status');
+    count.setAttribute('aria-live', 'polite');
+    const actions = el('div', 'toolbar-actions');
+    const saved = button('保存した項目', 'button button-small bookmark-filter', () => { state.savedOnly = !state.savedOnly; applyFilters(); }, 'star');
+    const expand = button('すべて展開', 'button button-small button-secondary', () => {
+      views.list.querySelectorAll('details').forEach(detail => { detail.open = true; openRules.add(detail.id); });
+    });
+    const collapse = button('すべて閉じる', 'button button-small button-secondary', () => {
+      views.list.querySelectorAll('details').forEach(detail => { detail.open = false; openRules.delete(detail.id); });
+    });
+    actions.append(saved, expand, collapse);
+    toolbar.append(count, actions);
+    const mobileToc = el('details', 'mobile-toc');
+    const summary = el('summary');
+    summary.append(icon('list'), el('span', '', 'このページの目次'), icon('chevron'));
+    const mobileNav = el('nav', 'toc-list');
+    mobileNav.setAttribute('aria-label', `${info.title}の目次（モバイル）`);
+    mobileToc.append(summary, mobileNav);
+    const list = el('div', 'rule-list');
+    list.id = 'rule-list';
+    rulesMain.append(toolbar, mobileToc, list);
+    const sidebar = el('aside', 'rules-sidebar');
+    const tocTitle = el('h2', 'toc-heading', 'このページの目次');
+    tocTitle.id = 'desktop-toc-title';
+    sidebar.setAttribute('aria-labelledby', tocTitle.id);
+    const toc = el('nav', 'toc-list');
+    toc.setAttribute('aria-label', `${info.title}の目次`);
+    sidebar.append(tocTitle, toc);
+    layout.append(rulesMain, sidebar);
+    shell.append(layout);
+    const related = el('nav', 'guide-related');
+    related.setAttribute('aria-label', '関連する案内');
+    related.append(link('公式ルール', 'rules/', 'button button-secondary', 'book'));
+    if (page !== 'guides') related.append(link('街ガイド', 'guides/', 'button button-secondary', 'arrow'));
+    if (['crime', 'pd'].includes(page)) related.append(link('法律・罰金', 'law/', 'button button-secondary', 'arrow'));
+    if (['ems', 'mechanic', 'shops', 'lifejobs', 'gangs'].includes(page)) related.append(link('経済・料金', 'economy/', 'button button-secondary', 'arrow'));
+    if (['faq', 'contact', 'character'].includes(page)) related.append(link('参加方法', 'join/', 'button button-secondary', 'arrow'));
+    shell.append(related);
+    main.replaceChildren(shell);
+    views = { mode: 'guide', entries, input: search.input, searchBox: search.box, clear: search.clear, saved, count, list, toc, mobileNav, mobileToc, expand, collapse };
+    renderGuideResults();
+    window.addEventListener('hashchange', () => openDeepLink(true));
+    window.addEventListener('popstate', () => {
+      readFiltersFromUrl();
+      state.category = 'all';
+      views.input.value = state.query;
+      renderGuideResults();
+      openDeepLink(true);
+    });
+    const focused = new URL(location.href).searchParams.get('focus') === 'search';
     if (!openDeepLink(false) && focused) { views.input.focus(); scrollToNode(views.searchBox); reflectUrl(); }
   }
   function applyFilters() {
@@ -582,8 +731,9 @@
     // An old anchor must not silently override an intentional new filter.
     const url = new URL(location.href);
     if (url.hash) { url.hash = ''; history.replaceState({}, '', url); }
+    delete state.deepRuleId;
     reflectUrl();
-    renderResults();
+    renderCurrentResults();
   }
   function ruleBadge(rule) {
     if (rule.status !== 'published') return el('span', 'badge status-badge', '運営確認中');
@@ -598,6 +748,15 @@
     if (!Number.isFinite(stamp) || elapsed < 0 || elapsed > maxDays) return null;
     return el('span', 'badge badge-new', rule.new ? 'NEW' : 'UPDATED');
   }
+  function visibleTableRows(rule, block) {
+    const rows = block.rows || [];
+    if (page !== 'law' || !tokens.length) return rows;
+    const context = [rule.title, rule.summary, categoryMap.get(rule.category)?.label, block.caption, ...(block.headers || [])];
+    return rows.filter(row => {
+      const text = normalize([...context, ...row].join(' '));
+      return tokens.every(token => text.includes(token));
+    });
+  }
   function ruleCard(rule) {
     const severity = ruleSeverity(rule);
     const details = el('details', `rule-card severity-${severity} importance-${rule.importance || 'normal'} ${rule.status === 'published' ? 'is-published' : 'is-pending'}`);
@@ -605,6 +764,8 @@
     details.dataset.severity = severity;
     details.id = rule.id;
     details.open = openRules.has(rule.id);
+    if (rule.id === 'administration-response') details.classList.add('administration-card');
+    if (page === 'faq') details.classList.add('faq-card');
     const summary = el('summary', 'rule-summary');
     const number = el('div', 'rule-number');
     if (rule.status !== 'published') number.append(el('small', '', 'PREP'));
@@ -617,22 +778,37 @@
     if (badge) labels.append(badge);
     const recent = recentBadge(rule);
     if (recent) labels.append(recent);
+    const targetPage = canonicalPage(rule);
+    if (page === 'rules' && targetPage !== 'rules') labels.append(el('span', 'badge rule-page-label', pageInfo(targetPage).title));
     copy.append(labels, highlighted(rule.title, 'rule-title', 'h3'), highlighted(rule.summary, 'rule-excerpt', 'p'));
     summary.append(copy, icon('chevron'));
     summary.lastChild.classList.add('rule-chevron');
     const body = el('div', 'rule-body');
     (rule.content || []).forEach(block => {
       if (block.type === 'list') {
-        const list = el('ul', 'rule-content-list');
-        (block.items || []).forEach(item => list.append(highlighted(item, '', 'li')));
+        const timeline = page === 'join' && rule.id === 'join-flow';
+        const list = el(timeline ? 'ol' : 'ul', timeline ? 'join-timeline' : 'rule-content-list');
+        (block.items || []).forEach((item, index) => {
+          if (!timeline) { list.append(highlighted(item, '', 'li')); return; }
+          const step = el('li', 'join-step');
+          const label = el('span', 'join-step-number', `STEP ${String(index + 1).padStart(2, '0')}`);
+          label.setAttribute('aria-hidden', 'true');
+          step.append(label, highlighted(item, 'join-step-copy', 'p'));
+          list.append(step);
+        });
         body.append(list);
       } else if (block.type === 'heading') body.append(highlighted(block.text, '', 'h4'));
       else if (block.type === 'note') body.append(highlighted(block.text, 'rule-note', 'aside'));
       else if (block.type === 'table') {
+        const rows = visibleTableRows(rule, block);
+        if (!rows.length) {
+          body.append(el('p', 'table-empty', `${block.caption || rule.title}：一致する行はありません。`));
+          return;
+        }
         const scroll = el('div', 'rule-table-scroll');
         scroll.tabIndex = 0;
         scroll.setAttribute('role', 'region');
-        scroll.setAttribute('aria-label', `${block.caption || rule.title}の表（横にスクロールできます）`);
+        scroll.setAttribute('aria-label', `${block.caption || rule.title}の表`);
         const table = el('table', 'rule-table');
         if (block.caption) table.append(highlighted(block.caption, '', 'caption'));
         else table.setAttribute('aria-label', rule.title);
@@ -641,11 +817,13 @@
         (block.headers || []).forEach(text => { const cell = highlighted(text, '', 'th'); cell.scope = 'col'; headings.append(cell); });
         thead.append(headings);
         const tbody = el('tbody');
-        (block.rows || []).forEach(row => {
+        rows.forEach(row => {
           const tr = el('tr');
           row.forEach((text, index) => {
-            const cell = highlighted(text, '', index === 0 ? 'th' : 'td');
+            const cell = el(index === 0 ? 'th' : 'td');
+            cell.append(highlighted(text, 'table-cell-value'));
             if (index === 0) cell.scope = 'row';
+            cell.dataset.label = String(block.headers?.[index] || `項目 ${index + 1}`);
             tr.append(cell);
           });
           tbody.append(tr);
@@ -669,9 +847,9 @@
       bookmarks.has(rule.id) ? bookmarks.delete(rule.id) : bookmarks.add(rule.id);
       const persisted = saveBookmarks();
       refreshBookmark();
-      if (state.savedOnly) renderResults();
+      if (state.savedOnly) renderCurrentResults();
       const count = bookmarks.size;
-      views.saved.title = `保存済み ${count} 件`;
+      if (views?.saved) views.saved.title = `保存済み ${count} 件`;
       notify(persisted ? (bookmarks.has(rule.id) ? 'あとで読むに保存しました。' : '保存を解除しました。') : '保存情報はこの画面を開いている間だけ保持されます。');
     });
     function refreshBookmark() {
@@ -685,6 +863,7 @@
     copyLink.setAttribute('aria-label', `${rule.title}のリンクをコピー`);
     actions.append(save, copyLink);
     footer.append(updated, actions);
+    if (page === 'rules' && targetPage !== 'rules') footer.append(link(`${pageInfo(targetPage).title}のページを見る`, `${targetPage}/#${encodeURIComponent(rule.id)}`, 'section-link rule-page-link', 'arrow'));
     body.append(footer);
     details.append(summary, body);
     details.addEventListener('toggle', () => { details.open ? openRules.add(rule.id) : openRules.delete(rule.id); });
@@ -692,9 +871,11 @@
   }
   function renderResults() {
     tokens = [...new Set(normalize(state.query).trim().split(/\s+/u).filter(Boolean))];
-    const matches = data.rules.filter(rule => (state.category === 'all' || rule.category === state.category) && (!state.savedOnly || bookmarks.has(rule.id)) && tokens.every(token => rule._search.includes(token)));
+    const source = tokens.length || state.category !== 'all' || state.savedOnly ? data.rules : pageRules('rules');
+    const entries = state.deepRuleId && !source.some(rule => rule.id === state.deepRuleId) ? [...source, data.rules.find(rule => rule.id === state.deepRuleId)].filter(Boolean) : source;
+    const matches = entries.filter(rule => (state.category === 'all' || rule.category === state.category) && (!state.savedOnly || bookmarks.has(rule.id)) && tokens.every(token => rule._search.includes(token)));
     const category = categoryMap.get(state.category);
-    const context = state.savedOnly ? '保存したルール' : category?.label || 'すべて';
+    const context = state.savedOnly ? '保存した項目' : category?.label || (tokens.length ? 'サイト全体' : 'サーバールール');
     views.count.replaceChildren(el('strong', '', String(matches.length)), document.createTextNode(` 件 · ${context}${tokens.length ? ' / 検索結果' : ''}`));
     views.saved.setAttribute('aria-pressed', String(state.savedOnly));
     views.saved.title = `保存済み ${bookmarks.size} 件`;
@@ -717,10 +898,33 @@
     }
     views.list.replaceChildren(fragment);
     views.expand.disabled = views.collapse.disabled = !matches.length;
+    renderToc(matches);
+  }
+  function renderGuideResults() {
+    tokens = [...new Set(normalize(state.query).trim().split(/\s+/u).filter(Boolean))];
+    const matches = views.entries.filter(rule => (!state.savedOnly || bookmarks.has(rule.id)) && tokens.every(token => rule._search.includes(token)));
+    const rowCount = page === 'law' ? matches.reduce((count, rule) => count + rule.content.filter(block => block.type === 'table').reduce((sum, block) => sum + visibleTableRows(rule, block).length, 0), 0) : null;
+    views.count.replaceChildren(el('strong', '', String(matches.length)), document.createTextNode(` 項目${rowCount === null ? '' : ` · 表 ${rowCount} 行`}${state.savedOnly ? ' · 保存した項目' : ''}${tokens.length ? ' · 検索結果' : ''}`));
+    views.saved.setAttribute('aria-pressed', String(state.savedOnly));
+    views.saved.title = `保存済み ${bookmarks.size} 件`;
+    views.clear.hidden = !state.query;
+    const fragment = document.createDocumentFragment();
+    matches.forEach(rule => fragment.append(ruleCard(rule)));
+    if (!matches.length) {
+      const empty = el('div', 'empty-state');
+      empty.append(icon(state.savedOnly ? 'star' : 'search'), el('h3', '', state.savedOnly ? 'このページに保存した項目はありません' : '一致する案内が見つかりませんでした'), el('p', '', state.savedOnly ? '各項目の「あとで読む」から保存できます。' : '短い言葉で検索するか、サイト全体の検索をお試しください。'));
+      empty.append(button('絞り込みをリセット', 'button button-secondary', () => { state.query = ''; state.savedOnly = false; views.input.value = ''; applyFilters(); }), link('サイト全体から探す', `rules/?q=${encodeURIComponent(state.query)}`, 'button button-secondary', 'search'));
+      fragment.append(empty);
+    }
+    views.list.replaceChildren(fragment);
+    views.expand.disabled = views.collapse.disabled = !matches.length;
+    renderToc(matches);
+  }
+  function renderToc(matches) {
     [views.toc, views.mobileNav].forEach(toc => {
       const navFragment = document.createDocumentFragment();
       matches.forEach(rule => {
-        const node = link('', `rules/#${encodeURIComponent(rule.id)}`, 'toc-link');
+        const node = link('', `${page}/#${encodeURIComponent(rule.id)}`, 'toc-link');
         node.dataset.ruleId = rule.id;
         node.append(el('span', 'toc-count', displayNumber(rule)), highlighted(rule.title, 'toc-label'));
         node.addEventListener('click', event => {
@@ -768,21 +972,25 @@
     }
     const rule = data.rules.find(item => item.id === id);
     if (!rule) return false;
+    if (views.mode === 'guide' && !views.entries.some(item => item.id === id)) return false;
     state.query = '';
     state.category = 'all';
     state.savedOnly = false;
     views.input.value = '';
+    if (views.mode === 'rules') state.deepRuleId = id;
     openRules.add(id);
     reflectUrl();
-    renderResults();
+    renderCurrentResults();
     const node = document.getElementById(id);
+    if (!node) return false;
     node.open = true;
     scrollToNode(node);
     if (focus) node.querySelector('summary')?.focus({ preventScroll: true });
     return true;
   }
   async function copyRuleUrl(rule) {
-    const url = new URL(href('rules/'));
+    const target = views?.mode === 'guide' ? page : 'rules';
+    const url = new URL(href(`${target}/`));
     url.hash = rule.id;
     try {
       if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
@@ -861,12 +1069,13 @@
       if (!response.ok) throw new Error(`Data unavailable: ${response.status}`);
       data = validateData(await response.json());
       categoryMap = new Map(data.categories.map(category => [category.id, category]));
-      data.rules.forEach(rule => { rule._search = textIndex(rule); if (rule.status === 'published' && ['important', 'serious'].includes(ruleSeverity(rule))) openRules.add(rule.id); });
+      data.rules.forEach(rule => { rule._search = textIndex(rule); if (rule.status === 'published' && (['important', 'serious'].includes(ruleSeverity(rule)) || rule.id === 'administration-response')) openRules.add(rule.id); });
       readBookmarks();
       initChrome();
       if (page === 'rules') renderRules();
       else if (page === 'changelog') renderChangelog();
       else if (page === '404') render404();
+      else if (Object.hasOwn(guidePages, page)) renderGuide();
       else renderHome();
       document.body.classList.add('is-ready');
     } catch (error) {

@@ -1,0 +1,876 @@
+{
+  "categories": [
+    {
+      "id": "intro",
+      "label": "はじめに",
+      "shortLabel": "はじめに",
+      "description": "初心者歓迎。NicoGuraの楽しみ方と基本の約束。",
+      "group": "はじめに"
+    },
+    {
+      "id": "basic",
+      "label": "基本ルール",
+      "shortLabel": "基本",
+      "description": "一緒に遊ぶ相手を大切にするための最低限のマナー。",
+      "group": "はじめに"
+    },
+    {
+      "id": "rp",
+      "label": "ライトRP",
+      "shortLabel": "RP",
+      "description": "完璧な演技より、自然な会話とお互いが楽しめる行動。",
+      "group": "はじめに"
+    },
+    {
+      "id": "prohibited",
+      "label": "禁止事項",
+      "shortLabel": "禁止事項",
+      "description": "不正や悪質な嫌がらせから、みんなの遊びを守ります。",
+      "group": "はじめに"
+    },
+    {
+      "id": "communication",
+      "label": "コミュニケーション / VC",
+      "shortLabel": "VC",
+      "description": "普段の雑談と、シーンを有利にする外部情報を区別します。",
+      "group": "街の暮らし"
+    },
+    {
+      "id": "vehicles",
+      "label": "車両",
+      "shortLabel": "車両",
+      "description": "事故と故意の攻撃を区別し、周りに気を配りましょう。",
+      "group": "街の暮らし"
+    },
+    {
+      "id": "streaming",
+      "label": "配信 / SNS",
+      "shortLabel": "配信",
+      "description": "街の外へ発信するときも、相手本人と個人情報を大切に。",
+      "group": "サポート"
+    },
+    {
+      "id": "administration",
+      "label": "運営対応・お問い合わせ",
+      "shortLabel": "運営",
+      "description": "困ったときの相談方法と、状況に応じた運営対応。",
+      "group": "サポート"
+    }
+  ],
+  "rules": [
+    {
+      "id": "intro-welcome",
+      "number": 1,
+      "title": "NicoGuraへようこそ",
+      "category": "intro",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "初心者",
+        "ライトRP",
+        "FiveM",
+        "にこぐら"
+      ],
+      "severity": "guide",
+      "summary": "難しく考えなくて大丈夫。最低限のライトRPとマナーを守って、街で自由に楽しもう。",
+      "content": [
+        {
+          "text": "NicoGura（にこぐら）は、みんなでゆっくり街での生活を楽しむライトRPサーバーです。FiveM初心者もRP初心者も歓迎します。完璧な演技や、細かなキャラクター設定は必要ありません。",
+          "type": "paragraph"
+        },
+        {
+          "text": "ゲーム内では「この街に暮らす一人の市民」という意識を持って、仕事や会話、街で起きる出来事を楽しんでください。自分だけでなく、一緒にいる人も楽しめる行動を大切にしましょう。",
+          "type": "paragraph"
+        },
+        {
+          "text": "ルールはみんなが気持ちよく遊ぶための最低限の約束です。分からないことは、公式Discordの「お問い合わせ窓口」から確認できます。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "intro-reading",
+      "number": 2,
+      "title": "まずは基本の約束を確認しよう",
+      "category": "intro",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "最低限",
+        "基本",
+        "法律",
+        "運営対応"
+      ],
+      "severity": "guide",
+      "summary": "全部を暗記する必要はありません。基本のマナーと禁止事項を理解し、必要なときに読み返してください。",
+      "content": [
+        {
+          "items": [
+            "一緒に遊ぶ相手を尊重する。",
+            "理由のない攻撃や、外部情報を使った有利な行動をしない。",
+            "不正利用や嫌がらせをしない。",
+            "困ったら報復せず、Discordの「お問い合わせ窓口」へ相談する。"
+          ],
+          "type": "list"
+        },
+        {
+          "text": "ルール一覧では検索やカテゴリーから必要な内容を探せます。バッジは案内の種類を表し、処分を自動的に決めるものではありません。",
+          "type": "paragraph"
+        },
+        {
+          "text": "犯罪RPは街のゲームコンテンツです。ゲーム内の法律違反にはPDが対応し、罰金・刑務・押収・インパウンドなどが発生します。サーバールール違反は運営が対応します。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "basic-respect",
+      "number": 3,
+      "title": "相手の楽しみも大切に",
+      "category": "basic",
+      "tags": [
+        "お願い"
+      ],
+      "keywords": [
+        "リスペクト",
+        "マナー",
+        "対立",
+        "口論"
+      ],
+      "severity": "notice",
+      "summary": "市民、運営、配信者など、一緒に遊ぶ相手を尊重しましょう。",
+      "content": [
+        {
+          "text": "RP上の対立や口論と、プレイヤー本人への攻撃は別です。ゲーム内で役として対立しても、現実の人格への誹謗中傷や嫌がらせにつなげないでください。",
+          "type": "paragraph"
+        },
+        {
+          "text": "相手が話したり行動したりできる余地を残し、自分と相手の両方が楽しめる遊び方を心がけましょう。RPとして成立するゲーム内の対立まで、一律に禁止するものではありません。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "rp-back-and-forth",
+      "number": 4,
+      "title": "相手と一緒にRPを楽しもう",
+      "category": "rp",
+      "tags": [
+        "お願い"
+      ],
+      "keywords": [
+        "RP",
+        "会話",
+        "交流"
+      ],
+      "severity": "notice",
+      "summary": "自然に街で会話して、お互いに楽しめれば大丈夫です。",
+      "content": [
+        {
+          "text": "キャラクターとして街で経験したことをもとに、会話や行動を楽しんでください。操作ミスや言い間違いがあっても、すぐに相手を責めず、必要なことを短く確認し合いましょう。",
+          "type": "paragraph"
+        },
+        {
+          "text": "相手の会話や出来事を尊重し、関係のない場面へ繰り返し割り込んで遊びを止めないようお願いします。困ったときは、運営へ相談して大丈夫です。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "rp-metagaming",
+      "number": 5,
+      "title": "ゲーム外の情報をRPに持ち込まない",
+      "category": "rp",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "メタゲーミング",
+        "Metagaming",
+        "メタ",
+        "外部情報"
+      ],
+      "severity": "prohibited",
+      "summary": "自分のキャラクターがゲーム内で知ることのできない情報を、ゲーム内で使うことは禁止です。",
+      "content": [
+        {
+          "text": "Discord、配信、他人の画面、ゲーム外チャット、運営画面、外部ツールなどで得た位置・人数・計画・身元を、自分のキャラクターが知っている情報として利用しないでください。",
+          "type": "paragraph"
+        },
+        {
+          "text": "偶然情報が見えたり聞こえたりした場合も、ゲーム内の行動や仲間への連絡に利用しないでください。ゲームの状況に影響しない普段の雑談まで禁止するものではありません。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "rp-rdm",
+      "number": 6,
+      "title": "理由のない攻撃をしない（RDM）",
+      "category": "rp",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "RDM",
+        "無差別",
+        "攻撃",
+        "殺害"
+      ],
+      "severity": "prohibited",
+      "summary": "RP上の理由や流れなく、他のプレイヤーを突然攻撃・殺害する行為は禁止です。",
+      "content": [
+        {
+          "text": "通りすがりの人へ無差別に発砲するなど、RP上の関わりがない攻撃をしないでください。「犯罪者のキャラクターだから」という理由だけで、誰でも攻撃できるわけではありません。",
+          "type": "paragraph"
+        },
+        {
+          "text": "進行中の犯罪RPや対立は、前後のやり取りと状況を含めて判断します。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "prohibited-cheating",
+      "number": 7,
+      "title": "チート・不正ツールを使わない",
+      "category": "prohibited",
+      "tags": [
+        "重大違反"
+      ],
+      "keywords": [
+        "チート",
+        "cheat",
+        "不正ツール",
+        "不正改造",
+        "サーバー攻撃",
+        "BOT",
+        "自動化"
+      ],
+      "severity": "serious",
+      "summary": "チート、不正ツール、不正改造やサーバー攻撃は禁止です。",
+      "content": [
+        {
+          "text": "不正な照準・透視・改変などで有利になる行為や、サーバーを攻撃して他の市民のプレイを妨げる行為をしないでください。",
+          "type": "paragraph"
+        },
+        {
+          "text": "放置、BOT、自動化によって稼ぐ行為も禁止です。利用する機能やツールの扱いに迷う場合は、使う前にDiscordの「お問い合わせ窓口」から確認してください。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "prohibited-exploit",
+      "number": 8,
+      "title": "バグ・複製を意図的に悪用しない",
+      "category": "prohibited",
+      "tags": [
+        "重大違反"
+      ],
+      "keywords": [
+        "バグ",
+        "グリッチ",
+        "Exploit",
+        "Duplication",
+        "デュープ",
+        "複製",
+        "資金増殖"
+      ],
+      "severity": "serious",
+      "summary": "グリッチやバグを悪用し、資金・アイテム・報酬を不正に得る行為は禁止です。",
+      "content": [
+        {
+          "items": [
+            "Money DuplicationやItem Duplicationによる資金・アイテムの複製や増殖。",
+            "不正アイテム生成、不正な報酬取得、通常想定されていない手段での不正取得。",
+            "バグを反復利用して利益を得たり、不正に有利な状態を作ったりする行為。"
+          ],
+          "type": "list"
+        },
+        {
+          "text": "不具合を見つけたら悪用せず、利用を止めてDiscordの「お問い合わせ窓口」へ報告してください。",
+          "type": "paragraph"
+        },
+        {
+          "text": "偶然の不具合や操作ミスそのものは、故意の悪用とは区別します。気づいた時点で追加利用を止め、状況や発生時刻を伝えてください。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "prohibited-rmt",
+      "number": 9,
+      "title": "ゲーム内資産と現実の対価を交換しない",
+      "category": "prohibited",
+      "tags": [
+        "重大違反"
+      ],
+      "keywords": [
+        "RMT",
+        "リアルマネー",
+        "現実通貨",
+        "資産取引"
+      ],
+      "severity": "serious",
+      "summary": "ゲーム内のお金・アイテム・権利などを、現実の通貨や対価と交換するRMTは禁止です。",
+      "content": [
+        {
+          "text": "現実のお金や換金できる対価と引き換えにゲーム内資産を受け渡したり、取引を持ちかけたりしないでください。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "prohibited-harassment",
+      "number": 10,
+      "title": "悪質な嫌がらせをしない",
+      "category": "prohibited",
+      "tags": [
+        "重大違反"
+      ],
+      "keywords": [
+        "ハラスメント",
+        "暴言",
+        "差別",
+        "粘着",
+        "誹謗中傷",
+        "個人情報",
+        "セクハラ"
+      ],
+      "severity": "serious",
+      "summary": "差別、執拗な暴言、粘着、ハラスメント、個人情報晒しは禁止です。",
+      "content": [
+        {
+          "items": [
+            "現実の人格への誹謗中傷、差別、執拗な暴言。",
+            "粘着、つきまとい、嫌がらせ、性的な嫌がらせなどのハラスメント。",
+            "個人情報晒しや、現実のトラブルへ発展させる行為。"
+          ],
+          "type": "list"
+        },
+        {
+          "text": "ゲーム内、配信、SNSでも相手本人を尊重してください。嫌なことがあったときは、仕返しや長時間の口論を続けず、距離を取って運営へ相談しましょう。",
+          "type": "paragraph"
+        },
+        {
+          "text": "RPとして成立するキャラクター同士の対立と、プレイヤー本人への攻撃は区別します。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "prohibited-impersonation",
+      "number": 11,
+      "title": "運営や他のプレイヤーになりすまさない",
+      "category": "prohibited",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "なりすまし",
+        "偽装",
+        "運営"
+      ],
+      "severity": "prohibited",
+      "summary": "運営の指示を装ったり、他人本人のふりをして誤認させたりする行為は禁止です。",
+      "content": [
+        {
+          "text": "運営権限があると偽って従わせる、他のプレイヤーの本人確認を装うなどの行為をしないでください。キャラクターの変装を楽しむ場合も、実在の運営やプレイヤー本人との誤認を狙わないでください。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "communication-external-vc",
+      "number": 13,
+      "title": "外部VCで有利な情報を共有しない",
+      "category": "communication",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "外部VC",
+        "Discord",
+        "ボイスチャット",
+        "位置共有",
+        "作戦"
+      ],
+      "severity": "prohibited",
+      "summary": "友達との普段の雑談は大丈夫です。シーンを有利に進める外部VCの情報共有は禁止です。",
+      "content": [
+        {
+          "text": "犯罪、警察対応、戦闘、チェイス、ギャング活動などで、Discord等の外部VCを使って位置・人数・作戦を共有し、ゲーム内で有利になる行為は禁止です。",
+          "type": "paragraph"
+        },
+        {
+          "text": "友達同士で普通に話すこと自体は厳しく禁止しません。雑談中にシーンの情報が入っても、ゲーム内の行動や仲間への指示に利用しないでください。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "communication-voice",
+      "number": 14,
+      "title": "聞き取りやすい会話に協力しよう",
+      "category": "communication",
+      "tags": [
+        "お願い"
+      ],
+      "keywords": [
+        "音量",
+        "マイク",
+        "会話",
+        "声色"
+      ],
+      "severity": "notice",
+      "summary": "音量や周囲の会話に気を配り、お互いに声を届けやすくしましょう。",
+      "content": [
+        {
+          "text": "大きな音や連続した呼びかけで、他の人の会話を妨げないようお願いします。マイクの不調や音量に気づいたら、短く伝え合って調整しましょう。声色を変えたり、上手に演技したりする必要はありません。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "vehicles-vdm",
+      "number": 15,
+      "title": "車を使って故意に襲わない（VDM）",
+      "category": "vehicles",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "VDM",
+        "車両攻撃",
+        "故意",
+        "交通事故"
+      ],
+      "severity": "prohibited",
+      "summary": "RP上の理由なく、車両を武器のように使って他のプレイヤーを意図的に轢く行為は禁止です。",
+      "content": [
+        {
+          "text": "人を狙って轢く、嫌がらせのために繰り返し体当たりをするなどの行為をしないでください。",
+          "type": "paragraph"
+        },
+        {
+          "text": "普通の交通事故をVDMとして扱うものではありません。故意かどうかや前後のRPの流れを含め、状況を確認します。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "vehicles-courtesy",
+      "number": 16,
+      "title": "周りの人と車に気を配ろう",
+      "category": "vehicles",
+      "tags": [
+        "お願い"
+      ],
+      "keywords": [
+        "駐車",
+        "車両",
+        "事故",
+        "店舗"
+      ],
+      "severity": "notice",
+      "summary": "人や仕事の動線をふさがず、事故が起きたら状況を伝え合いましょう。",
+      "content": [
+        {
+          "text": "店舗や救護の近くでは周囲に気を配り、他の人の活動を長く妨げないようお願いします。事故や接触が起きたときは、状況を短く伝え合いましょう。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "streaming-respect",
+      "number": 31,
+      "title": "配信・SNSでも相手を大切に",
+      "category": "streaming",
+      "tags": [
+        "お願い"
+      ],
+      "keywords": [
+        "配信",
+        "SNS",
+        "個人情報",
+        "ゴースティング"
+      ],
+      "severity": "notice",
+      "summary": "発信を楽しみながら、個人情報や相手への嫌がらせに気を配りましょう。",
+      "content": [
+        {
+          "text": "配信者や視聴者も、一緒に街を楽しむ人です。ゲーム内の対立を、現実の人格への攻撃やSNSでの粘着につなげないでください。",
+          "type": "paragraph"
+        },
+        {
+          "text": "現実の個人情報や私的な画面が写り込まないよう気を配ってください。配信で得た位置や作戦をゲーム内へ持ち込む行為は、配信ゴースティングとして禁止します。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "administration-response",
+      "number": 32,
+      "title": "【運営や市民の妨げになると判断された場合】",
+      "category": "administration",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "運営判断",
+        "抜け穴",
+        "警告",
+        "キック",
+        "一時BAN",
+        "永久BAN"
+      ],
+      "severity": "important",
+      "summary": "個別に書かれていない行為でも、運営や市民の活動を妨げる場合は運営が対応することがあります。",
+      "content": [
+        {
+          "text": "本ルールに個別の記載がない行為であっても、運営や市民の活動・RP・サーバー運営の妨げになると運営が判断した場合、警告・キック・一時BAN・永久BAN等の対応を行う場合があります。",
+          "type": "paragraph"
+        },
+        {
+          "text": "ルールに書いていないことを利用した悪質な抜け穴行為についても同様です。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "administration-report",
+      "number": 33,
+      "title": "困ったときはお問い合わせへ",
+      "category": "administration",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "お問い合わせ",
+        "Discord",
+        "報告",
+        "相談",
+        "通報",
+        "録画",
+        "補填",
+        "異議"
+      ],
+      "severity": "guide",
+      "summary": "報復や長時間の口論は避け、Discordの「お問い合わせ窓口」から運営へ連絡してください。",
+      "content": [
+        {
+          "text": "荒らしや違反を見つけても、ゲーム内で仕返しをしたり、長時間口論を続けたりせず、公式Discordの「お問い合わせ窓口」へ相談してください。公式Discord：https://discord.gg/Fzhhp34JJy",
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            "いつ・どこで何が起きたか。",
+            "誰が関わり、どのような状況だったか。",
+            "動画やスクリーンショットがある場合は、確認してほしい箇所。"
+          ],
+          "type": "list"
+        },
+        {
+          "text": "常時録画は必須ではありません。プレイヤー通報、アイテム消失、重大不具合、補填申請、処分への異議は、録画等があると確認しやすくなります。証拠がない場合も、分かる範囲で状況を伝えてください。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "rp-light",
+      "number": 103,
+      "title": "NicoGuraのライトRP",
+      "category": "rp",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "ライトRP",
+        "初心者",
+        "演技",
+        "キャラクター",
+        "声色"
+      ],
+      "severity": "guide",
+      "summary": "ガチガチのRPは必要ありません。最低限キャラクターになりきって、街での生活や交流を楽しみましょう。",
+      "content": [
+        {
+          "items": [
+            "完璧な演技や細かなキャラクター背景設定は不要です。",
+            "声色を変える必要もありません。RP初心者、FiveM初心者も歓迎します。",
+            "ゲーム内では、この街に暮らすキャラクターとして行動しましょう。",
+            "他の市民のRPを壊さず、相手も楽しめる遊び方を意識してください。"
+          ],
+          "type": "list"
+        },
+        {
+          "text": "自然な会話や出来事のやり取りを楽しめれば大丈夫です。細かな演技方法や、厳密なキャラクター経歴を求めるものではありません。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "rp-powergaming",
+      "number": 104,
+      "title": "結果を一方的に押し付けない",
+      "category": "rp",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "パワーゲーミング",
+        "Powergaming",
+        "PG",
+        "選択",
+        "押し付け"
+      ],
+      "severity": "prohibited",
+      "summary": "相手に選択や反応の余地を与えず、結果を一方的に決めるパワーゲーミングは禁止です。",
+      "content": [
+        {
+          "text": "相手の反応を無視して「こうなったことにする」と結果を押し付けないでください。会話や行動のやり取りを通じて、相手も参加できる場面をつくりましょう。",
+          "type": "paragraph"
+        },
+        {
+          "text": "NicoGuraはライトRPです。細かな演技方法や言い回しまで強制するものではありません。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "rp-no-pressure",
+      "number": 105,
+      "title": "自分のRP観を押し付けない",
+      "category": "rp",
+      "tags": [
+        "お願い"
+      ],
+      "keywords": [
+        "RP観",
+        "押し付け",
+        "初心者",
+        "演技"
+      ],
+      "severity": "notice",
+      "summary": "演技の仕方を一方的に評価せず、自然に会話してお互いに楽しみましょう。",
+      "content": [
+        {
+          "text": "「そのRPは間違っている」「もっとキャラになりきれ」と、自分のRP観を他人へ押し付けることは避けてください。経験や遊び方には違いがあります。",
+          "type": "paragraph"
+        },
+        {
+          "text": "困ったことは短く確認し、相手を責めるためにシーンを止め続けないようお願いします。ルールに関わる問題は運営へ相談してください。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "rp-stream-ghosting",
+      "number": 106,
+      "title": "配信の情報をゲーム内で利用しない",
+      "category": "rp",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "配信ゴースティング",
+        "Ghosting",
+        "Stream Sniping",
+        "位置",
+        "逃走先",
+        "隠し場所"
+      ],
+      "severity": "prohibited",
+      "summary": "配信を見て得た位置・人数・逃走先・作戦・隠し場所を、ゲーム内で使うゴースティングは禁止です。",
+      "content": [
+        {
+          "text": "配信画面から相手の位置を探して追跡や待ち伏せをしたり、作戦を仲間へ伝えたりしないでください。自分のキャラクターが街の中で知った情報を使って遊びましょう。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "prohibited-ban-evasion",
+      "number": 108,
+      "title": "BANやWhitelistの制限を回避しない",
+      "category": "prohibited",
+      "tags": [
+        "重大違反"
+      ],
+      "keywords": [
+        "BAN回避",
+        "Whitelist回避",
+        "処分逃れ",
+        "別アカウント"
+      ],
+      "severity": "serious",
+      "summary": "BAN回避、Whitelist回避、別アカウントを利用した処分逃れは禁止です。",
+      "content": [
+        {
+          "text": "正規の承認や処分を、別アカウントや不正な手段で回避しないでください。承認や処分について確認したいことがある場合は、Discordの「お問い合わせ窓口」へ連絡してください。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "prohibited-evidence-fabrication",
+      "number": 109,
+      "title": "証拠を捏造しない",
+      "category": "prohibited",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "証拠捏造",
+        "虚偽",
+        "報告",
+        "証拠"
+      ],
+      "severity": "prohibited",
+      "summary": "運営への報告で、事実と異なる証拠を作ったり、誤認させるために改変したりする行為は禁止です。",
+      "content": [
+        {
+          "text": "事実確認のため、起きたことを分かる範囲で正確に伝えてください。証拠がないことや記憶が曖昧なことは、そのまま説明して大丈夫です。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "administration-sanctions",
+      "number": 110,
+      "title": "対応は状況・悪質性に応じて判断します",
+      "category": "administration",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "処分",
+        "注意",
+        "警告",
+        "Kick",
+        "BAN",
+        "悪質性",
+        "異議"
+      ],
+      "severity": "important",
+      "summary": "注意、警告、キック、一時BAN、永久BANなど、状況に応じて運営が対応します。",
+      "content": [
+        {
+          "text": "違反の状況、悪質性、繰り返しの有無などを確認して対応します。すべての違反に固定の罰則や、必ず同じ順番の対応を設けるものではありません。",
+          "type": "paragraph"
+        },
+        {
+          "text": "チート、RMT、Duplication、BAN回避、重大な荒らし、サーバー攻撃などは、初回から重い対応になる場合があります。",
+          "type": "paragraph"
+        },
+        {
+          "text": "ゲーム内の犯罪に対するPDの罰金や刑務と、サーバールール違反に対する運営対応は別です。処分に関する相談や異議はDiscordの「お問い合わせ窓口」へ連絡してください。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    }
+  ]
+}

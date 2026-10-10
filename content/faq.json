@@ -1,0 +1,298 @@
+{
+  "categories": [
+    {
+      "id": "faq",
+      "label": "FAQ",
+      "shortLabel": "FAQ",
+      "description": "初めての参加や、困ったときのよくある質問。",
+      "group": "サポート"
+    }
+  ],
+  "rules": [
+    {
+      "id": "faq-find-share",
+      "number": 35,
+      "title": "読み返したいルールを探すには？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "検索",
+        "保存",
+        "共有",
+        "リンク",
+        "FAQ"
+      ],
+      "severity": "guide",
+      "summary": "検索、カテゴリー、☆保存、リンクコピーを利用できます。",
+      "content": [
+        {
+          "items": [
+            "検索ではタイトル・本文・タグ・カテゴリー・料金表の文字を探せます。",
+            "カテゴリーでは知りたい仕事や場面に絞れます。",
+            "☆保存では、このブラウザに読み返したいルールを保存できます。",
+            "リンクコピーでは、そのルールへ直接開けるURLを共有できます。"
+          ],
+          "type": "list"
+        },
+        {
+          "text": "保存情報は端末・ブラウザごとに記録されます。ブラウザのデータを消すと、保存情報も消える場合があります。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-rp-beginner",
+      "number": 111,
+      "title": "RP初心者でも参加できますか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "RP初心者",
+        "ライトRP",
+        "参加"
+      ],
+      "severity": "guide",
+      "summary": "参加できます。NicoGuraは初心者歓迎のライトRPサーバーです。",
+      "content": [
+        {
+          "text": "完璧な演技や細かな設定は必要ありません。最低限、この街に暮らすキャラクターとして行動し、周りの市民との会話や出来事を楽しんでください。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-fivem-beginner",
+      "number": 112,
+      "title": "FiveM初心者でも大丈夫ですか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "FiveM初心者",
+        "接続",
+        "お問い合わせ"
+      ],
+      "severity": "guide",
+      "summary": "大丈夫です。分からないことはDiscordのお問い合わせから確認できます。",
+      "content": [
+        {
+          "text": "参加方法の10ステップを順に確認してください。接続や操作で困った場合は、公式Discordの「お問い合わせ窓口」へ状況を伝えてください。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-character-count",
+      "number": 113,
+      "title": "キャラクターはいくつ作れますか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "キャラクター",
+        "1人1キャラ",
+        "作り直し"
+      ],
+      "severity": "guide",
+      "summary": "1人のプレイヤーにつき、使用できるキャラクターは1人までです。",
+      "content": [
+        {
+          "text": "サブキャラクターや別アカウントを使って、実質的に複数キャラクターを使用することはできません。作り直したい場合は、追加で作らず運営へ相談してください。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-whitelist-interview",
+      "number": 114,
+      "title": "Whitelistは面接ですか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "Whitelist",
+        "面接",
+        "Rxxxx",
+        "txAdmin",
+        "再接続"
+      ],
+      "severity": "guide",
+      "summary": "面接ではありません。Rxxxxコードの申請と運営承認の方式です。",
+      "content": [
+        {
+          "text": "FiveM初回接続時に表示される本人のRxxxxコードを、Discordの#ホワイトリスト申請へそのまま投稿してください。運営がtxAdmin Allowlistで承認した後に再接続します。質問回答式でもありません。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-rule-memory",
+      "number": 115,
+      "title": "ルールは全部暗記する必要がありますか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "暗記",
+        "ルール",
+        "検索"
+      ],
+      "severity": "guide",
+      "summary": "暗記する必要はありません。基本的なマナーと禁止事項を理解していれば大丈夫です。",
+      "content": [
+        {
+          "text": "必要なときにこのサイトを確認してください。検索やカテゴリー、☆保存から、知りたい内容を読み返せます。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-crime-ban",
+      "number": 116,
+      "title": "犯罪をするとBANされますか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "犯罪",
+        "BAN",
+        "法律",
+        "罰金",
+        "PD"
+      ],
+      "severity": "guide",
+      "summary": "犯罪RPは街のゲームコンテンツで、サーバールール違反とは別です。",
+      "content": [
+        {
+          "text": "ゲーム内の犯罪には、法律に沿ってPD対応・罰金・刑務・押収・インパウンドなどが発生します。チートやRDMなどのサーバールール違反がある場合は、犯罪RPとは別に運営が対応します。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-bug-report",
+      "number": 117,
+      "title": "不具合を見つけました。どうすればいいですか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "不具合",
+        "バグ",
+        "報告"
+      ],
+      "severity": "guide",
+      "summary": "悪用せず、Discordの「お問い合わせ窓口」へ報告してください。",
+      "content": [
+        {
+          "text": "利益を得るために追加利用したり、反復して試したりしないでください。発生時刻と状況を伝え、動画やスクリーンショットがあれば添えてください。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-missing-items",
+      "number": 118,
+      "title": "アイテムが消えました。どうすればいいですか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "アイテム消失",
+        "補填",
+        "録画",
+        "お問い合わせ"
+      ],
+      "severity": "guide",
+      "summary": "Discordの「お問い合わせ窓口」へ連絡してください。録画等があると確認しやすくなります。",
+      "content": [
+        {
+          "text": "いつ、どのような操作や状況でアイテムが消えたかを、分かる範囲で伝えてください。動画やスクリーンショットがあれば添えてください。証拠がない場合も相談できます。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-rule-loopholes",
+      "number": 119,
+      "title": "ルールに書いていなければ何をしてもいいですか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "抜け穴",
+        "運営判断",
+        "ルール"
+      ],
+      "severity": "guide",
+      "summary": "いいえ。運営や市民を妨げる行為や、悪質な抜け穴利用には運営が対応する場合があります。",
+      "content": [
+        {
+          "text": "個別に書かれていなくても、活動やRP、サーバー運営の妨げになると運営が判断した場合は、警告・キック・一時BAN・永久BAN等の対応を行うことがあります。",
+          "type": "paragraph"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    }
+  ]
+}

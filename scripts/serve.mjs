@@ -2,13 +2,14 @@ import { createServer } from 'node:http';
 import { readFile, stat, realpath } from 'node:fs/promises';
 import { dirname, extname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { routes } from './site-config.mjs';
 
 const root = await realpath(resolve(dirname(fileURLToPath(import.meta.url)), '..'));
 const port = Number(process.argv[2] || 4173);
 if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error('ポートは1024〜65535を指定してください。');
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.ico': 'image/x-icon', '.xml': 'application/xml; charset=utf-8', '.txt': 'text/plain; charset=utf-8' };
 const allowedFiles = new Set(['index.html', '404.html', 'robots.txt', 'sitemap.xml']);
-const allowedFolders = new Set(['rules', 'changelog', 'editor', 'assets', 'data']);
+const allowedFolders = new Set([...Object.values(routes).map(r => r[0]).filter(Boolean), 'editor', 'assets', 'data']);
 const inRoot = (target) => target === root || target.startsWith(`${root}${sep}`);
 
 createServer(async (request, response) => {

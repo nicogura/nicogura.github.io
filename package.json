@@ -1,12 +1,16 @@
 {
   "name": "nicogura.github.io",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "private": true,
   "description": "NicoGura official website and rules — static, dependency-free",
   "type": "module",
   "scripts": {
     "start": "node scripts/serve.mjs",
-    "validate": "node scripts/validate.mjs"
+    "generate": "node scripts/generate.mjs",
+    "build": "node scripts/build.mjs",
+    "validate": "node scripts/validate.mjs",
+    "test": "node --test scripts/content.test.mjs",
+    "import-content": "node scripts/import-content.mjs"
   },
   "engines": {
     "node": ">=20"

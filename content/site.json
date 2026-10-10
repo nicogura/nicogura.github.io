@@ -1,0 +1,209 @@
+{
+  "modules": [
+    "content/general.json",
+    "content/join.json",
+    "content/character.json",
+    "content/crime.json",
+    "content/law.json",
+    "content/economy.json",
+    "content/pd.json",
+    "content/ems.json",
+    "content/mechanic.json",
+    "content/shops.json",
+    "content/lifejobs.json",
+    "content/gangs.json",
+    "content/faq.json"
+  ],
+  "site": {
+    "name": "NicoGura",
+    "tagline": "あなたらしい物語が、この街から。",
+    "version": "2.0.0",
+    "updatedAt": "2026-10-10",
+    "notice": "難しく考えなくて大丈夫。最低限のライトRPとマナーを大切に、街での生活を楽しみましょう。",
+    "links": {
+      "discord": "https://discord.gg/Fzhhp34JJy",
+      "x": "https://x.com/NicoGura0810",
+      "fivem": "",
+      "official": "https://nicogura.github.io/"
+    },
+    "assets": {
+      "logo": "assets/logo.webp",
+      "header": "assets/city.webp",
+      "icon": "assets/icon.webp"
+    }
+  },
+  "settings": {
+    "newBadgeDays": 30,
+    "featuredRuleIds": [
+      "rp-light",
+      "character-identity",
+      "administration-response",
+      "administration-report"
+    ]
+  },
+  "changelog": [
+    {
+      "date": "2026-10-10",
+      "type": "UPDATED",
+      "title": "公式ルール・参加ガイドを更新しました",
+      "items": [
+        "ライトRPの考え方と1人1キャラクターの方針を分かりやすくしました。",
+        "Discordのルール確認からRxxxx申請、運営承認、再接続までの参加方法をまとめました。",
+        "経済・料金、犯罪RP、ゲーム内法律、街の仕事、FAQをそれぞれのページから確認できます。",
+        "スマホで読みやすい料金表と法律検索を整えました。"
+      ]
+    },
+    {
+      "date": "2026-10-05",
+      "type": "UPDATED",
+      "title": "v1.0.1：確認中の料金と罪状の適用条件を明確化",
+      "items": [
+        "カスタムなど8項目の料金は、照合に食い違いがあるため金額掲載を保留しました。通常修理・全修理・タイヤ交換は確認済み料金を掲載しています。",
+        "基本罰金の表で、金額と罪状の適用条件を区別しました。適用条件が未確認の罪状は、表だけを根拠に請求しないことを明記しました。"
+      ]
+    },
+    {
+      "date": "2026-10-05",
+      "type": "NEW",
+      "title": "公式ルール v1.0.0 を公開",
+      "items": [
+        "初心者に分かりやすい共通ルールを、ガイド・お願い・注意・禁止・重大違反に分けて公開しました。",
+        "確認済みの基本罰金、医療・メカニックの基準料金を掲載しました。",
+        "未確定の犯罪条件・処分時間・職業条件・武器区分は「運営確認中」と明記しました。",
+        "全文検索、カテゴリー、ブックマーク、個別URL、更新履歴を用意しました。"
+      ]
+    }
+  ],
+  "pages": {
+    "home": {
+      "ruleIds": [
+        "intro-welcome",
+        "rp-light",
+        "character-identity"
+      ]
+    },
+    "rules": {
+      "ruleIds": [
+        "intro-welcome",
+        "rp-light",
+        "basic-respect",
+        "character-identity",
+        "rp-rdm",
+        "vehicles-vdm",
+        "rp-metagaming",
+        "rp-stream-ghosting",
+        "communication-external-vc",
+        "rp-powergaming",
+        "crime-combat-log",
+        "crime-down-information",
+        "crime-rejoin-combat",
+        "rp-no-pressure",
+        "administration-response",
+        "administration-sanctions",
+        "administration-report"
+      ],
+      "categories": [
+        "basic",
+        "rp",
+        "prohibited",
+        "communication",
+        "vehicles",
+        "streaming"
+      ]
+    },
+    "join": {
+      "categories": [
+        "join"
+      ]
+    },
+    "character": {
+      "categories": [
+        "character"
+      ]
+    },
+    "economy": {
+      "ruleIds": [
+        "economy-long-term",
+        "economy-starting-funds",
+        "economy-food-prices",
+        "economy-fuel-prices",
+        "ems-fees",
+        "mechanic-fees",
+        "economy-consumable-prices"
+      ]
+    },
+    "crime": {
+      "ruleIds": [
+        "crime-public-rewards",
+        "crime-current-list",
+        "pending-crime-conditions",
+        "crime-combat-log",
+        "crime-down-information",
+        "crime-rejoin-combat",
+        "crime-third-party",
+        "crime-probation",
+        "heist-duplicate"
+      ]
+    },
+    "law": {
+      "categories": [
+        "penalties"
+      ],
+      "ruleIds": [
+        "weapons-crime-use"
+      ]
+    },
+    "guides": {
+      "ruleIds": [
+        "pd-authority",
+        "ems-care",
+        "mechanic-billing",
+        "business-honest",
+        "lifejobs-overview",
+        "gang-establishment"
+      ]
+    },
+    "pd": {
+      "categories": [
+        "pd"
+      ]
+    },
+    "ems": {
+      "categories": [
+        "ems"
+      ]
+    },
+    "mechanic": {
+      "categories": [
+        "mechanic"
+      ]
+    },
+    "shops": {
+      "categories": [
+        "business"
+      ]
+    },
+    "lifejobs": {
+      "categories": [
+        "lifejobs"
+      ]
+    },
+    "gangs": {
+      "categories": [
+        "gang"
+      ]
+    },
+    "faq": {
+      "categories": [
+        "faq"
+      ]
+    },
+    "contact": {
+      "ruleIds": [
+        "administration-report",
+        "administration-response",
+        "administration-sanctions"
+      ]
+    }
+  }
+}

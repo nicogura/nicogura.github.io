@@ -1,0 +1,100 @@
+{
+  "categories": [
+    {
+      "id": "join",
+      "label": "参加方法",
+      "shortLabel": "参加方法",
+      "description": "Discord参加から市民ロール、コード申請、再接続まで。",
+      "group": "はじめに"
+    }
+  ],
+  "rules": [
+    {
+      "id": "join-flow",
+      "number": 101,
+      "title": "NicoGuraへの参加方法",
+      "category": "join",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "参加方法",
+        "Discord",
+        "✅",
+        "市民",
+        "Whitelist Request Code",
+        "Rxxxx",
+        "R1234",
+        "ホワイトリスト申請",
+        "txAdmin",
+        "再接続"
+      ],
+      "severity": "guide",
+      "summary": "Discord参加から市民ロール取得、Rxxxxコードの申請、運営承認、再接続までの10ステップです。",
+      "content": [
+        {
+          "items": [
+            "Discordに参加：公式Discord https://discord.gg/Fzhhp34JJy に参加します。",
+            "公式ルールを確認：Discordの案内からNicoGuraの公式ルールを読みます。",
+            "✅を押す：ルール確認メッセージの✅リアクションを押します。",
+            "「市民」ロールを取得：ルール確認後に「市民」ロールが付与されます。",
+            "FiveMからNicoGuraへ初回接続：公式Discordの接続案内を確認して接続します。",
+            "Whitelist Request Codeを確認：未承認の場合は接続画面にR1234のようなRxxxx形式のコードが表示されます。",
+            "Discordへ申請：#ホワイトリスト申請へ、本人の画面に表示されたRxxxxコードをそのまま投稿します。例：R1234。",
+            "運営承認：運営がtxAdmin Allowlistで申請を承認します。",
+            "FiveMへ再接続：承認後、NicoGuraへ再接続します。",
+            "入国完了：NicoGuraでの生活を始めましょう。"
+          ],
+          "type": "list"
+        },
+        {
+          "text": "すでに承認済みの方は、接続画面の案内に従ってください。コードの表示や承認で困った場合は、Discordの「お問い合わせ窓口」へ連絡してください。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "join-whitelist",
+      "number": 102,
+      "title": "Whitelistはコード申請と運営承認です",
+      "category": "join",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "Whitelist",
+        "Allowlist",
+        "ホワイトリスト",
+        "面接",
+        "Rxxxx",
+        "市民",
+        "承認"
+      ],
+      "severity": "important",
+      "summary": "面接や質問回答式ではありません。本人のRxxxxコードをDiscordへ投稿し、承認後に再接続します。",
+      "content": [
+        {
+          "text": "Discord参加、ルール確認、✅リアクション、市民ロール取得の後、FiveMから初回接続します。未承認の場合は表示されたWhitelist Request Codeを#ホワイトリスト申請へ投稿してください。",
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            "必ず本人の接続画面に表示されたRxxxxコードを使います。他人のコードは使わないでください。",
+            "運営のtxAdmin Allowlist承認前は入国できません。",
+            "承認されたらFiveMへ再接続してください。",
+            "問題がある場合はDiscordの「お問い合わせ窓口」へ相談してください。"
+          ],
+          "type": "list"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    }
+  ]
+}

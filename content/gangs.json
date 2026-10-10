@@ -1,0 +1,53 @@
+{
+  "categories": [
+    {
+      "id": "gang",
+      "label": "ギャング",
+      "shortLabel": "ギャング",
+      "description": "仲間との組織活動と、標準ギャングの設立費。",
+      "group": "アクティビティ"
+    }
+  ],
+  "rules": [
+    {
+      "id": "gang-establishment",
+      "number": 215,
+      "title": "ギャングの設立",
+      "category": "gang",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "ギャング",
+        "設立",
+        "組織"
+      ],
+      "severity": "guide",
+      "summary": "標準ギャング設立費は400,000,000円です。",
+      "content": [
+        {
+          "type": "table",
+          "caption": "ギャング設立",
+          "headers": [
+            "項目",
+            "金額"
+          ],
+          "rows": [
+            [
+              "標準ギャング設立費",
+              "400,000,000円"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "仲間と組織での活動や犯罪RPを楽しみたい方は、設立について運営へ相談してください。ギャング活動でも、相手が楽しめるライトRPとサーバールールを守りましょう。"
+        }
+      ],
+      "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    }
+  ]
+}

@@ -284,7 +284,7 @@ $('#download').addEventListener('click', () => {
   anchor.click();
   setTimeout(() => URL.revokeObjectURL(url), 10000);
   dirty = false;
-  message('rules.json をダウンロードしました。内容を運営で確認し、GitHub の data/rules.json を置き換えてください。');
+  message('rules.json をダウンロードしました。内容を運営で確認し、READMEの取込手順でコンテンツへ反映してください。');
 });
 for (const [id, clear] of [['category', () => { categoryFormDirty = false; }], ['changelog', () => { changelogFormDirty = false; }]]) {
   $(`#discard-${id}`).addEventListener('click', () => {
