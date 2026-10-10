@@ -123,7 +123,6 @@
     },
     "economy": {
       "ruleIds": [
-        "economy-long-term",
         "economy-starting-funds",
         "economy-food-prices",
         "economy-fuel-prices",
