@@ -48,7 +48,9 @@ test('user approved prices are exact', () => {
     [/タイヤ/, '500,000'],[/通常修理/, '200,000'],[/全修理/, '800,000'],[/包帯/, '250,000'],[/鎮痛剤/, '250,000'],[/IFAK/, '200,000'],[/簡易修理/, '300,000'],[/ニトロ/, '800,000'],
     [/通常塗装/, '300,000'],[/特殊.*RGB/, '600,000'],[/外装パーツ/, '300,000'],[/アンダーグロー/, '600,000'],[/特別ナンバー/, '100,000,000'],[/外装一式/, '4,200,000'],[/半カス/, '35,000,000'],[/フルカス/, '60,000,000']
   ]) price(label,value);
-  assert.match(body, /400,000,000円/);
+  const gang = entry('gang-establishment');
+  assert.equal(gang.summary, '標準ギャング設立費は2,000,000,000円です。');
+  assert.deepEqual(gang.content.find(b => b.type === 'table').rows, [['標準ギャング設立費', '2,000,000,000円']]);
 });
 test('economy correction retains exact descriptions and no invented sales category', () => {
   assert.ok(!data.rules.some(r => r.id === 'economy-long-term'));
