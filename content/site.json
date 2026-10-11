@@ -17,8 +17,8 @@
   "site": {
     "name": "NicoGura",
     "tagline": "あなたらしい物語が、この街から。",
-    "version": "2.0.0",
-    "updatedAt": "2026-10-10",
+    "version": "2.1.0",
+    "updatedAt": "2026-10-11",
     "notice": "難しく考えなくて大丈夫。最低限のライトRPとマナーを大切に、街での生活を楽しみましょう。",
     "links": {
       "discord": "https://discord.gg/Fzhhp34JJy",
@@ -42,6 +42,19 @@
     ]
   },
   "changelog": [
+    {
+      "date": "2026-10-11",
+      "type": "UPDATED",
+      "title": "カラー・犯罪RP・料金・Life Job・FAQを更新しました",
+      "items": [
+        "服装・車両の使用可能カラーと、所属内でのカラーの扱いを掲載しました。",
+        "チェイスの解放条件・アタック禁止時間、職務質問・現行犯逮捕の条件を掲載しました。",
+        "犯罪中の不具合確認、リセット前の選択、再発時の対応をまとめました。",
+        "FAQは質問への答えを先に読める文章へ整理しました。",
+        "経済の長文説明を削除し、飲食・消耗品・医療・修理の料金を更新しました。",
+        "Life Jobの一覧を更新しました。木こり・電気工事は調整中です。"
+      ]
+    },
     {
       "date": "2026-10-10",
       "type": "UPDATED",
@@ -136,6 +149,12 @@
         "crime-public-rewards",
         "crime-current-list",
         "pending-crime-conditions",
+        "crime-chase-demands",
+        "crime-chase-attack-window",
+        "crime-common-response",
+        "crime-bug-response",
+        "crime-bug-options",
+        "crime-bug-recurrence",
         "crime-combat-log",
         "crime-down-information",
         "crime-rejoin-combat",
@@ -165,6 +184,16 @@
     "pd": {
       "categories": [
         "pd"
+      ],
+      "ruleIds": [
+        "pd-authority",
+        "pd-fines",
+        "crime-chase-demands",
+        "crime-chase-attack-window",
+        "crime-common-response",
+        "crime-bug-response",
+        "crime-bug-options",
+        "crime-bug-recurrence"
       ]
     },
     "ems": {

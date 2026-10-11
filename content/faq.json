@@ -64,11 +64,15 @@
       "summary": "参加できます。NicoGuraは初心者歓迎のライトRPサーバーです。",
       "content": [
         {
+          "text": "はい、参加できます。NicoGuraは初心者歓迎のライトRPサーバーです。",
+          "type": "paragraph"
+        },
+        {
           "text": "完璧な演技や細かな設定は必要ありません。最低限、この街に暮らすキャラクターとして行動し、周りの市民との会話や出来事を楽しんでください。",
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
       "status": "published"
@@ -91,11 +95,15 @@
       "summary": "大丈夫です。分からないことはDiscordのお問い合わせから確認できます。",
       "content": [
         {
-          "text": "参加方法の10ステップを順に確認してください。接続や操作で困った場合は、公式Discordの「お問い合わせ窓口」へ状況を伝えてください。",
+          "text": "はい、大丈夫です。FiveMが初めての方でも参加できます。",
+          "type": "paragraph"
+        },
+        {
+          "text": "まずは参加方法の10ステップを順に確認してください。接続方法や操作で分からないことがある場合は、公式Discordの「お問い合わせ窓口」から気軽にご相談ください。",
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
       "status": "published"
@@ -118,11 +126,19 @@
       "summary": "1人のプレイヤーにつき、使用できるキャラクターは1人までです。",
       "content": [
         {
-          "text": "サブキャラクターや別アカウントを使って、実質的に複数キャラクターを使用することはできません。作り直したい場合は、追加で作らず運営へ相談してください。",
+          "text": "原則、1人1キャラクターです。",
+          "type": "paragraph"
+        },
+        {
+          "text": "サブキャラクターや別アカウントを使用して、実質的に複数キャラクターを運用することはできません。",
+          "type": "paragraph"
+        },
+        {
+          "text": "キャラクターを作り直したい場合は、新しく追加で作成せず、事前に運営へご相談ください。",
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
       "status": "published"
@@ -147,11 +163,19 @@
       "summary": "面接ではありません。Rxxxxコードの申請と運営承認の方式です。",
       "content": [
         {
-          "text": "FiveM初回接続時に表示される本人のRxxxxコードを、Discordの#ホワイトリスト申請へそのまま投稿してください。運営がtxAdmin Allowlistで承認した後に再接続します。質問回答式でもありません。",
+          "text": "いいえ、面接ではありません。質問への回答形式でもありません。",
+          "type": "paragraph"
+        },
+        {
+          "text": "FiveMへ初回接続した際に表示される、ご本人の「Rxxxx」コードをDiscordの「#ホワイトリスト申請」へ投稿してください。",
+          "type": "paragraph"
+        },
+        {
+          "text": "運営がtxAdmin Allowlistへ登録・承認した後、再接続すると入国できます。",
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
       "status": "published"
@@ -174,11 +198,15 @@
       "summary": "暗記する必要はありません。基本的なマナーと禁止事項を理解していれば大丈夫です。",
       "content": [
         {
+          "text": "いいえ、ルールを全部暗記する必要はありません。基本的なマナーと禁止事項を理解していれば大丈夫です。",
+          "type": "paragraph"
+        },
+        {
           "text": "必要なときにこのサイトを確認してください。検索やカテゴリー、☆保存から、知りたい内容を読み返せます。",
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
       "status": "published"
@@ -203,11 +231,15 @@
       "summary": "犯罪RPは街のゲームコンテンツで、サーバールール違反とは別です。",
       "content": [
         {
+          "text": "犯罪RPをすること自体が、BANの理由になるわけではありません。犯罪RPは街のゲームコンテンツで、サーバールール違反とは別です。",
+          "type": "paragraph"
+        },
+        {
           "text": "ゲーム内の犯罪には、法律に沿ってPD対応・罰金・刑務・押収・インパウンドなどが発生します。チートやRDMなどのサーバールール違反がある場合は、犯罪RPとは別に運営が対応します。",
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
       "status": "published"
@@ -230,11 +262,19 @@
       "summary": "悪用せず、Discordの「お問い合わせ窓口」へ報告してください。",
       "content": [
         {
+          "text": "悪用せず、公式Discordの「お問い合わせ窓口」へ報告してください。",
+          "type": "paragraph"
+        },
+        {
           "text": "利益を得るために追加利用したり、反復して試したりしないでください。発生時刻と状況を伝え、動画やスクリーンショットがあれば添えてください。",
           "type": "paragraph"
+        },
+        {
+          "text": "犯罪の進行が不可能になった場合は、速やかにPDへ連絡してシーンを一時中断し、「犯罪中に不具合が発生した場合」の手順を確認してください。",
+          "type": "note"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
       "status": "published"
@@ -258,11 +298,15 @@
       "summary": "Discordの「お問い合わせ窓口」へ連絡してください。録画等があると確認しやすくなります。",
       "content": [
         {
+          "text": "公式Discordの「お問い合わせ窓口」へ連絡してください。録画等があると確認しやすくなります。",
+          "type": "paragraph"
+        },
+        {
           "text": "いつ、どのような操作や状況でアイテムが消えたかを、分かる範囲で伝えてください。動画やスクリーンショットがあれば添えてください。証拠がない場合も相談できます。",
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
       "status": "published"
@@ -285,11 +329,15 @@
       "summary": "いいえ。運営や市民を妨げる行為や、悪質な抜け穴利用には運営が対応する場合があります。",
       "content": [
         {
+          "text": "いいえ、何をしてもよいわけではありません。運営や市民を妨げる行為や、悪質な抜け穴利用には、運営が対応する場合があります。",
+          "type": "paragraph"
+        },
+        {
           "text": "個別に書かれていなくても、活動やRP、サーバー運営の妨げになると運営が判断した場合は、警告・キック・一時BAN・永久BAN等の対応を行うことがあります。",
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
       "status": "published"

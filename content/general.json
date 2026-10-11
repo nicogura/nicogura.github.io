@@ -240,7 +240,7 @@
         "殺害"
       ],
       "severity": "prohibited",
-      "summary": "RP上の理由や流れなく、他のプレイヤーを突然攻撃・殺害する行為は禁止です。",
+      "summary": "RP上の理由や流れがないまま、他のプレイヤーを突然攻撃・殺害する行為は禁止です。",
       "content": [
         {
           "text": "通りすがりの人へ無差別に発砲するなど、RP上の関わりがない攻撃をしないでください。「犯罪者のキャラクターだから」という理由だけで、誰でも攻撃できるわけではありません。",
@@ -251,7 +251,7 @@
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "new": false,
       "featured": true,
       "status": "published"
@@ -415,14 +415,14 @@
         "運営"
       ],
       "severity": "prohibited",
-      "summary": "運営の指示を装ったり、他人本人のふりをして誤認させたりする行為は禁止です。",
+      "summary": "運営の指示を装ったり、他のプレイヤー本人のふりをして誤認させたりする行為は禁止です。",
       "content": [
         {
           "text": "運営権限があると偽って従わせる、他のプレイヤーの本人確認を装うなどの行為をしないでください。キャラクターの変装を楽しむ場合も、実在の運営やプレイヤー本人との誤認を狙わないでください。",
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-11",
       "new": false,
       "featured": false,
       "status": "published"
@@ -868,6 +868,52 @@
         }
       ],
       "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "affiliation-colors",
+      "number": 217,
+      "title": "所属内の服装・車両カラー",
+      "category": "basic",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "カラー",
+        "色",
+        "服装",
+        "車両",
+        "メインカラー",
+        "サブカラー",
+        "所属"
+      ],
+      "severity": "important",
+      "summary": "使用可能カラーは赤・青・桃・黄・橙・緑・紫です。服装・車両のメインカラーは所属内で統一してください。",
+      "content": [
+        {
+          "type": "heading",
+          "text": "使用可能カラー"
+        },
+        {
+          "type": "paragraph",
+          "text": "赤 / 青 / 桃 / 黄 / 橙 / 緑 / 紫"
+        },
+        {
+          "type": "heading",
+          "text": "服装・車両"
+        },
+        {
+          "type": "paragraph",
+          "text": "所属内で使用するメインカラーは統一してください。サブカラーは自由です。"
+        },
+        {
+          "type": "note",
+          "text": "白・黒は使用禁止です。"
+        }
+      ],
+      "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
       "status": "published"

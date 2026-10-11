@@ -5,7 +5,7 @@ FiveMライトRPサーバー「NicoGura / にこぐら」の公式ガイドで�
 - 公開サイト: https://nicogura.github.io/
 - 公式ルール（既存URL）: https://nicogura.github.io/rules/
 - Web専用Repository: https://github.com/nicogura/nicogura.github.io
-- v2.0.0 / 最終更新 2026-10-10
+- v2.1.0 / 最終更新 2026-10-11
 
 ## 確認・ビルド
 
@@ -30,7 +30,7 @@ npm start
 | `site.json` | 公式リンク、画像、更新日、バージョン、更新履歴、各ページの掲載順 |
 | `general.json` | ライトRP、基本ルール、不正行為、運営判断、お問い合わせ |
 | `join.json` / `character.json` | 参加方法 / 1人1キャラクター |
-| `economy.json` | 経済方針、初期資金、飲食、燃料、消耗品 |
+| `economy.json` | 初期資金、飲食、燃料、消耗品 |
 | `crime.json` / `law.json` | 犯罪RP・報酬 / ゲーム内法律・刑期 |
 | `pd.json` / `ems.json` | PD / EMSと医療料金 |
 | `mechanic.json` / `shops.json` | 修理・カスタム料金 / 店舗 |
