@@ -1,0 +1,195 @@
+{
+  "categories": [
+    {
+      "id": "mods",
+      "label": "Citizen・MOD",
+      "shortLabel": "MOD",
+      "description": "公平性を守るClient MODの使用条件と、移動グリッチの禁止事項。",
+      "group": "サポート"
+    }
+  ],
+  "rules": [
+    {
+      "id": "movement-glitches",
+      "number": 224,
+      "title": "スピードブースト・グリッチロールを使わない",
+      "category": "mods",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "スピードブースト",
+        "スピブ",
+        "Speed Boost",
+        "SpeedBoost",
+        "グリッチロール",
+        "グリロ",
+        "Glitch Roll",
+        "GlitchRoll",
+        "ローリングキャンセル",
+        "移動モーションキャンセル",
+        "移動グリッチ",
+        "マクロ"
+      ],
+      "severity": "prohibited",
+      "summary": "スピブ・グリロなど、想定外の移動挙動を意図的・反復的に利用して有利になる行為は禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "ゲーム本来の想定を超える移動・回避の挙動を意図的に悪用し、有利になる行為は禁止です。"
+        },
+        {
+          "type": "heading",
+          "text": "スピードブースト（スピブ）"
+        },
+        {
+          "type": "paragraph",
+          "text": "移動・エイム・方向転換等を組み合わせ、ゲーム本来の想定を超える移動速度を得るために、移動挙動を意図的に悪用する行為です。"
+        },
+        {
+          "type": "heading",
+          "text": "グリッチロール（グリロ）"
+        },
+        {
+          "type": "paragraph",
+          "text": "ローリング等の挙動や同期処理を悪用し、通常ではない移動・回避を行って、戦闘上の優位性を得る行為です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "ローリングキャンセル、移動モーションキャンセル、同種の移動グリッチなども、想定外の挙動を意図的に反復利用して有利になる行為は禁止です。"
+        },
+        {
+          "type": "note",
+          "text": "偶然一度発生しただけの挙動まで、即ルール違反とはしません。禁止対象は意図的・反復的な利用です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "マクロ等を使ってスピブ・グリロを自動化する行為も禁止です。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "client-mod-policy",
+      "number": 225,
+      "title": "Citizen・Client側MODの使用条件",
+      "category": "mods",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "Citizen",
+        "Client MOD",
+        "Graphics MOD",
+        "軽量化",
+        "FPS",
+        "Texture",
+        "NVE",
+        "QuantV",
+        "ReShade",
+        "Sound Pack",
+        "Road Texture",
+        "No Bush",
+        "No Tree",
+        "No Prop",
+        "No Mountain",
+        "No Water",
+        "No Night",
+        "NoBush",
+        "NoTree",
+        "NoProp",
+        "NoMountain",
+        "NoWater",
+        "NoNight",
+        "Crosshair",
+        "Overlay",
+        "Hitbox",
+        "Damage",
+        "Tracer",
+        "KillFX",
+        "Stretched Resolution",
+        "Sound MOD",
+        "補償",
+        "お問い合わせ"
+      ],
+      "severity": "important",
+      "summary": "Citizen・Client側MODは原則禁止です。プレイ上の優位性が一切生じない軽量化・見た目・音の変更に限り、例外的に使用できます。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Citizen・Client側MODは原則禁止です。ただし、低スペックPCへの配慮や個人の見た目・音の好みを考慮し、ゲームプレイ上の優位性が一切生じないものに限り、例外的に使用できます。"
+        },
+        {
+          "type": "heading",
+          "text": "例外的に使用できる変更"
+        },
+        {
+          "type": "paragraph",
+          "text": "次の変更は、プレイ上の優位性がなく、下記の禁止条件に抵触しない範囲で使用できます。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "FPS改善を目的とする軽量化。",
+            "通常範囲のTexture軽量化。",
+            "見た目を綺麗にするGraphics MOD。",
+            "NVE / QuantV等のVisual系MOD。",
+            "ReShade等の色調変更。",
+            "Sound Pack。",
+            "Road Texture等。",
+            "その他、純粋な見た目・音の変更。"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "禁止される変更"
+        },
+        {
+          "type": "paragraph",
+          "text": "他のプレイヤーより、情報・視認性・戦闘等で有利になる変更は禁止です。軽量化や見た目・音の変更を目的としていても、次の条件に該当するものは使用できません。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "No Bush / No Tree / No Prop / No Mountain / No Waterなど、草・木・小道具・山・水等を消す変更。",
+            "水を透明にする変更。",
+            "SmokeやFogを消す変更。",
+            "障害物、建物、Objectを消す変更。",
+            "No Night、常時昼間化、夜を極端に明るくする設定。",
+            "敵だけ見やすくなる色調や、極端な視認性変更。",
+            "外部CrosshairやCombat用Overlay。",
+            "Hitbox変更、Ped Hitbox拡大、Damage変更。",
+            "Tracer等により、通常は得られない位置情報を取得する変更。",
+            "KillFX等により、壁越しなどの通常は得られない情報を取得する変更。",
+            "Stretched Resolution等で画面を意図的に変形し、戦闘上の優位性（Combat Advantage）を得る変更。",
+            "足音や銃声等を不自然に強調し、通常より位置把握を有利にするSound MOD。",
+            "その他、通常環境では得られない情報やCombat Advantageを発生させる改変。"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "導入前の確認"
+        },
+        {
+          "type": "paragraph",
+          "text": "判断が難しいMODは、使用前に公式Discordの「お問い合わせ窓口」から確認してください。「一覧に書いていないから使用可能」とはしません。最終判断は運営が行います。"
+        },
+        {
+          "type": "heading",
+          "text": "導入と補償について"
+        },
+        {
+          "type": "paragraph",
+          "text": "MOD等の導入は自己責任です。MOD等が原因のクラッシュ、表示不具合、データ破損、FiveM起動不能等について、運営は原則として補償しません。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    }
+  ]
+}

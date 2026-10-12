@@ -4,7 +4,7 @@
       "id": "ems",
       "label": "EMS・救急",
       "shortLabel": "EMS",
-      "description": "救護要請、治療・蘇生・搬送と医療サービスの料金。",
+      "description": "救護要請、治療・蘇生・搬送、医療サービスの料金とEMS専売の応急処置用品。",
       "group": "暮らし・仕事"
     }
   ],
@@ -136,26 +136,179 @@
           ]
         },
         {
+          "type": "paragraph",
+          "text": "治療の種類や対応場所が変わる場合は、担当者に内容と料金を確認してください。EMS不在時のNPC治療は、ゲーム内の利用案内に従ってください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "ems-bandage",
+      "number": 228,
+      "title": "包帯（EMS専売品）",
+      "category": "ems",
+      "tags": [
+        "EMS専売品",
+        "応急処置"
+      ],
+      "keywords": [
+        "包帯",
+        "EMS",
+        "EMS専売品",
+        "応急処置",
+        "医療用品",
+        "完治",
+        "止血",
+        "出血",
+        "3分",
+        "症状再発"
+      ],
+      "severity": "guide",
+      "summary": "250,000円のEMS専売品です。一時的な止血のための応急処置用品です。",
+      "content": [
+        {
           "type": "table",
-          "caption": "その他の医療サービス",
+          "caption": "包帯の価格と効果",
           "headers": [
-            "サービス",
-            "価格"
+            "品目",
+            "価格",
+            "効果",
+            "販売区分"
           ],
           "rows": [
             [
-              "北対応",
-              "800,000円"
+              "包帯",
+              "250,000円",
+              "一時的な止血",
+              "EMS専売品"
             ]
           ]
         },
         {
           "type": "paragraph",
-          "text": "治療の種類や対応場所が変わる場合は、担当者に内容と料金を確認してください。EMS不在時のNPC治療は、ゲーム内の利用案内に従ってください。"
+          "text": "包帯は完治ではありません。一時的に出血を抑えるもので、約3分程度で再び症状が出る場合があります。"
+        },
+        {
+          "type": "note",
+          "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
         }
       ],
-      "updatedAt": "2026-10-11",
-      "new": false,
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "ems-painkiller",
+      "number": 229,
+      "title": "鎮痛剤（EMS専売品）",
+      "category": "ems",
+      "tags": [
+        "EMS専売品",
+        "応急処置"
+      ],
+      "keywords": [
+        "鎮痛剤",
+        "EMS",
+        "EMS専売品",
+        "応急処置",
+        "医療用品",
+        "完治",
+        "痛み",
+        "症状",
+        "3分",
+        "症状再発"
+      ],
+      "severity": "guide",
+      "summary": "250,000円のEMS専売品です。痛み・症状の一時的な緩和のための応急処置用品です。",
+      "content": [
+        {
+          "type": "table",
+          "caption": "鎮痛剤の価格と効果",
+          "headers": [
+            "品目",
+            "価格",
+            "効果",
+            "販売区分"
+          ],
+          "rows": [
+            [
+              "鎮痛剤",
+              "250,000円",
+              "痛み・症状の一時的な緩和",
+              "EMS専売品"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "鎮痛剤は完治ではありません。一時的に症状を緩和するもので、約3分程度で再び症状が出る場合があります。"
+        },
+        {
+          "type": "note",
+          "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "ems-ifak",
+      "number": 230,
+      "title": "IFAK（EMS専売品）",
+      "category": "ems",
+      "tags": [
+        "EMS専売品",
+        "応急処置"
+      ],
+      "keywords": [
+        "IFAK",
+        "EMS",
+        "EMS専売品",
+        "応急処置",
+        "医療用品",
+        "完治",
+        "体力",
+        "25％",
+        "回復"
+      ],
+      "severity": "guide",
+      "summary": "200,000円のEMS専売品です。効果は体力25％回復のみで、根本的な治療ではありません。",
+      "content": [
+        {
+          "type": "table",
+          "caption": "IFAKの価格と効果",
+          "headers": [
+            "品目",
+            "価格",
+            "効果",
+            "販売区分"
+          ],
+          "rows": [
+            [
+              "IFAK",
+              "200,000円",
+              "体力25％回復のみ",
+              "EMS専売品"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "IFAKは体力回復用の応急処置用品です。怪我や症状を完全に治療するものではありません。"
+        },
+        {
+          "type": "note",
+          "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
       "featured": false,
       "status": "published"
     }

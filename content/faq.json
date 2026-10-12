@@ -126,7 +126,7 @@
       "summary": "1人のプレイヤーにつき、使用できるキャラクターは1人までです。",
       "content": [
         {
-          "text": "原則、1人1キャラクターです。",
+          "text": "1人につき1キャラクター限定です。",
           "type": "paragraph"
         },
         {
@@ -138,7 +138,7 @@
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
       "status": "published"
@@ -338,6 +338,185 @@
         }
       ],
       "updatedAt": "2026-10-11",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-client-mods",
+      "number": 120,
+      "title": "CitizenやGraphics MODは使えますか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "Citizen",
+        "Client MOD",
+        "Graphics MOD",
+        "Sound MOD",
+        "軽量化",
+        "Crosshair",
+        "No Bush",
+        "No Prop",
+        "No Water",
+        "NoBush",
+        "NoProp",
+        "NoWater"
+      ],
+      "severity": "guide",
+      "summary": "原則禁止ですが、プレイ上の優位性が一切生じない軽量化・見た目・音の変更は、例外的に使用できます。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "原則禁止です。ただし、ゲームプレイ上の優位性が一切生じない軽量化・Graphics・Sound変更等に限り、例外的に使用できます。"
+        },
+        {
+          "type": "paragraph",
+          "text": "No Bush、No Prop、No Water、外部Crosshair等、他のプレイヤーより情報・視認性・戦闘で有利になる変更は禁止です。例外に見えるMODでも、禁止条件に抵触するものは使用できません。"
+        },
+        {
+          "type": "paragraph",
+          "text": "詳しい条件は「Citizen・Client側MODの使用条件」を確認してください。判断できない場合は、導入前に公式Discordの「お問い合わせ窓口」から運営へ問い合わせてください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-low-spec",
+      "number": 121,
+      "title": "低スペックPCなので軽量化したいです。",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "低スペック",
+        "PC",
+        "FPS",
+        "軽量化",
+        "視認性"
+      ],
+      "severity": "guide",
+      "summary": "公平性を損なわず、プレイ上の優位性が一切生じない範囲なら軽量化できます。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "公平性を損なわず、プレイ上の優位性が一切生じない範囲なら軽量化できます。"
+        },
+        {
+          "type": "paragraph",
+          "text": "草・木・建物・水等を削除したり、水を透明にしたりして、視認性を有利にする変更は禁止です。判断が難しい場合は、使用前に公式Discordの「お問い合わせ窓口」から確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-movement-glitches",
+      "number": 122,
+      "title": "スピブ / グリロは使えますか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "スピブ",
+        "グリロ",
+        "Speed Boost",
+        "Glitch Roll",
+        "マクロ"
+      ],
+      "severity": "guide",
+      "summary": "使用できません。意図的・反復的なスピブ・グリロは、グリッチ利用として禁止しています。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "いいえ、使用できません。意図的・反復的なSpeed Boost / Glitch Rollは、グリッチ利用として禁止しています。"
+        },
+        {
+          "type": "paragraph",
+          "text": "偶然一度発生しただけの挙動まで、即ルール違反とはしません。マクロ等でスピブ・グリロを自動化する行為も禁止です。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-bandage-treatment",
+      "number": 123,
+      "title": "怪我は包帯だけで治りますか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "怪我",
+        "包帯",
+        "鎮痛剤",
+        "応急処置",
+        "約3分",
+        "完治",
+        "EMS"
+      ],
+      "severity": "guide",
+      "summary": "治りません。包帯や鎮痛剤は応急処置で、完治にはEMSによる治療が必要です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "いいえ、包帯だけでは完治しません。包帯や鎮痛剤は応急処置です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "一時的に出血や症状を抑えるもので、約3分で再び症状が出る場合があります。怪我・症状を完治させるには、EMSによる治療を受けてください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-wednesday-maintenance",
+      "number": 124,
+      "title": "水曜日に入れません。",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "水曜日",
+        "木曜日",
+        "定休日",
+        "メンテナンス",
+        "JST",
+        "街からのお知らせ"
+      ],
+      "severity": "guide",
+      "summary": "水曜日03:00から木曜日19:00まで（日本時間・JST）は、定期メンテナンスのための基本定休日です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "NicoGuraには、水曜日03:00から木曜日19:00まで（日本時間・JST）の基本定休日があります。定期メンテナンスのため、この時間帯は街を休止します。"
+        },
+        {
+          "type": "paragraph",
+          "text": "木曜日19:00から通常稼働を再開する予定です。最新の稼働情報は、公式Discordの「街からのお知らせ」等を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
       "status": "published"

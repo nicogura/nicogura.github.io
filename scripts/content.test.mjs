@@ -13,7 +13,7 @@ const entry = id => { const r = data.rules.find(r => r.id === id); assert.ok(r, 
 test('published schema and page references', () => {
   assert.deepEqual(validateData(data), []);
   assert.ok(data.rules.every(r => r.status === 'published'));
-  assert.equal(data.site.updatedAt, '2026-10-11');
+  assert.equal(data.site.updatedAt, '2026-10-12');
   for (const key of Object.keys(routes)) { assert.ok(data.pages[key]); for (const id of data.pages[key].ruleIds) entry(id); }
 });
 test('official brand and no internal economics or obsolete joining flow', () => {
@@ -42,9 +42,9 @@ const rows = tables.flatMap(t => t.rows);
 function price(label, value) { assert.ok(rows.some(row => label.test(row[0]) && row.some(cell => cell.includes(value))), `${label} → ${value}`); }
 test('user approved prices are exact', () => {
   for (const [label,value] of [
-    [/現金/, '5,000,000'],[/銀行/, '5,000,000'],[/空腹.*20/, '300,000'],[/空腹.*30.*水分.*30/, '700,000'],
-    [/ストレス.*30/, '250,000'],[/全項目.*30/, '200,000'],[/一般車/, '100円'],[/高性能車/, '100円'],[/大型車/, '100円'],[/ヘリ/, '100円'],
-    [/通常治療/, '300,000'],[/院内蘇生/, '1,000,000'],[/現場蘇生/, '1,500,000'],[/北対応/, '800,000'],[/牢屋/, '2,000,000'],[/NPC/, '1,000,000'],
+    [/現金/, '10,000,000'],[/銀行/, '10,000,000'],[/空腹.*20/, '300,000'],[/空腹.*30.*水分.*30/, '700,000'],
+    [/ストレス.*30/, '250,000'],[/一般車/, '100円'],[/高性能車/, '100円'],[/大型車/, '100円'],[/ヘリ/, '100円'],
+    [/通常治療/, '300,000'],[/院内蘇生/, '1,000,000'],[/現場蘇生/, '1,500,000'],[/牢屋/, '2,000,000'],[/NPC/, '1,000,000'],
     [/タイヤ/, '500,000'],[/通常修理/, '200,000'],[/全修理/, '800,000'],[/包帯/, '250,000'],[/鎮痛剤/, '250,000'],[/IFAK/, '200,000'],[/簡易修理/, '300,000'],[/ニトロ/, '800,000'],
     [/通常塗装/, '300,000'],[/特殊.*RGB/, '600,000'],[/外装パーツ/, '300,000'],[/アンダーグロー/, '600,000'],[/特別ナンバー/, '100,000,000'],[/外装一式/, '4,200,000'],[/半カス/, '35,000,000'],[/フルカス/, '60,000,000']
   ]) price(label,value);
@@ -52,17 +52,31 @@ test('user approved prices are exact', () => {
   assert.equal(gang.summary, '標準ギャング設立費は2,000,000,000円です。');
   assert.deepEqual(gang.content.find(b => b.type === 'table').rows, [['標準ギャング設立費', '2,000,000,000円']]);
 });
-test('economy correction retains exact descriptions and no invented sales category', () => {
+test('retired services, old products and internal economics are absent', () => {
   assert.ok(!data.rules.some(r => r.id === 'economy-long-term'));
   assert.ok(!data.pages.economy.ruleIds.includes('economy-long-term'));
+  assert.doesNotMatch(body, /北対応|全項目20|全項目30|一般販売|100億|3か月|週5日|日次収入上限|犯罪\s*＞/);
   const table = entry('economy-consumable-prices').content.find(b => b.type === 'table');
   assert.deepEqual(table.rows, [
-    ['ニトロ補充', '800,000円', '-', ''],
-    ['包帯', '250,000円', '一時的止血', '一般販売'],
-    ['鎮痛剤', '250,000円', '止血以外の症状を一時的に緩和', '一般販売'],
-    ['IFAK', '200,000円', '体力25％回復のみ', '一般販売'],
-    ['簡易修理キット / ダクトテープ', '300,000円', '走行可能まで回復', '']
+    ['ニトロ補充', '800,000円', 'ニトロの補充'],
+    ['簡易修理キット / ダクトテープ', '300,000円', '走行可能になる程度']
   ]);
+});
+test('EMS products use one definition and distinguish first aid from treatment', () => {
+  for (const [id, name, amount, effect] of [
+    ['ems-bandage','包帯','250,000円','一時的な止血'],
+    ['ems-painkiller','鎮痛剤','250,000円','痛み・症状の一時的な緩和'],
+    ['ems-ifak','IFAK','200,000円','体力25％回復のみ']
+  ]) {
+    const r=entry(id);const text=JSON.stringify(r);
+    assert.deepEqual(r.content.find(b=>b.type==='table').rows, [[name,amount,effect,'EMS専売品']]);
+    assert.ok(r.tags.includes('EMS専売品'));assert.ok(r.tags.includes('応急処置'));
+    assert.match(text,/EMSによる治療/);
+    if(id!=='ems-ifak') { assert.match(text,/約3分程度/);assert.match(text,/再び症状が出る場合/); }
+    else { assert.match(text,/完全に治療するものではありません/);assert.doesNotMatch(text,/3分/); }
+    for(const page of ['ems','economy']) assert.ok(data.pages[page].ruleIds.includes(id));
+    assert.equal(data.rules.filter(r=>r.id===id).length,1);
+  }
 });
 test('latest food, medical and repair conditions match the integrated request', () => {
   const firstTable = id => entry(id).content.find(b => b.type === 'table').rows;
@@ -83,10 +97,15 @@ test('latest food, medical and repair conditions match the integrated request', 
     assert.equal(data.rules.filter(r => r.id === id).length, 1);
   }
 });
-test('color rule preserves the supplied scope wording without invented definitions', () => {
+test('gang colors retain confirmed names and do not invent assignments or HEX', () => {
   const color = entry('affiliation-colors');
-  assert.ok(color.content.some(b => b.text === '赤 / 青 / 桃 / 黄 / 橙 / 緑 / 紫'));
-  assert.ok(color.content.some(b => b.text === '所属内で使用するメインカラーは統一してください。サブカラーは自由です。'));
+  const colorTable=color.content.find(b=>b.type==='table');
+  assert.deepEqual(colorTable.headers,['色名','HEX','登録状況','ギャング名']);
+  assert.deepEqual(colorTable.rows.map(row=>row[0]),['赤','青','桃','黄','橙','緑','紫']);
+  assert.ok(colorTable.rows.every(row=>row[1]==='—'&&row[2]==='運営へ確認'&&row[3]==='—'));
+  assert.equal(color.category,'gang');
+  assert.match(JSON.stringify(color),/設立時に運営へ登録/);
+  assert.match(JSON.stringify(color),/他ギャング.*偽装/);
   assert.ok(color.content.some(b => b.text === '白・黒は使用禁止です。'));
 });
 test('Life Job lists the seventeen jobs once and retains existing additional jobs', () => {
@@ -100,9 +119,27 @@ test('Life Job lists the seventeen jobs once and retains existing additional job
 });
 test('FAQ gives the requested direct answers before further guidance', () => {
   assert.equal(entry('faq-fivem-beginner').content[0].text, 'はい、大丈夫です。FiveMが初めての方でも参加できます。');
-  assert.equal(entry('faq-character-count').content[0].text, '原則、1人1キャラクターです。');
+  assert.match(entry('faq-character-count').content[0].text, /1人.*1キャラクター/);
+  assert.doesNotMatch(entry('faq-character-count').content[0].text, /原則/);
   assert.equal(entry('faq-whitelist-interview').content[0].text, 'いいえ、面接ではありません。質問への回答形式でもありません。');
   assert.match(JSON.stringify(entry('faq-bug-report')), /速やかにPDへ連絡してシーンを一時中断/);
+});
+test('server schedules are JST data shared with the home page', () => {
+  assert.deepEqual(entry('server-restarts').content.find(b=>b.type==='table').rows,[['03:00'],['11:00'],['19:00']]);
+  assert.deepEqual(entry('server-maintenance').content.find(b=>b.type==='table').rows,[['水曜日 03:00','木曜日 19:00']]);
+  const text=JSON.stringify(entry('server-maintenance'));
+  for(const term of ['月曜日','火曜日','街からのお知らせ','予定']) assert.ok(text.includes(term),term);
+  for(const id of ['server-restarts','server-maintenance']) for(const page of ['home','server']) assert.ok(data.pages[page].ruleIds.includes(id));
+});
+test('client mods are conditional exceptions and unfair advantages are prohibited', () => {
+  const text=JSON.stringify(entry('client-mod-policy'));
+  for(const term of ['原則禁止','優位性','軽量化','Texture','NVE','QuantV','ReShade','Sound','Road','No Bush','No Tree','No Prop','No Mountain','No Water','Smoke','Fog','No Night','Crosshair','Overlay','Hitbox','Damage','Tracer','KillFX','Stretched','自己責任','補償','使用前']) assert.ok(text.includes(term),term);
+  assert.ok(data.pages.mods.ruleIds.includes('client-mod-policy'));
+});
+test('intentional repeated movement exploits and their automation are prohibited', () => {
+  const text=JSON.stringify(entry('movement-glitches'));
+  for(const term of ['スピードブースト','グリッチロール','ローリングキャンセル','移動モーションキャンセル','意図的','反復','偶然','マクロ']) assert.ok(text.includes(term),term);
+  assert.ok(data.pages.mods.ruleIds.includes('movement-glitches'));
 });
 test('chase limits and crime response are shared by crime and PD pages', () => {
   const table = entry('crime-chase-attack-window').content.find(b => b.type === 'table');

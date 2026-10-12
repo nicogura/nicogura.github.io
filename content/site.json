@@ -1,6 +1,8 @@
 {
   "modules": [
     "content/general.json",
+    "content/server.json",
+    "content/mods.json",
     "content/join.json",
     "content/character.json",
     "content/crime.json",
@@ -17,8 +19,8 @@
   "site": {
     "name": "NicoGura",
     "tagline": "あなたらしい物語が、この街から。",
-    "version": "2.1.0",
-    "updatedAt": "2026-10-11",
+    "version": "2.2.0",
+    "updatedAt": "2026-10-12",
     "notice": "難しく考えなくて大丈夫。最低限のライトRPとマナーを大切に、街での生活を楽しみましょう。",
     "links": {
       "discord": "https://discord.gg/Fzhhp34JJy",
@@ -42,6 +44,19 @@
     ]
   },
   "changelog": [
+    {
+      "date": "2026-10-12",
+      "type": "UPDATED",
+      "title": "サーバー情報・MOD規定・EMS用品の案内を更新しました",
+      "items": [
+        "毎日の再起動時刻と、水曜03:00〜木曜19:00の基本定休日を掲載しました。",
+        "スピードブースト・グリッチロールの禁止と、Citizen・Client MODの使用条件をまとめました。",
+        "初期資金を現金・銀行それぞれ10,000,000円へ更新しました。",
+        "医療用品をEMS専売品として案内し、応急処置と完治の違いを明記しました。廃止済みの医療サービスと旧商品を料金表から削除しました。",
+        "ギャングカラーの登録方法・識別の注意と、FAQを更新しました。",
+        "トップページの参加案内・サーバー情報と、スマホの料金表示を読みやすく整えました。"
+      ]
+    },
     {
       "date": "2026-10-11",
       "type": "UPDATED",
@@ -92,7 +107,9 @@
       "ruleIds": [
         "intro-welcome",
         "rp-light",
-        "character-identity"
+        "character-identity",
+        "server-restarts",
+        "server-maintenance"
       ]
     },
     "rules": {
@@ -111,6 +128,8 @@
         "crime-down-information",
         "crime-rejoin-combat",
         "rp-no-pressure",
+        "movement-glitches",
+        "client-mod-policy",
         "administration-response",
         "administration-sanctions",
         "administration-report"
@@ -140,6 +159,9 @@
         "economy-food-prices",
         "economy-fuel-prices",
         "ems-fees",
+        "ems-bandage",
+        "ems-painkiller",
+        "ems-ifak",
         "mechanic-fees",
         "economy-consumable-prices"
       ]
@@ -204,6 +226,12 @@
     "mechanic": {
       "categories": [
         "mechanic"
+      ],
+      "ruleIds": [
+        "mechanic-billing",
+        "mechanic-fees",
+        "pending-mechanic-fees",
+        "economy-consumable-prices"
       ]
     },
     "shops": {
@@ -231,6 +259,16 @@
         "administration-report",
         "administration-response",
         "administration-sanctions"
+      ]
+    },
+    "server": {
+      "categories": [
+        "server"
+      ]
+    },
+    "mods": {
+      "categories": [
+        "mods"
       ]
     }
   }

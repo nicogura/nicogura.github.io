@@ -5,7 +5,7 @@ FiveMライトRPサーバー「NicoGura / にこぐら」の公式ガイドで�
 - 公開サイト: https://nicogura.github.io/
 - 公式ルール（既存URL）: https://nicogura.github.io/rules/
 - Web専用Repository: https://github.com/nicogura/nicogura.github.io
-- v2.1.0 / 最終更新 2026-10-11
+- v2.2.0 / 最終更新 2026-10-12
 
 ## 確認・ビルド
 
@@ -19,7 +19,7 @@ npm start
 
 `npm start` のローカルURLを開きます。サーバーはループバックのみで待ち受け、公開用ファイルだけを配信します。停止は Ctrl+C。別ポートは `node scripts/serve.mjs 4174` です。
 
-ビルドはコンテンツを検証し、17ページと配信用JSONを生成して、公開対象だけを `_site/` にコピーします。`content/`, `scripts/`, `docs/`, Repository内部のファイルはPagesへ配信しません。
+ビルドはコンテンツを検証し、19ページと配信用JSONを生成して、公開対象だけを `_site/` にコピーします。`content/`, `scripts/`, `docs/`, Repository内部のファイルはPagesへ配信しません。
 
 ## 文章の編集
 
@@ -29,10 +29,12 @@ npm start
 | --- | --- |
 | `site.json` | 公式リンク、画像、更新日、バージョン、更新履歴、各ページの掲載順 |
 | `general.json` | ライトRP、基本ルール、不正行為、運営判断、お問い合わせ |
+| `server.json` | 日本時間の再起動・定休日・メンテナンス案内 |
+| `mods.json` | Citizen・Client MODの条件、移動グリッチ規定 |
 | `join.json` / `character.json` | 参加方法 / 1人1キャラクター |
 | `economy.json` | 初期資金、飲食、燃料、消耗品 |
 | `crime.json` / `law.json` | 犯罪RP・報酬 / ゲーム内法律・刑期 |
-| `pd.json` / `ems.json` | PD / EMSと医療料金 |
+| `pd.json` / `ems.json` | PD / EMSと医療料金・EMS専売の応急処置用品 |
 | `mechanic.json` / `shops.json` | 修理・カスタム料金 / 店舗 |
 | `lifejobs.json` / `gangs.json` / `faq.json` | Life Job / ギャング / FAQ |
 
@@ -47,6 +49,10 @@ npm start
 - `severity` は `guide / notice / important / prohibited / serious` です。重大度だけで処分は決まりません。
 - `tags` と `keywords` も全文検索に使用します。
 - 各ページは `content/site.json` の `ruleIds` の順、続いて指定カテゴリーの項目を掲載します。
+
+サーバー情報の時計カードは `server.json` の再起動表・定休日表から表示します。時刻の変更はJSON内の表と必要な説明文を編集してください。ギャングカラーは `gangs.json` の217番の表で、色名・HEX・登録状況・ギャング名を管理します。未確認のHEXや空き状況は推測せず、運営の確定情報だけを入力します。
+
+EMS専売品は `ems.json` の228〜230番を経済・EMS両ページで共有します。価格と説明を別々に複製しないでください。
 
 ## ブラウザー編集画面
 

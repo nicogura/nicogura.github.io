@@ -179,3 +179,72 @@ main{display:flow-root}.rule-number,.category-index{opacity:1}.site-footer:empty
   .mobile-menu .nav-link{font-size:12px;padding:10px 12px}
 }
 @media print{.guide-layout{display:block}.guide-page-links,.guide-related,.intro-links{display:none}.rule-table{display:table}.rule-table caption{display:table-caption}.rule-table thead{position:static;width:auto;height:auto;clip:auto;clip-path:none;display:table-header-group}.rule-table tbody{display:table-row-group}.rule-table tbody tr{display:table-row}.rule-table tbody th,.rule-table tbody td{display:table-cell}.rule-table tbody th:before,.rule-table tbody td:before{content:none}}
+
+/* The public entrance stays compact; server schedules come from rule tables. */
+.header-nav .nav-link{white-space:nowrap;letter-spacing:.1em}
+.header-nav{gap:26px}
+.basic-rules-title{font-size:16px;margin:24px 0 14px}
+.basic-rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}
+.basic-rule-link{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:var(--surface);padding:13px 16px;border-radius:12px;min-height:58px;font-size:14px;line-height:1.8}
+.basic-rule-link:hover{border-color:var(--accent-secondary);color:var(--text)}
+.basic-rule-number{font:600 12px/1.6 ui-monospace,monospace;color:var(--accent-secondary);flex:none}
+.basic-rule-link>span:nth-child(2){flex:1;min-width:0}
+.basic-rule-link>svg{width:16px;height:16px;color:var(--text-faint)}
+.light-rp-note{font-size:13px;color:var(--text-muted);margin-top:18px}
+.home-admin-card{display:flex;align-items:flex-start;gap:18px;border:1px solid var(--accent-secondary);border-left-width:4px;border-radius:18px;background:var(--surface);padding:24px 28px;margin-top:20px}
+.home-admin-card .feature-icon{flex:none;background:var(--accent-soft);color:var(--accent-secondary)}
+.home-admin-copy{min-width:0}
+.home-admin-copy h2{font-size:17px;line-height:1.75;text-wrap:initial}
+.home-admin-copy p{font-size:13px;color:var(--text-muted);line-height:1.95;margin-top:12px}
+.home-admin-copy .section-link{margin-top:14px;min-height:44px;color:var(--accent-secondary)}
+.home-join{padding:30px;border:1px solid var(--line);border-radius:22px;background:var(--surface)}
+.join-overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:24px}
+.join-overview-part{min-width:0;border-left:1px solid var(--line);padding-left:20px}
+.join-overview-part:first-child{border-left:0;padding-left:0}
+.join-overview-part>svg{color:var(--accent-secondary);width:20px;height:20px}
+.join-overview-part h3{font-size:16px;margin:8px 0}
+.join-overview-part p{font-size:13px;line-height:1.9;color:var(--text-muted)}
+.home-features .feature-card>.section-kicker{margin-top:20px;font-size:10px}
+.home-features .feature-card h3{margin-top:10px}
+.home-features .feature-card>.section-link{margin-top:18px;min-height:30px}
+.server-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:22px 0}
+.server-fact{display:flex;align-items:flex-start;gap:14px;padding:19px 20px;background:var(--surface);border:1px solid var(--line);border-radius:15px;min-width:0}
+.server-fact:hover{border-color:var(--accent-secondary);color:var(--text)}
+.server-fact>svg{color:var(--accent-secondary);margin-top:3px}
+.server-fact>div{min-width:0}
+.server-fact h3{font-size:14px;line-height:1.7}
+.server-fact p{font-size:12px;color:var(--text-muted);line-height:1.9;margin-top:5px}
+.server-schedule-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.server-schedule-card{border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,var(--accent-soft),var(--surface));padding:26px;min-width:0}
+.schedule-heading{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.schedule-heading>svg{width:23px;height:23px;color:var(--accent-secondary)}
+.schedule-heading h3{font-size:18px;line-height:1.7}
+.schedule-display{margin:18px 0;min-width:0}
+.schedule-caption{font-size:13px;color:var(--text-muted);margin-bottom:12px}
+.schedule-label{font-size:12px;color:var(--text-faint);line-height:1.7}
+.restart-times{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;list-style:none;margin:12px 0 0;padding:0}
+.restart-clock{display:flex;flex-direction:column;align-items:center;gap:10px;border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:18px 8px;min-width:0}
+.restart-clock>svg{color:var(--accent-secondary);width:22px;height:22px}
+.schedule-value{font-size:clamp(23px,2.2vw,31px);font-weight:700;line-height:1.4;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-.025em;margin:0}
+.maintenance-range{display:flex;align-items:center;gap:14px;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--surface);margin:12px 0 0;min-width:0}
+.maintenance-part{flex:1;min-width:0;margin:0}
+.maintenance-part .schedule-value{font-size:clamp(20px,1.8vw,26px);margin-top:10px}
+.maintenance-arrow{color:var(--accent-secondary);flex:none}
+.schedule-note{font-size:12px;color:var(--text-muted);line-height:1.95;margin:18px 0 12px}
+.server-schedule-card>.section-link{min-height:44px;color:var(--accent-secondary)}
+.server-page .restart-times{padding:0;margin:12px 0 0}
+.server-page .restart-times li+li{margin-top:0}
+.server-page .schedule-display{max-width:680px}
+.server-page .rule-summary-copy{min-width:0}
+.welcome-section>.section-link{margin-top:20px;min-height:44px}
+.badge-ems{color:var(--accent-secondary);border-color:var(--accent-secondary)}
+.badge-first-aid{color:var(--warning);border-color:var(--warning)}
+.table-cell-value{min-width:0}
+.price-value{font-weight:750;color:var(--accent-secondary);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+@media(min-width:1200px){.basic-rules{grid-template-columns:repeat(5,minmax(0,1fr))}.basic-rule-link{height:100%;align-items:flex-start;padding:15px 12px;gap:8px;font-size:13px}.basic-rule-number{margin-top:3px}.basic-rule-link>svg{display:none}}
+@media(min-width:1001px) and (max-width:1100px){.header-nav{gap:18px}.header-nav .nav-link{letter-spacing:.04em}}
+@media(max-width:1000px){.server-schedule-card{padding:22px}.server-fact{padding:18px 16px;gap:10px}.maintenance-range{gap:10px;padding:17px}.schedule-heading h3{font-size:17px}}
+@media(max-width:800px){.server-schedule-grid{grid-template-columns:minmax(0,1fr)}.server-facts{grid-template-columns:1fr;gap:10px}.server-fact p{font-size:13px}.home-join{padding:24px}.join-overview{gap:16px}.home-admin-card{padding:22px;gap:14px}.basic-rule-link{font-size:13px}.schedule-value{font-size:30px}.maintenance-part .schedule-value{font-size:25px}}
+@media(max-width:600px){.basic-rules{grid-template-columns:1fr}.join-overview{grid-template-columns:1fr;gap:0;margin-top:20px}.join-overview-part,.join-overview-part:first-child{display:grid;grid-template-columns:20px minmax(0,1fr);gap:7px 12px;padding:17px 0;border:0;border-bottom:1px solid var(--line)}.join-overview-part:last-child{border-bottom:0;padding-bottom:0}.join-overview-part>svg{grid-column:1;grid-row:1;margin-top:3px}.join-overview-part h3{grid-column:2;grid-row:1;margin:0}.join-overview-part p{grid-column:2;margin:0}.home-admin-card{gap:10px;padding:19px 16px}.home-admin-card .feature-icon{width:30px;height:30px;border-radius:9px}.home-admin-card .feature-icon svg{width:18px;height:18px}.home-admin-copy h2{font-size:15px}.home-admin-copy p{font-size:12px}.maintenance-range{align-items:stretch;gap:14px}.maintenance-part .schedule-value{font-size:22px}.schedule-label{font-size:11px}}
+@media(max-width:480px){.home-join{padding:20px}.basic-rule-link{padding:12px 13px;gap:10px;min-height:54px}.basic-rules-title{font-size:15px}.server-schedule-card{padding:20px 16px;border-radius:16px}.restart-times{gap:7px}.restart-clock{padding:16px 4px;border-radius:11px}.schedule-value{font-size:25px}.schedule-heading{gap:9px;margin-bottom:16px}.schedule-heading h3{font-size:16px}.maintenance-range{flex-direction:column;gap:12px;padding:17px}.maintenance-part .schedule-value{font-size:25px;margin-top:4px}.maintenance-arrow{transform:rotate(90deg);align-self:flex-start;margin-left:3px}.home-server-info>.hero-actions .button,.home-join>.hero-actions .button{width:100%;font-size:12px}.price-value{font-size:15px}}
+@media print{.home-admin-card,.server-schedule-card,.server-fact,.restart-clock,.maintenance-range{background:#fff;border-color:#bbb;break-inside:avoid}.schedule-value,.price-value{color:#111}.home-admin-card .feature-icon{display:none}.basic-rule-link,.home-join{background:#fff}.server-facts,.server-schedule-grid{display:block}.server-fact,.server-schedule-card{margin-top:15px}}

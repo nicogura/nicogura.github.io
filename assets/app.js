@@ -38,8 +38,10 @@
   const state = { query: '', category: 'all', savedOnly: false };
   const guidePages = {
     join: ['JOIN', '参加方法', 'Discordから入国まで、順番にご案内します。', ['join', 'basic']],
+    server: ['SERVER INFO', 'サーバー情報', '通常再起動や定期メンテナンス、参加に必要な情報を確認できます。', ['server']],
+    mods: ['CLIENT MODS', 'Citizen・Client MOD', '見た目や音、軽量化に関するMODの利用基準をご案内します。', ['mods']],
     character: ['CHARACTER', 'キャラクター', '1人につき1キャラクター。あなたらしく街で暮らしましょう。', ['character']],
-    economy: ['ECONOMY', '経済・料金', 'まったり暮らすための経済方針と、日々の料金を確認できます。', ['economy']],
+    economy: ['ECONOMY', '経済・料金', '初期資金と、街で利用する各種サービスの料金をご案内します。', ['economy']],
     crime: ['CRIME', '犯罪RP', '犯罪も街のゲームコンテンツ。規模や基準報酬をご案内します。', ['crime', 'heist']],
     law: ['LAW', 'ゲーム内法律・罰金', 'PDが対応するゲーム内の法律です。サーバールールとは区別して確認しましょう。', ['law']],
     guides: ['CITY GUIDES', '街ガイド', '仕事やサービスを知って、街での暮らしを楽しみましょう。', ['citizen']],
@@ -256,7 +258,7 @@
     logo.height = 44;
     logo.addEventListener('error', () => { logo.hidden = true; brand.append(el('span', 'brand-name', 'NicoGura')); }, { once: true });
     brand.append(logo);
-    const navItems = [['はじめに', '', 'home'], ['参加方法', 'join/', 'join'], ['公式ルール', 'rules/', 'rules'], ['街ガイド', 'guides/', 'guides'], ['FAQ', 'faq/', 'faq']];
+    const navItems = [['はじめに', '', 'home'], ['参加方法', 'join/', 'join'], ['公式ルール', 'rules/', 'rules'], ['サーバー情報', 'server/', 'server'], ['街ガイド', 'guides/', 'guides'], ['MOD利用', 'mods/', 'mods']];
     function makeNav(className) {
       const nav = el('nav', className);
       nav.setAttribute('aria-label', 'メインナビゲーション');
@@ -327,7 +329,7 @@
     footerBrand.append(link(data.site.name || 'NicoGura', '', 'brand-name'), el('p', '', data.site.tagline || 'あなたらしい物語が、この街から。'));
     const links = el('nav', 'footer-links');
     links.setAttribute('aria-label', 'フッターナビゲーション');
-    links.append(link('参加方法', 'join/'), link('公式ルール', 'rules/'), link('経済・料金', 'economy/'), link('ゲーム内法律', 'law/'), link('FAQ', 'faq/'), link('お問い合わせ', 'contact/'), link('更新履歴', 'changelog/'), socialLink('Discord', 'discord', 'footer-social'), socialLink('公式X', 'x', 'footer-social'));
+    links.append(link('参加方法', 'join/'), link('サーバー情報', 'server/'), link('公式ルール', 'rules/'), link('Citizen・Client MOD', 'mods/'), link('経済・料金', 'economy/'), link('ゲーム内法律', 'law/'), link('FAQ', 'faq/'), link('お問い合わせ', 'contact/'), link('更新履歴', 'changelog/'), socialLink('Discord', 'discord', 'footer-social'), socialLink('公式X', 'x', 'footer-social'));
     const note = el('div', 'footer-note');
     note.append(el('span', '', `公式ガイド v${data.site.version} · 最終更新 ${dateText(data.site.updatedAt)}`), el('p', '', 'NicoGuraはライトRPサーバーです。分からないことは公式Discordへ。'), el('small', '', `© ${new Date().getFullYear()} NicoGura. All rights reserved.`));
     footerInner.append(footerBrand, links, note);
@@ -364,6 +366,73 @@
     img.decoding = 'async';
     return img;
   }
+  function scheduleDisplay(rule, block) {
+    const wrapper = el('div', `schedule-display ${rule.id === 'server-restarts' ? 'restart-schedule' : 'maintenance-schedule'}`);
+    if (block.caption) wrapper.append(highlighted(block.caption, 'schedule-caption', 'p'));
+    if (rule.id === 'server-restarts') {
+      const label = String(block.headers?.[0] || rule.title);
+      wrapper.append(highlighted(label, 'schedule-label', 'p'));
+      const times = el('ul', 'restart-times');
+      times.setAttribute('aria-label', label);
+      (block.rows || []).forEach(row => {
+        const item = el('li', 'restart-clock');
+        item.append(icon('clock'), highlighted(row[0], 'schedule-value', 'strong'));
+        times.append(item);
+      });
+      wrapper.append(times);
+    } else {
+      (block.rows || []).forEach(row => {
+        const range = el('div', 'maintenance-range');
+        row.forEach((value, index) => {
+          const part = el('dl', 'maintenance-part');
+          part.append(highlighted(block.headers?.[index] || `項目 ${index + 1}`, 'schedule-label', 'dt'), highlighted(value, 'schedule-value', 'dd'));
+          if (index > 0) {
+            const arrow = icon('arrow');
+            arrow.classList.add('maintenance-arrow');
+            range.append(arrow);
+          }
+          range.append(part);
+        });
+        wrapper.append(range);
+      });
+    }
+    return wrapper;
+  }
+  function serverInfoSection() {
+    const section = el('section', 'home-section home-server-info');
+    section.id = 'server-info';
+    section.append(sectionHeading('SERVER INFO', '街の時間と、参加の基本。', '再起動・メンテナンスの時刻は日本時間（JST）です。接続前に、街の案内を確認しましょう。'));
+    const facts = el('div', 'server-facts');
+    [['spark', 'ライトRP', '街の一員として、自然な会話や暮らしを楽しめます。', 'rules/'], ['book', '1人1キャラクター', 'ひとりの市民として。作り直したいときは運営へ相談を。', 'character/'], ['shield', '入国には承認が必要', '公式Discordで案内を読み、ホワイトリストを申請してください。', 'join/']].forEach(([symbol, title, text, path]) => {
+      const fact = link('', path, 'server-fact');
+      fact.append(icon(symbol));
+      const copy = el('div');
+      copy.append(el('h3', '', title), el('p', '', text));
+      fact.append(copy);
+      facts.append(fact);
+    });
+    section.append(facts);
+    const schedules = el('div', 'server-schedule-grid');
+    // The rule tables are the single source for all displayed times and weekdays.
+    ['server-restarts', 'server-maintenance'].forEach(id => {
+      const rule = data.rules.find(entry => entry.id === id && entry.status === 'published');
+      const tables = rule?.content?.filter(block => block.type === 'table' && block.rows?.length) || [];
+      if (!rule || !tables.length) return;
+      const card = el('article', 'server-schedule-card');
+      const heading = el('div', 'schedule-heading');
+      heading.append(icon('clock'), el('h3', '', rule.title));
+      card.append(heading);
+      tables.forEach(block => card.append(scheduleDisplay(rule, block)));
+      if (rule.summary) card.append(el('p', 'schedule-note', rule.summary));
+      card.append(link('詳しい案内を見る', `server/#${encodeURIComponent(rule.id)}`, 'section-link', 'arrow'));
+      schedules.append(card);
+    });
+    if (schedules.childElementCount) section.append(schedules);
+    const actions = el('div', 'hero-actions');
+    actions.append(link('サーバー情報を見る', 'server/', 'button button-secondary', 'clock'), socialLink('最新の街のお知らせはDiscordへ', 'discord', 'button button-secondary'));
+    section.append(actions);
+    return section;
+  }
   function renderHome() {
     const hero = el('section', 'hero home-hero');
     const heroCopy = el('div', 'hero-copy');
@@ -398,48 +467,72 @@
     heroCopy.append(kicker, title, lead, actions, homeSearch, metaRow());
     hero.append(heroArt(), el('div', 'hero-overlay'), heroCopy);
     const content = el('div', 'home-content');
-    content.append(notice());
-    const stats = el('div', 'stat-strip');
-    [['LIGHT RP', '気軽に、あなたらしく'], ['BEGINNER', 'RP・FiveM初心者歓迎'], ['1 CHARACTER', 'ひとりの市民として']].forEach(([value, label]) => {
-      const item = el('div', 'stat-item');
-      item.append(el('strong', 'stat-value', value), el('span', 'stat-label', label));
-      stats.append(item);
-    });
-    content.append(stats);
     const lightRp = el('section', 'home-section light-rp-section');
     lightRp.id = 'light-rp';
     lightRp.append(sectionHeading('EASY TO START', 'ライトRPって、どんな遊び方？', '完璧な演技も、細かいキャラクター設定も、声を変えることも必要ありません。街の一員として、目の前の人とのやりとりを自然に楽しみましょう。'));
-    const lightGrid = el('div', 'home-grid light-rp-grid');
-    [['spark', 'まずは、いつものあなたで', 'RPが初めてでも大丈夫。挨拶や会話から、街での暮らしを少しずつ始められます。'], ['shield', '最低限のルールとマナーを', '相手を思いやり、街のキャラクターとして行動することを大切にしています。'], ['book', '迷ったら、案内を見ながら', '参加方法や料金、仕事の案内はこのサイトから。困ったときは公式Discordへどうぞ。']].forEach(([symbol, heading, text]) => {
-      const card = el('article', 'feature-card');
-      const featureIcon = el('div', 'feature-icon');
-      featureIcon.append(icon(symbol));
-      card.append(featureIcon, el('h3', '', heading), el('p', '', text));
-      lightGrid.append(card);
+    lightRp.append(el('h3', 'basic-rules-title', '最初は、この5つを大切に。'));
+    const basics = el('ol', 'basic-rules');
+    [['basic-respect', '他の人も楽しめる行動を'], ['rp-rdm', '理由なく攻撃しない'], ['rp-metagaming', 'ゲーム外情報を利用しない'], ['prohibited-exploit', '不正をしない'], ['administration-report', '困ったら運営へ相談']].forEach(([id, text], index) => {
+      const item = el('li');
+      const entry = link('', `rules/#${id}`, 'basic-rule-link');
+      const number = el('span', 'basic-rule-number', String(index + 1).padStart(2, '0'));
+      number.setAttribute('aria-hidden', 'true');
+      entry.append(number, el('span', '', text), icon('arrow'));
+      item.append(entry);
+      basics.append(item);
     });
-    lightRp.append(lightGrid, link('最初に知っておきたいルール', 'rules/', 'section-link', 'arrow'));
+    lightRp.append(basics, el('p', 'light-rp-note', 'ルールは、みんなが気持ちよく街で遊ぶための最低限の約束です。RP初心者・FiveM初心者も、自分のペースで始めて大丈夫。'), link('詳しい公式ルールを読む', 'rules/', 'section-link', 'arrow'));
     content.append(lightRp);
-    const quick = el('section', 'home-section');
-    quick.id = 'about';
-    quick.append(sectionHeading('YOUR FIRST DAY', 'はじめての街へ、迷わず。', '参加の流れを確認したら、ひとりの市民として暮らしを始めましょう。'));
-    const grid = el('div', 'home-grid');
-    [['arrow', 'JOIN NICOGURA', '入国までの10ステップ', 'Discordへの参加から、ルール確認・申請・接続までをご案内します。', 'join/'], ['book', 'YOUR CHARACTER', 'あなたらしいキャラクターを', '1人につき1キャラクター。街での基本的な過ごし方を確認しましょう。', 'character/'], ['star', 'YOUR BOOKMARKS', 'あとで読むを、手元に', '気になる案内を保存して、必要なときにすぐ確認できます。', 'rules/?saved=1']].forEach(([symbol, kicker, title, description, path]) => {
+    const administration = data.rules.find(rule => rule.id === 'administration-response' && rule.status === 'published');
+    if (administration) {
+      const admin = el('aside', 'home-admin-card');
+      const adminIcon = el('div', 'feature-icon');
+      adminIcon.append(icon('shield'));
+      const adminCopy = el('div', 'home-admin-copy');
+      const adminTitle = el('h2', '', administration.title);
+      adminTitle.id = 'home-admin-title';
+      admin.setAttribute('aria-labelledby', adminTitle.id);
+      adminCopy.append(adminTitle);
+      (administration.content || []).filter(block => block.type === 'paragraph').forEach(block => adminCopy.append(el('p', '', block.text)));
+      adminCopy.append(link('運営による対応について', 'rules/#administration-response', 'section-link', 'arrow'));
+      admin.append(adminIcon, adminCopy);
+      content.append(admin);
+    }
+    const join = el('section', 'home-section home-join');
+    join.id = 'join';
+    join.append(sectionHeading('YOUR FIRST DAY', '街への入口は、公式Discordから。', '案内を読み、ホワイトリストを申請してから入国します。詳しい10ステップを順番に確認できます。'));
+    const joinOverview = el('div', 'join-overview');
+    [['Discordに参加', '公式の案内や街のお知らせを確認します。'], ['ルールを確認', 'ライトRPと街での最低限の約束を読みます。'], ['入国を申請', 'FiveMの申請コードを送り、承認後に再接続します。']].forEach(([heading, text]) => {
+      const part = el('div', 'join-overview-part');
+      part.append(icon('check'), el('h3', '', heading), el('p', '', text));
+      joinOverview.append(part);
+    });
+    const joinActions = el('div', 'hero-actions');
+    joinActions.append(link('参加方法の10ステップを見る', 'join/', 'button button-primary', 'arrow'), link('接続前にサーバー情報を確認', 'server/', 'button button-secondary', 'clock'));
+    join.append(joinOverview, joinActions);
+    content.append(join);
+    const features = el('section', 'home-section home-features');
+    features.id = 'features';
+    features.append(sectionHeading('LIFE IN NICOGURA', '今日は、何をして過ごそう。', '仕事も、買い物も、ちょっとした会話も。ゆっくり街に馴染みながら、あなたなりの楽しみを見つけてください。'));
+    const featureGrid = el('div', 'home-grid');
+    [['spark', 'YOUR PACE', 'まったり、街の生活を', '食事や移動、日々の料金を確認しながら、自分のペースで暮らしましょう。', 'economy/'], ['book', 'CITY LIFE', '仕事やお店で、つながる', '市民の仕事や有人店舗、街を支える公務員やサービスをご案内します。', 'guides/'], ['shield', 'CRIME RP', '犯罪RPも、街のコンテンツ', '相手と一緒に楽しめる行動を大切に。犯罪の案内とゲーム内の法律を確認しましょう。', 'crime/']].forEach(([symbol, kicker, title, description, path]) => {
       const card = link('', path, 'feature-card');
       const featureIcon = el('div', 'feature-icon');
       featureIcon.append(icon(symbol));
       card.append(featureIcon);
       card.append(el('p', 'section-kicker', kicker), el('h3', '', title), el('p', '', description), el('span', 'section-link', '見る '));
       card.lastChild.append(icon('arrow'));
-      grid.append(card);
+      featureGrid.append(card);
     });
-    quick.append(grid);
-    content.append(quick);
+    features.append(featureGrid);
+    content.append(features, serverInfoSection());
     const categories = el('section', 'home-section');
+    categories.id = 'guides';
     const categoryHead = el('div', 'section-head');
     categoryHead.append(sectionHeading('LIFE IN THE CITY', '暮らしに合わせて、探してみよう。', '経済、犯罪RP、仕事やサービス。街での楽しみ方と必要な情報をここから。'), link('街ガイドを見る', 'guides/', 'section-link', 'arrow'));
     categories.append(categoryHead);
     const categoryGrid = el('div', 'home-grid category-grid');
-    const selected = [['economy', '経済・料金', 'まったり暮らすための案内'], ['crime', '犯罪RP', '街のゲームコンテンツ'], ['law', 'ゲーム内法律・罰金', 'PDが対応する法律'], ['guides', '仕事・街ガイド', '街を支える仕事やサービス'], ['shops', '有人店舗', 'お店で交流を楽しもう'], ['faq', 'よくある質問', 'はじめての疑問を解決']];
+    const selected = [['economy', '経済・料金', '日々の料金を確認'], ['law', 'ゲーム内法律・罰金', 'PDが対応する法律'], ['guides', '仕事・街ガイド', '街を支える仕事やサービス'], ['shops', '有人店舗', 'お店で交流を楽しもう'], ['ems', 'EMS・救急', '治療や応急処置の案内'], ['mechanic', 'メカニック', '修理・整備・カスタム'], ['mods', 'Citizen・Client MOD', '利用前に基準を確認'], ['faq', 'よくある質問', 'はじめての疑問を解決']];
     selected.forEach(([id, title, description], index) => {
       const card = link('', `${id}/`, 'category-card');
       card.append(el('span', 'category-index', String(index + 1).padStart(2, '0')), el('div', 'category-card-copy'));
@@ -449,22 +542,12 @@
     });
     categories.append(categoryGrid);
     content.append(categories);
-    const news = el('section', 'home-section home-news');
-    const newsHead = el('div', 'section-head');
-    newsHead.append(sectionHeading('LATEST NEWS', '街からのお知らせ'), link('更新履歴を見る', 'changelog/', 'section-link', 'arrow'));
-    news.append(newsHead);
-    const latest = [...data.changelog].sort((a, b) => b.date.localeCompare(a.date))[0];
-    if (latest) {
-      const entry = link('', 'changelog/', 'changelog-entry news-entry');
-      entry.append(time(latest.date), el('span', 'badge', changeType(latest.type)), el('h3', '', latest.title), icon('arrow'));
-      news.append(entry);
-    } else news.append(socialLink('公式Xで最新のお知らせを見る', 'x', 'section-link'));
-    content.append(news);
     const welcome = el('section', 'home-section welcome-section');
+    welcome.id = 'social';
     welcome.append(sectionHeading('SEE YOU IN THE CITY', 'ゆっくり、街の暮らしを楽しもう。', '参加や接続の案内は公式Discordから。街のお知らせは公式Xでも発信しています。'));
     const welcomeActions = el('div', 'hero-actions');
     welcomeActions.append(link('参加方法を見る', 'join/', 'button button-primary', 'arrow'), socialLink('Discordへ', 'discord'), socialLink('公式Xへ', 'x'));
-    welcome.append(welcomeActions);
+    welcome.append(welcomeActions, link('公式ガイドの更新履歴を見る', 'changelog/', 'section-link', 'arrow'));
     content.append(welcome);
     main.replaceChildren(hero, content);
   }
@@ -654,6 +737,7 @@
     if (['join', 'contact'].includes(page)) {
       const actions = el('div', 'hero-actions');
       actions.append(socialLink('公式Discordへ', 'discord', 'button button-primary'), link(page === 'join' ? '先にルールを確認する' : 'よくある質問を見る', page === 'join' ? 'rules/' : 'faq/', 'button button-secondary', 'arrow'));
+      if (page === 'join') actions.append(link('サーバー情報を確認する', 'server/', 'button button-secondary', 'clock'));
       heroCopy.append(actions);
     }
     hero.append(heroCopy);
@@ -666,7 +750,7 @@
     if (page === 'guides') {
       const navigation = el('nav', 'guide-page-links');
       navigation.setAttribute('aria-label', '街の仕事・サービス');
-      ['pd', 'ems', 'mechanic', 'shops', 'lifejobs', 'gangs'].forEach(key => navigation.append(link(pageInfo(key).title, `${key}/`, 'pill', 'arrow')));
+      ['pd', 'ems', 'mechanic', 'shops', 'lifejobs', 'gangs', 'server', 'mods'].forEach(key => navigation.append(link(pageInfo(key).title, `${key}/`, 'pill', 'arrow')));
       shell.append(navigation);
     }
     const layout = el('div', 'guide-layout');
@@ -711,6 +795,8 @@
     if (['crime', 'pd'].includes(page)) related.append(link('法律・罰金', 'law/', 'button button-secondary', 'arrow'));
     if (['ems', 'mechanic', 'shops', 'lifejobs', 'gangs'].includes(page)) related.append(link('経済・料金', 'economy/', 'button button-secondary', 'arrow'));
     if (['faq', 'contact', 'character'].includes(page)) related.append(link('参加方法', 'join/', 'button button-secondary', 'arrow'));
+    if (['join', 'mods', 'faq'].includes(page)) related.append(link('サーバー情報', 'server/', 'button button-secondary', 'clock'));
+    if (page === 'server') related.append(link('参加方法', 'join/', 'button button-secondary', 'arrow'), link('Citizen・Client MOD', 'mods/', 'button button-secondary', 'arrow'));
     shell.append(related);
     main.replaceChildren(shell);
     views = { mode: 'guide', entries, input: search.input, searchBox: search.box, clear: search.clear, saved, count, list, toc, mobileNav, mobileToc, expand, collapse };
@@ -778,6 +864,7 @@
     if (badge) labels.append(badge);
     const recent = recentBadge(rule);
     if (recent) labels.append(recent);
+    (rule.tags || []).filter(tag => ['EMS専売品', '応急処置'].includes(tag)).forEach(tag => labels.append(highlighted(tag, `badge ${tag === '応急処置' ? 'badge-first-aid' : 'badge-ems'}`)));
     const targetPage = canonicalPage(rule);
     if (page === 'rules' && targetPage !== 'rules') labels.append(el('span', 'badge rule-page-label', pageInfo(targetPage).title));
     copy.append(labels, highlighted(rule.title, 'rule-title', 'h3'), highlighted(rule.summary, 'rule-excerpt', 'p'));
@@ -805,6 +892,10 @@
           body.append(el('p', 'table-empty', `${block.caption || rule.title}：一致する行はありません。`));
           return;
         }
+        if (page === 'server' && ['server-restarts', 'server-maintenance'].includes(rule.id)) {
+          body.append(scheduleDisplay(rule, block));
+          return;
+        }
         const scroll = el('div', 'rule-table-scroll');
         scroll.tabIndex = 0;
         scroll.setAttribute('role', 'region');
@@ -821,7 +912,9 @@
           const tr = el('tr');
           row.forEach((text, index) => {
             const cell = el(index === 0 ? 'th' : 'td');
-            cell.append(highlighted(text, 'table-cell-value'));
+            const money = /^(?:約)?[\d,.]+(?:[～〜-][\d,.]+)?円(?:[（(].*[）)])?$/u.test(String(text).normalize('NFKC').trim());
+            if (money) cell.classList.add('table-cell-money');
+            cell.append(highlighted(text, `table-cell-value${money ? ' price-value' : ''}`));
             if (index === 0) cell.scope = 'row';
             cell.dataset.label = String(block.headers?.[index] || `項目 ${index + 1}`);
             tr.append(cell);

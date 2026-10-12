@@ -277,7 +277,7 @@
       "summary": "チート、不正ツール、不正改造やサーバー攻撃は禁止です。",
       "content": [
         {
-          "text": "不正な照準・透視・改変などで有利になる行為や、サーバーを攻撃して他の市民のプレイを妨げる行為をしないでください。",
+          "text": "Mod Menu、Aimbot、ESP、Wallhackなどのチート・不正ツールや、不正な照準・透視・改変で有利になる行為は禁止です。サーバーを攻撃して他の市民のプレイを妨げる行為も禁止します。",
           "type": "paragraph"
         },
         {
@@ -285,7 +285,7 @@
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-12",
       "new": false,
       "featured": false,
       "status": "published"
@@ -325,9 +325,13 @@
         {
           "text": "偶然の不具合や操作ミスそのものは、故意の悪用とは区別します。気づいた時点で追加利用を止め、状況や発生時刻を伝えてください。",
           "type": "note"
+        },
+        {
+          "type": "note",
+          "text": "重大な脆弱性やDuplication（資金・アイテムの複製）の方法は公開・拡散せず、運営へ直接報告してください。連絡先は公式Discordの「お問い合わせ窓口」です。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-12",
       "new": false,
       "featured": false,
       "status": "published"
@@ -446,15 +450,15 @@
       "summary": "友達との普段の雑談は大丈夫です。シーンを有利に進める外部VCの情報共有は禁止です。",
       "content": [
         {
-          "text": "犯罪、警察対応、戦闘、チェイス、ギャング活動などで、Discord等の外部VCを使って位置・人数・作戦を共有し、ゲーム内で有利になる行為は禁止です。",
+          "text": "犯罪、警察対応、戦闘、チェイス、ギャング活動などで、Discord等の外部VCを使って位置・人数・作戦・敵情報を共有し、ゲーム内で有利になる行為は禁止です。",
           "type": "paragraph"
         },
         {
-          "text": "友達同士で普通に話すこと自体は厳しく禁止しません。雑談中にシーンの情報が入っても、ゲーム内の行動や仲間への指示に利用しないでください。",
+          "text": "Discord等で友達同士が普通に会話すること自体は禁止しません。雑談中にシーンの情報が入っても、ゲーム内の行動や仲間への指示に利用しないでください。",
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-12",
       "new": false,
       "featured": false,
       "status": "published"
@@ -636,7 +640,7 @@
         {
           "items": [
             "いつ・どこで何が起きたか。",
-            "誰が関わり、どのような状況だったか。",
+            "誰が関わり、どのような状況だったか。分かる場合は、相手の名前 / 入国ID。",
             "動画やスクリーンショットがある場合は、確認してほしい箇所。"
           ],
           "type": "list"
@@ -646,7 +650,7 @@
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-12",
       "new": false,
       "featured": true,
       "status": "published"
@@ -868,52 +872,6 @@
         }
       ],
       "updatedAt": "2026-10-10",
-      "new": true,
-      "featured": false,
-      "status": "published"
-    },
-    {
-      "id": "affiliation-colors",
-      "number": 217,
-      "title": "所属内の服装・車両カラー",
-      "category": "basic",
-      "tags": [
-        "注意"
-      ],
-      "keywords": [
-        "カラー",
-        "色",
-        "服装",
-        "車両",
-        "メインカラー",
-        "サブカラー",
-        "所属"
-      ],
-      "severity": "important",
-      "summary": "使用可能カラーは赤・青・桃・黄・橙・緑・紫です。服装・車両のメインカラーは所属内で統一してください。",
-      "content": [
-        {
-          "type": "heading",
-          "text": "使用可能カラー"
-        },
-        {
-          "type": "paragraph",
-          "text": "赤 / 青 / 桃 / 黄 / 橙 / 緑 / 紫"
-        },
-        {
-          "type": "heading",
-          "text": "服装・車両"
-        },
-        {
-          "type": "paragraph",
-          "text": "所属内で使用するメインカラーは統一してください。サブカラーは自由です。"
-        },
-        {
-          "type": "note",
-          "text": "白・黒は使用禁止です。"
-        }
-      ],
-      "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
       "status": "published"

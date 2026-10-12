@@ -2,8 +2,8 @@
   "site": {
     "name": "NicoGura",
     "tagline": "あなたらしい物語が、この街から。",
-    "version": "2.1.0",
-    "updatedAt": "2026-10-11",
+    "version": "2.2.0",
+    "updatedAt": "2026-10-12",
     "notice": "難しく考えなくて大丈夫。最低限のライトRPとマナーを大切に、街での生活を楽しみましょう。",
     "links": {
       "discord": "https://discord.gg/Fzhhp34JJy",
@@ -75,6 +75,20 @@
       "group": "サポート"
     },
     {
+      "id": "server",
+      "label": "サーバー情報",
+      "shortLabel": "サーバー",
+      "description": "通常再起動と、メンテナンスによる街の基本定休日を日本時間で案内します。",
+      "group": "サポート"
+    },
+    {
+      "id": "mods",
+      "label": "Citizen・MOD",
+      "shortLabel": "MOD",
+      "description": "公平性を守るClient MODの使用条件と、移動グリッチの禁止事項。",
+      "group": "サポート"
+    },
+    {
       "id": "join",
       "label": "参加方法",
       "shortLabel": "参加方法",
@@ -134,7 +148,7 @@
       "id": "ems",
       "label": "EMS・救急",
       "shortLabel": "EMS",
-      "description": "救護要請、治療・蘇生・搬送と医療サービスの料金。",
+      "description": "救護要請、治療・蘇生・搬送、医療サービスの料金とEMS専売の応急処置用品。",
       "group": "暮らし・仕事"
     },
     {
@@ -162,7 +176,7 @@
       "id": "gang",
       "label": "ギャング",
       "shortLabel": "ギャング",
-      "description": "仲間との組織活動と、標準ギャングの設立費。",
+      "description": "ギャングの設立費、カラー登録と識別の案内。",
       "group": "アクティビティ"
     },
     {
@@ -393,7 +407,7 @@
       "summary": "チート、不正ツール、不正改造やサーバー攻撃は禁止です。",
       "content": [
         {
-          "text": "不正な照準・透視・改変などで有利になる行為や、サーバーを攻撃して他の市民のプレイを妨げる行為をしないでください。",
+          "text": "Mod Menu、Aimbot、ESP、Wallhackなどのチート・不正ツールや、不正な照準・透視・改変で有利になる行為は禁止です。サーバーを攻撃して他の市民のプレイを妨げる行為も禁止します。",
           "type": "paragraph"
         },
         {
@@ -401,7 +415,7 @@
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-12",
       "new": false,
       "featured": false,
       "status": "published"
@@ -441,9 +455,13 @@
         {
           "text": "偶然の不具合や操作ミスそのものは、故意の悪用とは区別します。気づいた時点で追加利用を止め、状況や発生時刻を伝えてください。",
           "type": "note"
+        },
+        {
+          "type": "note",
+          "text": "重大な脆弱性やDuplication（資金・アイテムの複製）の方法は公開・拡散せず、運営へ直接報告してください。連絡先は公式Discordの「お問い合わせ窓口」です。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-12",
       "new": false,
       "featured": false,
       "status": "published"
@@ -562,15 +580,15 @@
       "summary": "友達との普段の雑談は大丈夫です。シーンを有利に進める外部VCの情報共有は禁止です。",
       "content": [
         {
-          "text": "犯罪、警察対応、戦闘、チェイス、ギャング活動などで、Discord等の外部VCを使って位置・人数・作戦を共有し、ゲーム内で有利になる行為は禁止です。",
+          "text": "犯罪、警察対応、戦闘、チェイス、ギャング活動などで、Discord等の外部VCを使って位置・人数・作戦・敵情報を共有し、ゲーム内で有利になる行為は禁止です。",
           "type": "paragraph"
         },
         {
-          "text": "友達同士で普通に話すこと自体は厳しく禁止しません。雑談中にシーンの情報が入っても、ゲーム内の行動や仲間への指示に利用しないでください。",
+          "text": "Discord等で友達同士が普通に会話すること自体は禁止しません。雑談中にシーンの情報が入っても、ゲーム内の行動や仲間への指示に利用しないでください。",
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-12",
       "new": false,
       "featured": false,
       "status": "published"
@@ -752,7 +770,7 @@
         {
           "items": [
             "いつ・どこで何が起きたか。",
-            "誰が関わり、どのような状況だったか。",
+            "誰が関わり、どのような状況だったか。分かる場合は、相手の名前 / 入国ID。",
             "動画やスクリーンショットがある場合は、確認してほしい箇所。"
           ],
           "type": "list"
@@ -762,7 +780,7 @@
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-12",
       "new": false,
       "featured": true,
       "status": "published"
@@ -989,47 +1007,299 @@
       "status": "published"
     },
     {
-      "id": "affiliation-colors",
-      "number": 217,
-      "title": "所属内の服装・車両カラー",
-      "category": "basic",
+      "id": "server-restarts",
+      "number": 226,
+      "title": "通常再起動の時刻",
+      "category": "server",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "再起動",
+        "通常再起動",
+        "03:00",
+        "11:00",
+        "19:00",
+        "JST",
+        "日本時間",
+        "1日3回"
+      ],
+      "severity": "guide",
+      "summary": "ゲームサーバーの通常再起動は、03:00・11:00・19:00の1日3回です。時刻は日本時間（JST）です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "ゲームサーバーの通常再起動は、日本時間（JST）の03:00・11:00・19:00の1日3回です。"
+        },
+        {
+          "type": "table",
+          "caption": "通常再起動",
+          "headers": [
+            "通常再起動（JST）"
+          ],
+          "rows": [
+            [
+              "03:00"
+            ],
+            [
+              "11:00"
+            ],
+            [
+              "19:00"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "掲載している時刻は、ゲームサーバーを再起動するタイミングです。定休日や臨時メンテナンスの際は、公式Discordの「街からのお知らせ」等で最新の稼働情報を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "server-maintenance",
+      "number": 227,
+      "title": "街の基本定休日とメンテナンス",
+      "category": "server",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "定休日",
+        "メンテナンス",
+        "水曜日",
+        "木曜日",
+        "月曜日",
+        "火曜日",
+        "03:00",
+        "19:00",
+        "JST",
+        "街からのお知らせ"
+      ],
+      "severity": "guide",
+      "summary": "基本定休日は、水曜日03:00から木曜日19:00まで（日本時間・JST）です。木曜日19:00から通常稼働を再開する予定です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "NicoGuraでは、メンテナンス、新要素の追加、不具合修正、バランス調整のため、街の基本定休日を設けています。"
+        },
+        {
+          "type": "table",
+          "caption": "基本定休日",
+          "headers": [
+            "開始（JST）",
+            "終了予定（JST）"
+          ],
+          "rows": [
+            [
+              "水曜日 03:00",
+              "木曜日 19:00"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "この時間帯が基本の定期メンテナンス・街休止時間です。時刻は日本時間（JST）で、木曜日19:00から通常稼働を再開する予定です。"
+        },
+        {
+          "type": "heading",
+          "text": "大型調整・臨時メンテナンス"
+        },
+        {
+          "type": "paragraph",
+          "text": "大規模アップデートなどでは、月曜日〜火曜日を使用する場合があります。別の日程を案内する場合もあるため、公式Discordのアナウンスを確認してください。"
+        },
+        {
+          "type": "note",
+          "text": "臨時メンテナンスもあり得ます。最新の稼働情報は、公式Discordの「街からのお知らせ」等を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "movement-glitches",
+      "number": 224,
+      "title": "スピードブースト・グリッチロールを使わない",
+      "category": "mods",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "スピードブースト",
+        "スピブ",
+        "Speed Boost",
+        "SpeedBoost",
+        "グリッチロール",
+        "グリロ",
+        "Glitch Roll",
+        "GlitchRoll",
+        "ローリングキャンセル",
+        "移動モーションキャンセル",
+        "移動グリッチ",
+        "マクロ"
+      ],
+      "severity": "prohibited",
+      "summary": "スピブ・グリロなど、想定外の移動挙動を意図的・反復的に利用して有利になる行為は禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "ゲーム本来の想定を超える移動・回避の挙動を意図的に悪用し、有利になる行為は禁止です。"
+        },
+        {
+          "type": "heading",
+          "text": "スピードブースト（スピブ）"
+        },
+        {
+          "type": "paragraph",
+          "text": "移動・エイム・方向転換等を組み合わせ、ゲーム本来の想定を超える移動速度を得るために、移動挙動を意図的に悪用する行為です。"
+        },
+        {
+          "type": "heading",
+          "text": "グリッチロール（グリロ）"
+        },
+        {
+          "type": "paragraph",
+          "text": "ローリング等の挙動や同期処理を悪用し、通常ではない移動・回避を行って、戦闘上の優位性を得る行為です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "ローリングキャンセル、移動モーションキャンセル、同種の移動グリッチなども、想定外の挙動を意図的に反復利用して有利になる行為は禁止です。"
+        },
+        {
+          "type": "note",
+          "text": "偶然一度発生しただけの挙動まで、即ルール違反とはしません。禁止対象は意図的・反復的な利用です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "マクロ等を使ってスピブ・グリロを自動化する行為も禁止です。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "client-mod-policy",
+      "number": 225,
+      "title": "Citizen・Client側MODの使用条件",
+      "category": "mods",
       "tags": [
         "注意"
       ],
       "keywords": [
-        "カラー",
-        "色",
-        "服装",
-        "車両",
-        "メインカラー",
-        "サブカラー",
-        "所属"
+        "Citizen",
+        "Client MOD",
+        "Graphics MOD",
+        "軽量化",
+        "FPS",
+        "Texture",
+        "NVE",
+        "QuantV",
+        "ReShade",
+        "Sound Pack",
+        "Road Texture",
+        "No Bush",
+        "No Tree",
+        "No Prop",
+        "No Mountain",
+        "No Water",
+        "No Night",
+        "NoBush",
+        "NoTree",
+        "NoProp",
+        "NoMountain",
+        "NoWater",
+        "NoNight",
+        "Crosshair",
+        "Overlay",
+        "Hitbox",
+        "Damage",
+        "Tracer",
+        "KillFX",
+        "Stretched Resolution",
+        "Sound MOD",
+        "補償",
+        "お問い合わせ"
       ],
       "severity": "important",
-      "summary": "使用可能カラーは赤・青・桃・黄・橙・緑・紫です。服装・車両のメインカラーは所属内で統一してください。",
+      "summary": "Citizen・Client側MODは原則禁止です。プレイ上の優位性が一切生じない軽量化・見た目・音の変更に限り、例外的に使用できます。",
       "content": [
         {
-          "type": "heading",
-          "text": "使用可能カラー"
-        },
-        {
           "type": "paragraph",
-          "text": "赤 / 青 / 桃 / 黄 / 橙 / 緑 / 紫"
+          "text": "Citizen・Client側MODは原則禁止です。ただし、低スペックPCへの配慮や個人の見た目・音の好みを考慮し、ゲームプレイ上の優位性が一切生じないものに限り、例外的に使用できます。"
         },
         {
           "type": "heading",
-          "text": "服装・車両"
+          "text": "例外的に使用できる変更"
         },
         {
           "type": "paragraph",
-          "text": "所属内で使用するメインカラーは統一してください。サブカラーは自由です。"
+          "text": "次の変更は、プレイ上の優位性がなく、下記の禁止条件に抵触しない範囲で使用できます。"
         },
         {
-          "type": "note",
-          "text": "白・黒は使用禁止です。"
+          "type": "list",
+          "items": [
+            "FPS改善を目的とする軽量化。",
+            "通常範囲のTexture軽量化。",
+            "見た目を綺麗にするGraphics MOD。",
+            "NVE / QuantV等のVisual系MOD。",
+            "ReShade等の色調変更。",
+            "Sound Pack。",
+            "Road Texture等。",
+            "その他、純粋な見た目・音の変更。"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "禁止される変更"
+        },
+        {
+          "type": "paragraph",
+          "text": "他のプレイヤーより、情報・視認性・戦闘等で有利になる変更は禁止です。軽量化や見た目・音の変更を目的としていても、次の条件に該当するものは使用できません。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "No Bush / No Tree / No Prop / No Mountain / No Waterなど、草・木・小道具・山・水等を消す変更。",
+            "水を透明にする変更。",
+            "SmokeやFogを消す変更。",
+            "障害物、建物、Objectを消す変更。",
+            "No Night、常時昼間化、夜を極端に明るくする設定。",
+            "敵だけ見やすくなる色調や、極端な視認性変更。",
+            "外部CrosshairやCombat用Overlay。",
+            "Hitbox変更、Ped Hitbox拡大、Damage変更。",
+            "Tracer等により、通常は得られない位置情報を取得する変更。",
+            "KillFX等により、壁越しなどの通常は得られない情報を取得する変更。",
+            "Stretched Resolution等で画面を意図的に変形し、戦闘上の優位性（Combat Advantage）を得る変更。",
+            "足音や銃声等を不自然に強調し、通常より位置把握を有利にするSound MOD。",
+            "その他、通常環境では得られない情報やCombat Advantageを発生させる改変。"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "導入前の確認"
+        },
+        {
+          "type": "paragraph",
+          "text": "判断が難しいMODは、使用前に公式Discordの「お問い合わせ窓口」から確認してください。「一覧に書いていないから使用可能」とはしません。最終判断は運営が行います。"
+        },
+        {
+          "type": "heading",
+          "text": "導入と補償について"
+        },
+        {
+          "type": "paragraph",
+          "text": "MOD等の導入は自己責任です。MOD等が原因のクラッシュ、表示不具合、データ破損、FiveM起動不能等について、運営は原則として補償しません。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
       "status": "published"
@@ -2161,7 +2431,7 @@
         "入国"
       ],
       "severity": "guide",
-      "summary": "初期資金は、現金5,000,000円・銀行5,000,000円です。",
+      "summary": "初期資金は、現金10,000,000円・銀行10,000,000円、合計20,000,000円です。",
       "content": [
         {
           "type": "table",
@@ -2173,11 +2443,15 @@
           "rows": [
             [
               "現金",
-              "5,000,000円"
+              "10,000,000円"
             ],
             [
               "銀行",
-              "5,000,000円"
+              "10,000,000円"
+            ],
+            [
+              "合計",
+              "20,000,000円"
             ]
           ]
         },
@@ -2186,7 +2460,7 @@
           "text": "街に入ったら、食事や移動、仕事の案内を確認しながら、自分のペースで生活を始めましょう。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
       "status": "published"
@@ -2257,33 +2531,11 @@
           ]
         },
         {
-          "type": "table",
-          "caption": "その他の飲食料金",
-          "headers": [
-            "効果",
-            "価格"
-          ],
-          "rows": [
-            [
-              "全項目20％",
-              "180,000円"
-            ],
-            [
-              "全項目30％",
-              "200,000円"
-            ]
-          ]
-        },
-        {
-          "type": "note",
-          "text": "全項目30％は限定商品です。"
-        },
-        {
           "type": "paragraph",
           "text": "お店では、商品や効果を確認しながら買い物を楽しみましょう。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
       "status": "published"
@@ -2340,71 +2592,50 @@
     {
       "id": "economy-consumable-prices",
       "number": 210,
-      "title": "消耗品の価格と効果",
+      "title": "その他消耗品",
       "category": "economy",
       "tags": [
         "ガイド"
       ],
       "keywords": [
         "消耗品",
-        "包帯",
-        "鎮痛剤",
-        "IFAK",
+        "その他消耗品",
         "修理キット",
         "ダクトテープ",
-        "ニトロ"
+        "簡易修理",
+        "ニトロ",
+        "完全修理"
       ],
       "severity": "guide",
-      "summary": "包帯、鎮痛剤、IFAK、簡易修理、ニトロ補充の価格と効果です。",
+      "summary": "ニトロ補充は800,000円、簡易修理キット / ダクトテープは300,000円です。",
       "content": [
         {
           "type": "table",
-          "caption": "消耗品",
+          "caption": "その他消耗品",
           "headers": [
             "品目",
             "価格",
-            "効果",
-            "販売区分"
+            "効果"
           ],
           "rows": [
             [
               "ニトロ補充",
               "800,000円",
-              "-",
-              ""
-            ],
-            [
-              "包帯",
-              "250,000円",
-              "一時的止血",
-              "一般販売"
-            ],
-            [
-              "鎮痛剤",
-              "250,000円",
-              "止血以外の症状を一時的に緩和",
-              "一般販売"
-            ],
-            [
-              "IFAK",
-              "200,000円",
-              "体力25％回復のみ",
-              "一般販売"
+              "ニトロの補充"
             ],
             [
               "簡易修理キット / ダクトテープ",
               "300,000円",
-              "走行可能まで回復",
-              ""
+              "走行可能になる程度"
             ]
           ]
         },
         {
-          "type": "paragraph",
-          "text": "効果を確認して、必要なときに使いましょう。治療や全修理が必要な場合は、EMSやメカニックへ相談してください。"
+          "type": "note",
+          "text": "簡易修理キット / ダクトテープは完全修理ではありません。全修理が必要な場合は、メカニックへ相談してください。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
       "status": "published"
@@ -2603,26 +2834,179 @@
           ]
         },
         {
+          "type": "paragraph",
+          "text": "治療の種類や対応場所が変わる場合は、担当者に内容と料金を確認してください。EMS不在時のNPC治療は、ゲーム内の利用案内に従ってください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": false,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "ems-bandage",
+      "number": 228,
+      "title": "包帯（EMS専売品）",
+      "category": "ems",
+      "tags": [
+        "EMS専売品",
+        "応急処置"
+      ],
+      "keywords": [
+        "包帯",
+        "EMS",
+        "EMS専売品",
+        "応急処置",
+        "医療用品",
+        "完治",
+        "止血",
+        "出血",
+        "3分",
+        "症状再発"
+      ],
+      "severity": "guide",
+      "summary": "250,000円のEMS専売品です。一時的な止血のための応急処置用品です。",
+      "content": [
+        {
           "type": "table",
-          "caption": "その他の医療サービス",
+          "caption": "包帯の価格と効果",
           "headers": [
-            "サービス",
-            "価格"
+            "品目",
+            "価格",
+            "効果",
+            "販売区分"
           ],
           "rows": [
             [
-              "北対応",
-              "800,000円"
+              "包帯",
+              "250,000円",
+              "一時的な止血",
+              "EMS専売品"
             ]
           ]
         },
         {
           "type": "paragraph",
-          "text": "治療の種類や対応場所が変わる場合は、担当者に内容と料金を確認してください。EMS不在時のNPC治療は、ゲーム内の利用案内に従ってください。"
+          "text": "包帯は完治ではありません。一時的に出血を抑えるもので、約3分程度で再び症状が出る場合があります。"
+        },
+        {
+          "type": "note",
+          "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
         }
       ],
-      "updatedAt": "2026-10-11",
-      "new": false,
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "ems-painkiller",
+      "number": 229,
+      "title": "鎮痛剤（EMS専売品）",
+      "category": "ems",
+      "tags": [
+        "EMS専売品",
+        "応急処置"
+      ],
+      "keywords": [
+        "鎮痛剤",
+        "EMS",
+        "EMS専売品",
+        "応急処置",
+        "医療用品",
+        "完治",
+        "痛み",
+        "症状",
+        "3分",
+        "症状再発"
+      ],
+      "severity": "guide",
+      "summary": "250,000円のEMS専売品です。痛み・症状の一時的な緩和のための応急処置用品です。",
+      "content": [
+        {
+          "type": "table",
+          "caption": "鎮痛剤の価格と効果",
+          "headers": [
+            "品目",
+            "価格",
+            "効果",
+            "販売区分"
+          ],
+          "rows": [
+            [
+              "鎮痛剤",
+              "250,000円",
+              "痛み・症状の一時的な緩和",
+              "EMS専売品"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "鎮痛剤は完治ではありません。一時的に症状を緩和するもので、約3分程度で再び症状が出る場合があります。"
+        },
+        {
+          "type": "note",
+          "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "ems-ifak",
+      "number": 230,
+      "title": "IFAK（EMS専売品）",
+      "category": "ems",
+      "tags": [
+        "EMS専売品",
+        "応急処置"
+      ],
+      "keywords": [
+        "IFAK",
+        "EMS",
+        "EMS専売品",
+        "応急処置",
+        "医療用品",
+        "完治",
+        "体力",
+        "25％",
+        "回復"
+      ],
+      "severity": "guide",
+      "summary": "200,000円のEMS専売品です。効果は体力25％回復のみで、根本的な治療ではありません。",
+      "content": [
+        {
+          "type": "table",
+          "caption": "IFAKの価格と効果",
+          "headers": [
+            "品目",
+            "価格",
+            "効果",
+            "販売区分"
+          ],
+          "rows": [
+            [
+              "IFAK",
+              "200,000円",
+              "体力25％回復のみ",
+              "EMS専売品"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "IFAKは体力回復用の応急処置用品です。怪我や症状を完全に治療するものではありません。"
+        },
+        {
+          "type": "note",
+          "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
       "featured": false,
       "status": "published"
     },
@@ -2765,9 +3149,13 @@
         {
           "type": "paragraph",
           "text": "作業前に、依頼する部位や作業範囲、部品と料金の内訳を担当者へ確認してください。外装一式は目安の金額です。"
+        },
+        {
+          "type": "note",
+          "text": "簡易修理キット / ダクトテープとニトロ補充の価格・効果は「その他消耗品」で確認できます。簡易修理キット / ダクトテープは、走行可能になる程度の修理で、完全修理ではありません。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-10-12",
       "new": false,
       "featured": false,
       "status": "published"
@@ -3057,6 +3445,124 @@
       "status": "published"
     },
     {
+      "id": "affiliation-colors",
+      "number": 217,
+      "title": "ギャングカラーの登録と使い方",
+      "category": "gang",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "カラー",
+        "色",
+        "服装",
+        "車両",
+        "メインカラー",
+        "サブカラー",
+        "所属",
+        "ギャングカラー",
+        "登録",
+        "HEX",
+        "空きカラー",
+        "なりすまし"
+      ],
+      "severity": "important",
+      "summary": "ギャングカラーは設立時に運営へ登録します。登録したカラーで所属を分かりやすくし、他ギャングへのなりすましを避けてください。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "ギャングカラーは設立時に運営へ登録してください。登録カラーは、服装・車両・装飾などに使用できます。"
+        },
+        {
+          "type": "heading",
+          "text": "使用可能カラー"
+        },
+        {
+          "type": "table",
+          "caption": "ギャングカラーと登録状況",
+          "headers": [
+            "色名",
+            "HEX",
+            "登録状況",
+            "ギャング名"
+          ],
+          "rows": [
+            [
+              "赤",
+              "—",
+              "運営へ確認",
+              "—"
+            ],
+            [
+              "青",
+              "—",
+              "運営へ確認",
+              "—"
+            ],
+            [
+              "桃",
+              "—",
+              "運営へ確認",
+              "—"
+            ],
+            [
+              "黄",
+              "—",
+              "運営へ確認",
+              "—"
+            ],
+            [
+              "橙",
+              "—",
+              "運営へ確認",
+              "—"
+            ],
+            [
+              "緑",
+              "—",
+              "運営へ確認",
+              "—"
+            ],
+            [
+              "紫",
+              "—",
+              "運営へ確認",
+              "—"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "上の7色は使用可能カラーです。各色の正確なHEX、使用中・空きの状況、登録しているギャング名は、設立時に運営へ確認してください。「—」は未確認の項目です。"
+        },
+        {
+          "type": "heading",
+          "text": "服装・車両での使い方"
+        },
+        {
+          "type": "paragraph",
+          "text": "ギャング内で使用するメインカラーは統一してください。サブカラーは自由です。"
+        },
+        {
+          "type": "note",
+          "text": "白・黒は使用禁止です。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "既存ギャングと識別しにくい色は避けてください。",
+            "他ギャングの登録カラーを意図的に偽装しないでください。他ギャングへのなりすましは禁止です。",
+            "PD・EMSなどの公務員と誤認しやすい表現は避けてください。",
+            "抗争や犯罪などでは、所属が分かるカラーの使い方を推奨します。"
+          ]
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
       "id": "faq-find-share",
       "number": 35,
       "title": "読み返したいルールを探すには？",
@@ -3173,7 +3679,7 @@
       "summary": "1人のプレイヤーにつき、使用できるキャラクターは1人までです。",
       "content": [
         {
-          "text": "原則、1人1キャラクターです。",
+          "text": "1人につき1キャラクター限定です。",
           "type": "paragraph"
         },
         {
@@ -3185,7 +3691,7 @@
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
       "status": "published"
@@ -3388,9 +3894,201 @@
       "new": true,
       "featured": false,
       "status": "published"
+    },
+    {
+      "id": "faq-client-mods",
+      "number": 120,
+      "title": "CitizenやGraphics MODは使えますか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "Citizen",
+        "Client MOD",
+        "Graphics MOD",
+        "Sound MOD",
+        "軽量化",
+        "Crosshair",
+        "No Bush",
+        "No Prop",
+        "No Water",
+        "NoBush",
+        "NoProp",
+        "NoWater"
+      ],
+      "severity": "guide",
+      "summary": "原則禁止ですが、プレイ上の優位性が一切生じない軽量化・見た目・音の変更は、例外的に使用できます。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "原則禁止です。ただし、ゲームプレイ上の優位性が一切生じない軽量化・Graphics・Sound変更等に限り、例外的に使用できます。"
+        },
+        {
+          "type": "paragraph",
+          "text": "No Bush、No Prop、No Water、外部Crosshair等、他のプレイヤーより情報・視認性・戦闘で有利になる変更は禁止です。例外に見えるMODでも、禁止条件に抵触するものは使用できません。"
+        },
+        {
+          "type": "paragraph",
+          "text": "詳しい条件は「Citizen・Client側MODの使用条件」を確認してください。判断できない場合は、導入前に公式Discordの「お問い合わせ窓口」から運営へ問い合わせてください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-low-spec",
+      "number": 121,
+      "title": "低スペックPCなので軽量化したいです。",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "低スペック",
+        "PC",
+        "FPS",
+        "軽量化",
+        "視認性"
+      ],
+      "severity": "guide",
+      "summary": "公平性を損なわず、プレイ上の優位性が一切生じない範囲なら軽量化できます。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "公平性を損なわず、プレイ上の優位性が一切生じない範囲なら軽量化できます。"
+        },
+        {
+          "type": "paragraph",
+          "text": "草・木・建物・水等を削除したり、水を透明にしたりして、視認性を有利にする変更は禁止です。判断が難しい場合は、使用前に公式Discordの「お問い合わせ窓口」から確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-movement-glitches",
+      "number": 122,
+      "title": "スピブ / グリロは使えますか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "スピブ",
+        "グリロ",
+        "Speed Boost",
+        "Glitch Roll",
+        "マクロ"
+      ],
+      "severity": "guide",
+      "summary": "使用できません。意図的・反復的なスピブ・グリロは、グリッチ利用として禁止しています。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "いいえ、使用できません。意図的・反復的なSpeed Boost / Glitch Rollは、グリッチ利用として禁止しています。"
+        },
+        {
+          "type": "paragraph",
+          "text": "偶然一度発生しただけの挙動まで、即ルール違反とはしません。マクロ等でスピブ・グリロを自動化する行為も禁止です。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-bandage-treatment",
+      "number": 123,
+      "title": "怪我は包帯だけで治りますか？",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "怪我",
+        "包帯",
+        "鎮痛剤",
+        "応急処置",
+        "約3分",
+        "完治",
+        "EMS"
+      ],
+      "severity": "guide",
+      "summary": "治りません。包帯や鎮痛剤は応急処置で、完治にはEMSによる治療が必要です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "いいえ、包帯だけでは完治しません。包帯や鎮痛剤は応急処置です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "一時的に出血や症状を抑えるもので、約3分で再び症状が出る場合があります。怪我・症状を完治させるには、EMSによる治療を受けてください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "faq-wednesday-maintenance",
+      "number": 124,
+      "title": "水曜日に入れません。",
+      "category": "faq",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "FAQ",
+        "水曜日",
+        "木曜日",
+        "定休日",
+        "メンテナンス",
+        "JST",
+        "街からのお知らせ"
+      ],
+      "severity": "guide",
+      "summary": "水曜日03:00から木曜日19:00まで（日本時間・JST）は、定期メンテナンスのための基本定休日です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "NicoGuraには、水曜日03:00から木曜日19:00まで（日本時間・JST）の基本定休日があります。定期メンテナンスのため、この時間帯は街を休止します。"
+        },
+        {
+          "type": "paragraph",
+          "text": "木曜日19:00から通常稼働を再開する予定です。最新の稼働情報は、公式Discordの「街からのお知らせ」等を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
     }
   ],
   "changelog": [
+    {
+      "date": "2026-10-12",
+      "type": "UPDATED",
+      "title": "サーバー情報・MOD規定・EMS用品の案内を更新しました",
+      "items": [
+        "毎日の再起動時刻と、水曜03:00〜木曜19:00の基本定休日を掲載しました。",
+        "スピードブースト・グリッチロールの禁止と、Citizen・Client MODの使用条件をまとめました。",
+        "初期資金を現金・銀行それぞれ10,000,000円へ更新しました。",
+        "医療用品をEMS専売品として案内し、応急処置と完治の違いを明記しました。廃止済みの医療サービスと旧商品を料金表から削除しました。",
+        "ギャングカラーの登録方法・識別の注意と、FAQを更新しました。",
+        "トップページの参加案内・サーバー情報と、スマホの料金表示を読みやすく整えました。"
+      ]
+    },
     {
       "date": "2026-10-11",
       "type": "UPDATED",
@@ -3453,7 +4151,9 @@
       "ruleIds": [
         "intro-welcome",
         "rp-light",
-        "character-identity"
+        "character-identity",
+        "server-restarts",
+        "server-maintenance"
       ]
     },
     "rules": {
@@ -3475,6 +4175,8 @@
         "crime-down-information",
         "crime-rejoin-combat",
         "rp-no-pressure",
+        "movement-glitches",
+        "client-mod-policy",
         "administration-response",
         "administration-sanctions",
         "administration-report",
@@ -3488,8 +4190,7 @@
         "vehicles-courtesy",
         "streaming-respect",
         "prohibited-ban-evasion",
-        "prohibited-evidence-fabrication",
-        "affiliation-colors"
+        "prohibited-evidence-fabrication"
       ]
     },
     "join": {
@@ -3499,6 +4200,24 @@
       "ruleIds": [
         "join-flow",
         "join-whitelist"
+      ]
+    },
+    "server": {
+      "kicker": "NICOGURA / SERVER",
+      "title": "サーバー情報",
+      "description": "日本時間の再起動時刻、基本定休日とメンテナンスのお知らせを確認できます。",
+      "ruleIds": [
+        "server-restarts",
+        "server-maintenance"
+      ]
+    },
+    "mods": {
+      "kicker": "NICOGURA / MODS",
+      "title": "MOD・グリッチ",
+      "description": "Citizen・Client MODの使用条件と、スピードブースト・グリッチロールなど移動グリッチのルール。",
+      "ruleIds": [
+        "movement-glitches",
+        "client-mod-policy"
       ]
     },
     "character": {
@@ -3518,6 +4237,9 @@
         "economy-food-prices",
         "economy-fuel-prices",
         "ems-fees",
+        "ems-bandage",
+        "ems-painkiller",
+        "ems-ifak",
         "mechanic-fees",
         "economy-consumable-prices"
       ]
@@ -3591,7 +4313,10 @@
       "ruleIds": [
         "ems-request",
         "ems-care",
-        "ems-fees"
+        "ems-fees",
+        "ems-bandage",
+        "ems-painkiller",
+        "ems-ifak"
       ]
     },
     "mechanic": {
@@ -3601,7 +4326,8 @@
       "ruleIds": [
         "mechanic-billing",
         "mechanic-fees",
-        "pending-mechanic-fees"
+        "pending-mechanic-fees",
+        "economy-consumable-prices"
       ]
     },
     "shops": {
@@ -3626,7 +4352,8 @@
       "title": "ギャング",
       "description": "仲間と楽しむギャング活動。結成費用と、街の共通ルールを確認しましょう。",
       "ruleIds": [
-        "gang-establishment"
+        "gang-establishment",
+        "affiliation-colors"
       ]
     },
     "faq": {
@@ -3643,7 +4370,12 @@
         "faq-crime-ban",
         "faq-bug-report",
         "faq-missing-items",
-        "faq-rule-loopholes"
+        "faq-rule-loopholes",
+        "faq-client-mods",
+        "faq-low-spec",
+        "faq-movement-glitches",
+        "faq-bandage-treatment",
+        "faq-wednesday-maintenance"
       ]
     },
     "contact": {
