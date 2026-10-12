@@ -168,6 +168,87 @@ test('crime rewards and IC penalties are separate, with stated limits', () => {
   assert.ok(data.pages.law.ruleIds.includes('penalties-basic-fines'));
   assert.ok(!data.pages.rules.ruleIds.includes('penalties-basic-fines'));
 });
+
+// Independent transcription of the latest user list: 33 named entries.
+const crimeParticipantRows = [
+  ['コンビニ強盗', '小型', '1人', '2人'],
+  ['ATM強盗', '小型', '1人', '1人'],
+  ['空き巣', '小型', '1人', '2人'],
+  ['フリーカ強盗', '準中（チェイス）', '1人', '2人'],
+  ['現金両替強盗', '準中（チェイス）', '1人', '2人'],
+  ['クレーン強盗', '準中（チェイス）', '2人', '3人'],
+  ['ブースティング（A・S）', '準中（チェイス）', '1人', '2人'],
+  ['コインランドリー', '準中（撃ち合い）', '3人', '6人'],
+  ['ヴァンジェリコ', '準中（撃ち合い）', '3人', '6人'],
+  ['列車強盗', '準中（撃ち合い）', '3人', '6人'],
+  ['パージ強盗', '準中（撃ち合い）', '3人', '6人'],
+  ['軍事基地', '準中（撃ち合い）', '3人', '6人'],
+  ['客船', '中型', '4人', '8人'],
+  ['飛行場襲撃', '中型', '4人', '8人'],
+  ['ボブキャット', '中型', '4人', '8人'],
+  ['パレト', '中型', '4人', '8人'],
+  ['オイルリグ', '中型', '4人', '8人'],
+  ['貨物船強盗', '中型', '4人', '8人'],
+  ['ヒューマンラボ', '中型', '4人', '8人'],
+  ['美術館強盗', '中型', '4人', '8人'],
+  ['空母強盗', '中型', '4人', '8人'],
+  ['金庫強盗', '中型', '4人', '8人'],
+  ['アーティファクト', '大型', '8人', '15人'],
+  ['ユニオンヘイスト', '大型', '8人', '15人'],
+  ['カジノヘイスト', '大型', '8人', '15人'],
+  ['パシフィック', '大型', '8人', '15人'],
+  ['マウンテン・ボルト', '大型', '8人', '15人'],
+  ['アンダーグラウンド・ヘイスト', '大型', '8人', '15人'],
+  ['メイズバンク', '大型', '8人', '15人'],
+  ['警察署襲撃', '特殊', '8人', '15人'],
+  ['自動販売機強盗', 'PDなし犯罪', '1人', '1人'],
+  ['ポストロッカー強盗', 'PDなし犯罪', '1人', '1人'],
+  ['ブースティング（D・C・B）', 'PDなし犯罪', '1人', '1人'],
+];
+test('crime participants match all 33 named entries and separate minimum from maximum', () => {
+  const rule = entry('crime-current-list');
+  assert.equal(rule.number, 212);
+  assert.equal(rule.title, '犯罪カテゴリ・参加人数');
+  const participantTables = rule.content.filter(block => block.type === 'table');
+  assert.equal(participantTables.length, 1, 'one authoritative participant table');
+  const table = participantTables[0];
+  assert.deepEqual(table.headers, ['犯罪名', 'カテゴリ', '最低人数', '最大人数']);
+  assert.deepEqual(table.rows, crimeParticipantRows);
+  assert.equal(table.rows.length, 33);
+  assert.equal(new Set(table.rows.map(row => row[0])).size, 33, 'no duplicate crime names');
+  const counts = {};
+  for (const [name, category, minimum, maximum] of table.rows) {
+    counts[category] = (counts[category] || 0) + 1;
+    assert.match(minimum, /^[1-9]\d*人$/u, `${name}: minimum is a single count`);
+    assert.match(maximum, /^[1-9]\d*人$/u, `${name}: maximum is a single count`);
+    assert.ok(parseInt(minimum, 10) <= parseInt(maximum, 10), `${name}: valid participant range`);
+  }
+  assert.deepEqual(counts, { '小型': 3, '準中（チェイス）': 4, '準中（撃ち合い）': 5, '中型': 10, '大型': 7, '特殊': 1, 'PDなし犯罪': 3 });
+  assert.deepEqual(table.rows.filter(row => row[2] === '1人' && row[3] === '1人').map(row => row[0]), ['ATM強盗', '自動販売機強盗', 'ポストロッカー強盗', 'ブースティング（D・C・B）']);
+});
+test('participant guidance identifies the criminal side without adding other conditions', () => {
+  const rule = entry('crime-current-list');
+  const explanation = [rule.summary, ...rule.content.filter(block => block.type !== 'table').flatMap(block => [block.text || '', ...(block.items || [])])].join('\n');
+  assert.match(explanation, /犯罪(?:者)?側/u);
+  assert.match(explanation, /人数/u);
+  assert.doesNotMatch(explanation, /(?:PD|警察)(?:側)?(?:の)?人数\s*[:：]?\s*[\d０-９]/u, 'no invented police count');
+  assert.doesNotMatch(JSON.stringify(rule), /人質|車両|傭兵|開始(?:時刻|時間)|クールダウン|\bCD\b|報酬|罰金|成功率/u, 'no extra crime conditions or reward values');
+  assert.ok(data.pages.crime.ruleIds.includes(rule.id), 'crime page includes the participant definition');
+  assert.equal(data.rules.filter(value => value.id === rule.id).length, 1);
+});
+test('public rewards keep their five approved amounts and baseline conditions', () => {
+  const rewardTables = entry('crime-public-rewards').content.filter(block => block.type === 'table');
+  assert.equal(rewardTables.length, 1);
+  assert.deepEqual(rewardTables[0].headers, ['分類', '基準条件', '1人の報酬']);
+  assert.deepEqual(rewardTables[0].rows, [
+    ['小型', '1人報酬基準', '8,000,000円'],
+    ['準中（チェイス）', '1人報酬基準', '15,000,000円'],
+    ['準中（撃ち合い）', '6人時・1人あたり', '35,000,000円'],
+    ['中型', '8人時・1人あたり', '70,000,000円'],
+    ['大型', '15人時・1人あたり', '120,000,000円'],
+  ]);
+  assert.ok(rewardTables[0].rows.every(row => !['特殊', 'PDなし犯罪'].includes(row[0])), 'no unapproved reward category');
+});
 test('generated metadata and local links exist on every route', async () => {
   for (const [key,[path]] of Object.entries(routes)) {
     const html = await read(path ? `${path}/index.html` : 'index.html');
