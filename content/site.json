@@ -19,7 +19,7 @@
   "site": {
     "name": "NicoGura",
     "tagline": "あなたらしい物語が、この街から。",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "updatedAt": "2026-10-12",
     "notice": "難しく考えなくて大丈夫。最低限のライトRPとマナーを大切に、街での生活を楽しみましょう。",
     "links": {
@@ -44,6 +44,15 @@
     ]
   },
   "changelog": [
+    {
+      "date": "2026-10-12",
+      "type": "UPDATED",
+      "title": "再起動前後の犯罪と専用車両のルールを追加しました",
+      "items": [
+        "定期再起動の前30分・再開後30分、緊急再起動の再開後15分は犯罪禁止です。その他の再起動は街からのアナウンスを確認し、個別の犯罪開始時刻の案内を優先してください。",
+        "権限のない市民によるPD・EMS専用車両の無断使用・窃盗と、JOB専用車両の犯罪利用を禁止するルールを掲載しました。"
+      ]
+    },
     {
       "date": "2026-10-12",
       "type": "UPDATED",
@@ -120,10 +129,13 @@
         "character-identity",
         "rp-rdm",
         "vehicles-vdm",
+        "vehicles-emergency-use",
+        "vehicles-job-crime",
         "rp-metagaming",
         "rp-stream-ghosting",
         "communication-external-vc",
         "rp-powergaming",
+        "crime-restart-window",
         "crime-combat-log",
         "crime-down-information",
         "crime-rejoin-combat",
@@ -171,6 +183,9 @@
         "crime-public-rewards",
         "crime-current-list",
         "pending-crime-conditions",
+        "crime-restart-window",
+        "vehicles-job-crime",
+        "vehicles-emergency-use",
         "crime-chase-demands",
         "crime-chase-attack-window",
         "crime-common-response",
@@ -215,12 +230,24 @@
         "crime-common-response",
         "crime-bug-response",
         "crime-bug-options",
-        "crime-bug-recurrence"
+        "crime-bug-recurrence",
+        "vehicles-emergency-use",
+        "vehicles-job-crime"
       ]
     },
     "ems": {
       "categories": [
         "ems"
+      ],
+      "ruleIds": [
+        "ems-request",
+        "ems-care",
+        "ems-fees",
+        "ems-bandage",
+        "ems-painkiller",
+        "ems-ifak",
+        "vehicles-emergency-use",
+        "vehicles-job-crime"
       ]
     },
     "mechanic": {
@@ -264,6 +291,11 @@
     "server": {
       "categories": [
         "server"
+      ],
+      "ruleIds": [
+        "server-restarts",
+        "server-maintenance",
+        "crime-restart-window"
       ]
     },
     "mods": {

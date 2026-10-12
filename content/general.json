@@ -875,6 +875,82 @@
       "new": true,
       "featured": false,
       "status": "published"
+    },
+    {
+      "id": "vehicles-emergency-use",
+      "number": 232,
+      "title": "PD・EMS専用車両を無断で使用・窃盗しない",
+      "category": "vehicles",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "PD",
+        "EMS",
+        "警察車両",
+        "救急車両",
+        "緊急車両",
+        "公務用車両",
+        "専用車両",
+        "無断使用",
+        "無断利用",
+        "窃盗"
+      ],
+      "severity": "prohibited",
+      "summary": "権限のない市民がPD・EMS専用車両を無断で使用・窃盗する行為は禁止です。単なる移動手段としての無断利用も含みます。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "PD・EMS専用車両を、権限のない市民が無断で使用・窃盗する行為は禁止します。"
+        },
+        {
+          "type": "paragraph",
+          "text": "PD・EMSの緊急車両や公務用車両を、単なる移動手段として無断利用することも禁止です。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "vehicles-job-crime",
+      "number": 233,
+      "title": "JOB専用車両を犯罪に利用しない",
+      "category": "vehicles",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "JOB",
+        "ジョブ",
+        "仕事",
+        "業務用車両",
+        "専用車両",
+        "犯罪利用",
+        "PD",
+        "EMS",
+        "タクシー",
+        "バス",
+        "市販車",
+        "個人所有車"
+      ],
+      "severity": "prohibited",
+      "summary": "PD・EMS・タクシー・バスなど、JOB専用として用意された車両を犯罪行為に利用することは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "PD・EMS・タクシー・バスなど、JOB専用として用意されている車両を犯罪行為に利用することは禁止します。"
+        },
+        {
+          "type": "note",
+          "text": "対象は、JOBの業務用として用意された専用車両です。通常の市販車や個人所有車まで、このルールで一律に禁止するものではありません。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
     }
   ]
 }

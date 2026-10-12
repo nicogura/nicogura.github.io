@@ -2,7 +2,7 @@
   "site": {
     "name": "NicoGura",
     "tagline": "あなたらしい物語が、この街から。",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "updatedAt": "2026-10-12",
     "notice": "難しく考えなくて大丈夫。最低限のライトRPとマナーを大切に、街での生活を楽しみましょう。",
     "links": {
@@ -1002,6 +1002,82 @@
         }
       ],
       "updatedAt": "2026-10-10",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "vehicles-emergency-use",
+      "number": 232,
+      "title": "PD・EMS専用車両を無断で使用・窃盗しない",
+      "category": "vehicles",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "PD",
+        "EMS",
+        "警察車両",
+        "救急車両",
+        "緊急車両",
+        "公務用車両",
+        "専用車両",
+        "無断使用",
+        "無断利用",
+        "窃盗"
+      ],
+      "severity": "prohibited",
+      "summary": "権限のない市民がPD・EMS専用車両を無断で使用・窃盗する行為は禁止です。単なる移動手段としての無断利用も含みます。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "PD・EMS専用車両を、権限のない市民が無断で使用・窃盗する行為は禁止します。"
+        },
+        {
+          "type": "paragraph",
+          "text": "PD・EMSの緊急車両や公務用車両を、単なる移動手段として無断利用することも禁止です。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "vehicles-job-crime",
+      "number": 233,
+      "title": "JOB専用車両を犯罪に利用しない",
+      "category": "vehicles",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "JOB",
+        "ジョブ",
+        "仕事",
+        "業務用車両",
+        "専用車両",
+        "犯罪利用",
+        "PD",
+        "EMS",
+        "タクシー",
+        "バス",
+        "市販車",
+        "個人所有車"
+      ],
+      "severity": "prohibited",
+      "summary": "PD・EMS・タクシー・バスなど、JOB専用として用意された車両を犯罪行為に利用することは禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "PD・EMS・タクシー・バスなど、JOB専用として用意されている車両を犯罪行為に利用することは禁止します。"
+        },
+        {
+          "type": "note",
+          "text": "対象は、JOBの業務用として用意された専用車両です。通常の市販車や個人所有車まで、このルールで一律に禁止するものではありません。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
       "status": "published"
@@ -2073,6 +2149,90 @@
         }
       ],
       "updatedAt": "2026-10-11",
+      "new": true,
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "crime-restart-window",
+      "number": 231,
+      "title": "再起動前後の犯罪について",
+      "category": "crime",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "再起動",
+        "定期再起動",
+        "通常再起動",
+        "緊急再起動",
+        "メンテナンス",
+        "臨時再起動",
+        "30分",
+        "15分",
+        "犯罪禁止",
+        "犯罪開始",
+        "街からのお知らせ"
+      ],
+      "severity": "prohibited",
+      "summary": "定期再起動は前30分・再開後30分、緊急再起動は再開後15分が犯罪禁止です。その他の再起動は街からのアナウンスを確認してください。",
+      "content": [
+        {
+          "type": "table",
+          "caption": "再起動前後の犯罪禁止時間",
+          "headers": [
+            "再起動の種類",
+            "犯罪禁止時間・確認事項"
+          ],
+          "rows": [
+            [
+              "定期再起動",
+              "前30分 / サーバー再開後30分"
+            ],
+            [
+              "緊急再起動",
+              "サーバー再開後15分"
+            ],
+            [
+              "その他の再起動",
+              "街からのアナウンスを確認"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "定期再起動"
+        },
+        {
+          "type": "paragraph",
+          "text": "定期再起動の30分前から再起動まで、およびサーバー再開後30分間は、犯罪行為を禁止します。新たな犯罪の開始だけでなく、この時間帯に犯罪行為を続けることも禁止です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "再起動時間をまたぐ可能性が高い犯罪も行わないでください。開始できる時刻でも、再起動前の犯罪禁止時間にかからないか、事前に確認しましょう。"
+        },
+        {
+          "type": "heading",
+          "text": "緊急再起動"
+        },
+        {
+          "type": "paragraph",
+          "text": "緊急再起動の場合は、サーバー再開後15分間、犯罪行為を禁止します。緊急再起動は予告なしに発生する場合があります。"
+        },
+        {
+          "type": "heading",
+          "text": "その他の再起動・個別の案内"
+        },
+        {
+          "type": "paragraph",
+          "text": "メンテナンス、臨時再起動、特殊な再起動等については、街からのアナウンスを確認してください。"
+        },
+        {
+          "type": "note",
+          "text": "運営から個別の犯罪開始時刻が案内された場合は、その案内を優先してください。最新情報は公式Discordの「街からのお知らせ」等で確認できます。"
+        }
+      ],
+      "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
       "status": "published"
@@ -4079,6 +4239,15 @@
     {
       "date": "2026-10-12",
       "type": "UPDATED",
+      "title": "再起動前後の犯罪と専用車両のルールを追加しました",
+      "items": [
+        "定期再起動の前30分・再開後30分、緊急再起動の再開後15分は犯罪禁止です。その他の再起動は街からのアナウンスを確認し、個別の犯罪開始時刻の案内を優先してください。",
+        "権限のない市民によるPD・EMS専用車両の無断使用・窃盗と、JOB専用車両の犯罪利用を禁止するルールを掲載しました。"
+      ]
+    },
+    {
+      "date": "2026-10-12",
+      "type": "UPDATED",
       "title": "サーバー情報・MOD規定・EMS用品の案内を更新しました",
       "items": [
         "毎日の再起動時刻と、水曜03:00〜木曜19:00の基本定休日を掲載しました。",
@@ -4167,10 +4336,13 @@
         "character-identity",
         "rp-rdm",
         "vehicles-vdm",
+        "vehicles-emergency-use",
+        "vehicles-job-crime",
         "rp-metagaming",
         "rp-stream-ghosting",
         "communication-external-vc",
         "rp-powergaming",
+        "crime-restart-window",
         "crime-combat-log",
         "crime-down-information",
         "crime-rejoin-combat",
@@ -4208,7 +4380,8 @@
       "description": "日本時間の再起動時刻、基本定休日とメンテナンスのお知らせを確認できます。",
       "ruleIds": [
         "server-restarts",
-        "server-maintenance"
+        "server-maintenance",
+        "crime-restart-window"
       ]
     },
     "mods": {
@@ -4252,6 +4425,9 @@
         "crime-public-rewards",
         "crime-current-list",
         "pending-crime-conditions",
+        "crime-restart-window",
+        "vehicles-job-crime",
+        "vehicles-emergency-use",
         "crime-chase-demands",
         "crime-chase-attack-window",
         "crime-common-response",
@@ -4303,7 +4479,9 @@
         "crime-common-response",
         "crime-bug-response",
         "crime-bug-options",
-        "crime-bug-recurrence"
+        "crime-bug-recurrence",
+        "vehicles-emergency-use",
+        "vehicles-job-crime"
       ]
     },
     "ems": {
@@ -4316,7 +4494,9 @@
         "ems-fees",
         "ems-bandage",
         "ems-painkiller",
-        "ems-ifak"
+        "ems-ifak",
+        "vehicles-emergency-use",
+        "vehicles-job-crime"
       ]
     },
     "mechanic": {

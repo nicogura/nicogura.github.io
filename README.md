@@ -5,7 +5,7 @@ FiveMライトRPサーバー「NicoGura / にこぐら」の公式ガイドで�
 - 公開サイト: https://nicogura.github.io/
 - 公式ルール（既存URL）: https://nicogura.github.io/rules/
 - Web専用Repository: https://github.com/nicogura/nicogura.github.io
-- v2.2.0 / 最終更新 2026-10-12
+- v2.2.1 / 最終更新 2026-10-12
 
 ## 確認・ビルド
 
@@ -28,12 +28,12 @@ npm start
 | ファイル | 内容 |
 | --- | --- |
 | `site.json` | 公式リンク、画像、更新日、バージョン、更新履歴、各ページの掲載順 |
-| `general.json` | ライトRP、基本ルール、不正行為、運営判断、お問い合わせ |
+| `general.json` | ライトRP、基本ルール、専用車両、不正行為、運営判断、お問い合わせ |
 | `server.json` | 日本時間の再起動・定休日・メンテナンス案内 |
 | `mods.json` | Citizen・Client MODの条件、移動グリッチ規定 |
 | `join.json` / `character.json` | 参加方法 / 1人1キャラクター |
 | `economy.json` | 初期資金、飲食、燃料、消耗品 |
-| `crime.json` / `law.json` | 犯罪RP・報酬 / ゲーム内法律・刑期 |
+| `crime.json` / `law.json` | 犯罪RP・報酬・再起動前後の制限 / ゲーム内法律・刑期 |
 | `pd.json` / `ems.json` | PD / EMSと医療料金・EMS専売の応急処置用品 |
 | `mechanic.json` / `shops.json` | 修理・カスタム料金 / 店舗 |
 | `lifejobs.json` / `gangs.json` / `faq.json` | Life Job / ギャング / FAQ |
