@@ -13,7 +13,7 @@ const entry = id => { const r = data.rules.find(r => r.id === id); assert.ok(r, 
 test('published schema and page references', () => {
   assert.deepEqual(validateData(data), []);
   assert.ok(data.rules.every(r => r.status === 'published'));
-  assert.equal(data.site.updatedAt, '2026-10-12');
+  assert.equal(data.site.updatedAt, '2026-10-13');
   for (const key of Object.keys(routes)) { assert.ok(data.pages[key]); for (const id of data.pages[key].ruleIds) entry(id); }
 });
 test('official brand and no internal economics or obsolete joining flow', () => {
@@ -45,7 +45,7 @@ test('user approved prices are exact', () => {
     [/現金/, '10,000,000'],[/銀行/, '10,000,000'],[/空腹.*20/, '300,000'],[/空腹.*30.*水分.*30/, '700,000'],
     [/ストレス.*30/, '250,000'],[/一般車/, '100円'],[/高性能車/, '100円'],[/大型車/, '100円'],[/ヘリ/, '100円'],
     [/通常治療/, '300,000'],[/院内蘇生/, '1,000,000'],[/現場蘇生/, '1,500,000'],[/牢屋/, '2,000,000'],[/NPC/, '1,000,000'],
-    [/タイヤ/, '500,000'],[/通常修理/, '200,000'],[/全修理/, '800,000'],[/包帯/, '250,000'],[/鎮痛剤/, '250,000'],[/IFAK/, '200,000'],[/簡易修理/, '300,000'],[/ニトロ/, '800,000'],
+    [/タイヤ/, '500,000'],[/通常修理/, '200,000'],[/全修理/, '1,400,000'],[/包帯/, '250,000'],[/鎮痛剤/, '250,000'],[/IFAK/, '200,000'],[/簡易修理/, '300,000'],[/ニトロ/, '1,000,000'],
     [/通常塗装/, '300,000'],[/特殊.*RGB/, '600,000'],[/外装パーツ/, '300,000'],[/アンダーグロー/, '600,000'],[/特別ナンバー/, '100,000,000'],[/外装一式/, '4,200,000'],[/半カス/, '35,000,000'],[/フルカス/, '60,000,000']
   ]) price(label,value);
   const gang = entry('gang-establishment');
@@ -58,7 +58,7 @@ test('retired services, old products and internal economics are absent', () => {
   assert.doesNotMatch(body, /北対応|全項目20|全項目30|一般販売|100億|3か月|週5日|日次収入上限|犯罪\s*＞/);
   const table = entry('economy-consumable-prices').content.find(b => b.type === 'table');
   assert.deepEqual(table.rows, [
-    ['ニトロ補充', '800,000円', 'ニトロの補充'],
+    ['ニトロ補充', '1,000,000円', 'ニトロの補充'],
     ['簡易修理キット / ダクトテープ', '300,000円', '走行可能になる程度']
   ]);
 });
@@ -90,9 +90,9 @@ test('latest food, medical and repair conditions match the integrated request', 
     ['通常治療','負傷','300,000円'],['院内蘇生','病院内','1,000,000円'],['現場蘇生・搬送','救急現場','1,500,000円'],
     ['牢屋対応','犯罪対応','2,000,000円'],['EMS不在時NPC治療','即時救済','1,000,000円']
   ]);
-  assert.deepEqual(firstTable('mechanic-fees'), [['タイヤ1本','部分修理','500,000円'],['通常修理','一か所','200,000円'],['全修理','大きな損傷','800,000円']]);
+  assert.deepEqual(firstTable('mechanic-fees'), [['タイヤ1本','部分修理','500,000円'],['通常修理','一か所','200,000円'],['全修理','大きな損傷','1,400,000円']]);
   assert.doesNotMatch(JSON.stringify(entry('economy-food-prices')), /[%]|一時的的/);
-  for (const [id, pages] of [['ems-fees',['economy','ems']], ['mechanic-fees',['economy','mechanic']]]) {
+  for (const [id, pages] of [['ems-fees',['economy','ems']], ['mechanic-fees',['economy','mechanic']], ['economy-consumable-prices',['economy','mechanic']]]) {
     for (const page of pages) assert.ok(data.pages[page].ruleIds.includes(id));
     assert.equal(data.rules.filter(r => r.id === id).length, 1);
   }
