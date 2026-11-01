@@ -76,8 +76,13 @@ export function validateData(data) {
     if (!Array.isArray(rule.content) || rule.content.length > 500 || (rule.status === 'published' && rule.content.length === 0)) { issue(`${path}.content`, '本文を500ブロック以内の配列にしてください（正式公開時は本文必須）'); return; }
     rule.content.forEach((block, j) => {
       const bp = `${path}.content[${j}]`;
-      if (!object(block) || !['paragraph', 'heading', 'list', 'note', 'table'].includes(block.type)) { issue(bp, 'paragraph / heading / list / note / table の本文ブロックにしてください'); return; }
+      if (!object(block) || !['paragraph', 'heading', 'list', 'note', 'table', 'image'].includes(block.type)) { issue(bp, 'paragraph / heading / list / note / table / image の本文ブロックにしてください'); return; }
       if (block.type === 'list') strings(block.items, `${bp}.items`);
+      else if (block.type === 'image') {
+        if (typeof block.src !== 'string' || !/^assets\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9][a-zA-Z0-9_.-]*\.(?:png|jpe?g|webp|avif|gif)$/i.test(block.src)) issue(`${bp}.src`, 'assets/ 内のPNG・JPEG・WebP・AVIF・GIF画像を相対パスで指定してください');
+        text(block.alt, `${bp}.alt`, true, 1000);
+        if (block.caption !== undefined) text(block.caption, `${bp}.caption`, false, 3000);
+      }
       else if (block.type === 'table') {
         if (block.caption !== undefined) text(block.caption, `${bp}.caption`, false, 1000);
         const headersValid = Array.isArray(block.headers) && block.headers.length >= 1 && block.headers.length <= 12;
@@ -92,6 +97,20 @@ export function validateData(data) {
       }
       else text(block.text, `${bp}.text`, true);
     });
+  });
+  if (Array.isArray(data.rules)) data.rules.forEach((rule, i) => {
+    if (!object(rule)) return;
+    if (rule.contentKind !== undefined && !['rule', 'guide', 'law'].includes(rule.contentKind)) issue(`rules[${i}].contentKind`, 'rule / guide / law にしてください');
+    if (rule.relatedRuleIds !== undefined) {
+      if (!Array.isArray(rule.relatedRuleIds) || rule.relatedRuleIds.length > 100) issue(`rules[${i}].relatedRuleIds`, '100件以内の項目ID配列にしてください');
+      else {
+        const seen = new Set();
+        for (const related of rule.relatedRuleIds) {
+          if (!ruleIds.has(related) || related === rule.id || seen.has(related)) issue(`rules[${i}].relatedRuleIds`, '重複・自己参照を除いた、存在する別の項目IDを指定してください');
+          seen.add(related);
+        }
+      }
+    }
   });
   if (!Array.isArray(data.changelog) || data.changelog.length > 1000) issue('changelog', '1000件以内の更新履歴配列にしてください');
   else data.changelog.forEach((entry, i) => {

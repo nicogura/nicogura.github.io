@@ -2,8 +2,8 @@
   "categories": [
     {
       "id": "crime",
-      "label": "犯罪RP",
-      "shortLabel": "犯罪RP",
+      "label": "犯罪ルール",
+      "shortLabel": "犯罪",
       "description": "犯罪RPも街の楽しみのひとつ。共通の約束と基準を確認しましょう。",
       "group": "街の暮らし"
     },
@@ -20,7 +20,7 @@
       "id": "crime-combat-log",
       "number": 18,
       "title": "シーンから逃れるために退出しない",
-      "category": "crime",
+      "category": "prohibited",
       "tags": [
         "禁止"
       ],
@@ -44,16 +44,18 @@
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": true,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "crime-third-party",
       "number": 19,
       "title": "関係のないシーンを不正に壊さない",
-      "category": "crime",
+      "category": "prohibited",
       "tags": [
         "禁止"
       ],
@@ -75,16 +77,18 @@
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "crime-rejoin-combat",
       "number": 20,
-      "title": "復帰直後に同じ戦闘へ戻らない",
-      "category": "crime",
+      "title": "ゾンビ行為をしない",
+      "category": "prohibited",
       "tags": [
         "禁止"
       ],
@@ -95,27 +99,29 @@
         "ダウン"
       ],
       "severity": "prohibited",
-      "summary": "ダウンから復帰した直後に、同じ戦闘へ戻って再参加する行為は禁止です。",
+      "summary": "ダウンから復帰して、同じ戦闘へ再参加する行為は禁止です。",
       "content": [
         {
-          "text": "蘇生や復帰を使って、同じ戦闘へ繰り返し参加しないでください。まず治療や身柄の扱いなど、その場の案内を確認してください。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "ダウンから蘇生・復帰した後、同じ戦闘へ戻って再参加する行為は禁止です。治療や身柄の扱いは、その場の案内に従ってください。"
         },
         {
-          "text": "クラッシュからの再接続は、ダウンからの復帰とは区別します。再開方法が分からない場合は運営へ相談してください。独自の待機時間や記憶喪失の条件をこの案内で追加するものではありません。",
-          "type": "note"
+          "type": "note",
+          "text": "クラッシュからの再接続は、ダウンからの復帰と区別します。再開方法が分からない場合は運営へ相談してください。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "crime-probation",
       "number": 21,
       "title": "案内された参加制限を確認しよう",
-      "category": "crime",
+      "category": "pd",
       "tags": [
         "注意"
       ],
@@ -125,27 +131,34 @@
         "確認"
       ],
       "severity": "important",
-      "summary": "保護観察などの制限を案内された場合は、適用内容を確認して従ってください。",
+      "summary": "社会奉仕・保護観察の期間中は、案内された犯罪などの制限に従ってください。",
       "content": [
         {
-          "text": "参加できる活動や適用期間など、実際に案内された制限の範囲を確認してください。制限を回避する目的で、別のアカウントや立場を使わないでください。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "社会奉仕・保護観察の期間中は、犯罪などが制限されます。参加できる活動と適用期間を確認し、制限に従ってください。"
         },
         {
-          "text": "自分に適用される内容が分からない場合は、PDや運営へ確認してください。ここでは一律の期間や条件を設けていません。",
-          "type": "note"
+          "type": "paragraph",
+          "text": "別のアカウントや立場を使って制限を回避しないでください。自分に適用される内容が分からない場合は、PDや運営へ確認してください。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 4,
+      "relatedRuleIds": [
+        "pd-community-service",
+        "penalties-basic-fines",
+        "penalties-heist-fines"
+      ]
     },
     {
       "id": "heist-duplicate",
       "number": 22,
       "title": "Heistの重複・リセットを悪用しない",
-      "category": "heist",
+      "category": "crime",
       "tags": [
         "禁止"
       ],
@@ -161,24 +174,34 @@
       "summary": "同じHeistの報酬や進行を、意図的な重複・リセットで不正に利用することは禁止です。",
       "content": [
         {
-          "text": "正常な進行から外れて二重に報酬を受け取ったり、失敗や制限を不正に消したりしないでください。不具合に気づいたら追加利用を止め、Discordの「お問い合わせ窓口」へ状況を報告してください。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "報酬が二重に取れた場合や、本来の挙動と異なる結果になった場合は、追加利用を止め、チケットでお問い合わせください。事実を隠さないでください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "報酬や進行を不正に重複させたり、失敗や制限を不正なリセットで消したりする行為は禁止です。"
         },
         {
           "type": "note",
-          "text": "犯罪の進行が不可能になった場合は、速やかにPDへ連絡し、「犯罪中に不具合が発生した場合」の手順に従ってください。その手順に基づく不具合リセットは、この項目で禁止する不正なリセットには当たりません。"
+          "text": "PDの確認を受けた正規の不具合対応は、不正なリセットと区別します。「犯罪中に不具合が発生した場合」を確認してください。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3,
+      "relatedRuleIds": [
+        "crime-bug-response",
+        "administration-report"
+      ]
     },
     {
       "id": "crime-down-information",
       "number": 107,
       "title": "ダウン中に戦況を伝えて有利にしない",
-      "category": "crime",
+      "category": "prohibited",
       "tags": [
         "禁止"
       ],
@@ -201,10 +224,12 @@
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "pending-crime-conditions",
@@ -222,7 +247,7 @@
         "報酬"
       ],
       "severity": "guide",
-      "summary": "犯罪のカテゴリ・参加人数、公開報酬基準、ゲーム内の罰金・刑務を確認して計画しましょう。",
+      "summary": "犯罪のカテゴリ・参加人数、公開報酬基準、ゲーム内の罰金・保護観察を確認して計画しましょう。",
       "content": [
         {
           "type": "paragraph",
@@ -230,17 +255,18 @@
         },
         {
           "type": "paragraph",
-          "text": "「犯罪カテゴリ・参加人数」で犯罪側の最低人数・最大人数を確認し、公開報酬基準とゲーム内法律の罰金・刑務を読みましょう。その他の開始条件は、ゲーム内の案内を確認してください。"
+          "text": "「犯罪カテゴリ・参加人数」で犯罪側の最低人数・最大人数を確認し、公開報酬基準とゲーム内法律の罰金・保護観察を読みましょう。その他の開始条件は、ゲーム内の案内を確認してください。"
         },
         {
           "type": "note",
           "text": "報酬表の「6人時」「8人時」「15人時」は報酬の基準条件です。犯罪側の参加人数は「犯罪カテゴリ・参加人数」の一覧を確認してください。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "crime-public-rewards",
@@ -303,13 +329,14 @@
         },
         {
           "type": "paragraph",
-          "text": "犯罪を計画するときは、「犯罪カテゴリ・参加人数」とゲーム内法律の罰金・刑務も確認しましょう。"
+          "text": "犯罪を計画するときは、「犯罪カテゴリ・参加人数」とゲーム内法律の罰金・保護観察も確認しましょう。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "crime-current-list",
@@ -317,7 +344,7 @@
       "title": "犯罪カテゴリ・参加人数",
       "category": "crime",
       "tags": [
-        "ガイド"
+        "注意"
       ],
       "keywords": [
         "犯罪一覧",
@@ -337,232 +364,99 @@
         "特殊",
         "PDなし犯罪"
       ],
-      "severity": "guide",
-      "summary": "全33犯罪のカテゴリと、犯罪側の最低・最大参加人数を確認できます。",
+      "severity": "important",
+      "summary": "犯罪者側とPD側は、分類ごとの参加人数に従ってください。大型犯罪はギャング限定です。",
       "content": [
         {
-          "type": "paragraph",
-          "text": "表の人数は、その犯罪へ参加する犯罪側プレイヤーの人数です。警察側の人数ではありません。最低人数と最大人数を確認して参加してください。"
-        },
-        {
           "type": "table",
-          "caption": "犯罪カテゴリ・犯罪側参加人数（33件）",
+          "caption": "犯罪カテゴリ・参加人数",
           "headers": [
-            "犯罪名",
-            "カテゴリ",
-            "最低人数",
-            "最大人数"
+            "分類",
+            "犯罪名・区分",
+            "犯罪者側",
+            "PD側",
+            "補足"
           ],
           "rows": [
             [
-              "コンビニ強盗",
               "小型",
-              "1人",
-              "2人"
-            ],
-            [
-              "ATM強盗",
-              "小型",
-              "1人",
-              "1人"
-            ],
-            [
-              "空き巣",
-              "小型",
-              "1人",
-              "2人"
-            ],
-            [
-              "フリーカ強盗",
-              "準中（チェイス）",
-              "1人",
-              "2人"
-            ],
-            [
-              "現金両替強盗",
-              "準中（チェイス）",
-              "1人",
-              "2人"
-            ],
-            [
-              "クレーン強盗",
-              "準中（チェイス）",
+              "通常",
               "2人",
-              "3人"
+              "2～3人",
+              ""
             ],
             [
-              "ブースティング（A・S）",
-              "準中（チェイス）",
+              "小型",
+              "ATM",
               "1人",
-              "2人"
+              "2～3人",
+              ""
             ],
             [
-              "コインランドリー",
-              "準中（撃ち合い）",
-              "3人",
-              "6人"
+              "準中型（チェイス）",
+              "通常",
+              "1～2人",
+              "2～4人",
+              ""
             ],
             [
-              "ヴァンジェリコ",
-              "準中（撃ち合い）",
-              "3人",
-              "6人"
+              "準中型（チェイス）",
+              "クレーン強盗",
+              "2～3人",
+              "3～4人",
+              ""
             ],
             [
-              "列車強盗",
-              "準中（撃ち合い）",
-              "3人",
-              "6人"
+              "準中型（チェイス）",
+              "現金交換所",
+              "1～2人",
+              "2～4人",
+              ""
             ],
             [
-              "パージ強盗",
-              "準中（撃ち合い）",
-              "3人",
-              "6人"
+              "準中型（撃ち合い）",
+              "通常",
+              "3～6人",
+              "5～10人",
+              ""
             ],
             [
-              "軍事基地",
-              "準中（撃ち合い）",
-              "3人",
-              "6人"
-            ],
-            [
-              "客船",
               "中型",
-              "4人",
-              "8人"
+              "通常",
+              "4～8人",
+              "6～12人",
+              ""
             ],
             [
-              "飛行場襲撃",
-              "中型",
-              "4人",
-              "8人"
-            ],
-            [
-              "ボブキャット",
-              "中型",
-              "4人",
-              "8人"
-            ],
-            [
-              "パレト",
-              "中型",
-              "4人",
-              "8人"
-            ],
-            [
-              "オイルリグ",
-              "中型",
-              "4人",
-              "8人"
-            ],
-            [
-              "貨物船強盗",
-              "中型",
-              "4人",
-              "8人"
-            ],
-            [
-              "ヒューマンラボ",
-              "中型",
-              "4人",
-              "8人"
-            ],
-            [
-              "美術館強盗",
-              "中型",
-              "4人",
-              "8人"
-            ],
-            [
-              "空母強盗",
-              "中型",
-              "4人",
-              "8人"
-            ],
-            [
-              "金庫強盗",
-              "中型",
-              "4人",
-              "8人"
-            ],
-            [
-              "アーティファクト",
               "大型",
-              "8人",
-              "15人"
+              "通常",
+              "8～15人",
+              "12～20人",
+              "ギャング限定"
             ],
             [
-              "ユニオンヘイスト",
-              "大型",
-              "8人",
-              "15人"
-            ],
-            [
-              "カジノヘイスト",
-              "大型",
-              "8人",
-              "15人"
-            ],
-            [
-              "パシフィック",
-              "大型",
-              "8人",
-              "15人"
-            ],
-            [
-              "マウンテン・ボルト",
-              "大型",
-              "8人",
-              "15人"
-            ],
-            [
-              "アンダーグラウンド・ヘイスト",
-              "大型",
-              "8人",
-              "15人"
-            ],
-            [
-              "メイズバンク",
-              "大型",
-              "8人",
-              "15人"
-            ],
-            [
-              "警察署襲撃",
-              "特殊",
-              "8人",
-              "15人"
-            ],
-            [
-              "自動販売機強盗",
-              "PDなし犯罪",
+              "無人犯罪",
+              "通常",
               "1人",
-              "1人"
-            ],
-            [
-              "ポストロッカー強盗",
-              "PDなし犯罪",
-              "1人",
-              "1人"
-            ],
-            [
-              "ブースティング（D・C・B）",
-              "PDなし犯罪",
-              "1人",
-              "1人"
+              "0人",
+              ""
             ]
           ]
         },
         {
           "type": "paragraph",
-          "text": "犯罪RPも街の遊び方の一つです。サーバールールを守りながら、仲間や警察とのシーンを楽しみましょう。"
+          "text": "犯罪は表の人数の範囲内で行ってください。犯罪者側の人数とPD側の人数を混同しないようにしてください。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3,
+      "relatedRuleIds": [
+        "crime-types-guide"
+      ]
     },
     {
       "id": "crime-chase-demands",
@@ -603,10 +497,12 @@
           ]
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3
     },
     {
       "id": "crime-chase-attack-window",
@@ -626,37 +522,29 @@
         "無人"
       ],
       "severity": "important",
-      "summary": "本人の所有車両・他プレイヤーから借りた車両は1分、窃盗車両は3分です。PDが定めるラインより上位のチェイス犯罪では1分になります。",
+      "summary": "プレイヤー所有車は1分、盗難車は3分です。クレーン強盗は追加で2分まで要求できます。",
       "content": [
-        {
-          "type": "paragraph",
-          "text": "アタック禁止時間は、使用する車両の取得方法によって次のとおりです。"
-        },
         {
           "type": "table",
           "caption": "車両の取得方法とアタック禁止時間",
           "headers": [
-            "車両の取得方法",
+            "車両",
             "アタック禁止時間"
           ],
           "rows": [
             [
-              "本人が所有する車両",
+              "プレイヤー所有車（借りた車両を含む）",
               "1分"
             ],
             [
-              "他プレイヤーから借りた車両",
-              "1分"
-            ],
-            [
-              "窃盗車両",
+              "盗難車両",
               "3分"
             ]
           ]
         },
         {
           "type": "paragraph",
-          "text": "上記を超えるアタック禁止時間を要求することは禁止します。"
+          "text": "この時間を超える要求はできません。ただし、クレーン強盗はアタック禁止時間に加えて2分まで要求できます。"
         },
         {
           "type": "heading",
@@ -666,18 +554,17 @@
           "type": "list",
           "items": [
             "ネタ犯罪は禁止です。",
-            "アタック禁止時間は1分です。"
+            "アタック禁止時間は1分です。",
+            "有人・無人を問わず、同じ条件を適用します。"
           ]
-        },
-        {
-          "type": "note",
-          "text": "有人・無人を問わず、同じ条件を適用します。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3
     },
     {
       "id": "crime-common-response",
@@ -716,10 +603,12 @@
           "text": "PDが犯人を一度見失った場合でも、見失ってから10分以内であれば、現行犯として逮捕することができます。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3
     },
     {
       "id": "crime-bug-response",
@@ -738,7 +627,7 @@
         "ボディカメラ"
       ],
       "severity": "important",
-      "summary": "不具合で犯罪を進められなくなった場合は、速やかにPDへ連絡してシーンを一時中断してください。不具合リセットには、PD側の上官による現場確認が必要です。",
+      "summary": "不具合で進行できなくなったら、PDへ連絡してシーンを一時中断してください。PDが現場を確認し、リセット可能か判断します。",
       "content": [
         {
           "type": "paragraph",
@@ -746,21 +635,27 @@
         },
         {
           "type": "paragraph",
-          "text": "PD側の上官が現場へ向かい、実際に進行できない状態であることを確認します。確認が取れた場合に限り、不具合リセットを行うことができます。"
+          "text": "PDが現場へ向かい、不具合の状況を確認したうえで、リセットできるか判断します。"
         },
         {
           "type": "paragraph",
-          "text": "進行不能と判断された事件では、状況確認のため、犯罪者側へボディカメラの提出を求める場合があります。提出が必要な場合は、PDがその旨を犯罪者側へ伝えてください。"
+          "text": "進行不能と判断された事件では、状況確認のために犯罪者側へボディカメラの提出を求める場合があります。"
         },
         {
-          "type": "note",
-          "text": "リセット前に、「不具合リセット前の選択」に沿って今後の進行を確認してください。再実行後に再び不具合が起きた場合は、「再度不具合が発生した場合」の条件を適用します。"
+          "type": "paragraph",
+          "text": "リセット前に「不具合リセット前の選択」を確認してください。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3,
+      "relatedRuleIds": [
+        "crime-bug-options",
+        "crime-bug-recurrence"
+      ]
     },
     {
       "id": "crime-bug-options",
@@ -802,7 +697,7 @@
           "type": "list",
           "items": [
             "犯罪者側から、金品を所持している想定となる1〜2名を選出します。",
-            "PDから開始の連絡があった後、指定された3〜5分間を「回収フェーズ」とします。",
+            "PDから開始の連絡があった後、指定された時間を「回収フェーズ」とします。",
             "回収フェーズ中、選出された対象者はその場で手を上げて待機してください。",
             "指定時間が終了した後は「逃走フェーズ」となり、逃走して構いません。"
           ]
@@ -818,12 +713,18 @@
         {
           "type": "note",
           "text": "一度リセットして再実行した後に再び不具合が発生した場合は、②そのまま続行・③中断のどちらかを選択してください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "不具合があった犯罪の成功後に補填を申請する場合は、チケットを発行し、ボディカメラを提出してください。ボディカメラの提出がない場合は補填できません。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3
     },
     {
       "id": "crime-bug-recurrence",
@@ -853,10 +754,12 @@
           "text": "2回目以降は、再度リセットして最初からやり直す選択はできません。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3
     },
     {
       "id": "crime-restart-window",
@@ -937,10 +840,351 @@
           "text": "運営から個別の犯罪開始時刻が案内された場合は、その案内を優先してください。最新情報は公式Discordの「街からのお知らせ」等で確認できます。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3
+    },
+    {
+      "id": "crime-scene-conduct",
+      "number": 238,
+      "title": "犯罪シーン中の共通ルール",
+      "category": "crime",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "追跡中の入庫、車両・ヘリの修理、未参加者の後入り、終了後の復帰は禁止です。",
+      "content": [
+        {
+          "type": "list",
+          "items": [
+            "チェイス中に車両をガレージへ入れないでください。",
+            "犯罪シーン中は、車両・ヘリを修理しないでください。",
+            "ヘイストネットワークから参加していない人が、後からシーンへ参加することは禁止です。",
+            "終了した犯罪シーンへ復帰しないでください。"
+          ]
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3,
+      "relatedRuleIds": [
+        "crime-scene-end",
+        "crime-helicopter-limits",
+        "crime-scene-colors"
+      ]
+    },
+    {
+      "id": "crime-helicopter-limits",
+      "number": 239,
+      "title": "犯罪シーンのヘリ台数",
+      "category": "crime",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "1事件で使用できる犯罪者側のヘリ台数は、犯罪の分類ごとに決まっています。",
+      "content": [
+        {
+          "type": "table",
+          "caption": "犯罪者側のヘリ最大台数",
+          "headers": [
+            "分類・犯罪",
+            "最大台数"
+          ],
+          "rows": [
+            [
+              "小型",
+              "使用不可"
+            ],
+            [
+              "準中型（チェイス）",
+              "使用不可"
+            ],
+            [
+              "準中型（撃ち合い）",
+              "1台"
+            ],
+            [
+              "密輸バージ",
+              "4台"
+            ],
+            [
+              "中型",
+              "2台"
+            ],
+            [
+              "空母襲撃・海上油田・貨物船強盗",
+              "5台"
+            ],
+            [
+              "大型",
+              "3台"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "PD側は、犯罪者側のヘリ台数に1台を加えた台数まで使用できます。"
+        },
+        {
+          "type": "paragraph",
+          "text": "密輸バージ・空母襲撃・海上油田・貨物船強盗は、通常の分類より3台多い上限です。表の台数は1事件の最大台数であり、犯罪者側はこの上限を超えないでください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3
+    },
+    {
+      "id": "crime-scene-colors",
+      "number": 240,
+      "title": "犯罪シーンではカラーを揃える",
+      "category": "crime",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "犯罪シーンでは、服装と車両のカラーを揃えてください。盗難車も対象です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "犯罪シーンでは、服装と車両のカラーを揃えてください。盗難車も対象です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "近似色や、黒・白・グレーの使用は認められません。カラーの判断に迷う場合は、PDへ確認してください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3,
+      "relatedRuleIds": [
+        "affiliation-colors"
+      ]
+    },
+    {
+      "id": "crime-scene-end",
+      "number": 241,
+      "title": "犯罪シーンが終了する条件",
+      "category": "crime",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "PDを振り切ってから5分が経過すると、犯罪シーンの終了とみなします。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "PDを振り切ってから5分が経過すると、犯罪シーンの終了とみなします。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "PDのサイレンが聞こえず、PDヘリも見えなくなった状態。",
+            "服装や車両などから、犯人と断定できなくなった状態。"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "PDが犯人を見失ってから10分以内の現行犯逮捕については、「すべての犯罪で有効な対応」も確認してください。シーンの終了と現行犯逮捕の条件は別に定めています。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3,
+      "relatedRuleIds": [
+        "crime-common-response"
+      ]
+    },
+    {
+      "id": "crime-types-guide",
+      "number": 242,
+      "title": "犯罪の種類と分類",
+      "category": "heist",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "犯罪の分類を確認して、参加人数とシーンのルールを調べましょう。",
+      "content": [
+        {
+          "type": "table",
+          "caption": "犯罪の分類",
+          "headers": [
+            "犯罪名",
+            "分類"
+          ],
+          "rows": [
+            [
+              "コンビニ強盗",
+              "小型"
+            ],
+            [
+              "ATM強盗",
+              "小型"
+            ],
+            [
+              "空き巣",
+              "小型"
+            ],
+            [
+              "フリーカ強盗",
+              "準中（チェイス）"
+            ],
+            [
+              "現金両替強盗",
+              "準中（チェイス）"
+            ],
+            [
+              "クレーン強盗",
+              "準中（チェイス）"
+            ],
+            [
+              "ブースティング（A・S）",
+              "準中（チェイス）"
+            ],
+            [
+              "コインランドリー",
+              "準中（撃ち合い）"
+            ],
+            [
+              "ヴァンジェリコ",
+              "準中（撃ち合い）"
+            ],
+            [
+              "列車強盗",
+              "準中（撃ち合い）"
+            ],
+            [
+              "パージ強盗",
+              "準中（撃ち合い）"
+            ],
+            [
+              "軍事基地",
+              "準中（撃ち合い）"
+            ],
+            [
+              "客船",
+              "中型"
+            ],
+            [
+              "飛行場襲撃",
+              "中型"
+            ],
+            [
+              "ボブキャット",
+              "中型"
+            ],
+            [
+              "パレト",
+              "中型"
+            ],
+            [
+              "オイルリグ",
+              "中型"
+            ],
+            [
+              "貨物船強盗",
+              "中型"
+            ],
+            [
+              "ヒューマンラボ",
+              "中型"
+            ],
+            [
+              "美術館強盗",
+              "中型"
+            ],
+            [
+              "空母強盗",
+              "中型"
+            ],
+            [
+              "金庫強盗",
+              "中型"
+            ],
+            [
+              "アーティファクト",
+              "大型"
+            ],
+            [
+              "ユニオンヘイスト",
+              "大型"
+            ],
+            [
+              "カジノヘイスト",
+              "大型"
+            ],
+            [
+              "パシフィック",
+              "大型"
+            ],
+            [
+              "マウンテン・ボルト",
+              "大型"
+            ],
+            [
+              "アンダーグラウンド・ヘイスト",
+              "大型"
+            ],
+            [
+              "メイズバンク",
+              "大型"
+            ],
+            [
+              "警察署襲撃",
+              "特殊"
+            ],
+            [
+              "自動販売機強盗",
+              "PDなし犯罪"
+            ],
+            [
+              "ポストロッカー強盗",
+              "PDなし犯罪"
+            ],
+            [
+              "ブースティング（D・C・B）",
+              "PDなし犯罪"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "参加人数は「犯罪カテゴリ・参加人数」で確認してください。この一覧は分類の案内です。現在の受付状況は、ゲーム内の案内を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "crime-current-list",
+        "crime-public-rewards",
+        "pending-crime-conditions"
+      ]
     }
   ]
 }

@@ -13,7 +13,7 @@
       "id": "character-identity",
       "number": 12,
       "title": "1人につき1キャラクター",
-      "category": "character",
+      "category": "intro",
       "tags": [
         "注意"
       ],
@@ -28,18 +28,51 @@
       "summary": "NicoGuraで使用できるキャラクターは、1人のプレイヤーにつき1人までです。",
       "content": [
         {
-          "text": "複数キャラクターやサブキャラクターを使い分けることはできません。別アカウントなどを利用して、実質的に複数キャラクターを使用する行為も禁止します。",
-          "type": "paragraph"
-        },
-        {
-          "text": "キャラクターを作り直したい場合などは、勝手に追加キャラクターを作らず、運営へ相談してください。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "NicoGuraで使用できるキャラクターは、1人のプレイヤーにつき1人までです。複数キャラクターや別アカウントを使い分けて、実質的に複数のキャラクターを使用することはできません。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": true,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 1,
+      "relatedRuleIds": [
+        "character-changes"
+      ]
+    },
+    {
+      "id": "character-changes",
+      "number": 234,
+      "title": "改名・キャラクターの相談と整形",
+      "category": "character",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "改名やキャラクターの作り直しは運営へ、整形はEMSへ相談してください。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "キャラクターの名前を変更したい場合や、作り直したい場合は、公式Discordのチケットから運営へ相談してください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "整形はEMSで行えます。希望する内容や利用方法は、EMSへ相談してください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "character-identity",
+        "administration-report",
+        "ems-care"
+      ]
     }
   ]
 }

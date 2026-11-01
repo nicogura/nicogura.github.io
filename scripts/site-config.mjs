@@ -8,7 +8,7 @@ export const routes = {
   economy: ['economy', '経済・料金', '初期資金、飲食、燃料、治療、修理、消耗品とカスタム。街の暮らしに必要な料金をまとめました。'],
   crime: ['crime', '犯罪RP', '犯罪RPの考え方、規模ごとの基準報酬、犯罪一覧。みんなが楽しめるシーンを大切にしましょう。'],
   law: ['law', '法律・罰金', 'PDが扱うゲーム内の法律、罰金、刑期、インパウンドの基準を検索できます。'],
-  guides: ['guides', '街ガイド', 'PD、EMS、メカニック、店舗、Life Job、ギャング。街を支える仕事や暮らしの入口をご案内します。'],
+  guides: ['guides', 'にこぐらガイド', '参加方法、基本操作、PD、EMS、メカニック、店舗、Life Job。街での使い方や料金をまとめた生活ガイドです。'],
   pd: ['pd', 'PD・警察', '治安維持、犯罪・交通対応、捜査を担うPD。市民向けの案内とゲーム内法律をご確認ください。'],
   ems: ['ems', 'EMS・救急', '治療、蘇生、搬送と救急対応を担うEMS。困ったときの案内と治療料金をまとめています。'],
   mechanic: ['mechanic', 'メカニック', '車の修理、整備、カスタム、塗装。愛車と過ごす毎日を支えるサービスと料金の案内です。'],
@@ -16,7 +16,7 @@ export const routes = {
   lifejobs: ['lifejobs', 'Life Job', '狩猟、探索、採掘、釣り、運転、清掃など、街の仕事をご紹介します。木こり・電気工事は調整中です。'],
   gangs: ['gangs', 'ギャング', '仲間と楽しむギャング活動。結成費用と、街の共通ルールを確認しましょう。'],
   faq: ['faq', 'よくある質問', 'RP初心者、FiveM初心者、キャラクター、参加申請やトラブル相談。初めての方の疑問にお答えします。'],
-  contact: ['contact', 'お問い合わせ', '不具合、通報、アイテム消失、補填や処分への相談は公式Discordのお問い合わせ窓口へ。'],
+  contact: ['contact', 'お問い合わせ', '不具合やご意見は街のタブレットから。緊急連絡・申請・補填などは公式Discordのチケットへご相談ください。'],
   changelog: ['changelog', '更新履歴', 'NicoGura公式ガイドの変更点と更新履歴をご案内します。']
 };
 export const publicRoots = ['index.html', '404.html', ...Object.values(routes).map(r => r[0]).filter(Boolean), 'editor', 'assets', 'data', 'robots.txt', 'sitemap.xml', '.nojekyll'];

@@ -23,8 +23,8 @@
     },
     {
       "id": "prohibited",
-      "label": "禁止事項",
-      "shortLabel": "禁止事項",
+      "label": "禁止行為",
+      "shortLabel": "禁止行為",
       "description": "不正や悪質な嫌がらせから、みんなの遊びを守ります。",
       "group": "はじめに"
     },
@@ -44,14 +44,14 @@
     },
     {
       "id": "streaming",
-      "label": "配信 / SNS",
+      "label": "衛星（配信）時の注意",
       "shortLabel": "配信",
       "description": "街の外へ発信するときも、相手本人と個人情報を大切に。",
       "group": "サポート"
     },
     {
       "id": "administration",
-      "label": "運営対応・お問い合わせ",
+      "label": "運営",
       "shortLabel": "運営",
       "description": "困ったときの相談方法と、状況に応じた運営対応。",
       "group": "サポート"
@@ -91,7 +91,8 @@
       "updatedAt": "2026-10-10",
       "new": false,
       "featured": true,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "intro-reading",
@@ -124,20 +125,21 @@
           "type": "paragraph"
         },
         {
-          "text": "犯罪RPは街のゲームコンテンツです。ゲーム内の法律違反にはPDが対応し、罰金・刑務・押収・インパウンドなどが発生します。サーバールール違反は運営が対応します。",
+          "text": "犯罪RPは街のゲームコンテンツです。ゲーム内の法律違反にはPDが対応し、罰金・保護観察・押収・インパウンドなどが発生します。サーバールール違反は運営が対応します。",
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": true,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "basic-respect",
       "number": 3,
       "title": "相手の楽しみも大切に",
-      "category": "basic",
+      "category": "intro",
       "tags": [
         "お願い"
       ],
@@ -159,16 +161,18 @@
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 1
     },
     {
       "id": "rp-back-and-forth",
       "number": 4,
       "title": "相手と一緒にRPを楽しもう",
-      "category": "rp",
+      "category": "intro",
       "tags": [
         "お願い"
       ],
@@ -189,16 +193,18 @@
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 1
     },
     {
       "id": "rp-metagaming",
       "number": 5,
       "title": "ゲーム外の情報をRPに持ち込まない",
-      "category": "rp",
+      "category": "prohibited",
       "tags": [
         "禁止"
       ],
@@ -220,16 +226,18 @@
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": true,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "rp-rdm",
       "number": 6,
       "title": "理由のない攻撃をしない（RDM）",
-      "category": "rp",
+      "category": "prohibited",
       "tags": [
         "禁止"
       ],
@@ -251,10 +259,12 @@
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": true,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "prohibited-cheating",
@@ -274,21 +284,23 @@
         "自動化"
       ],
       "severity": "serious",
-      "summary": "チート、不正ツール、不正改造やサーバー攻撃は禁止です。",
+      "summary": "チート・不正ツール・マクロで有利になる行為や、サーバー・他のプレイヤーを妨げる行為は禁止です。",
       "content": [
         {
-          "text": "Mod Menu、Aimbot、ESP、Wallhackなどのチート・不正ツールや、不正な照準・透視・改変で有利になる行為は禁止です。サーバーを攻撃して他の市民のプレイを妨げる行為も禁止します。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "チート、不正ツール、マクロなどを利用して、自分が有利になる行為は禁止です。Mod Menu、Aimbot、ESP、Wallhackなどの不正な照準・透視・改変も含みます。"
         },
         {
-          "text": "放置、BOT、自動化によって稼ぐ行為も禁止です。利用する機能やツールの扱いに迷う場合は、使う前にDiscordの「お問い合わせ窓口」から確認してください。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "これらを使ったサーバーへの攻撃や、他のプレイヤーのプレイを妨げる行為は禁止です。放置、BOT、自動化によって稼ぐ行為も行わないでください。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "prohibited-exploit",
@@ -308,33 +320,38 @@
         "資金増殖"
       ],
       "severity": "serious",
-      "summary": "グリッチやバグを悪用し、資金・アイテム・報酬を不正に得る行為は禁止です。",
+      "summary": "複製バグや、通常のプレイでは到達・発揮できない挙動を悪用することは禁止です。",
       "content": [
         {
+          "type": "paragraph",
+          "text": "資金・アイテム・報酬を複製したり、不正に取得したりする行為は禁止です。通常のプレイでは到達・発揮できない行為や挙動も悪用しないでください。"
+        },
+        {
+          "type": "list",
           "items": [
-            "Money DuplicationやItem Duplicationによる資金・アイテムの複製や増殖。",
-            "不正アイテム生成、不正な報酬取得、通常想定されていない手段での不正取得。",
-            "バグを反復利用して利益を得たり、不正に有利な状態を作ったりする行為。"
-          ],
-          "type": "list"
+            "グリッチロール、スピードブースト、無線撃ち。",
+            "ヘリのドアを開けた状態での走行など、通常想定されていない挙動の利用。"
+          ]
         },
         {
-          "text": "不具合を見つけたら悪用せず、利用を止めてDiscordの「お問い合わせ窓口」へ報告してください。",
-          "type": "paragraph"
-        },
-        {
-          "text": "偶然の不具合や操作ミスそのものは、故意の悪用とは区別します。気づいた時点で追加利用を止め、状況や発生時刻を伝えてください。",
-          "type": "note"
+          "type": "paragraph",
+          "text": "不具合に気づいたら追加利用を止め、発生時刻や状況をチケットで報告してください。複製や重大な脆弱性の再現方法は公開・拡散しないでください。"
         },
         {
           "type": "note",
-          "text": "重大な脆弱性やDuplication（資金・アイテムの複製）の方法は公開・拡散せず、運営へ直接報告してください。連絡先は公式Discordの「お問い合わせ窓口」です。"
+          "text": "偶然の不具合や操作ミスと、故意の悪用は区別します。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2,
+      "relatedRuleIds": [
+        "movement-glitches",
+        "administration-report"
+      ]
     },
     {
       "id": "prohibited-rmt",
@@ -358,10 +375,12 @@
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "prohibited-harassment",
@@ -381,29 +400,31 @@
         "セクハラ"
       ],
       "severity": "serious",
-      "summary": "差別、執拗な暴言、粘着、ハラスメント、個人情報晒しは禁止です。",
+      "summary": "誹謗中傷、差別、暴言、粘着、性的な嫌がらせ、個人情報晒しや恐喝は禁止です。",
       "content": [
         {
+          "type": "list",
           "items": [
-            "現実の人格への誹謗中傷、差別、執拗な暴言。",
-            "粘着、つきまとい、嫌がらせ、性的な嫌がらせなどのハラスメント。",
-            "個人情報晒しや、現実のトラブルへ発展させる行為。"
-          ],
-          "type": "list"
+            "現実の人格への誹謗中傷、差別、暴言。",
+            "粘着、つきまとい、性的な嫌がらせなどのハラスメント。",
+            "個人情報晒しや恐喝など、現実のトラブルへ発展させる行為。"
+          ]
         },
         {
-          "text": "ゲーム内、配信、SNSでも相手本人を尊重してください。嫌なことがあったときは、仕返しや長時間の口論を続けず、距離を取って運営へ相談しましょう。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "嫌なことがあっても、仕返しや長時間の口論を続けず、距離を取って運営へ相談してください。ゲーム内、配信、SNSでも、相手本人を尊重しましょう。"
         },
         {
-          "text": "RPとして成立するキャラクター同士の対立と、プレイヤー本人への攻撃は区別します。",
-          "type": "note"
+          "type": "note",
+          "text": "RPとして成立するキャラクター同士の対立と、プレイヤー本人への攻撃は区別します。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "prohibited-impersonation",
@@ -419,23 +440,25 @@
         "運営"
       ],
       "severity": "prohibited",
-      "summary": "運営の指示を装ったり、他のプレイヤー本人のふりをして誤認させたりする行為は禁止です。",
+      "summary": "運営、PD・EMSなどの公務員、他のプレイヤーへのなりすましは禁止です。",
       "content": [
         {
-          "text": "運営権限があると偽って従わせる、他のプレイヤーの本人確認を装うなどの行為をしないでください。キャラクターの変装を楽しむ場合も、実在の運営やプレイヤー本人との誤認を狙わないでください。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "運営、PD・EMSなどの公務員、他のプレイヤーへのなりすましは禁止です。権限があると偽って従わせたり、本人の指示や本人確認を装ったりしないでください。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "communication-external-vc",
       "number": 13,
       "title": "外部VCで有利な情報を共有しない",
-      "category": "communication",
+      "category": "prohibited",
       "tags": [
         "禁止"
       ],
@@ -458,10 +481,12 @@
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "communication-voice",
@@ -469,7 +494,7 @@
       "title": "聞き取りやすい会話に協力しよう",
       "category": "communication",
       "tags": [
-        "お願い"
+        "ガイド"
       ],
       "keywords": [
         "音量",
@@ -477,7 +502,7 @@
         "会話",
         "声色"
       ],
-      "severity": "notice",
+      "severity": "guide",
       "summary": "音量や周囲の会話に気を配り、お互いに声を届けやすくしましょう。",
       "content": [
         {
@@ -488,13 +513,14 @@
       "updatedAt": "2026-10-10",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "vehicles-vdm",
       "number": 15,
       "title": "車を使って故意に襲わない（VDM）",
-      "category": "vehicles",
+      "category": "prohibited",
       "tags": [
         "禁止"
       ],
@@ -516,10 +542,12 @@
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": true,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "vehicles-courtesy",
@@ -527,7 +555,7 @@
       "title": "周りの人と車に気を配ろう",
       "category": "vehicles",
       "tags": [
-        "お願い"
+        "ガイド"
       ],
       "keywords": [
         "駐車",
@@ -535,7 +563,7 @@
         "事故",
         "店舗"
       ],
-      "severity": "notice",
+      "severity": "guide",
       "summary": "人や仕事の動線をふさがず、事故が起きたら状況を伝え合いましょう。",
       "content": [
         {
@@ -546,7 +574,8 @@
       "updatedAt": "2026-10-10",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "streaming-respect",
@@ -563,26 +592,36 @@
         "ゴースティング"
       ],
       "severity": "notice",
-      "summary": "発信を楽しみながら、個人情報や相手への嫌がらせに気を配りましょう。",
+      "summary": "配信では個人情報に注意し、自衛のため衛星マークを表示してください。犯罪中はマークを消しても構いません。",
       "content": [
         {
-          "text": "配信者や視聴者も、一緒に街を楽しむ人です。ゲーム内の対立を、現実の人格への攻撃やSNSでの粘着につなげないでください。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "配信する際は、他の参加者の個人情報や私的な画面が映らないよう注意してください。"
         },
         {
-          "text": "現実の個人情報や私的な画面が写り込まないよう気を配ってください。配信で得た位置や作戦をゲーム内へ持ち込む行為は、配信ゴースティングとして禁止します。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "自衛のため、名前に「🛰」マークを表示してください。犯罪中は、マークを消しても構いません。"
+        },
+        {
+          "type": "paragraph",
+          "text": "ゲーム内の対立を、現実の人格への攻撃やSNSでの粘着につなげないでください。配信から得た位置や作戦をゲーム内で利用することも禁止です。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 9,
+      "relatedRuleIds": [
+        "streamer-mode-guide",
+        "rp-metagaming"
+      ]
     },
     {
       "id": "administration-response",
       "number": 32,
-      "title": "【運営や市民の妨げになると判断された場合】",
+      "title": "ルール違反と運営の対応",
       "category": "administration",
       "tags": [
         "注意"
@@ -596,26 +635,36 @@
         "永久BAN"
       ],
       "severity": "important",
-      "summary": "個別に書かれていない行為でも、運営や市民の活動を妨げる場合は運営が対応することがあります。",
+      "summary": "ルール違反や、プレイ・RP・運営の妨げになる行為には、警告・キック・期限BAN・永久BANなどの対応を行う場合があります。",
       "content": [
         {
-          "text": "本ルールに個別の記載がない行為であっても、運営や市民の活動・RP・サーバー運営の妨げになると運営が判断した場合、警告・キック・一時BAN・永久BAN等の対応を行う場合があります。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "ルール違反や、他のプレイヤーのプレイ・RP活動・サーバー運営の妨げになると判断した場合は、警告、キック、期限BAN、永久BANなどの対応を行う場合があります。"
         },
         {
-          "text": "ルールに書いていないことを利用した悪質な抜け穴行為についても同様です。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "個別に書かれていない行為でも、悪質な抜け穴利用や活動の妨害には運営が対応する場合があります。"
+        },
+        {
+          "type": "paragraph",
+          "text": "これらの対応は、本人へ事前に通知せず行う場合があります。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": true,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 11,
+      "relatedRuleIds": [
+        "administration-sanctions",
+        "administration-report"
+      ]
     },
     {
       "id": "administration-report",
       "number": 33,
-      "title": "困ったときはお問い合わせへ",
+      "title": "要望・不具合・問い合わせの送り方",
       "category": "administration",
       "tags": [
         "ガイド"
@@ -631,29 +680,50 @@
         "異議"
       ],
       "severity": "guide",
-      "summary": "報復や長時間の口論は避け、Discordの「お問い合わせ窓口」から運営へ連絡してください。",
+      "summary": "街のタブレットで要望・不具合を報告できます。早急な対応、申請、クリップの提出はチケットへお願いします。",
       "content": [
         {
-          "text": "荒らしや違反を見つけても、ゲーム内で仕返しをしたり、長時間口論を続けたりせず、公式Discordの「お問い合わせ窓口」へ相談してください。公式Discord：https://discord.gg/Fzhhp34JJy",
-          "type": "paragraph"
+          "type": "heading",
+          "text": "ゲーム内の要望・不具合"
         },
         {
+          "type": "paragraph",
+          "text": "タブレットの「不具合・ご意見」から提出できます。Discordの「不具合」では、利用者同士で解決方法を確認できる場合もあります。"
+        },
+        {
+          "type": "heading",
+          "text": "チケットで運営へ相談する場合"
+        },
+        {
+          "type": "paragraph",
+          "text": "早急な対応が必要な場合、申請、クリップの提出は、公式Discordのチケットからお願いします。荒らしや違反に対しては報復や長時間の口論を続けず、運営へ相談してください。"
+        },
+        {
+          "type": "list",
           "items": [
-            "いつ・どこで何が起きたか。",
-            "誰が関わり、どのような状況だったか。分かる場合は、相手の名前 / 入国ID。",
+            "いつ、どこで、何が起きたか。",
+            "関わった人と状況。分かる場合は名前や入国ID。",
             "動画やスクリーンショットがある場合は、確認してほしい箇所。"
-          ],
-          "type": "list"
+          ]
         },
         {
-          "text": "常時録画は必須ではありません。プレイヤー通報、アイテム消失、重大不具合、補填申請、処分への異議は、録画等があると確認しやすくなります。証拠がない場合も、分かる範囲で状況を伝えてください。",
-          "type": "note"
+          "type": "note",
+          "text": "対応には時間がかかる場合があります。同じ内容を重複して報告せず、窓口での案内をお待ちください。"
+        },
+        {
+          "type": "note",
+          "text": "一般の相談では、常時録画は必須ではありません。分かる範囲で状況を伝えてください。犯罪の不具合に伴う補填には、ボディカメラの提出が必要です。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": true,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "administration-contact-boundaries",
+        "crime-bug-options"
+      ]
     },
     {
       "id": "rp-light",
@@ -690,13 +760,14 @@
       "updatedAt": "2026-10-10",
       "new": true,
       "featured": true,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "rp-powergaming",
       "number": 104,
-      "title": "結果を一方的に押し付けない",
-      "category": "rp",
+      "title": "パワーゲーミングをしない",
+      "category": "prohibited",
       "tags": [
         "禁止"
       ],
@@ -708,27 +779,33 @@
         "押し付け"
       ],
       "severity": "prohibited",
-      "summary": "相手に選択や反応の余地を与えず、結果を一方的に決めるパワーゲーミングは禁止です。",
+      "summary": "通常のプレイでは到達できない行為や、シーン中にロード・テレポートを挟む場所へ侵入する行為は禁止です。",
       "content": [
         {
-          "text": "相手の反応を無視して「こうなったことにする」と結果を押し付けないでください。会話や行動のやり取りを通じて、相手も参加できる場面をつくりましょう。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "通常のプレイでは到達不可能な行為や、シーン中にロード・テレポートを挟む場所へ侵入する行為は禁止です。"
         },
         {
-          "text": "NicoGuraはライトRPです。細かな演技方法や言い回しまで強制するものではありません。",
-          "type": "note"
+          "type": "paragraph",
+          "text": "相手とのやり取りでは、結果を一方的に押し付けず、相手が反応できる余地を残してください。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2,
+      "relatedRuleIds": [
+        "rp-no-pressure",
+        "basic-respect"
+      ]
     },
     {
       "id": "rp-no-pressure",
       "number": 105,
       "title": "自分のRP観を押し付けない",
-      "category": "rp",
+      "category": "prohibited",
       "tags": [
         "お願い"
       ],
@@ -750,18 +827,20 @@
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "rp-stream-ghosting",
       "number": 106,
-      "title": "配信の情報をゲーム内で利用しない",
+      "title": "配信情報をゲーム内で使わないために",
       "category": "rp",
       "tags": [
-        "禁止"
+        "ガイド"
       ],
       "keywords": [
         "配信ゴースティング",
@@ -771,7 +850,7 @@
         "逃走先",
         "隠し場所"
       ],
-      "severity": "prohibited",
+      "severity": "guide",
       "summary": "配信を見て得た位置・人数・逃走先・作戦・隠し場所を、ゲーム内で使うゴースティングは禁止です。",
       "content": [
         {
@@ -779,10 +858,14 @@
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "rp-metagaming"
+      ]
     },
     {
       "id": "prohibited-ban-evasion",
@@ -806,10 +889,12 @@
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "prohibited-evidence-fabrication",
@@ -831,12 +916,18 @@
         {
           "text": "事実確認のため、起きたことを分かる範囲で正確に伝えてください。証拠がないことや記憶が曖昧なことは、そのまま説明して大丈夫です。",
           "type": "paragraph"
+        },
+        {
+          "type": "paragraph",
+          "text": "状況を確認できるよう、ボディカメラで記録を残すことを推奨します。録画の有無や記憶が曖昧な点は、そのまま説明してください。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "administration-sanctions",
@@ -844,7 +935,7 @@
       "title": "対応は状況・悪質性に応じて判断します",
       "category": "administration",
       "tags": [
-        "注意"
+        "ガイド"
       ],
       "keywords": [
         "処分",
@@ -855,7 +946,7 @@
         "悪質性",
         "異議"
       ],
-      "severity": "important",
+      "severity": "guide",
       "summary": "注意、警告、キック、一時BAN、永久BANなど、状況に応じて運営が対応します。",
       "content": [
         {
@@ -867,20 +958,25 @@
           "type": "paragraph"
         },
         {
-          "text": "ゲーム内の犯罪に対するPDの罰金や刑務と、サーバールール違反に対する運営対応は別です。処分に関する相談や異議はDiscordの「お問い合わせ窓口」へ連絡してください。",
+          "text": "ゲーム内の犯罪に対するPDの罰金や保護観察と、サーバールール違反に対する運営対応は別です。処分に関する相談や異議はDiscordの「お問い合わせ窓口」へ連絡してください。",
           "type": "note"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "administration-response",
+        "administration-report"
+      ]
     },
     {
       "id": "vehicles-emergency-use",
       "number": 232,
       "title": "PD・EMS専用車両を無断で使用・窃盗しない",
-      "category": "vehicles",
+      "category": "prohibited",
       "tags": [
         "禁止"
       ],
@@ -908,16 +1004,18 @@
           "text": "PD・EMSの緊急車両や公務用車両を、単なる移動手段として無断利用することも禁止です。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     },
     {
       "id": "vehicles-job-crime",
       "number": 233,
       "title": "JOB専用車両を犯罪に利用しない",
-      "category": "vehicles",
+      "category": "prohibited",
       "tags": [
         "禁止"
       ],
@@ -947,10 +1045,160 @@
           "text": "対象は、JOBの業務用として用意された専用車両です。通常の市販車や個人所有車まで、このルールで一律に禁止するものではありません。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
+    },
+    {
+      "id": "vehicles-crime-banned",
+      "number": 236,
+      "title": "犯罪禁止車両を犯罪に利用しない",
+      "category": "prohibited",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "乗車時に「犯罪禁止車両」と表示される車両は、犯罪に利用できません。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "車両に乗ったときに「犯罪禁止車両」と表示される車両を、犯罪に利用することは禁止です。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
+    },
+    {
+      "id": "crime-cruise-control",
+      "number": 237,
+      "title": "犯罪シーン中のクルーズコントロール禁止",
+      "category": "prohibited",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "犯罪シーン中は、クルーズコントロールを使用できません。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "犯罪シーン中にクルーズコントロールを使用することは禁止です。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
+    },
+    {
+      "id": "streamer-mode-guide",
+      "number": 254,
+      "title": "配信者モードの付け方",
+      "category": "streaming",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "/name の「配信者モード」で、名前に衛星マークを付けられます。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "/name を開き、「配信者モード」から名前に「🛰」マークを付けてください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "配信時の表示と、犯罪中の取り扱いは「配信・SNSでも相手を大切に」を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "streaming-respect"
+      ]
+    },
+    {
+      "id": "administration-contact-boundaries",
+      "number": 256,
+      "title": "運営への連絡方法を守る",
+      "category": "administration",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "街中での不要なメッセージ・電話や、Discordでの運営関係者へのDMは控えてください。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "街中で運営に対する必要のないメッセージや電話を送ることは避けてください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "Discordでは、運営・サポーター・デバッガーなどへのDMを行わず、案内された窓口を使ってください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "ゲーム内の報告機能やチケットで報告した内容を、重複して報告しないでください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 11,
+      "relatedRuleIds": [
+        "administration-report"
+      ]
+    },
+    {
+      "id": "guide-menu-controls",
+      "number": 258,
+      "title": "インベントリとタブレットの開き方",
+      "category": "intro",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "F2でインベントリ、F5でタブレットを開けます。タブレットから街のガイドを確認できます。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "F2でインベントリを開けます。持ち物を確認するときに使ってください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "F5でタブレットを開けます。街のルールやガイドを確認したいときは、タブレットの案内を利用してください。"
+        },
+        {
+          "type": "note",
+          "text": "キー割り当てを変更している場合は、自分の設定を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "intro-reading",
+        "join-flow"
+      ]
     }
   ]
 }

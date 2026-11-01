@@ -154,7 +154,8 @@
       "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     }
   ]
 }

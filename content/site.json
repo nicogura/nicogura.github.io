@@ -19,8 +19,8 @@
   "site": {
     "name": "NicoGura",
     "tagline": "あなたらしい物語が、この街から。",
-    "version": "2.2.2",
-    "updatedAt": "2026-10-13",
+    "version": "3.0.0",
+    "updatedAt": "2026-11-02",
     "notice": "難しく考えなくて大丈夫。最低限のライトRPとマナーを大切に、街での生活を楽しみましょう。",
     "links": {
       "discord": "https://discord.gg/Fzhhp34JJy",
@@ -41,9 +41,82 @@
       "character-identity",
       "administration-response",
       "administration-report"
+    ],
+    "ruleChapters": [
+      {
+        "number": 1,
+        "category": "intro",
+        "label": "はじめに"
+      },
+      {
+        "number": 2,
+        "category": "prohibited",
+        "label": "禁止行為"
+      },
+      {
+        "number": 3,
+        "category": "crime",
+        "label": "犯罪ルール"
+      },
+      {
+        "number": 4,
+        "category": "pd",
+        "label": "PD"
+      },
+      {
+        "number": 5,
+        "category": "ems",
+        "label": "EMS"
+      },
+      {
+        "number": 6,
+        "category": "mechanic",
+        "label": "メカニック"
+      },
+      {
+        "number": 7,
+        "category": "business",
+        "label": "飲食店・ジョイント"
+      },
+      {
+        "number": 8,
+        "category": "gang",
+        "label": "ギャング"
+      },
+      {
+        "number": 9,
+        "category": "streaming",
+        "label": "衛星（配信）時の注意"
+      },
+      {
+        "number": 10,
+        "category": "penalties",
+        "label": "法律と罰金"
+      },
+      {
+        "number": 11,
+        "category": "administration",
+        "label": "運営"
+      },
+      {
+        "number": 12,
+        "category": "join",
+        "label": "入国手続き"
+      }
     ]
   },
   "changelog": [
+    {
+      "date": "2026-11-02",
+      "type": "UPDATED",
+      "title": "会議で決定したルールとガイドを更新しました",
+      "items": [
+        "ルールを12章の構成に合わせ、料金・操作・生活の案内をにこぐらガイドへ整理しました。",
+        "犯罪シーン、人数・ヘリ台数、車両、MOD、職業、配信、問い合わせの規定を更新しました。",
+        "医療・メカニックの料金、ゲーム内罰金と保護観察時間を更新しました。",
+        "β以降の変更予定は、現在のルールと分けて案内しています。"
+      ]
+    },
     {
       "date": "2026-10-13",
       "type": "UPDATED",
@@ -68,7 +141,7 @@
       "title": "サーバー情報・MOD規定・EMS用品の案内を更新しました",
       "items": [
         "毎日の再起動時刻と、水曜03:00〜木曜19:00の基本定休日を掲載しました。",
-        "スピードブースト・グリッチロールの禁止と、Citizen・Client MODの使用条件をまとめました。",
+        "スピードブースト・グリッチロールの禁止と、当時のCitizen・Client MODの使用条件をまとめました。現在は最新の規定を確認してください。",
         "初期資金を現金・銀行それぞれ10,000,000円へ更新しました。",
         "医療用品をEMS専売品として案内し、応急処置と完治の違いを明記しました。廃止済みの医療サービスと旧商品を料金表から削除しました。",
         "ギャングカラーの登録方法・識別の注意と、FAQを更新しました。",
@@ -132,46 +205,68 @@
     },
     "rules": {
       "ruleIds": [
-        "intro-welcome",
-        "rp-light",
         "basic-respect",
+        "rp-back-and-forth",
         "character-identity",
+        "rp-metagaming",
         "rp-rdm",
+        "prohibited-cheating",
+        "prohibited-exploit",
+        "prohibited-rmt",
+        "prohibited-harassment",
+        "prohibited-impersonation",
+        "communication-external-vc",
         "vehicles-vdm",
+        "crime-combat-log",
+        "crime-third-party",
+        "crime-rejoin-combat",
+        "rp-powergaming",
+        "rp-no-pressure",
+        "crime-down-information",
+        "prohibited-ban-evasion",
+        "prohibited-evidence-fabrication",
+        "client-mod-policy",
         "vehicles-emergency-use",
         "vehicles-job-crime",
-        "rp-metagaming",
-        "rp-stream-ghosting",
-        "communication-external-vc",
-        "rp-powergaming",
+        "vehicles-crime-banned",
+        "crime-cruise-control",
+        "heist-duplicate",
+        "crime-current-list",
+        "crime-chase-demands",
+        "crime-chase-attack-window",
+        "crime-common-response",
+        "crime-bug-response",
+        "crime-bug-options",
+        "crime-bug-recurrence",
         "crime-restart-window",
-        "crime-combat-log",
-        "crime-down-information",
-        "crime-rejoin-combat",
-        "rp-no-pressure",
-        "movement-glitches",
-        "client-mod-policy",
+        "crime-scene-conduct",
+        "crime-helicopter-limits",
+        "crime-scene-colors",
+        "crime-scene-end",
+        "crime-probation",
+        "pd-internal-rules",
+        "ems-emergency-use",
+        "mechanic-crime-limits",
+        "job-authority-misuse",
+        "job-employment-limits",
+        "affiliation-colors",
+        "streaming-respect",
+        "weapons-crime-use",
         "administration-response",
-        "administration-sanctions",
-        "administration-report"
-      ],
-      "categories": [
-        "basic",
-        "rp",
-        "prohibited",
-        "communication",
-        "vehicles",
-        "streaming"
+        "administration-contact-boundaries",
+        "join-whitelist"
       ]
     },
     "join": {
-      "categories": [
-        "join"
+      "ruleIds": [
+        "join-flow",
+        "join-whitelist"
       ]
     },
     "character": {
-      "categories": [
-        "character"
+      "ruleIds": [
+        "character-identity",
+        "character-changes"
       ]
     },
     "economy": {
@@ -189,51 +284,118 @@
     },
     "crime": {
       "ruleIds": [
-        "crime-public-rewards",
+        "crime-scene-conduct",
         "crime-current-list",
-        "pending-crime-conditions",
-        "crime-restart-window",
-        "vehicles-job-crime",
-        "vehicles-emergency-use",
+        "crime-helicopter-limits",
+        "crime-scene-colors",
+        "crime-scene-end",
         "crime-chase-demands",
         "crime-chase-attack-window",
         "crime-common-response",
         "crime-bug-response",
         "crime-bug-options",
         "crime-bug-recurrence",
+        "crime-restart-window",
         "crime-combat-log",
         "crime-down-information",
         "crime-rejoin-combat",
         "crime-third-party",
         "crime-probation",
-        "heist-duplicate"
+        "heist-duplicate",
+        "vehicles-crime-banned",
+        "vehicles-job-crime",
+        "vehicles-emergency-use",
+        "crime-cruise-control",
+        "pending-crime-conditions",
+        "crime-types-guide",
+        "crime-public-rewards"
       ]
     },
     "law": {
-      "categories": [
-        "penalties"
-      ],
       "ruleIds": [
-        "weapons-crime-use"
+        "penalties-basic-fines",
+        "penalties-heist-fines",
+        "penalties-impound",
+        "law-police-station-attack",
+        "weapons-crime-use",
+        "pending-penalty-times",
+        "pd-community-service"
       ]
     },
     "guides": {
       "ruleIds": [
-        "pd-authority",
+        "character-changes",
+        "pending-crime-conditions",
+        "crime-public-rewards",
+        "crime-types-guide",
+        "economy-starting-funds",
+        "economy-food-prices",
+        "economy-fuel-prices",
+        "economy-consumable-prices",
+        "ems-request",
         "ems-care",
-        "mechanic-billing",
-        "business-honest",
+        "ems-fees",
+        "ems-bandage",
+        "ems-painkiller",
+        "ems-ifak",
+        "ems-injuries",
+        "ems-emergency-commands",
+        "ems-beginner-ticket-planned",
+        "faq-find-share",
+        "faq-rp-beginner",
+        "faq-fivem-beginner",
+        "faq-character-count",
+        "faq-whitelist-interview",
+        "faq-rule-memory",
+        "faq-crime-ban",
+        "faq-bug-report",
+        "faq-missing-items",
+        "faq-rule-loopholes",
+        "faq-client-mods",
+        "faq-low-spec",
+        "faq-movement-glitches",
+        "faq-bandage-treatment",
+        "faq-wednesday-maintenance",
+        "gang-establishment",
+        "gang-color-registration",
+        "intro-welcome",
+        "intro-reading",
+        "communication-voice",
+        "vehicles-courtesy",
+        "administration-report",
+        "rp-light",
+        "rp-stream-ghosting",
+        "administration-sanctions",
+        "streamer-mode-guide",
+        "guide-menu-controls",
+        "join-flow",
+        "pending-weapons-license",
+        "pending-penalty-times",
         "lifejobs-overview",
-        "gang-establishment"
+        "mechanic-billing",
+        "mechanic-fees",
+        "pending-mechanic-fees",
+        "movement-glitches",
+        "client-mod-consultation",
+        "pd-authority",
+        "pd-fines",
+        "pd-community-service",
+        "server-restarts",
+        "server-maintenance",
+        "server-future-maintenance",
+        "business-honest",
+        "pending-job-conditions",
+        "shop-establishment"
       ]
     },
     "pd": {
-      "categories": [
-        "pd"
-      ],
       "ruleIds": [
         "pd-authority",
+        "pd-internal-rules",
         "pd-fines",
+        "pd-community-service",
+        "crime-probation",
+        "penalties-impound",
         "crime-chase-demands",
         "crime-chase-attack-window",
         "crime-common-response",
@@ -241,13 +403,11 @@
         "crime-bug-options",
         "crime-bug-recurrence",
         "vehicles-emergency-use",
-        "vehicles-job-crime"
+        "vehicles-job-crime",
+        "job-authority-misuse"
       ]
     },
     "ems": {
-      "categories": [
-        "ems"
-      ],
       "ruleIds": [
         "ems-request",
         "ems-care",
@@ -255,24 +415,35 @@
         "ems-bandage",
         "ems-painkiller",
         "ems-ifak",
+        "ems-injuries",
+        "ems-emergency-use",
+        "ems-emergency-commands",
+        "ems-beginner-ticket-planned",
+        "character-changes",
+        "crime-rejoin-combat",
+        "job-authority-misuse",
         "vehicles-emergency-use",
         "vehicles-job-crime"
       ]
     },
     "mechanic": {
-      "categories": [
-        "mechanic"
-      ],
       "ruleIds": [
         "mechanic-billing",
         "mechanic-fees",
         "pending-mechanic-fees",
-        "economy-consumable-prices"
+        "economy-consumable-prices",
+        "mechanic-crime-limits",
+        "job-authority-misuse"
       ]
     },
     "shops": {
-      "categories": [
-        "business"
+      "ruleIds": [
+        "business-honest",
+        "shop-establishment",
+        "pending-job-conditions",
+        "job-employment-limits",
+        "job-authority-misuse",
+        "economy-food-prices"
       ]
     },
     "lifejobs": {
@@ -281,8 +452,12 @@
       ]
     },
     "gangs": {
-      "categories": [
-        "gang"
+      "ruleIds": [
+        "gang-establishment",
+        "gang-color-registration",
+        "affiliation-colors",
+        "crime-scene-colors",
+        "crime-current-list"
       ]
     },
     "faq": {
@@ -293,23 +468,25 @@
     "contact": {
       "ruleIds": [
         "administration-report",
+        "administration-contact-boundaries",
         "administration-response",
         "administration-sanctions"
       ]
     },
     "server": {
-      "categories": [
-        "server"
-      ],
       "ruleIds": [
         "server-restarts",
         "server-maintenance",
+        "server-future-maintenance",
         "crime-restart-window"
       ]
     },
     "mods": {
-      "categories": [
-        "mods"
+      "ruleIds": [
+        "client-mod-policy",
+        "client-mod-consultation",
+        "prohibited-exploit",
+        "movement-glitches"
       ]
     }
   }

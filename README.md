@@ -5,7 +5,7 @@ FiveMライトRPサーバー「NicoGura / にこぐら」の公式ガイドで�
 - 公開サイト: https://nicogura.github.io/
 - 公式ルール（既存URL）: https://nicogura.github.io/rules/
 - Web専用Repository: https://github.com/nicogura/nicogura.github.io
-- v2.2.1 / 最終更新 2026-10-12
+- v3.0.0 / 最終更新 2026-11-02
 
 ## 確認・ビルド
 
@@ -40,7 +40,7 @@ npm start
 
 `data/rules.json`、各ページのHTML、`sitemap.xml` は生成物です。正本を変更したら `npm run build` を実行し、生成物も一緒にCommitしてください。ページのタイトル・説明は `scripts/site-config.mjs`、UIは `assets/app.js` と `assets/style.css` で管理します。
 
-本文は `paragraph`, `heading`, `list`, `note`, `table` のブロックです。表の各セルは文字列、列数は見出しに合わせます。本文にHTMLは使用しません。スマホでは表をラベル付きカードに切り替えます。
+本文は `paragraph`, `heading`, `list`, `note`, `table`, `image` のブロックです。表の各セルは文字列、列数は見出しに合わせます。本文にHTMLは使用しません。スマホでは表をラベル付きカードに切り替えます。画像は `src` に `assets/` 内のラスタ画像、`alt` に説明、任意の `caption` に図の説明を指定します。
 
 - `id` は既存の個別URL・保存機能に使います。公開後は維持してください。
 - `number` は重複しない正の整数です。
@@ -48,6 +48,9 @@ npm start
 - `updatedAt` は実在する日付を `YYYY-MM-DD` で記入します。
 - `severity` は `guide / notice / important / prohibited / serious` です。重大度だけで処分は決まりません。
 - `tags` と `keywords` も全文検索に使用します。
+- `contentKind` は `rule`（規定）、`guide`（使い方・料金）、`law`（ゲーム内法律）です。公式ルールには規定のみ、ガイド一覧には全ガイドを掲載します。
+- `relatedRuleIds` は関連する項目のIDです。同じ料金表を複製せず、各ページから同じ記事を参照してください。
+- `settings.ruleChapters` はルールの章順です。スマホではカテゴリーを選択欄にまとめ、本文までの距離を短くしています。
 - 各ページは `content/site.json` の `ruleIds` の順、続いて指定カテゴリーの項目を掲載します。
 
 サーバー情報の時計カードは `server.json` の再起動表・定休日表から表示します。時刻の変更はJSON内の表と必要な説明文を編集してください。ギャングカラーは `gangs.json` の217番の表で、色名・HEX・登録状況・ギャング名を管理します。未確認のHEXや空き状況は推測せず、運営の確定情報だけを入力します。

@@ -2,7 +2,7 @@
   "categories": [
     {
       "id": "pd",
-      "label": "PD・警察",
+      "label": "PD",
       "shortLabel": "PD",
       "description": "治安維持、犯罪対応、交通対応、捜査を担当する公務員。",
       "group": "暮らし・仕事"
@@ -15,7 +15,7 @@
       "title": "PDは街の安全と犯罪対応を担当します",
       "category": "pd",
       "tags": [
-        "注意"
+        "ガイド"
       ],
       "keywords": [
         "警察",
@@ -24,8 +24,8 @@
         "交通",
         "捜査"
       ],
-      "severity": "important",
-      "summary": "治安維持、犯罪対応、交通対応、捜査などを担当する公務員です。",
+      "severity": "guide",
+      "summary": "PDは街の治安維持と犯罪対応を担当します。",
       "content": [
         {
           "type": "paragraph",
@@ -33,13 +33,19 @@
         },
         {
           "type": "paragraph",
-          "text": "職務の権限、支給品、専用機能を不正な利益のために悪用する行為は禁止です。市民への説明を大切にし、プレイヤー本人への攻撃や嫌がらせにならないようにしましょう。"
+          "text": "職務や処分について分からないことは、担当のPDへ確認してください。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "pd-fines",
+        "pd-internal-rules",
+        "job-authority-misuse"
+      ]
     },
     {
       "id": "pd-fines",
@@ -47,7 +53,7 @@
       "title": "PDの対応とゲーム内法律",
       "category": "pd",
       "tags": [
-        "注意"
+        "ガイド"
       ],
       "keywords": [
         "警察",
@@ -55,26 +61,88 @@
         "刑務",
         "法律"
       ],
-      "severity": "important",
-      "summary": "適用された罪状・罰金・刑務の説明を確認しましょう。",
+      "severity": "guide",
+      "summary": "適用された罪状・罰金・保護観察の説明を確認しましょう。",
       "content": [
         {
           "type": "paragraph",
-          "text": "ゲーム内犯罪は、PDによる対応、罰金、刑務、押収、インパウンドなどの対象になります。犯罪RPをすること自体は街のコンテンツです。"
+          "text": "ゲーム内犯罪は、PDによる対応、罰金、保護観察、押収、インパウンドなどの対象になります。犯罪RPをすること自体は街のコンテンツです。"
         },
         {
           "type": "paragraph",
-          "text": "PDはゲーム内法律に基づく罪状と処分を説明してください。市民も、罪状・請求額・刑務時間が分からないときは、説明を求めて大丈夫です。"
+          "text": "PDはゲーム内法律に基づく罪状と処分を説明してください。市民も、罪状・請求額・保護観察時間が分からないときは、説明を求めて大丈夫です。"
         },
         {
           "type": "note",
-          "text": "基本罰金・刑務、Heistの罰金・刑務、インパウンドの料金と待機時間は「ゲーム内法律・罰金」で確認できます。サーバールール違反は運営対応の対象です。"
+          "text": "基本罰金・保護観察、Heistの罰金・保護観察、インパウンドの料金と待機時間は「ゲーム内法律・罰金」で確認できます。サーバールール違反は運営対応の対象です。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "penalties-basic-fines",
+        "penalties-heist-fines",
+        "penalties-impound"
+      ]
+    },
+    {
+      "id": "pd-internal-rules",
+      "number": 243,
+      "title": "PDは内部ルールを守る",
+      "category": "pd",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "PDは、職務にあたり内部ルールを厳守してください。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "PDは、内部ルールを厳守してください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 4
+    },
+    {
+      "id": "pd-community-service",
+      "number": 244,
+      "title": "社会奉仕活動について",
+      "category": "pd",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "NicoGuraには、プリズンに代わる、拘束されない社会奉仕活動の制度があります。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "NicoGuraには、プリズンに代わる、拘束されない社会奉仕活動の制度があります。期間中は犯罪などが制限されます。"
+        },
+        {
+          "type": "paragraph",
+          "text": "適用された期間や制限の内容は、PDの説明を確認してください。罪状ごとの保護観察時間は「法律と罰金」で確認できます。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "crime-probation",
+        "penalties-basic-fines",
+        "penalties-heist-fines"
+      ]
     }
   ]
 }

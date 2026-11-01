@@ -2,7 +2,7 @@
   "categories": [
     {
       "id": "ems",
-      "label": "EMS・救急",
+      "label": "EMS",
       "shortLabel": "EMS",
       "description": "救護要請、治療・蘇生・搬送、医療サービスの料金とEMS専売の応急処置用品。",
       "group": "暮らし・仕事"
@@ -43,7 +43,8 @@
       "updatedAt": "2026-10-10",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "ems-care",
@@ -61,25 +62,32 @@
         "救急"
       ],
       "severity": "guide",
-      "summary": "治療や蘇生、搬送では、EMSの案内を聞きながら対応を受けましょう。",
+      "summary": "EMSは治療・蘇生・搬送・整形などを行います。",
       "content": [
         {
           "type": "paragraph",
-          "text": "EMSは治療、蘇生、搬送、救急対応を担当します。現場の状況を確認し、安全を確保しながら対応します。"
+          "text": "EMSは治療、蘇生、搬送、救急対応、整形などを行います。現場の安全確認が必要な場合もあるため、案内に従ってください。"
         },
         {
           "type": "paragraph",
-          "text": "医療サービスの種類と料金を確認し、対応内容が分からないときは担当者に聞いてください。救護の権限や医療機能を不正な利益のために悪用する行為は禁止です。"
+          "text": "医療サービスの種類や料金が分からない場合は、担当者へ確認してください。"
         },
         {
-          "type": "note",
-          "text": "治療や蘇生の後も、復帰直後に同じ戦闘へ戻って再参加する行為は禁止です。"
+          "type": "paragraph",
+          "text": "救護機能の利用条件と、復帰後の戦闘再参加に関するルールも確認してください。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "ems-fees",
+        "ems-emergency-use",
+        "crime-rejoin-combat",
+        "job-authority-misuse"
+      ]
     },
     {
       "id": "ems-fees",
@@ -104,46 +112,51 @@
           "caption": "医療サービス料金",
           "headers": [
             "サービス",
-            "条件",
-            "価格"
+            "価格",
+            "内容"
           ],
           "rows": [
             [
               "通常治療",
-              "負傷",
-              "300,000円"
+              "300,000円",
+              "治療"
             ],
             [
               "院内蘇生",
-              "病院内",
-              "1,000,000円"
+              "1,000,000円",
+              "EMS施設内での蘇生"
             ],
             [
-              "現場蘇生・搬送",
-              "救急現場",
-              "1,500,000円"
+              "現場蘇生・運搬",
+              "1,500,000円",
+              "現場対応・EMSへの運搬"
             ],
             [
               "牢屋対応",
-              "犯罪対応",
-              "2,000,000円"
+              "2,000,000円",
+              "PD牢屋内"
             ],
             [
-              "EMS不在時NPC治療",
-              "即時救済",
-              "1,000,000円"
+              "NPC治療",
+              "800,000円",
+              "EMSが不在の場合など"
             ]
           ]
         },
         {
+          "type": "note",
+          "text": "NPC治療の改定料金は800,000円です。/help のゲーム内課金にはまだ反映されておらず、現時点では銀行から1,000,000円が引き落とされます。病院受付の通常治療300,000円・院内蘇生1,000,000円とは別の料金です。利用前にゲーム内の案内も確認してください。"
+        },
+        {
           "type": "paragraph",
-          "text": "治療の種類や対応場所が変わる場合は、担当者に内容と料金を確認してください。EMS不在時のNPC治療は、ゲーム内の利用案内に従ってください。"
+          "text": "対応内容や場所が変わる場合は、担当者に内容と料金を確認してください。NPC治療の利用方法は、ゲーム内の案内に従ってください。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "ems-bandage",
@@ -151,8 +164,7 @@
       "title": "包帯（EMS専売品）",
       "category": "ems",
       "tags": [
-        "EMS専売品",
-        "応急処置"
+        "ガイド"
       ],
       "keywords": [
         "包帯",
@@ -163,7 +175,6 @@
         "完治",
         "止血",
         "出血",
-        "3分",
         "症状再発"
       ],
       "severity": "guide",
@@ -189,17 +200,18 @@
         },
         {
           "type": "paragraph",
-          "text": "包帯は完治ではありません。一時的に出血を抑えるもので、約3分程度で再び症状が出る場合があります。"
+          "text": "包帯は完治ではありません。一時的に出血を抑えるもので、時間がたつと症状が再発する場合があります。"
         },
         {
           "type": "note",
           "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "ems-painkiller",
@@ -207,8 +219,7 @@
       "title": "鎮痛剤（EMS専売品）",
       "category": "ems",
       "tags": [
-        "EMS専売品",
-        "応急処置"
+        "ガイド"
       ],
       "keywords": [
         "鎮痛剤",
@@ -219,7 +230,6 @@
         "完治",
         "痛み",
         "症状",
-        "3分",
         "症状再発"
       ],
       "severity": "guide",
@@ -245,17 +255,18 @@
         },
         {
           "type": "paragraph",
-          "text": "鎮痛剤は完治ではありません。一時的に症状を緩和するもので、約3分程度で再び症状が出る場合があります。"
+          "text": "鎮痛剤は完治ではありません。一時的に症状を緩和するもので、時間がたつと症状が再発する場合があります。"
         },
         {
           "type": "note",
           "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "ems-ifak",
@@ -263,8 +274,7 @@
       "title": "IFAK（EMS専売品）",
       "category": "ems",
       "tags": [
-        "EMS専売品",
-        "応急処置"
+        "ガイド"
       ],
       "keywords": [
         "IFAK",
@@ -307,10 +317,158 @@
           "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
+    },
+    {
+      "id": "ems-injuries",
+      "number": 247,
+      "title": "怪我や出血はEMSで治療を受けよう",
+      "category": "ems",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "EMS専売アイテムは応急処置です。怪我や出血を完全に治すにはEMSの治療が必要です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "包帯・鎮痛剤などのEMS専売アイテムは、怪我や出血を一時的に緩和するためのものです。時間がたつと症状が再発する場合があります。"
+        },
+        {
+          "type": "paragraph",
+          "text": "IFAKは体力を25%回復するもので、怪我や症状を完全に治療するものではありません。症状がある場合は、EMSへ相談してください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "ems-bandage",
+        "ems-painkiller",
+        "ems-ifak",
+        "ems-request"
+      ]
+    },
+    {
+      "id": "ems-emergency-use",
+      "number": 248,
+      "title": "緊急救済機能を悪用しない",
+      "category": "ems",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "緊急救済は、EMS不在・救助不能などの場合や、EMS・PDから指示がある場合に利用してください。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "EMSが不在の場合や救助が不可能な場所にいる場合など、緊急時に利用する救済機能を悪用することは禁止です。EMSやPDから指示がある場合も利用できます。"
+        },
+        {
+          "type": "paragraph",
+          "text": "移動と蘇生は別の機能です。利用するときは、各機能の条件と画面の案内を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 5,
+      "relatedRuleIds": [
+        "ems-emergency-commands"
+      ]
+    },
+    {
+      "id": "ems-emergency-commands",
+      "number": 249,
+      "title": "緊急時の搬送と救済コマンド",
+      "category": "ems",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "/tpems は理由を記入して病院へ移動する機能です。蘇生・体力回復は行いません。",
+      "content": [
+        {
+          "type": "heading",
+          "text": "/tpems：病院への移動"
+        },
+        {
+          "type": "paragraph",
+          "text": "救助が困難な状況などで /tpems を使用するときは、利用理由を記入してください。記入した理由は運営が確認します。"
+        },
+        {
+          "type": "paragraph",
+          "text": "/tpems は病院へ移動する機能です。蘇生や体力回復は行いません。移動後は、EMSや利用可能な治療の案内を確認してください。"
+        },
+        {
+          "type": "heading",
+          "text": "/help：NPCによる救済"
+        },
+        {
+          "type": "paragraph",
+          "text": "/help は /tpems とは別の機能で、ダウン中かつ勤務中のEMSがいない場合に、NPCによる救済を依頼できます。勤務中のEMSがいる場合は、ダウン画面の救護要請を利用してください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "車内や、拘束・収監などの状態では利用できません。利用枠や銀行残高などの条件もあるため、画面の案内を確認してください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "/help は有料です。現在の請求額と改定料金の差については、「医療サービスの料金」を確認してください。"
+        },
+        {
+          "type": "note",
+          "text": "緊急救済の悪用は禁止です。EMS・PDから指示がある場合も、機能自体の利用条件に従ってください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "ems-emergency-use",
+        "ems-care",
+        "ems-fees"
+      ]
+    },
+    {
+      "id": "ems-beginner-ticket-planned",
+      "number": 250,
+      "title": "初心者EMS券の変更予定",
+      "category": "ems",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "β開始後は、初心者EMS券を牢屋対応に使用できなくなる予定です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "β開始後は、初心者EMS券を牢屋対応に使用できなくなる予定です。"
+        },
+        {
+          "type": "note",
+          "text": "これは今後の変更予定です。適用開始日は、公式のお知らせで確認してください。現在の利用可否は、EMSの案内に従ってください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "guide"
     }
   ]
 }

@@ -44,7 +44,8 @@
       "updatedAt": "2026-10-10",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "faq-rp-beginner",
@@ -75,7 +76,8 @@
       "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "faq-fivem-beginner",
@@ -106,7 +108,8 @@
       "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "faq-character-count",
@@ -141,7 +144,8 @@
       "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "faq-whitelist-interview",
@@ -178,7 +182,8 @@
       "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "faq-rule-memory",
@@ -209,7 +214,8 @@
       "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "faq-crime-ban",
@@ -235,14 +241,15 @@
           "type": "paragraph"
         },
         {
-          "text": "ゲーム内の犯罪には、法律に沿ってPD対応・罰金・刑務・押収・インパウンドなどが発生します。チートやRDMなどのサーバールール違反がある場合は、犯罪RPとは別に運営が対応します。",
+          "text": "ゲーム内の犯罪には、法律に沿ってPD対応・罰金・保護観察・押収・インパウンドなどが発生します。チートやRDMなどのサーバールール違反がある場合は、犯罪RPとは別に運営が対応します。",
           "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "faq-bug-report",
@@ -259,25 +266,30 @@
         "報告"
       ],
       "severity": "guide",
-      "summary": "悪用せず、Discordの「お問い合わせ窓口」へ報告してください。",
+      "summary": "悪用を止め、タブレットの「不具合・ご意見」やチケットから報告してください。",
       "content": [
         {
-          "text": "悪用せず、公式Discordの「お問い合わせ窓口」へ報告してください。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "不具合の追加利用を止め、タブレットの「不具合・ご意見」から報告してください。早急な対応、申請、クリップの提出は、公式Discordのチケットからお願いします。"
         },
         {
-          "text": "利益を得るために追加利用したり、反復して試したりしないでください。発生時刻と状況を伝え、動画やスクリーンショットがあれば添えてください。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "発生時刻と状況を伝え、動画やスクリーンショットがあれば添えてください。同じ内容を複数の窓口へ重複して報告しないでください。"
         },
         {
-          "text": "犯罪の進行が不可能になった場合は、速やかにPDへ連絡してシーンを一時中断し、「犯罪中に不具合が発生した場合」の手順を確認してください。",
-          "type": "note"
+          "type": "note",
+          "text": "犯罪の進行が不可能になった場合は、PDへ連絡してシーンを一時中断し、犯罪中の不具合対応の手順に従ってください。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "administration-report",
+        "crime-bug-response"
+      ]
     },
     {
       "id": "faq-missing-items",
@@ -295,21 +307,26 @@
         "お問い合わせ"
       ],
       "severity": "guide",
-      "summary": "Discordの「お問い合わせ窓口」へ連絡してください。録画等があると確認しやすくなります。",
+      "summary": "チケットから運営へ相談してください。発生時刻・操作・記録があると確認しやすくなります。",
       "content": [
         {
-          "text": "公式Discordの「お問い合わせ窓口」へ連絡してください。録画等があると確認しやすくなります。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "アイテム消失などの補填相談は、公式Discordのチケットから運営へ連絡してください。いつ、どのような操作や状況で消えたかを伝えてください。"
         },
         {
-          "text": "いつ、どのような操作や状況でアイテムが消えたかを、分かる範囲で伝えてください。動画やスクリーンショットがあれば添えてください。証拠がない場合も相談できます。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "動画やスクリーンショットがある場合は添えてください。犯罪の不具合に伴う補填は、ボディカメラの提出が必要です。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "administration-report",
+        "crime-bug-options"
+      ]
     },
     {
       "id": "faq-rule-loopholes",
@@ -340,7 +357,8 @@
       "updatedAt": "2026-10-11",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "faq-client-mods",
@@ -366,25 +384,26 @@
         "NoWater"
       ],
       "severity": "guide",
-      "summary": "原則禁止ですが、プレイ上の優位性が一切生じない軽量化・見た目・音の変更は、例外的に使用できます。",
+      "summary": "原則禁止です。例外的な使用を希望する場合は、導入前にチケットでお問い合わせください。",
       "content": [
         {
           "type": "paragraph",
-          "text": "原則禁止です。ただし、ゲームプレイ上の優位性が一切生じない軽量化・Graphics・Sound変更等に限り、例外的に使用できます。"
+          "text": "Citizen・Client側MODは原則禁止です。例外的に使用を認める場合があるため、導入前にチケットで運営へお問い合わせください。"
         },
         {
           "type": "paragraph",
-          "text": "No Bush、No Prop、No Water、外部Crosshair等、他のプレイヤーより情報・視認性・戦闘で有利になる変更は禁止です。例外に見えるMODでも、禁止条件に抵触するものは使用できません。"
-        },
-        {
-          "type": "paragraph",
-          "text": "詳しい条件は「Citizen・Client側MODの使用条件」を確認してください。判断できない場合は、導入前に公式Discordの「お問い合わせ窓口」から運営へ問い合わせてください。"
+          "text": "軽量化・見た目・音の変更でも、自己判断で使える許可一覧ではありません。「Citizen・Client側MODの使用条件」を確認してください。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "client-mod-policy",
+        "client-mod-consultation"
+      ]
     },
     {
       "id": "faq-low-spec",
@@ -403,21 +422,26 @@
         "視認性"
       ],
       "severity": "guide",
-      "summary": "公平性を損なわず、プレイ上の優位性が一切生じない範囲なら軽量化できます。",
+      "summary": "軽量化MODを使う前に、チケットで運営へお問い合わせください。",
       "content": [
         {
           "type": "paragraph",
-          "text": "公平性を損なわず、プレイ上の優位性が一切生じない範囲なら軽量化できます。"
+          "text": "Citizen・Client側MODによる軽量化は、使用前にチケットで運営へお問い合わせください。低スペックPC向けという理由だけで、使用を許可するものではありません。"
         },
         {
           "type": "paragraph",
-          "text": "草・木・建物・水等を削除したり、水を透明にしたりして、視認性を有利にする変更は禁止です。判断が難しい場合は、使用前に公式Discordの「お問い合わせ窓口」から確認してください。"
+          "text": "導入したいMODと、何が変更されるかを伝えてください。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "client-mod-policy",
+        "client-mod-consultation"
+      ]
     },
     {
       "id": "faq-movement-glitches",
@@ -450,7 +474,8 @@
       "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "faq-bandage-treatment",
@@ -475,17 +500,22 @@
       "content": [
         {
           "type": "paragraph",
-          "text": "いいえ、包帯だけでは完治しません。包帯や鎮痛剤は応急処置です。"
+          "text": "包帯だけでは完治しません。包帯や鎮痛剤は一時的に症状を緩和する応急処置用品です。時間がたつと症状が再発する場合があります。"
         },
         {
           "type": "paragraph",
-          "text": "一時的に出血や症状を抑えるもので、約3分で再び症状が出る場合があります。怪我・症状を完治させるには、EMSによる治療を受けてください。"
+          "text": "怪我や出血を治療するには、EMSへ相談してください。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "ems-injuries",
+        "ems-bandage"
+      ]
     },
     {
       "id": "faq-wednesday-maintenance",
@@ -519,7 +549,8 @@
       "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     }
   ]
 }

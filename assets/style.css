@@ -248,3 +248,45 @@ main{display:flow-root}.rule-number,.category-index{opacity:1}.site-footer:empty
 @media(max-width:600px){.basic-rules{grid-template-columns:1fr}.join-overview{grid-template-columns:1fr;gap:0;margin-top:20px}.join-overview-part,.join-overview-part:first-child{display:grid;grid-template-columns:20px minmax(0,1fr);gap:7px 12px;padding:17px 0;border:0;border-bottom:1px solid var(--line)}.join-overview-part:last-child{border-bottom:0;padding-bottom:0}.join-overview-part>svg{grid-column:1;grid-row:1;margin-top:3px}.join-overview-part h3{grid-column:2;grid-row:1;margin:0}.join-overview-part p{grid-column:2;margin:0}.home-admin-card{gap:10px;padding:19px 16px}.home-admin-card .feature-icon{width:30px;height:30px;border-radius:9px}.home-admin-card .feature-icon svg{width:18px;height:18px}.home-admin-copy h2{font-size:15px}.home-admin-copy p{font-size:12px}.maintenance-range{align-items:stretch;gap:14px}.maintenance-part .schedule-value{font-size:22px}.schedule-label{font-size:11px}}
 @media(max-width:480px){.home-join{padding:20px}.basic-rule-link{padding:12px 13px;gap:10px;min-height:54px}.basic-rules-title{font-size:15px}.server-schedule-card{padding:20px 16px;border-radius:16px}.restart-times{gap:7px}.restart-clock{padding:16px 4px;border-radius:11px}.schedule-value{font-size:25px}.schedule-heading{gap:9px;margin-bottom:16px}.schedule-heading h3{font-size:16px}.maintenance-range{flex-direction:column;gap:12px;padding:17px}.maintenance-part .schedule-value{font-size:25px;margin-top:4px}.maintenance-arrow{transform:rotate(90deg);align-self:flex-start;margin-left:3px}.home-server-info>.hero-actions .button,.home-join>.hero-actions .button{width:100%;font-size:12px}.price-value{font-size:15px}}
 @media print{.home-admin-card,.server-schedule-card,.server-fact,.restart-clock,.maintenance-range{background:#fff;border-color:#bbb;break-inside:avoid}.schedule-value,.price-value{color:#111}.home-admin-card .feature-icon{display:none}.basic-rule-link,.home-join{background:#fff}.server-facts,.server-schedule-grid{display:block}.server-fact,.server-schedule-card{margin-top:15px}}
+
+/* Meeting update: compact document navigation, one optional contents list, no nested sidebar scroll. */
+.document-category-select{display:none;width:100%;min-height:44px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--text);font:inherit;padding:10px 12px}
+.document-category-select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.document-page{max-width:1080px;margin-inline:auto;padding-top:28px}
+.document-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 0 20px;border-bottom:1px solid var(--line-soft)}
+.document-heading{min-width:0}.document-title{font-size:clamp(24px,3vw,34px);letter-spacing:.02em}
+.document-heading .meta-row{margin-top:8px;font-size:11px;gap:12px}
+.document-switch{display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;padding:4px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.document-switch-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 15px;border-radius:8px;font-size:13px;font-weight:700;color:var(--text-muted)}
+.document-switch-link[aria-current=page]{background:var(--accent-soft);color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.document-page .category-section-head{margin:18px 0 6px}.document-page .category-heading{font-size:14px}.document-page .category-meta{font-size:11px}
+.document-page .category-pills,.document-navigation{display:flex;flex-wrap:wrap;overflow:visible;margin:0;padding:4px 0 16px;gap:7px;max-width:100%}
+.document-navigation{margin-top:16px}.document-navigation .pill{white-space:normal;font-size:12px;padding:8px 12px}
+.document-navigation .pill[aria-current=page]{color:var(--accent);background:var(--accent-soft);border-color:var(--accent)}
+.document-page .search-box{max-width:760px}.document-page .search-hint{margin-top:8px;line-height:1.8}
+.inline-guide-link{text-decoration:underline;text-underline-offset:3px;color:var(--accent-secondary)}
+.document-layout{display:block;min-width:0;margin-top:22px}.document-layout .rules-main{min-width:0}
+.document-layout .document-toc{display:block;position:static;max-height:none;overflow:visible;box-shadow:none;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:10px 16px;margin:0 0 18px;font-size:13px}
+.document-toc .toc-list{max-height:none;overflow:visible;padding-top:10px}.document-toc>summary{display:flex;align-items:center;gap:10px;min-height:32px;cursor:pointer}.document-toc>summary>span{flex:1}
+.document-layout .rule-card{scroll-margin-top:calc(var(--header-height) + 18px)}
+.document-layout .rule-body{padding:22px 28px;font-size:15px;line-height:1.95}
+.document-layout .rule-summary{padding:20px 24px;min-height:0;gap:18px}.document-layout .rule-number{font-size:23px;min-width:44px}
+.document-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.document-page .guide-related{margin-top:24px}
+@media(max-width:800px){.document-page{padding-top:20px}.document-header{align-items:flex-start;flex-wrap:wrap;gap:14px;padding-bottom:15px}.document-switch{flex-shrink:1}.document-layout .rule-body{padding:20px;font-size:14px}.document-layout .rule-summary{padding:18px}.document-layout .rules-toolbar{align-items:flex-start}.document-layout .toolbar-actions{display:flex;flex-wrap:wrap}}
+@media(max-width:480px){.document-switch{width:100%}.document-switch-link{flex:1;padding:8px 10px;font-size:12px}.document-page .category-pills .pill{white-space:normal;max-width:100%}.document-navigation .pill{padding:8px 10px;font-size:11px}.document-layout .rule-body{padding:18px 16px}.document-layout .rule-summary{gap:10px;padding:17px 14px}.document-layout .rule-number{min-width:30px;font-size:20px}.document-layout .rule-title{font-size:15px}.document-layout .document-toc{padding:9px 12px}.document-page .search-hint{font-size:11px}}
+@media print{.document-switch,.document-navigation,.document-toc,.document-actions{display:none!important}.document-page{padding-top:0;max-width:none}.document-header{border:0;padding-bottom:10px}.document-layout .rule-body{padding:15px;color:#333}}
+@media(max-width:600px){.document-category-select{display:block}.document-page .category-pills,.document-navigation .pill{display:none}.document-page .category-section-head{flex-direction:row;align-items:center;margin-top:14px}.document-page .category-section{padding-bottom:14px}.document-navigation{padding-bottom:0;margin-bottom:14px}.document-layout .document-toc{padding:6px 12px;margin-bottom:12px}.document-layout .rules-toolbar{gap:10px;margin-bottom:12px}}
+
+/* Local reference diagrams keep their original proportions in either theme. */
+.rule-figure{margin:22px 0;min-width:0;max-width:100%}
+.rule-image{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface-raised)}
+.rule-image-caption{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;padding-top:10px;color:var(--text-muted);font-size:12px;line-height:1.8;overflow-wrap:anywhere}
+.rule-image-description{flex:1 1 240px}.rule-image-enlarge{display:inline-flex;align-items:center;gap:6px;color:var(--accent-secondary);text-decoration:underline;text-underline-offset:3px;min-height:44px}.rule-image-enlarge svg{width:15px;height:15px;flex-shrink:0}
+@media print{.rule-figure{break-inside:avoid}.rule-image{border-color:#bbb}.rule-image-caption{color:#333}.rule-image-enlarge{display:none}}
+
+/* Canonical cross-links connect concise rules with their detailed guide pages. */
+.rule-related{margin-top:22px;padding-top:16px;border-top:1px solid var(--line-soft)}
+.rule-related .rule-related-title{margin:0 0 8px;font-size:13px;color:var(--text-muted)}
+.rule-related .rule-related-list{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.rule-related-list>li{min-width:0;margin:0;padding:0}.rule-related-link{display:inline-flex;align-items:center;gap:8px;max-width:100%;min-height:44px;font-size:13px;line-height:1.8;color:var(--accent-secondary)}
+.rule-related-link>span{min-width:0;overflow-wrap:anywhere}.rule-related-link>svg{flex-shrink:0;width:16px;height:16px}.rule-related-link:hover{text-decoration:underline;text-underline-offset:3px}

@@ -9,7 +9,7 @@
     },
     {
       "id": "penalties",
-      "label": "ゲーム内法律・罰金",
+      "label": "法律と罰金",
       "shortLabel": "法律・罰金",
       "description": "基本罰金・刑務、Heistの処分、インパウンドの案内。",
       "group": "ゲーム内法律"
@@ -19,8 +19,8 @@
     {
       "id": "weapons-crime-use",
       "number": 17,
-      "title": "銃刀法違反と武器の所持",
-      "category": "weapons",
+      "title": "銃刀法違反の適用条件",
+      "category": "penalties",
       "tags": [
         "注意"
       ],
@@ -31,21 +31,27 @@
         "犯罪利用"
       ],
       "severity": "important",
-      "summary": "銃刀法違反は武器を犯罪に使用した時点で適用されます。所持のみは無罪です。",
+      "summary": "犯罪時に武器を所持していた場合は、銃刀法違反が適用されます。",
       "content": [
         {
           "type": "paragraph",
-          "text": "武器を犯罪に使用した時点で、銃刀法違反の対象になります。罰金は1,500,000円、刑務は5分です。所持のみは無罪です。"
+          "text": "犯罪時に武器を所持していた場合は、銃刀法違反の対象になります。罰金と保護観察時間は「ゲーム内法律・基本罰金と保護観察」を確認してください。"
         },
         {
           "type": "paragraph",
-          "text": "武器を使う場面でも、RP上の理由のない攻撃や殺害は禁止です。相手のRPや街の生活を大切にして遊びましょう。"
+          "text": "武器を使う場面でも、RP上の理由のない攻撃や殺害は禁止です。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 10,
+      "relatedRuleIds": [
+        "penalties-basic-fines",
+        "rp-rdm"
+      ]
     },
     {
       "id": "pending-weapons-license",
@@ -69,21 +75,27 @@
         },
         {
           "type": "paragraph",
-          "text": "銃刀法違反の罰金・刑務はゲーム内法律の扱いです。RDMやチートなどのサーバールール違反は、運営が対応します。"
+          "text": "銃刀法違反の罰金・保護観察はゲーム内法律の扱いです。RDMやチートなどのサーバールール違反は、運営が対応します。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "weapons-crime-use",
+        "penalties-basic-fines",
+        "rp-rdm"
+      ]
     },
     {
       "id": "penalties-basic-fines",
       "number": 34,
-      "title": "ゲーム内法律・基本罰金と刑務",
+      "title": "ゲーム内法律・基本罰金と保護観察",
       "category": "penalties",
       "tags": [
-        "注意"
+        "ゲーム内法律"
       ],
       "keywords": [
         "法律",
@@ -97,109 +109,127 @@
         "逃走補助"
       ],
       "severity": "important",
-      "summary": "ゲーム内犯罪に対するPDの罰金と刑務です。サーバールールへの運営対応とは分けて確認しましょう。",
+      "summary": "ゲーム内の罪状ごとの罰金と保護観察時間です。",
       "content": [
         {
           "type": "paragraph",
-          "text": "犯罪RPをすること自体はNicoGuraのゲームコンテンツです。ゲーム内の法律違反には、PD対応、罰金、刑務、押収、インパウンドなどがあります。"
+          "text": "ゲーム内の犯罪には、PDによる対応、罰金、保護観察、押収、インパウンドなどがあります。サーバールール違反に対する運営の対応とは区別します。"
         },
         {
           "type": "table",
-          "caption": "ゲーム内法律・基本罰金と刑務",
+          "caption": "基本罰金と保護観察",
           "headers": [
             "罪状",
             "罰金",
-            "刑務",
-            "補足"
+            "保護観察時間",
+            "適用条件・補足"
           ],
           "rows": [
             [
               "銃刀法違反",
               "1,500,000円",
               "5分",
-              "武器を犯罪に使用した時点。所持のみは無罪。"
+              "犯罪時に武器を所持していた場合に適用"
             ],
             [
               "誘拐拉致監禁罪",
               "1,500,000円",
-              "0分",
-              ""
+              "—",
+              "—"
             ],
             [
               "NPC殺人罪",
               "2,500,000円",
               "5分",
-              ""
+              "—"
             ],
             [
               "プレイヤー殺人・未遂罪",
               "10,000,000円",
               "10分",
-              ""
+              "—"
             ],
             [
               "窃盗罪",
               "1,000,000円",
               "10分",
-              ""
+              "車両窃盗に適用"
             ],
             [
               "重窃盗罪",
-              "1,000,000,000円",
+              "50,000,000円",
               "60分",
-              ""
+              "公務員の窃盗に適用"
             ],
             [
               "公務執行妨害罪",
               "2,000,000円",
               "5分",
-              ""
+              "—"
             ],
             [
               "テロ罪",
-              "100,000,000円",
+              "5,000,000,000円",
               "12時間",
-              ""
+              "警察署襲撃など"
             ],
             [
               "汚職収賄罪",
-              "100,000,000円",
+              "5,000,000,000円",
               "60分",
-              ""
+              "—"
             ],
             [
               "業務妨害罪",
-              "10,000,000～100,000,000円",
+              "1,000,000,000円",
               "60分",
-              "店舗オーナーと応相談。"
+              "店舗オーナーと応相談"
             ],
             [
               "逃走補助罪",
-              "報酬金額（1人）の半額",
+              "逃走補助をした犯罪の半額",
               "30分",
-              "個人医のみ適用。"
+              "個人医のみ適用"
             ],
             [
               "セクハラ / カスハラ / パワハラ / 暴言",
               "10,000,000,000円",
               "1日",
-              ""
+              "—"
+            ],
+            [
+              "公然わいせつ罪",
+              "100円",
+              "24時間",
+              "—"
+            ],
+            [
+              "詐欺罪",
+              "25,000,000円",
+              "15分",
+              "—"
             ]
           ]
         },
         {
           "type": "paragraph",
-          "text": "業務妨害罪の金額は、掲載範囲で店舗オーナーと相談します。逃走補助罪は個人医のみ適用です。適用された罪状や金額、刑務時間はPDに説明を確認してください。"
+          "text": "適用された罪状、金額、保護観察時間はPDの説明を確認してください。表の「—」は時間や補足の指定がない欄で、独自の時間を補うものではありません。"
         },
         {
           "type": "note",
-          "text": "RP上の対立・口論と、プレイヤー本人への攻撃は区別します。プレイヤーへのハラスメントなど、サーバールール違反は運営対応の対象にもなります。"
+          "text": "プレイヤー本人へのハラスメントなどは、サーバールール違反として運営が対応する場合もあります。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "law",
+      "ruleChapter": 10,
+      "relatedRuleIds": [
+        "pd-community-service",
+        "law-police-station-attack"
+      ]
     },
     {
       "id": "pending-penalty-times",
@@ -217,33 +247,39 @@
         "PD"
       ],
       "severity": "guide",
-      "summary": "適用された罪状・罰金・刑務の内訳は、PDへ確認してください。",
+      "summary": "適用された罪状・罰金・保護観察の内訳は、PDへ確認してください。",
       "content": [
         {
           "type": "paragraph",
-          "text": "ゲーム内法律の罰金や刑務は、街の犯罪RPに対するPDの対応です。基本罰金・刑務と、Heistの罰金・刑務を確認してください。"
+          "text": "ゲーム内法律の罰金や保護観察は、街の犯罪RPに対するPDの対応です。基本罰金・保護観察と、Heistの罰金・保護観察を確認してください。"
         },
         {
           "type": "paragraph",
-          "text": "処分を受けたときは、適用された罪状、支払う金額、刑務時間の説明を確認しましょう。分からない点はPDへ尋ねて大丈夫です。"
+          "text": "処分を受けたときは、適用された罪状、支払う金額、保護観察時間の説明を確認しましょう。分からない点はPDへ尋ねて大丈夫です。"
         },
         {
           "type": "note",
           "text": "サーバールール違反への警告・キック・BANなどは運営が対応します。ゲーム内で罰金を支払ったことだけで、ルール違反への運営対応が終わるわけではありません。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "penalties-basic-fines",
+        "penalties-heist-fines",
+        "pd-community-service"
+      ]
     },
     {
       "id": "penalties-heist-fines",
       "number": 213,
-      "title": "Heistのゲーム内罰金・刑務",
+      "title": "Heistの罰金と保護観察",
       "category": "penalties",
       "tags": [
-        "注意"
+        "ゲーム内法律"
       ],
       "keywords": [
         "Heist",
@@ -255,19 +291,19 @@
         "大型"
       ],
       "severity": "important",
-      "summary": "犯罪の分類ごとの、PDによるゲーム内罰金と刑務です。",
+      "summary": "犯罪の分類ごとの、ゲーム内罰金と保護観察時間です。",
       "content": [
         {
           "type": "table",
-          "caption": "Heist基準のゲーム内罰金・刑務",
+          "caption": "Heistの罰金と保護観察",
           "headers": [
             "分類",
             "罰金",
-            "刑務"
+            "保護観察時間"
           ],
           "rows": [
             [
-              "小型強盗",
+              "小型",
               "1,400,000円",
               "15分"
             ],
@@ -282,12 +318,12 @@
               "30分"
             ],
             [
-              "中型ヘイスト",
+              "中型",
               "40,000,000円",
               "45分"
             ],
             [
-              "大型ヘイスト",
+              "大型",
               "80,000,000円",
               "60分"
             ]
@@ -295,17 +331,19 @@
         },
         {
           "type": "paragraph",
-          "text": "ゲーム内犯罪に対するPDの罰金・刑務です。適用された分類と処分の説明を確認してください。"
-        },
-        {
-          "type": "note",
-          "text": "サーバールール違反への警告・キック・BANなどは、運営が対応します。"
+          "text": "適用された分類と処分は、PDの説明を確認してください。サーバールール違反への警告・キック・BANなどは、運営が対応します。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "law",
+      "ruleChapter": 10,
+      "relatedRuleIds": [
+        "penalties-basic-fines",
+        "pd-community-service"
+      ]
     },
     {
       "id": "penalties-impound",
@@ -313,7 +351,7 @@
       "title": "インパウンドの回収料金と待機",
       "category": "penalties",
       "tags": [
-        "ガイド"
+        "ゲーム内法律"
       ],
       "keywords": [
         "インパウンド",
@@ -321,39 +359,90 @@
         "車両",
         "待機"
       ],
-      "severity": "guide",
-      "summary": "一般回収は500,000円・待機0分、犯罪回収は1,000,000円・待機30分です。",
+      "severity": "important",
+      "summary": "一般回収は500,000円、犯罪回収は1,000,000円です。押収時間はどちらも0分です。",
       "content": [
         {
           "type": "table",
-          "caption": "インパウンド",
+          "caption": "インパウンドの回収料金と押収時間",
           "headers": [
-            "回収区分",
+            "区分",
             "料金",
-            "待機"
+            "押収時間"
           ],
           "rows": [
             [
-              "一般回収",
+              "一般",
               "500,000円",
               "0分"
             ],
             [
-              "犯罪回収",
+              "犯罪",
               "1,000,000円",
-              "30分"
+              "0分"
             ]
           ]
         },
         {
           "type": "paragraph",
-          "text": "回収区分と料金、待機時間を確認して手続きを進めてください。"
+          "text": "回収区分と料金を確認して手続きを進めてください。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "law",
+      "ruleChapter": 4
+    },
+    {
+      "id": "law-police-station-attack",
+      "number": 255,
+      "title": "警察署襲撃の定義と対象範囲",
+      "category": "penalties",
+      "tags": [
+        "ゲーム内法律"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "警察署に武力や車両などで攻撃し、警察業務を妨害する行為が対象です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "警察署に対して、武力または車両などを用いて攻撃し、警察業務などを妨害する行為を、警察署襲撃とします。"
+        },
+        {
+          "type": "paragraph",
+          "text": "本署・砂漠署・北署の対象範囲は、以下の赤枠を確認してください。"
+        },
+        {
+          "type": "image",
+          "src": "assets/law-police-main.png",
+          "alt": "本署の警察署襲撃対象範囲（赤枠）",
+          "caption": "本署の対象範囲"
+        },
+        {
+          "type": "image",
+          "src": "assets/law-police-sandy.png",
+          "alt": "砂漠署の警察署襲撃対象範囲（赤枠）",
+          "caption": "砂漠署の対象範囲"
+        },
+        {
+          "type": "image",
+          "src": "assets/law-police-paleto.png",
+          "alt": "北署の警察署襲撃対象範囲（赤枠）",
+          "caption": "北署の対象範囲"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "law",
+      "ruleChapter": 10,
+      "relatedRuleIds": [
+        "penalties-basic-fines"
+      ]
     }
   ]
 }

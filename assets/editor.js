@@ -179,7 +179,7 @@ field('contentMode').addEventListener('change', () => {
       field('content').value = JSON.stringify(field('content').value.split(/\n\s*\n/).map((text) => text.trim()).filter(Boolean).map((text) => ({ type: 'paragraph', text })), null, 2);
     } else {
       const blocks = JSON.parse(field('content').value);
-      if (!Array.isArray(blocks) || blocks.some((block) => block.type !== 'paragraph')) throw new Error('見出し・箇条書き・注記・表があるため、構造を保つJSONモードで編集してください。');
+      if (!Array.isArray(blocks) || blocks.some((block) => block.type !== 'paragraph')) throw new Error('見出し・箇条書き・注記・表・画像があるため、構造を保つJSONモードで編集してください。');
       field('content').value = blocks.map((block) => block.text).join('\n\n');
     }
     lastContentMode = next;

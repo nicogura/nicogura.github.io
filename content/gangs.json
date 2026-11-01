@@ -23,7 +23,7 @@
         "組織"
       ],
       "severity": "guide",
-      "summary": "標準ギャング設立費は2,000,000,000円です。",
+      "summary": "ギャング設立費は2,000,000,000円です。現在、設立申請は受け付けていません。",
       "content": [
         {
           "type": "table",
@@ -34,20 +34,29 @@
           ],
           "rows": [
             [
-              "標準ギャング設立費",
+              "ギャング設立費",
               "2,000,000,000円"
             ]
           ]
         },
         {
           "type": "paragraph",
-          "text": "仲間と組織での活動や犯罪RPを楽しみたい方は、設立について運営へ相談してください。ギャング活動でも、相手が楽しめるライトRPとサーバールールを守りましょう。"
+          "text": "設立に関する相談は、公式Discordのチケットからお願いします。"
+        },
+        {
+          "type": "note",
+          "text": "現在、ギャングの設立申請は受け付けていません。募集再開の案内は、公式のお知らせを確認してください。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "gang-color-registration",
+        "administration-report"
+      ]
     },
     {
       "id": "affiliation-colors",
@@ -72,15 +81,47 @@
         "なりすまし"
       ],
       "severity": "important",
-      "summary": "ギャングカラーは設立時に運営へ登録します。登録したカラーで所属を分かりやすくし、他ギャングへのなりすましを避けてください。",
+      "summary": "ギャングカラーを運営へ登録し、他ギャングや公務員へのなりすましを避けてください。",
       "content": [
         {
           "type": "paragraph",
-          "text": "ギャングカラーは設立時に運営へ登録してください。登録カラーは、服装・車両・装飾などに使用できます。"
+          "text": "ギャングカラーは設立時に運営へ登録してください。ギャング内のメインカラーは統一してください。"
         },
         {
-          "type": "heading",
-          "text": "使用可能カラー"
+          "type": "paragraph",
+          "text": "他ギャングの登録カラーを意図的に偽装したり、他ギャングになりすましたりしないでください。既存ギャングと識別しにくい色や、PD・EMSなどと誤認しやすい表現は避けてください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "犯罪シーン中は、登録カラーの有無にかかわらず、犯罪シーンのカラー統一規定に従ってください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 8,
+      "relatedRuleIds": [
+        "gang-color-registration",
+        "crime-scene-colors"
+      ]
+    },
+    {
+      "id": "gang-color-registration",
+      "number": 253,
+      "title": "ギャングカラーの登録相談",
+      "category": "gang",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "設立時に運営へカラーを登録します。登録状況や色の詳細は運営へ確認してください。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "ギャングカラーは設立時に運営へ登録します。服装、車両、装飾などで所属を分かりやすくしましょう。"
         },
         {
           "type": "table",
@@ -137,35 +178,23 @@
           ]
         },
         {
-          "type": "note",
-          "text": "上の7色は使用可能カラーです。各色の正確なHEX、使用中・空きの状況、登録しているギャング名は、設立時に運営へ確認してください。「—」は未確認の項目です。"
-        },
-        {
-          "type": "heading",
-          "text": "服装・車両での使い方"
+          "type": "paragraph",
+          "text": "色の正確なHEX、使用中・空きの状況、登録ギャング名は運営へ確認してください。「—」は未確認の項目です。"
         },
         {
           "type": "paragraph",
-          "text": "ギャング内で使用するメインカラーは統一してください。サブカラーは自由です。"
-        },
-        {
-          "type": "note",
-          "text": "白・黒は使用禁止です。"
-        },
-        {
-          "type": "list",
-          "items": [
-            "既存ギャングと識別しにくい色は避けてください。",
-            "他ギャングの登録カラーを意図的に偽装しないでください。他ギャングへのなりすましは禁止です。",
-            "PD・EMSなどの公務員と誤認しやすい表現は避けてください。",
-            "抗争や犯罪などでは、所属が分かるカラーの使い方を推奨します。"
-          ]
+          "text": "犯罪シーンでのカラーは、「犯罪シーンではカラーを揃える」に従ってください。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "affiliation-colors",
+        "crime-scene-colors"
+      ]
     }
   ]
 }

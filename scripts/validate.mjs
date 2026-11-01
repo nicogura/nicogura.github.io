@@ -7,7 +7,7 @@ import { publicRoots, htmlPaths } from './site-config.mjs';
 const root = await realpath(resolve(dirname(fileURLToPath(import.meta.url)), '..'));
 const errors = [];
 const required = [...htmlPaths, 'assets/style.css', 'assets/app.js', 'data/rules.json', 'robots.txt', 'sitemap.xml'];
-const allowedExtensions = new Set(['.html', '.css', '.js', '.json', '.svg', '.png', '.webp', '.jpg', '.jpeg', '.ico', '.xml', '.txt', '.woff2']);
+const allowedExtensions = new Set(['.html', '.css', '.js', '.json', '.svg', '.png', '.webp', '.jpg', '.jpeg', '.avif', '.gif', '.ico', '.xml', '.txt', '.woff2']);
 const textExtensions = new Set(['.html', '.css', '.js', '.json', '.svg', '.xml', '.txt']);
 const secretPatterns = [
   [/gh[pousr]_[A-Za-z0-9]{25,}|github_pat_[A-Za-z0-9_]{30,}/, 'GitHub token'],
@@ -30,6 +30,11 @@ try {
     if (typeof asset !== 'string' || !asset.startsWith('assets/')) continue;
     try { if (!(await stat(resolve(root, asset))).isFile()) throw new Error(); }
     catch { errors.push(`設定された画像がありません: ${asset}`); }
+  }
+  for (const rule of data?.rules || []) for (const block of rule.content || []) {
+    if (block.type !== 'image' || typeof block.src !== 'string') continue;
+    try { if (!(await stat(resolve(root, block.src))).isFile()) throw new Error(); }
+    catch { errors.push(`本文の画像がありません: ${rule.id}: ${block.src}`); }
   }
 } catch (error) { errors.push(`rules.jsonの読み込みに失敗: ${error.message}`); }
 let count = 0;

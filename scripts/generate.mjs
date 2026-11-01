@@ -18,8 +18,9 @@ for (const [key, page] of Object.entries(data.pages)) for (const id of page.rule
 if (errors.length) throw new Error(errors.join('\n'));
 await writeFile(resolve(root, 'data/rules.json'), JSON.stringify(data, null, 2) + '\n');
 const escape = value => String(value).replace(/[&<>"']/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[char]);
-function blockHTML(b) {
+function blockHTML(b, base) {
   if (b.type === 'list') return `<ul>${b.items.map(i => `<li>${escape(i)}</li>`).join('')}</ul>`;
+  if (b.type === 'image') return `<figure class="rule-image"><a href="${escape(base + b.src)}" target="_blank" rel="noopener noreferrer"><img src="${escape(base + b.src)}" alt="${escape(b.alt)}" loading="lazy" decoding="async" style="max-width:100%;height:auto"></a>${b.caption ? `<figcaption>${escape(b.caption)}</figcaption>` : ''}</figure>`;
   if (b.type === 'table') return `<table><caption>${escape(b.caption || '')}</caption><thead><tr>${b.headers.map(h => `<th>${escape(h)}</th>`).join('')}</tr></thead><tbody>${b.rows.map(row => `<tr>${row.map((cell,i) => `<td data-label="${escape(b.headers[i])}">${escape(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
   return `<${b.type === 'heading' ? 'h3' : 'p'}>${escape(b.text)}</${b.type === 'heading' ? 'h3' : 'p'}>`;
 }
@@ -28,7 +29,7 @@ for (const [key, [path, label, description]] of Object.entries(routes)) {
   const title = key === 'home' ? label : `${label} | NicoGura にこぐら`;
   const canonical = `https://nicogura.github.io/${path ? path + '/' : ''}`;
   const ids = data.pages[key].ruleIds;
-  const fallback = ids.map(id => data.rules.find(r => r.id === id)).map(r => `<section><h2>${escape(r.title)}</h2>${r.content.map(blockHTML).join('')}</section>`).join('\n');
+  const fallback = ids.map(id => data.rules.find(r => r.id === id)).map(r => `<section id="${escape(r.id)}"><h2>${escape(r.title)}</h2>${r.content.map(b => blockHTML(b, base)).join('')}</section>`).join('\n');
   const source = `<!DOCTYPE html>
 <html lang="ja">
 <head>

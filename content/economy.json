@@ -56,7 +56,8 @@
       "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "economy-food-prices",
@@ -131,7 +132,8 @@
       "updatedAt": "2026-10-12",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "economy-fuel-prices",
@@ -180,12 +182,13 @@
       "updatedAt": "2026-10-10",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide"
     },
     {
       "id": "economy-consumable-prices",
       "number": 210,
-      "title": "その他消耗品",
+      "title": "ニトロ補充と簡易修理用品",
       "category": "economy",
       "tags": [
         "ガイド"
@@ -200,38 +203,29 @@
         "完全修理"
       ],
       "severity": "guide",
-      "summary": "ニトロ補充は1,000,000円、簡易修理キット / ダクトテープは300,000円です。",
+      "summary": "ニトロ補充・ダクトテープの料金は、メカニックの料金表を確認してください。",
       "content": [
         {
-          "type": "table",
-          "caption": "その他消耗品",
-          "headers": [
-            "品目",
-            "価格",
-            "効果"
-          ],
-          "rows": [
-            [
-              "ニトロ補充",
-              "1,000,000円",
-              "ニトロの補充"
-            ],
-            [
-              "簡易修理キット / ダクトテープ",
-              "300,000円",
-              "走行可能になる程度"
-            ]
-          ]
+          "type": "paragraph",
+          "text": "ニトロ補充とダクトテープの最新料金は、「修理・車両改造の料金」にまとめています。利用前に作業内容と料金を確認してください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "簡易修理キットやダクトテープは、走行可能になる程度の応急修理用です。完全修理ではありません。全修理が必要な場合は、メカニックへ相談してください。"
         },
         {
           "type": "note",
-          "text": "簡易修理キット / ダクトテープは完全修理ではありません。全修理が必要な場合は、メカニックへ相談してください。"
+          "text": "簡易修理キットの商品や料金については、販売時の案内を確認してください。"
         }
       ],
-      "updatedAt": "2026-10-13",
+      "updatedAt": "2026-11-02",
       "new": true,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "mechanic-fees"
+      ]
     }
   ]
 }

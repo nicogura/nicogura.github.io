@@ -67,7 +67,7 @@
   }
   function canonicalPage(rule) {
     if (Array.isArray(data.pages?.rules?.ruleIds) && data.pages.rules.ruleIds.includes(rule.id)) return 'rules';
-    return Object.keys(guidePages).find(key => data.pages?.[key]?.ruleIds?.includes(rule.id)) || 'rules';
+    return Object.keys(guidePages).filter(key => key !== 'guides').find(key => data.pages?.[key]?.ruleIds?.includes(rule.id)) || (data.pages?.guides?.ruleIds?.includes(rule.id) ? 'guides' : 'rules');
   }
   function renderCurrentResults() { views?.mode === 'guide' ? renderGuideResults() : renderResults(); }
   const severityLabels = { guide: 'ガイド', notice: 'お願い', important: '注意', prohibited: '禁止', serious: '重大違反' };
@@ -141,6 +141,14 @@
       return /^https?:$/.test(parsed.protocol) && parsed.origin === base.origin ? parsed.href : href(fallback);
     } catch (_) { return href(fallback); }
   }
+  function localImageUrl(value) {
+    if (typeof value !== 'string' || !/^assets\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9][a-zA-Z0-9_.-]*\.(?:png|jpe?g|webp|avif|gif)$/i.test(value)) return null;
+    try {
+      const parsed = new URL(value, base);
+      const directory = new URL('assets/', base);
+      return /^https?:$/.test(parsed.protocol) && parsed.origin === directory.origin && parsed.pathname.startsWith(directory.pathname) ? parsed.href : null;
+    } catch (_) { return null; }
+  }
   function dateText(value) { return /^\d{4}-\d{2}-\d{2}$/.test(value || '') ? value : '確認中'; }
   function time(value, className = '') {
     const node = el('time', className, dateText(value));
@@ -173,7 +181,7 @@
   function textIndex(rule) {
     const category = categoryMap.get(rule.category);
     const severity = ruleSeverity(rule);
-    return normalize([rule.title, rule.number, rule.summary, category?.label, category?.shortLabel, severity, severityLabels[severity], ...(rule.tags || []), ...(rule.keywords || []), ...(rule.content || []).flatMap(block => [block.text || '', block.caption || '', ...(block.items || []), ...(block.headers || []), ...(block.rows || []).flat()])].join(' '));
+    return normalize([rule.title, rule.number, rule.summary, category?.label, category?.shortLabel, severity, severityLabels[severity], ...(rule.tags || []), ...(rule.keywords || []), ...(rule.content || []).flatMap(block => [block.text || '', block.alt || '', block.caption || '', ...(block.items || []), ...(block.headers || []), ...(block.rows || []).flat()])].join(' '));
   }
   const segmenter = typeof Intl.Segmenter === 'function' ? new Intl.Segmenter('ja', { granularity: 'grapheme' }) : null;
   function highlighted(text, className = '', tag = 'span') {
@@ -455,7 +463,7 @@
     searchInput.name = 'q';
     searchInput.type = 'search';
     searchInput.maxLength = 500;
-    searchInput.placeholder = 'ルール・料金・法律を検索…';
+    searchInput.placeholder = '公式ルールを検索…';
     const searchSubmit = button('', 'icon-button', null, 'arrow');
     searchSubmit.type = 'submit';
     searchSubmit.setAttribute('aria-label', '検索結果を見る');
@@ -589,173 +597,44 @@
     url.searchParams.delete('focus');
     history.replaceState({}, '', url);
   }
-  function renderRules() {
-    readFiltersFromUrl();
-    const focused = new URL(location.href).searchParams.get('focus') === 'search';
-    const shell = el('div', 'rules-page');
-    const hero = el('section', 'hero rules-hero');
-    const heroCopy = el('div', 'hero-copy hero-panel');
-    const published = pageRules('rules').filter(rule => rule.status === 'published').length;
-    const title = el('h1', 'hero-title');
-    title.append(document.createTextNode('この街のルールを、'), el('br'), el('span', 'text-gradient', '迷わず、あなたに。'));
-    heroCopy.append(el('p', 'eyebrow', 'NICOGURA / OFFICIAL RULES'), title, el('p', 'hero-lead', pageInfo('rules').description || '街のみんなが気持ちよく遊ぶための、ライトRPとマナーの約束。'), metaRow());
-    const search = searchBox();
-    heroCopy.append(search.box);
-    const hint = el('p', 'search-hint', '検索は公式ルール・料金・法律・街ガイドの全情報が対象です。複数の言葉で絞り込みできます。');
-    hint.id = 'search-hint';
-    heroCopy.append(hint);
-    hero.append(heroCopy);
-    shell.append(hero, notice());
-    const intro = el('section', 'rules-intro intro-panel');
-    intro.append(el('p', 'section-kicker', 'FOR YOUR FIRST DAY'), el('h2', '', '全部を暗記しなくても、大丈夫。'), el('p', '', '完璧な演技や細かい設定は必要ありません。相手を思いやることと、最低限のライトRP・マナーを確認して、街での暮らしを楽しみましょう。'));
-    const distinction = el('div', 'rules-distinction');
-    [['サーバールール', '街のみんなが遊ぶための約束。違反への対応は運営が判断します。'], ['ゲーム内法律', '犯罪RPなど、街の中でPDが対応する法律。罰金・刑務・インパウンドはこちら。']].forEach(([title, text]) => {
-      const item = el('div');
-      item.append(el('h3', '', title), el('p', '', text));
-      distinction.append(item);
+  function documentHeading(title) {
+    const header = el('header', 'document-header');
+    const heading = el('div', 'document-heading');
+    heading.append(el('h1', 'document-title', title), metaRow());
+    const modes = el('nav', 'document-switch');
+    modes.setAttribute('aria-label', 'ルールとガイドの切り替え');
+    [['rules', '公式ルール'], ['guides', 'にこぐらガイド']].forEach(([key, label]) => {
+      const node = link(label, `${key}/`, 'document-switch-link');
+      if ((page === 'rules') === (key === 'rules')) node.setAttribute('aria-current', 'page');
+      modes.append(node);
     });
-    const introLinks = el('div', 'intro-links');
-    introLinks.append(link('参加方法を見る', 'join/', 'section-link', 'arrow'), link('ゲーム内法律・罰金を見る', 'law/', 'section-link', 'arrow'), link('運営の判断について', 'rules/#administration-response', 'section-link', 'arrow'));
-    intro.append(distinction, introLinks);
-    shell.append(intro);
-    const featured = data.settings.featuredRuleIds?.length ? data.settings.featuredRuleIds : data.rules.filter(rule => rule.featured && rule.status === 'published').map(rule => rule.id);
-    if (featured?.length) {
-      const quick = el('nav', 'featured-links');
-      quick.setAttribute('aria-label', 'ピックアップルール');
-      quick.append(el('span', 'section-kicker', 'QUICK ACCESS'));
-      featured.forEach(id => {
-        const rule = data.rules.find(item => item.id === id);
-        if (rule?.status === 'published') quick.append(link(rule.title, `rules/#${encodeURIComponent(rule.id)}`, 'pill'));
-      });
-      shell.append(quick);
-    }
-    const categorySection = el('section', 'category-section');
-    categorySection.id = 'categories';
-    const categoryTitle = el('div', 'category-section-head');
-    categoryTitle.append(el('h2', 'category-heading', 'カテゴリー'), el('span', 'category-meta', `正式掲載 ${published} 件 · ${data.categories.length} カテゴリー${published ? '' : '（仮）'}`));
-    const pills = el('div', 'category-pills');
-    pills.setAttribute('aria-label', 'ルールカテゴリー');
-    const pillButtons = new Map();
-    [{ id: 'all', shortLabel: 'すべて' }, ...data.categories].forEach(category => {
-      const pill = button(category.shortLabel || category.label, 'pill', () => {
-        state.category = category.id;
-        applyFilters();
-      });
-      pill.setAttribute('aria-pressed', String(state.category === category.id));
-      pillButtons.set(category.id, pill);
-      pills.append(pill);
-    });
-    categorySection.append(categoryTitle, pills);
-    shell.append(categorySection);
-    const layout = el('div', 'rules-layout');
-    const categorySidebar = el('aside', 'rules-category-sidebar');
-    categorySidebar.setAttribute('aria-labelledby', 'desktop-category-title');
-    const sideTitle = el('h2', 'toc-heading', 'カテゴリー');
-    sideTitle.id = 'desktop-category-title';
-    const categoryNav = el('nav', 'category-side-nav');
-    categoryNav.setAttribute('aria-label', 'ルールカテゴリー（デスクトップ）');
-    const desktopCategoryButtons = new Map();
-    const groups = new Map([['', [{ id: 'all', label: 'すべて' }]]]);
-    data.categories.forEach(category => {
-      const group = category.group || '';
-      if (!groups.has(group)) groups.set(group, []);
-      groups.get(group).push(category);
-    });
-    groups.forEach((categories, group) => {
-      if (group) categoryNav.append(el('p', 'category-side-group', group));
-      categories.forEach(category => {
-        const node = button(category.label, 'category-side-link', () => { state.category = category.id; applyFilters(); });
-        node.setAttribute('aria-pressed', String(state.category === category.id));
-        desktopCategoryButtons.set(category.id, node);
-        categoryNav.append(node);
-      });
-    });
-    categorySidebar.append(sideTitle, categoryNav);
-    const sidebar = el('aside', 'rules-sidebar');
-    sidebar.setAttribute('aria-labelledby', 'desktop-toc-title');
-    const tocTitle = el('h2', 'toc-heading', 'このページの目次');
-    tocTitle.id = 'desktop-toc-title';
-    const toc = el('nav', 'toc-list');
-    toc.setAttribute('aria-label', 'ルールの目次');
-    const tocNote = el('p', 'toc-note', '項目を選ぶと本文を開きます。「あとで読む」で気になる案内を保存できます。');
-    sidebar.append(tocTitle, toc, tocNote);
-    const rulesMain = el('section', 'rules-main');
-    rulesMain.setAttribute('aria-label', 'ルール一覧');
-    const toolbar = el('div', 'rules-toolbar');
-    const count = el('p', 'result-count');
-    count.setAttribute('role', 'status');
-    count.setAttribute('aria-live', 'polite');
-    const tools = el('div', 'toolbar-actions');
-    const saved = button('保存したルール', 'button button-small bookmark-filter', () => { state.savedOnly = !state.savedOnly; applyFilters(); }, 'star');
-    saved.setAttribute('aria-pressed', String(state.savedOnly));
-    const expand = button('すべて展開', 'button button-small button-secondary', () => {
-      views.list.querySelectorAll('details').forEach(detail => { detail.open = true; openRules.add(detail.id); });
-    });
-    const collapse = button('すべて閉じる', 'button button-small button-secondary', () => {
-      views.list.querySelectorAll('details').forEach(detail => { detail.open = false; openRules.delete(detail.id); });
-    });
-    tools.append(saved, expand, collapse);
-    toolbar.append(count, tools);
-    const mobileToc = el('details', 'mobile-toc');
-    const mobileSummary = el('summary');
-    mobileSummary.append(icon('list'), el('span', '', 'このページの目次'), icon('chevron'));
-    const mobileNav = el('nav', 'toc-list');
-    mobileNav.setAttribute('aria-label', 'ルールの目次（モバイル）');
-    mobileToc.append(mobileSummary, mobileNav);
-    const list = el('div', 'rule-list');
-    list.id = 'rule-list';
-    rulesMain.append(toolbar, mobileToc, list);
-    layout.append(categorySidebar, rulesMain, sidebar);
-    shell.append(layout);
-    main.replaceChildren(shell);
-    views = { mode: 'rules', input: search.input, searchBox: search.box, clear: search.clear, pillButtons, desktopCategoryButtons, saved, count, list, toc, mobileNav, mobileToc, expand, collapse };
-    renderResults();
-    window.addEventListener('hashchange', () => openDeepLink(true));
-    window.addEventListener('popstate', () => {
-      readFiltersFromUrl();
-      delete state.deepRuleId;
-      views.input.value = state.query;
-      renderResults();
-      openDeepLink(true);
-    });
-    if (!openDeepLink(false) && focused) { views.input.focus(); scrollToNode(views.searchBox); reflectUrl(); }
+    header.append(heading, modes);
+    return header;
   }
-  function renderGuide() {
-    readFiltersFromUrl();
-    state.category = 'all';
-    const info = pageInfo(page);
-    const entries = pageRules(page);
-    if (page !== 'faq') entries.forEach(rule => openRules.add(rule.id));
-    const shell = el('div', `guide-page ${page}-page`);
-    const hero = el('section', 'hero rules-hero guide-hero');
-    const heroCopy = el('div', 'hero-copy');
-    heroCopy.append(el('p', 'eyebrow', info.kicker), el('h1', 'hero-title', info.title), el('p', 'hero-lead', info.description), metaRow());
-    const search = searchBox(page === 'law' ? 'このページの法律・罰金を検索' : `${info.title}の掲載情報を検索`, page === 'law' ? '違反名・罰金・刑務などで検索…' : 'このページの内容を検索…');
-    const hint = el('p', 'search-hint', page === 'law' ? 'このページ内を検索。表は一致する行だけを表示します。サーバールール違反への対応は「公式ルール」をご確認ください。' : 'このページ内の案内を検索できます。サイト全体から探す場合は、公式ルールの検索をご利用ください。');
-    hint.id = 'search-hint';
-    heroCopy.append(search.box, hint);
-    if (['join', 'contact'].includes(page)) {
-      const actions = el('div', 'hero-actions');
-      actions.append(socialLink('公式Discordへ', 'discord', 'button button-primary'), link(page === 'join' ? '先にルールを確認する' : 'よくある質問を見る', page === 'join' ? 'rules/' : 'faq/', 'button button-secondary', 'arrow'));
-      if (page === 'join') actions.append(link('サーバー情報を確認する', 'server/', 'button button-secondary', 'clock'));
-      heroCopy.append(actions);
-    }
-    hero.append(heroCopy);
-    shell.append(hero);
-    if (['law', 'crime', 'pd'].includes(page)) {
-      const note = el('aside', 'notice guide-context');
-      note.append(icon('shield'), el('p', '', 'ゲーム内の犯罪と、サーバールール違反は別のものです。ゲーム内の法律はPDが対応し、ルール違反への対応は運営が判断します。'), link('公式ルール', 'rules/', 'section-link', 'arrow'));
-      shell.append(note);
-    }
-    if (page === 'guides') {
-      const navigation = el('nav', 'guide-page-links');
-      navigation.setAttribute('aria-label', '街の仕事・サービス');
-      ['pd', 'ems', 'mechanic', 'shops', 'lifejobs', 'gangs', 'server', 'mods'].forEach(key => navigation.append(link(pageInfo(key).title, `${key}/`, 'pill', 'arrow')));
-      shell.append(navigation);
-    }
-    const layout = el('div', 'guide-layout');
-    const rulesMain = el('section', 'rules-main guide-main');
-    rulesMain.setAttribute('aria-label', `${info.title}の掲載情報`);
+  function guideNavigation() {
+    const navigation = el('nav', 'guide-page-links document-navigation');
+    navigation.setAttribute('aria-label', 'ガイドのカテゴリー');
+    const selectLabel = el('label', 'visually-hidden', 'ガイドのカテゴリーを選ぶ');
+    selectLabel.htmlFor = 'guide-category-select';
+    const select = el('select', 'document-category-select');
+    select.id = selectLabel.htmlFor;
+    select.addEventListener('change', () => { location.href = href(`${select.value}/`); });
+    navigation.append(selectLabel, select);
+    ['guides', 'join', 'server', 'character', 'economy', 'crime', 'law', 'pd', 'ems', 'mechanic', 'shops', 'lifejobs', 'gangs', 'faq', 'contact'].forEach(key => {
+      const node = link(key === 'guides' ? 'ガイド一覧' : pageInfo(key).title, `${key}/`, 'pill');
+      if (key === page) node.setAttribute('aria-current', 'page');
+      const option = el('option', '', key === 'guides' ? 'ガイド一覧' : pageInfo(key).title);
+      option.value = key;
+      option.selected = key === page;
+      select.append(option);
+      navigation.append(node);
+    });
+    return navigation;
+  }
+  function readingLayout(label) {
+    const layout = el('div', 'document-layout');
+    const rulesMain = el('section', 'rules-main');
+    rulesMain.setAttribute('aria-label', label);
     const toolbar = el('div', 'rules-toolbar');
     const count = el('p', 'result-count');
     count.setAttribute('role', 'status');
@@ -770,36 +649,110 @@
     });
     actions.append(saved, expand, collapse);
     toolbar.append(count, actions);
-    const mobileToc = el('details', 'mobile-toc');
+    const mobileToc = el('details', 'mobile-toc document-toc');
     const summary = el('summary');
-    summary.append(icon('list'), el('span', '', 'このページの目次'), icon('chevron'));
+    summary.append(icon('list'), el('span', '', '表示中の項目を探す'), icon('chevron'));
     const mobileNav = el('nav', 'toc-list');
-    mobileNav.setAttribute('aria-label', `${info.title}の目次（モバイル）`);
+    mobileNav.setAttribute('aria-label', label + 'の目次');
     mobileToc.append(summary, mobileNav);
     const list = el('div', 'rule-list');
     list.id = 'rule-list';
     rulesMain.append(toolbar, mobileToc, list);
-    const sidebar = el('aside', 'rules-sidebar');
-    const tocTitle = el('h2', 'toc-heading', 'このページの目次');
-    tocTitle.id = 'desktop-toc-title';
-    sidebar.setAttribute('aria-labelledby', tocTitle.id);
-    const toc = el('nav', 'toc-list');
-    toc.setAttribute('aria-label', `${info.title}の目次`);
-    sidebar.append(tocTitle, toc);
-    layout.append(rulesMain, sidebar);
-    shell.append(layout);
+    layout.append(rulesMain);
+    return { layout, saved, count, list, toc: null, mobileNav, mobileToc, expand, collapse };
+  }
+  function renderRules() {
+    readFiltersFromUrl();
+    const focused = new URL(location.href).searchParams.get('focus') === 'search';
+    const entries = pageRules('rules').filter(rule => rule.status === 'published');
+    const categoryIds = new Set(entries.map(rule => rule.category));
+    const categories = data.categories.filter(category => categoryIds.has(category.id));
+    const chapterOrder = new Map((Array.isArray(data.settings.ruleChapters) ? data.settings.ruleChapters : []).map(chapter => [chapter.category, chapter.number]));
+    categories.sort((a, b) => (chapterOrder.get(a.id) || 999) - (chapterOrder.get(b.id) || 999));
+    if (state.category !== 'all' && !categoryIds.has(state.category)) state.category = 'all';
+    entries.forEach(rule => openRules.add(rule.id));
+    const shell = el('div', 'rules-page document-page');
+    shell.append(documentHeading('公式ルール'));
+    const categorySection = el('section', 'category-section');
+    categorySection.id = 'categories';
+    const categoryTitle = el('div', 'category-section-head');
+    categoryTitle.append(el('h2', 'category-heading', 'カテゴリー'), el('span', 'category-meta', `${entries.length} 項目`));
+    const pills = el('div', 'category-pills');
+    pills.setAttribute('aria-label', 'ルールカテゴリー');
+    const pillButtons = new Map();
+    const selectLabel = el('label', 'visually-hidden', 'ルールのカテゴリーを選ぶ');
+    selectLabel.htmlFor = 'rule-category-select';
+    const categorySelect = el('select', 'document-category-select');
+    categorySelect.id = selectLabel.htmlFor;
+    categorySelect.addEventListener('change', () => {
+      state.category = categorySelect.value;
+      entries.filter(rule => state.category === 'all' || rule.category === state.category).forEach(rule => openRules.add(rule.id));
+      applyFilters();
+    });
+    [{ id: 'all', shortLabel: 'すべて' }, ...categories].forEach(category => {
+      const pill = button(category.shortLabel || category.label, 'pill', () => {
+        state.category = category.id;
+        entries.filter(rule => category.id === 'all' || rule.category === category.id).forEach(rule => openRules.add(rule.id));
+        applyFilters();
+      });
+      pill.setAttribute('aria-pressed', String(state.category === category.id));
+      pillButtons.set(category.id, pill);
+      pills.append(pill);
+      const option = el('option', '', category.label || category.shortLabel);
+      option.value = category.id;
+      option.selected = state.category === category.id;
+      categorySelect.append(option);
+    });
+    categorySection.append(categoryTitle, selectLabel, categorySelect, pills);
+    shell.append(categorySection);
+    const search = searchBox('公式ルール内を検索', '禁止事項・ルールを検索…');
+    const hint = el('p', 'search-hint');
+    hint.id = 'search-hint';
+    hint.append(document.createTextNode('公式ルール内を検索します。料金・使い方は '), link('にこぐらガイド', 'guides/', 'inline-guide-link'), document.createTextNode('、罰金・刑期は '), link('ゲーム内法律', 'law/', 'inline-guide-link'), document.createTextNode(' へ。'));
+    shell.append(search.box, hint);
+    const reading = readingLayout('公式ルール');
+    shell.append(reading.layout);
+    main.replaceChildren(shell);
+    views = { ...reading, mode: 'rules', entries, input: search.input, searchBox: search.box, clear: search.clear, pillButtons, categorySelect };
+    renderResults();
+    window.addEventListener('hashchange', () => openDeepLink(true));
+    window.addEventListener('popstate', () => {
+      readFiltersFromUrl();
+      if (state.category !== 'all' && !categoryIds.has(state.category)) state.category = 'all';
+      views.input.value = state.query;
+      renderResults();
+      openDeepLink(true);
+    });
+    if (!openDeepLink(false) && focused) { views.input.focus(); scrollToNode(views.searchBox); reflectUrl(); }
+  }
+  function renderGuide() {
+    readFiltersFromUrl();
+    state.category = 'all';
+    const info = pageInfo(page);
+    const entries = pageRules(page).filter(rule => rule.status === 'published');
+    entries.forEach(rule => openRules.add(rule.id));
+    const shell = el('div', `guide-page document-page ${page}-page`);
+    shell.append(documentHeading(info.title), guideNavigation());
+    const search = searchBox(page === 'law' ? 'このページの法律・罰金を検索' : `${info.title}の掲載情報を検索`, page === 'law' ? '違反名・罰金・刑務などで検索…' : 'このページの内容を検索…');
+    const hint = el('p', 'search-hint', page === 'law' ? 'ゲーム内の法律です。表は検索に一致する行を表示します。サーバールール違反への対応は「公式ルール」へ。' : (page === 'guides' ? 'ガイド全体から料金や使い方を検索できます。分野ごとに読む場合は上のカテゴリーを選んでください。' : '選択中のカテゴリー内を検索します。ほかの分野は上のカテゴリーから確認できます。'));
+    hint.id = 'search-hint';
+    shell.append(search.box, hint);
+    if (['join', 'contact'].includes(page)) {
+      const actions = el('div', 'document-actions');
+      actions.append(socialLink('公式Discordへ', 'discord', 'button button-primary'), link(page === 'join' ? 'ルールを確認する' : 'よくある質問', page === 'join' ? 'rules/' : 'faq/', 'button button-secondary', 'arrow'));
+      shell.append(actions);
+    }
+    const reading = readingLayout(`${info.title}の掲載情報`);
+    shell.append(reading.layout);
     const related = el('nav', 'guide-related');
     related.setAttribute('aria-label', '関連する案内');
     related.append(link('公式ルール', 'rules/', 'button button-secondary', 'book'));
-    if (page !== 'guides') related.append(link('街ガイド', 'guides/', 'button button-secondary', 'arrow'));
+    if (page !== 'guides') related.append(link('にこぐらガイド', 'guides/', 'button button-secondary', 'arrow'));
     if (['crime', 'pd'].includes(page)) related.append(link('法律・罰金', 'law/', 'button button-secondary', 'arrow'));
     if (['ems', 'mechanic', 'shops', 'lifejobs', 'gangs'].includes(page)) related.append(link('経済・料金', 'economy/', 'button button-secondary', 'arrow'));
-    if (['faq', 'contact', 'character'].includes(page)) related.append(link('参加方法', 'join/', 'button button-secondary', 'arrow'));
-    if (['join', 'mods', 'faq'].includes(page)) related.append(link('サーバー情報', 'server/', 'button button-secondary', 'clock'));
-    if (page === 'server') related.append(link('参加方法', 'join/', 'button button-secondary', 'arrow'), link('Citizen・Client MOD', 'mods/', 'button button-secondary', 'arrow'));
     shell.append(related);
     main.replaceChildren(shell);
-    views = { mode: 'guide', entries, input: search.input, searchBox: search.box, clear: search.clear, saved, count, list, toc, mobileNav, mobileToc, expand, collapse };
+    views = { ...reading, mode: 'guide', entries, input: search.input, searchBox: search.box, clear: search.clear };
     renderGuideResults();
     window.addEventListener('hashchange', () => openDeepLink(true));
     window.addEventListener('popstate', () => {
@@ -816,8 +769,11 @@
     clearTimeout(filterTimer);
     // An old anchor must not silently override an intentional new filter.
     const url = new URL(location.href);
-    if (url.hash) { url.hash = ''; history.replaceState({}, '', url); }
-    delete state.deepRuleId;
+    if (url.hash || url.searchParams.has('rule')) {
+      url.hash = '';
+      url.searchParams.delete('rule');
+      history.replaceState({}, '', url);
+    }
     reflectUrl();
     renderCurrentResults();
   }
@@ -886,6 +842,27 @@
         body.append(list);
       } else if (block.type === 'heading') body.append(highlighted(block.text, '', 'h4'));
       else if (block.type === 'note') body.append(highlighted(block.text, 'rule-note', 'aside'));
+      else if (block.type === 'image') {
+        const source = localImageUrl(block.src);
+        if (!source) { body.append(el('p', 'rule-note', '画像を表示できません。')); return; }
+        const figure = el('figure', 'rule-figure');
+        const image = el('img', 'rule-image');
+        image.src = source;
+        image.alt = String(block.alt || '');
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        const caption = el('figcaption', 'rule-image-caption');
+        if (block.caption) caption.append(highlighted(block.caption, 'rule-image-description'));
+        const enlarge = el('a', 'rule-image-enlarge', '画像を拡大');
+        enlarge.href = source;
+        enlarge.target = '_blank';
+        enlarge.rel = 'noopener noreferrer';
+        enlarge.setAttribute('aria-label', `${block.alt || '画像'}を拡大（新しいタブで開く）`);
+        enlarge.append(icon('external'));
+        caption.append(enlarge);
+        figure.append(image, caption);
+        body.append(figure);
+      }
       else if (block.type === 'table') {
         const rows = visibleTableRows(rule, block);
         if (!rows.length) {
@@ -932,6 +909,23 @@
       rule.tags.forEach(tag => tags.append(highlighted(tag, 'badge tag')));
       body.append(tags);
     }
+    const relatedRules = [...new Set(Array.isArray(rule.relatedRuleIds) ? rule.relatedRuleIds : [])]
+      .map(id => data.rules.find(item => item.id === id && item.id !== rule.id && item.status === 'published'))
+      .filter(Boolean);
+    if (relatedRules.length) {
+      const related = el('nav', 'rule-related');
+      related.setAttribute('aria-label', `${rule.title}の関連項目`);
+      related.append(el('h4', 'rule-related-title', '関連する項目'));
+      const links = el('ul', 'rule-related-list');
+      relatedRules.forEach(item => {
+        const target = canonicalPage(item);
+        const entry = el('li');
+        entry.append(link(`${pageInfo(target).title}：${item.title}`, `${target}/#${encodeURIComponent(item.id)}`, 'rule-related-link', 'arrow'));
+        links.append(entry);
+      });
+      related.append(links);
+      body.append(related);
+    }
     const footer = el('div', 'rule-footer');
     const updated = el('span', 'rule-date');
     updated.append(document.createTextNode('更新 '), time(rule.updatedAt));
@@ -963,21 +957,17 @@
     return details;
   }
   function renderResults() {
+    if (views.categorySelect) views.categorySelect.value = state.category;
     tokens = [...new Set(normalize(state.query).trim().split(/\s+/u).filter(Boolean))];
-    const source = tokens.length || state.category !== 'all' || state.savedOnly ? data.rules : pageRules('rules');
-    const entries = state.deepRuleId && !source.some(rule => rule.id === state.deepRuleId) ? [...source, data.rules.find(rule => rule.id === state.deepRuleId)].filter(Boolean) : source;
+    const entries = views.entries;
     const matches = entries.filter(rule => (state.category === 'all' || rule.category === state.category) && (!state.savedOnly || bookmarks.has(rule.id)) && tokens.every(token => rule._search.includes(token)));
     const category = categoryMap.get(state.category);
-    const context = state.savedOnly ? '保存した項目' : category?.label || (tokens.length ? 'サイト全体' : 'サーバールール');
+    const context = state.savedOnly ? '保存した項目' : category?.label || '公式ルール';
     views.count.replaceChildren(el('strong', '', String(matches.length)), document.createTextNode(` 件 · ${context}${tokens.length ? ' / 検索結果' : ''}`));
     views.saved.setAttribute('aria-pressed', String(state.savedOnly));
     views.saved.title = `保存済み ${bookmarks.size} 件`;
     views.clear.hidden = !state.query;
     views.pillButtons.forEach((node, id) => {
-      node.setAttribute('aria-pressed', String(state.category === id));
-      node.classList.toggle('is-active', state.category === id);
-    });
-    views.desktopCategoryButtons.forEach((node, id) => {
       node.setAttribute('aria-pressed', String(state.category === id));
       node.classList.toggle('is-active', state.category === id);
     });
@@ -1005,8 +995,8 @@
     matches.forEach(rule => fragment.append(ruleCard(rule)));
     if (!matches.length) {
       const empty = el('div', 'empty-state');
-      empty.append(icon(state.savedOnly ? 'star' : 'search'), el('h3', '', state.savedOnly ? 'このページに保存した項目はありません' : '一致する案内が見つかりませんでした'), el('p', '', state.savedOnly ? '各項目の「あとで読む」から保存できます。' : '短い言葉で検索するか、サイト全体の検索をお試しください。'));
-      empty.append(button('絞り込みをリセット', 'button button-secondary', () => { state.query = ''; state.savedOnly = false; views.input.value = ''; applyFilters(); }), link('サイト全体から探す', `rules/?q=${encodeURIComponent(state.query)}`, 'button button-secondary', 'search'));
+      empty.append(icon(state.savedOnly ? 'star' : 'search'), el('h3', '', state.savedOnly ? 'このページに保存した項目はありません' : '一致する案内が見つかりませんでした'), el('p', '', state.savedOnly ? '各項目の「あとで読む」から保存できます。' : '短い言葉で検索するか、ガイド一覧からほかのカテゴリーをお試しください。'));
+      empty.append(button('絞り込みをリセット', 'button button-secondary', () => { state.query = ''; state.savedOnly = false; views.input.value = ''; applyFilters(); }), link('ガイド全体から探す', `guides/?q=${encodeURIComponent(state.query)}`, 'button button-secondary', 'search'), link('公式ルールから探す', `rules/?q=${encodeURIComponent(state.query)}`, 'button button-secondary', 'search'));
       fragment.append(empty);
     }
     views.list.replaceChildren(fragment);
@@ -1014,7 +1004,7 @@
     renderToc(matches);
   }
   function renderToc(matches) {
-    [views.toc, views.mobileNav].forEach(toc => {
+    [views.toc, views.mobileNav].filter(Boolean).forEach(toc => {
       const navFragment = document.createDocumentFragment();
       matches.forEach(rule => {
         const node = link('', `${page}/#${encodeURIComponent(rule.id)}`, 'toc-link');
@@ -1040,7 +1030,7 @@
     if (!('IntersectionObserver' in window)) return;
     const visible = new Map();
     const active = id => {
-      [...views.toc.children, ...views.mobileNav.children].forEach(link => {
+      [...(views.toc?.children || []), ...(views.mobileNav?.children || [])].forEach(link => {
         const selected = link.dataset.ruleId === id;
         link.classList.toggle('is-active', selected);
         link.classList.toggle('active', selected);
@@ -1056,7 +1046,7 @@
   }
   function openDeepLink(focus) {
     let id;
-    try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return false; }
+    try { id = location.hash ? decodeURIComponent(location.hash.slice(1)) : new URL(location.href).searchParams.get('rule'); } catch (_) { return false; }
     if (id === 'categories') {
       const target = document.getElementById('categories');
       if (focus && target) { target.tabIndex = -1; target.focus({ preventScroll: true }); }
@@ -1064,13 +1054,23 @@
       return true;
     }
     const rule = data.rules.find(item => item.id === id);
-    if (!rule) return false;
-    if (views.mode === 'guide' && !views.entries.some(item => item.id === id)) return false;
+    if (!rule || rule.status !== 'published') return false;
+    if (!views.entries.some(item => item.id === id)) {
+      const destination = canonicalPage(rule);
+      if (destination === page) return false;
+      const target = new URL(href(`${destination}/`));
+      target.hash = rule.id;
+      location.replace(target.href);
+      return true;
+    }
+    const resolved = new URL(location.href);
+    resolved.searchParams.delete('rule');
+    resolved.hash = rule.id;
+    history.replaceState({}, '', resolved);
     state.query = '';
     state.category = 'all';
     state.savedOnly = false;
     views.input.value = '';
-    if (views.mode === 'rules') state.deepRuleId = id;
     openRules.add(id);
     reflectUrl();
     renderCurrentResults();
@@ -1082,7 +1082,7 @@
     return true;
   }
   async function copyRuleUrl(rule) {
-    const target = views?.mode === 'guide' ? page : 'rules';
+    const target = canonicalPage(rule);
     const url = new URL(href(`${target}/`));
     url.hash = rule.id;
     try {

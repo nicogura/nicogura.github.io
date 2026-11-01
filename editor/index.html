@@ -33,7 +33,7 @@
             <div class="field-row"><label>カテゴリー<select name="category" required></select></label><label>重大度<select name="severity" required><option value="guide">ガイド</option><option value="notice">お願い</option><option value="important">注意</option><option value="prohibited">禁止</option><option value="serious">重大違反</option></select></label></div>
             <label>要約<textarea name="summary" rows="3" maxlength="5000"></textarea></label>
             <label>本文の編集方法<select name="contentMode"><option value="paragraph">通常の文章（空行で段落を分ける）</option><option value="json">高度な編集（本文ブロックのJSON）</option></select></label>
-            <p id="content-help" class="helper">空行で段落を分けます。見出し・箇条書き・注記・表がある本文はJSONモードで構造を維持します。表は type: "table" と caption（任意）、headers（見出し配列）、rows（セル配列の配列）を指定します。最大12列・200行です。</p>
+            <p id="content-help" class="helper">空行で段落を分けます。見出し・箇条書き・注記・表・画像がある本文はJSONモードで構造を維持します。表は type: "table" と caption（任意）、headers（見出し配列）、rows（セル配列の配列）を指定します。最大12列・200行です。画像は type: "image" と src（assets/内の画像パス）、alt（画像の説明）、caption（任意）を指定します。</p>
             <label>本文<textarea name="content" rows="12" spellcheck="false" aria-describedby="content-help"></textarea></label>
             <div class="field-row"><label>タグ（カンマ区切り）<input type="text" name="tags" placeholder="犯罪, 人質"></label><label>検索キーワード（カンマ区切り）<input type="text" name="keywords" placeholder="ひとじち, hostage"></label></div>
             <div class="field-row"><label>更新日<input name="updatedAt" type="date" required></label><label>公開状態<select name="status"><option value="pending">運営確認中</option><option value="published">正式公開（運営承認済み）</option></select></label></div>

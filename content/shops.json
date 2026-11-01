@@ -2,7 +2,7 @@
   "categories": [
     {
       "id": "business",
-      "label": "店舗・仕事",
+      "label": "飲食店・ジョイント",
       "shortLabel": "店舗",
       "description": "市民が営むお店、サービス、仕事でのやり取り。",
       "group": "暮らし・仕事"
@@ -15,7 +15,7 @@
       "title": "市民が営むお店を楽しもう",
       "category": "business",
       "tags": [
-        "お願い"
+        "ガイド"
       ],
       "keywords": [
         "店舗",
@@ -23,7 +23,7 @@
         "サービス",
         "営業妨害"
       ],
-      "severity": "notice",
+      "severity": "guide",
       "summary": "有人店舗では、飲食やサービスなど、市民同士のやり取りを楽しめます。",
       "content": [
         {
@@ -32,17 +32,19 @@
         },
         {
           "type": "paragraph",
-          "text": "商品・作業・料金を伝え合い、説明と請求が食い違わないようにしてください。意図的な詐欺的請求や職業の権限の悪用は禁止です。"
-        },
-        {
-          "type": "paragraph",
-          "text": "店舗荒らし、意図的な営業妨害、嫌がらせは禁止です。行き違いがあればまず内容を確認し、解決が難しい場合はDiscordのお問い合わせ窓口へ相談してください。"
+          "text": "商品や作業の内容、料金を確認しながら利用してください。行き違いがあれば、まず店舗と内容を確認しましょう。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "job-authority-misuse",
+        "shop-establishment",
+        "economy-food-prices"
+      ]
     },
     {
       "id": "pending-job-conditions",
@@ -60,21 +62,112 @@
         "店舗"
       ],
       "severity": "guide",
-      "summary": "お店での仕事や生活の仕事を楽しめます。公務員は兼業禁止です。",
+      "summary": "店舗やLife Jobなど、街での働き方を探してみましょう。",
       "content": [
         {
           "type": "paragraph",
-          "text": "市民が営むお店の仕事やLife Jobなど、街での働き方を探してみましょう。お店では商品やサービスを通して、市民との交流を楽しめます。"
+          "text": "市民が営むお店の仕事やLife Jobなど、興味に合う働き方を探してみましょう。お店では商品やサービスを通して、市民との交流を楽しめます。"
         },
         {
           "type": "paragraph",
-          "text": "公務員は兼業禁止です。就職や採用については、担当者に案内を確認してください。"
+          "text": "就職や採用は担当者へ相談し、兼業などの条件を確認してください。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-02",
       "new": false,
       "featured": false,
-      "status": "published"
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "job-employment-limits",
+        "lifejobs-overview"
+      ]
+    },
+    {
+      "id": "job-authority-misuse",
+      "number": 245,
+      "title": "職業の権限や請求を悪用しない",
+      "category": "business",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "職業の権限・支給品・専用機能の悪用や、実施していない作業の請求は禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "PD・EMS・メカニックなど、職務の権限、支給品、専用機能を不正な利益のために悪用しないでください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "実施していない作業の請求や、意図的な詐欺的請求は禁止です。作業・商品と請求内容が食い違わないよう説明してください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "店舗荒らし、意図的な営業妨害、嫌がらせは禁止です。行き違いを解決できない場合は、チケットから運営へ相談してください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 7
+    },
+    {
+      "id": "job-employment-limits",
+      "number": 246,
+      "title": "公務員の兼業禁止",
+      "category": "business",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [],
+      "severity": "important",
+      "summary": "公務員は兼業できません。就職・採用については担当者に確認してください。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "公務員は兼業禁止です。就職や採用については、担当者の案内を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 7
+    },
+    {
+      "id": "shop-establishment",
+      "number": 252,
+      "title": "飲食店・ジョイント店の開業相談",
+      "category": "business",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [],
+      "severity": "guide",
+      "summary": "飲食店・ジョイント店の開業申請は、現在受け付けていません。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "飲食店・ジョイント店では、食料、飲み物、嗜好品を販売します。開業に関する相談は、公式Discordのチケットからお願いします。"
+        },
+        {
+          "type": "note",
+          "text": "現在、飲食店・ジョイント店の開業申請は受け付けていません。募集再開の案内は、公式のお知らせを確認してください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "administration-report"
+      ]
     }
   ]
 }
