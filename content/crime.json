@@ -613,7 +613,7 @@
     {
       "id": "crime-bug-response",
       "number": 221,
-      "title": "犯罪中に不具合が発生した場合",
+      "title": "犯罪中の不具合対応・再実行・補填の手順",
       "category": "crime",
       "tags": [
         "注意"
@@ -624,11 +624,27 @@
         "進行不能",
         "リセット",
         "PD",
-        "ボディカメラ"
+        "ボディカメラ",
+        "再実行",
+        "続行",
+        "中断",
+        "回収フェーズ",
+        "逃走フェーズ",
+        "再発",
+        "2回目",
+        "不具合リセット前の選択",
+        "再度不具合が発生した場合",
+        "補填",
+        "222",
+        "223"
       ],
       "severity": "important",
-      "summary": "不具合で進行できなくなったら、PDへ連絡してシーンを一時中断してください。PDが現場を確認し、リセット可能か判断します。",
+      "summary": "進行不能になったらPDへ連絡して一時中断。現場確認後に再実行・続行・中断を選びます。再実行後の再発時は再リセットできず、補填申請にはチケットとボディカメラが必要です。",
       "content": [
+        {
+          "type": "heading",
+          "text": "1. PDへ連絡して現場確認"
+        },
         {
           "type": "paragraph",
           "text": "不具合などで犯罪の進行が不可能になった場合は、速やかにPDへ連絡し、シーンを一時中断してください。"
@@ -642,41 +658,9 @@
           "text": "進行不能と判断された事件では、状況確認のために犯罪者側へボディカメラの提出を求める場合があります。"
         },
         {
-          "type": "paragraph",
-          "text": "リセット前に「不具合リセット前の選択」を確認してください。"
-        }
-      ],
-      "updatedAt": "2026-11-02",
-      "new": true,
-      "featured": false,
-      "status": "published",
-      "contentKind": "rule",
-      "ruleChapter": 3,
-      "relatedRuleIds": [
-        "crime-bug-options",
-        "crime-bug-recurrence"
-      ]
-    },
-    {
-      "id": "crime-bug-options",
-      "number": 222,
-      "title": "不具合リセット前の選択",
-      "category": "crime",
-      "tags": [
-        "注意"
-      ],
-      "keywords": [
-        "不具合",
-        "リセット",
-        "再実行",
-        "続行",
-        "中断",
-        "回収フェーズ",
-        "逃走フェーズ"
-      ],
-      "severity": "important",
-      "summary": "PDはリセット前に犯罪者側へ今後の進行を確認してください。犯罪者側は「同じ犯罪を再実行」「そのまま続行」「中断」から選択します。",
-      "content": [
+          "type": "heading",
+          "text": "2. リセット前に進行方法を選ぶ"
+        },
         {
           "type": "paragraph",
           "text": "不具合リセットを行う前に、PDは犯罪者側へ今後の進行を確認してください。犯罪者側は、次のいずれかを選択します。"
@@ -711,55 +695,36 @@
           "text": "その犯罪を中断します。中断後は、他の犯罪者が同じ犯罪を実行できる状態にしてください。"
         },
         {
+          "type": "heading",
+          "text": "3. 再実行後に、再び不具合が発生したら"
+        },
+        {
           "type": "note",
           "text": "一度リセットして再実行した後に再び不具合が発生した場合は、②そのまま続行・③中断のどちらかを選択してください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "2回目以降は、再度リセットして最初からやり直す選択はできません。"
+        },
+        {
+          "type": "heading",
+          "text": "4. 成功後の補填を申請する場合"
         },
         {
           "type": "paragraph",
           "text": "不具合があった犯罪の成功後に補填を申請する場合は、チケットを発行し、ボディカメラを提出してください。ボディカメラの提出がない場合は補填できません。"
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-03",
       "new": true,
       "featured": false,
       "status": "published",
       "contentKind": "rule",
-      "ruleChapter": 3
-    },
-    {
-      "id": "crime-bug-recurrence",
-      "number": 223,
-      "title": "再度不具合が発生した場合",
-      "category": "crime",
-      "tags": [
-        "注意"
-      ],
-      "keywords": [
-        "不具合",
-        "再発",
-        "リセット",
-        "2回目",
-        "続行",
-        "中断"
-      ],
-      "severity": "important",
-      "summary": "リセットして再実行した後に再び不具合が発生した場合は、続行か中断を選択してください。2回目以降のリセットによるやり直しはできません。",
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "一度不具合リセットを行い、再実行後に再び不具合が発生した場合は、「そのまま続行」か「中断」のどちらかを選択してください。各選択の進め方は「不具合リセット前の選択」を確認してください。"
-        },
-        {
-          "type": "paragraph",
-          "text": "2回目以降は、再度リセットして最初からやり直す選択はできません。"
-        }
-      ],
-      "updatedAt": "2026-11-02",
-      "new": true,
-      "featured": false,
-      "status": "published",
-      "contentKind": "rule",
-      "ruleChapter": 3
+      "ruleChapter": 3,
+      "aliases": [
+        "crime-bug-options",
+        "crime-bug-recurrence"
+      ]
     },
     {
       "id": "crime-restart-window",
@@ -1185,6 +1150,69 @@
         "crime-public-rewards",
         "pending-crime-conditions"
       ]
+    },
+    {
+      "id": "crime-siege",
+      "number": 259,
+      "title": "中籠りと完全包囲の判定",
+      "category": "crime",
+      "tags": [
+        "ルール"
+      ],
+      "keywords": [
+        "中籠り",
+        "籠城",
+        "完全包囲",
+        "ラーク",
+        "5分",
+        "敗北"
+      ],
+      "severity": "important",
+      "summary": "対象の犯罪では、PDの完全包囲宣言から5分を計測します。呼びかけ等の条件をPDが確認し、犯罪者側の敗北を確定します。",
+      "content": [
+        {
+          "type": "heading",
+          "text": "対象の犯罪"
+        },
+        {
+          "type": "paragraph",
+          "text": "ランドリー、ヴァンジェ、パレト、ヒューメイン、ボブキャット、美術館、カジノ、ユニオン、地下、山岳。"
+        },
+        {
+          "type": "heading",
+          "text": "完全包囲から敗北判定まで"
+        },
+        {
+          "type": "list",
+          "items": [
+            "PDは現場を完全包囲したうえで、PDアプリの「完全包囲」ボタンから宣言します。ボタンで宣言した時点から5分を計測します。",
+            "PDは犯罪者側へ5回程度の呼びかけを行ってください。",
+            "宣言から5分が経過したら、PDが完全包囲・呼びかけ等の条件を確認し、犯罪者側の敗北を確定します。"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "宣言後のラーク介入は禁止"
+        },
+        {
+          "type": "paragraph",
+          "text": "PDが完全包囲を宣言した時点から、その犯罪へのラークの介入を禁止します。"
+        },
+        {
+          "type": "note",
+          "text": "犯罪参加者の画面中央上部に残り時間を表示します。5分経過後は「PD確認待ち」となり、時間到達だけで自動的に敗北が確定するわけではありません。"
+        }
+      ],
+      "relatedRuleIds": [
+        "crime-scene-conduct",
+        "crime-scene-end"
+      ],
+      "updatedAt": "2026-11-03",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3
     }
   ]
 }

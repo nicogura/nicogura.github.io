@@ -14,7 +14,7 @@ const entry = id => { const r = data.rules.find(r => r.id === id); assert.ok(r, 
 test('published schema and page references', () => {
   assert.deepEqual(validateData(data), []);
   assert.ok(data.rules.every(r => r.status === 'published'));
-  assert.equal(data.site.updatedAt, '2026-11-02');
+  assert.equal(data.site.updatedAt, '2026-11-03');
   for (const key of Object.keys(routes)) { assert.ok(data.pages[key]); for (const id of data.pages[key].ruleIds) entry(id); }
 });
 test('official brand and no internal economics or obsolete joining flow', () => {
@@ -59,22 +59,32 @@ test('retired services and pricing do not return through duplicate tables', () =
   assert.ok(entry('economy-consumable-prices').relatedRuleIds.includes('mechanic-fees'));
   assert.doesNotMatch(JSON.stringify(entry('mechanic-fees').content), /外装一式|半カス|フルカス|100,000,000円/);
 });
-test('EMS products use one definition and distinguish first aid from treatment', () => {
-  for (const [id, name, amount, effect] of [
-    ['ems-bandage','包帯','250,000円','一時的な止血'],
-    ['ems-painkiller','鎮痛剤','250,000円','痛み・症状の一時的な緩和'],
-    ['ems-ifak','IFAK','200,000円','体力25％回復のみ']
-  ]) {
-    const r=entry(id);const text=JSON.stringify(r.content);
-    assert.deepEqual(r.content.find(b=>b.type==='table').rows, [[name,amount,effect,'EMS専売品']]);
-    assert.equal(r.contentKind,'guide');assert.match(text,/EMS専売品/);
-    assert.match(text,/EMSによる治療/);
-    if(id!=='ems-ifak') { assert.match(text,/時間がたつと症状が再発/);assert.doesNotMatch(text,/3分/); }
-    else { assert.match(text,/完全に治療するものではありません/);assert.doesNotMatch(text,/3分/); }
-    for(const page of ['ems','economy']) assert.ok(data.pages[page].ruleIds.includes(id));
-    assert.equal(data.rules.filter(r=>r.id===id).length,1);
+test('EMS products share one article while prices, effects and first-aid warnings stay exact', async () => {
+  const r = entry('ems-supplies');
+  assert.equal(r.title, 'EMS専売品');
+  assert.equal(r.contentKind, 'guide');
+  assert.deepEqual(r.content.find(b => b.type === 'table').rows, [
+    ['包帯','250,000円','一時的な止血','EMS専売品'],
+    ['鎮痛剤','250,000円','痛み・症状の一時的な緩和','EMS専売品'],
+    ['IFAK','200,000円','体力25％回復のみ','EMS専売品']
+  ]);
+  const text = JSON.stringify(r.content);
+  for (const term of ['時間がたつと症状が再発','完全に治療するものではありません','EMSによる治療','EMSへ相談']) assert.ok(text.includes(term), term);
+  assert.doesNotMatch(text, /3分/);
+  const aliases = ['ems-bandage','ems-painkiller','ems-ifak','ems-injuries'];
+  assert.deepEqual(r.aliases, aliases);
+  for (const id of aliases) assert.ok(!data.rules.some(item => item.id === id));
+  for (const page of ['ems','economy','guides']) {
+    assert.equal(data.pages[page].ruleIds.filter(id => id === r.id).length, 1);
+    const html = await read(`${page}/index.html`);
+    for (const alias of aliases) assert.equal(html.split(`id="${alias}"`).length - 1, 1, `${page}/${alias}`);
   }
+  const faq = entry('faq-bandage-treatment');
+  assert.equal(faq.relatedRuleIds.filter(id => id === r.id).length, 1);
+  const config = JSON.parse(await read('content/site.json'));
+  for (const page of Object.values(config.pages)) for (const id of page.ruleIds || []) entry(id);
 });
+
 test('food stays unchanged and meeting EMS and mechanic tables match the source', () => {
   const tableRows = id => entry(id).content.filter(b => b.type === 'table').flatMap(b => b.rows);
   assert.deepEqual(tableRows('economy-food-prices'), [
@@ -156,7 +166,7 @@ test('chase limits and crime response are shared by crime and PD pages', () => {
   assert.match(JSON.stringify(entry('crime-chase-attack-window').content), /クレーン強盗.*2分/);
   assert.match(JSON.stringify(entry('crime-chase-demands')), /最大2項目/);
   assert.match(JSON.stringify(entry('crime-common-response')), /見失ってから10分以内/);
-  for (const id of ['crime-chase-demands', 'crime-chase-attack-window', 'crime-common-response', 'crime-bug-response', 'crime-bug-options', 'crime-bug-recurrence']) {
+  for (const id of ['crime-chase-demands', 'crime-chase-attack-window', 'crime-common-response', 'crime-bug-response']) {
     for (const page of ['crime', 'pd']) assert.ok(data.pages[page].ruleIds.includes(id), `${page}: ${id}`);
     assert.equal(data.rules.filter(r => r.id === id).length, 1, `single definition: ${id}`);
   }
@@ -165,11 +175,47 @@ test('crime bug procedure requires PD verification, evidence and no second reset
   const response = JSON.stringify(entry('crime-bug-response').content);
   assert.match(response, /PDが現場.*確認.*リセット/);
   assert.doesNotMatch(response, /上官/);
-  const options = JSON.stringify(entry('crime-bug-options').content);
+  const options = response;
   for (const text of ['必ず同じ犯罪', '1〜2名', '指定された時間', '手を上げて待機', '他の犯罪者が同じ犯罪を実行できる','成功後','チケット','ボディカメラの提出がない場合は補填できません']) assert.ok(options.includes(text), text);
   assert.doesNotMatch(options, /\d+(?:[～〜~]\d+)?分|PD専用/);
-  assert.match(JSON.stringify(entry('crime-bug-recurrence')), /2回目以降は、再度リセットして最初からやり直す選択はできません/);
+  assert.match(response, /2回目以降は、再度リセットして最初からやり直す選択はできません/);
+  assert.deepEqual(entry('crime-bug-response').aliases, ['crime-bug-options','crime-bug-recurrence']);
+  for (const heading of ['① リセットして再実行','② そのまま続行','③ 中断']) assert.ok(response.includes(heading));
   assert.match(JSON.stringify(entry('heist-duplicate')), /PDの確認を受けた正規の不具合対応は、不正なリセットと区別/);
+});
+test('consolidated crime and mechanic articles preserve legacy links without duplicate listings', async () => {
+  for (const [id, aliases, pages] of [
+    ['crime-bug-response',['crime-bug-options','crime-bug-recurrence'],['rules','crime','pd']],
+    ['mechanic-billing',['pending-mechanic-fees'],['guides','mechanic']],
+  ]) {
+    assert.deepEqual(entry(id).aliases,aliases);
+    for (const page of pages) {
+      assert.equal(data.pages[page].ruleIds.filter(value=>value===id).length,1);
+      const html=await read(`${page}/index.html`);
+      for (const alias of aliases) assert.equal(html.split(`id="${alias}"`).length-1,1,`${page}/${alias}`);
+    }
+    for (const alias of aliases) assert.ok(!data.rules.some(r=>r.id===alias));
+  }
+  const mechanic=JSON.stringify(entry('mechanic-billing').content);
+  for (const term of ['修理','車両整備','カスタム','塗装','外装パーツ','ライト','ナンバー','仕上がり','作業の範囲','料金の内訳','請求内容','納得']) assert.ok(mechanic.includes(term),term);
+  assert.ok(entry('mechanic-billing').relatedRuleIds.includes('mechanic-fees'));
+  assert.equal(entry('mechanic-billing').content.filter(b=>b.type==='table').length,0);
+});
+test('short FAQ answers lead to the authoritative detail and retain critical caveats', () => {
+  const links={
+    'faq-rp-beginner':['rp-light','intro-reading'],
+    'faq-character-count':['character-identity','character-changes'],
+    'faq-whitelist-interview':['join-whitelist','join-flow'],
+    'faq-rule-memory':['intro-reading','faq-find-share'],
+    'faq-rule-loopholes':['administration-response'],
+    'faq-bandage-treatment':['ems-supplies'],
+    'faq-wednesday-maintenance':['server-maintenance'],
+  };
+  for(const [id,related] of Object.entries(links)) assert.deepEqual(entry(id).relatedRuleIds,related);
+  assert.match(JSON.stringify(entry('faq-character-count').content),/追加で作成せず.*事前.*運営/);
+  assert.match(JSON.stringify(entry('faq-whitelist-interview').content),/本人のRxxxx.*承認後.*再接続/);
+  assert.match(JSON.stringify(entry('faq-bandage-treatment').content),/完治しません.*一時的.*再発.*EMS/);
+  assert.match(JSON.stringify(entry('faq-wednesday-maintenance').content),/水曜日03:00.*木曜日19:00.*日本時間.*JST.*予定.*最新/);
 });
 test('meeting IC fines and probation periods are transcribed without inventing blank times', () => {
   // Latest DOCX p825–904: 19 data rows (14 basic offences and five Heist classes).
@@ -331,9 +377,16 @@ const baselineIdsAndNumbers = {
   "faq-wednesday-maintenance": 124
 };
 
-test('all original 91 article IDs and numbers survive and each article is classified once', () => {
+test('original article identities survive, with consolidated article IDs available as aliases', () => {
   assert.equal(Object.keys(baselineIdsAndNumbers).length,91);
-  for(const [id, number] of Object.entries(baselineIdsAndNumbers)) assert.equal(entry(id).number,number,id);
+  const consolidated = { 'ems-bandage':'ems-supplies','ems-painkiller':'ems-supplies','ems-ifak':'ems-supplies',
+    'crime-bug-options':'crime-bug-response','crime-bug-recurrence':'crime-bug-response','pending-mechanic-fees':'mechanic-billing' };
+  for(const [id, number] of Object.entries(baselineIdsAndNumbers)) {
+    if (consolidated[id]) assert.ok(entry(consolidated[id]).aliases.includes(id));
+    else assert.equal(entry(id).number,number,id);
+  }
+  assert.equal(entry('ems-supplies').number, 228);
+  for (const number of [229,230,247,222,223,203]) assert.ok(!data.rules.some(r => r.number === number), 'Do not reuse consolidated article numbers');
   assert.equal(new Set(data.rules.map(r=>r.id)).size,data.rules.length);
   assert.equal(new Set(data.rules.map(r=>r.number)).size,data.rules.length);
   for(const r of data.rules) assert.ok(['rule','guide','law'].includes(r.contentKind),r.id);
@@ -362,7 +415,7 @@ test('helicopter and scene rules preserve the meeting scope and exceptions', () 
 
 test('private PD timings and internal editing notes never enter published data', () => {
   assert.doesNotMatch(body,/非掲載|PD専用|revisionSource|source_latest|\bp\d{4}\b/);
-  const bug=JSON.stringify(['crime-bug-response','crime-bug-options','crime-bug-recurrence'].map(entry));
+  const bug=JSON.stringify(entry('crime-bug-response'));
   assert.doesNotMatch(bug,/\d+(?:[～〜~]\d+)?分/);
   assert.doesNotMatch(body,/11月5日|同時受注制限.*外す|デバッグ用NPC.*復活/);
 });
@@ -381,7 +434,7 @@ test('future beta changes remain explicitly future guidance, not current restric
 
 test('emergency commands distinguish transport, NPC rescue and actual current charge', () => {
   const text=JSON.stringify(entry('ems-emergency-commands').content);
-  for(const term of ['/tpems','理由','運営が確認','蘇生や体力回復は行いません','/help','ダウン中','勤務中のEMSがいない','車内','拘束','収監','銀行残高']) assert.ok(text.includes(term),term);
+  for(const term of ['/tpems','理由','運営が確認','蘇生や体力回復は行いません','/help','ダウン中','EMSが勤務中でも利用できます','車内','拘束','収監','銀行残高','その場で処置']) assert.ok(text.includes(term),term);
   const fees=JSON.stringify(entry('ems-fees').content);
   assert.match(fees,/\/help/); assert.match(fees,/1,000,000円/); assert.match(fees,/800,000円/);
   assert.match(fees,/現行|現在|現時点/); assert.match(fees,/反映/);

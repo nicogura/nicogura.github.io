@@ -8,9 +8,14 @@ const json = async path => JSON.parse(await readFile(resolve(root, path), 'utf8'
 const config = await json('content/site.json');
 const sections = await Promise.all(config.modules.map(json));
 const data = { site: config.site, categories: sections.flatMap(s => s.categories), rules: sections.flatMap(s => s.rules), changelog: config.changelog, settings: config.settings, pages: {} };
+const aliases = new Map(data.rules.flatMap(rule => (Array.isArray(rule.aliases) ? rule.aliases : []).map(alias => [alias, rule.id])));
+const canonicalId = id => aliases.get(id) || id;
+const canonicalIds = ids => [...new Set(ids.map(canonicalId))];
+for (const rule of data.rules) if (Array.isArray(rule.relatedRuleIds)) rule.relatedRuleIds = canonicalIds(rule.relatedRuleIds).filter(id => id !== rule.id);
+data.settings.featuredRuleIds = canonicalIds(data.settings.featuredRuleIds);
 for (const [key, route] of Object.entries(routes)) {
   const selection = config.pages[key] || {};
-  const ruleIds = [...new Set([...(selection.ruleIds || []), ...data.rules.filter(r => (selection.categories || []).includes(r.category)).map(r => r.id)])];
+  const ruleIds = canonicalIds([...(selection.ruleIds || []), ...data.rules.filter(r => (selection.categories || []).includes(r.category)).map(r => r.id)]);
   data.pages[key] = { kicker: `NICOGURA / ${key.toUpperCase()}`, title: route[1], description: route[2], ruleIds };
 }
 const errors = validateData(data);
@@ -29,7 +34,7 @@ for (const [key, [path, label, description]] of Object.entries(routes)) {
   const title = key === 'home' ? label : `${label} | NicoGura にこぐら`;
   const canonical = `https://nicogura.github.io/${path ? path + '/' : ''}`;
   const ids = data.pages[key].ruleIds;
-  const fallback = ids.map(id => data.rules.find(r => r.id === id)).map(r => `<section id="${escape(r.id)}"><h2>${escape(r.title)}</h2>${r.content.map(b => blockHTML(b, base)).join('')}</section>`).join('\n');
+  const fallback = ids.map(id => data.rules.find(r => r.id === id)).map(r => `<section id="${escape(r.id)}">${(r.aliases || []).map(alias => `<span id="${escape(alias)}" aria-hidden="true"></span>`).join('')}<h2>${escape(r.title)}</h2>${r.content.map(b => blockHTML(b, base)).join('')}</section>`).join('\n');
   const source = `<!DOCTYPE html>
 <html lang="ja">
 <head>

@@ -58,9 +58,13 @@
     const fallback = guidePages[key] || ['OFFICIAL RULES', '公式ルール', '', []];
     return { kicker: fallback[0], title: fallback[1], description: fallback[2], ...data.pages?.[key] };
   }
+  function findRule(id) {
+    if (typeof id !== 'string') return undefined;
+    return data.rules.find(rule => rule.id === id || (Array.isArray(rule.aliases) && rule.aliases.includes(id)));
+  }
   function pageRules(key) {
     const ids = data.pages?.[key]?.ruleIds;
-    if (Array.isArray(ids)) return ids.map(id => data.rules.find(rule => rule.id === id)).filter(Boolean);
+    if (Array.isArray(ids)) return [...new Map(ids.map(findRule).filter(Boolean).map(rule => [rule.id, rule])).values()];
     if (key === 'rules') return data.rules;
     const categories = guidePages[key]?.[3] || [];
     return data.rules.filter(rule => rule.status === 'published' && categories.includes(rule.category));
@@ -170,7 +174,7 @@
   function readBookmarks() {
     try {
       const stored = JSON.parse(localStorage.getItem(bookmarkKey) || '[]');
-      if (Array.isArray(stored)) bookmarks = new Set(stored.filter(id => typeof id === 'string' && data.rules.some(rule => rule.id === id)));
+      if (Array.isArray(stored)) bookmarks = new Set(stored.map(findRule).filter(Boolean).map(rule => rule.id));
     } catch (_) { bookmarks = new Set(); }
   }
   function saveBookmarks() {
@@ -620,7 +624,7 @@
     select.id = selectLabel.htmlFor;
     select.addEventListener('change', () => { location.href = href(`${select.value}/`); });
     navigation.append(selectLabel, select);
-    ['guides', 'join', 'server', 'character', 'economy', 'crime', 'law', 'pd', 'ems', 'mechanic', 'shops', 'lifejobs', 'gangs', 'faq', 'contact'].forEach(key => {
+    ['guides', 'join', 'server', 'character', 'economy', 'crime', 'law', 'pd', 'ems', 'mechanic', 'shops', 'lifejobs', 'gangs', 'mods', 'faq', 'contact'].forEach(key => {
       const node = link(key === 'guides' ? 'ガイド一覧' : pageInfo(key).title, `${key}/`, 'pill');
       if (key === page) node.setAttribute('aria-current', 'page');
       const option = el('option', '', key === 'guides' ? 'ガイド一覧' : pageInfo(key).title);
@@ -725,16 +729,44 @@
     });
     if (!openDeepLink(false) && focused) { views.input.focus(); scrollToNode(views.searchBox); reflectUrl(); }
   }
+  function guideCategoryFilters(entries) {
+    const available = new Set(entries.map(rule => rule.category));
+    const categories = data.categories.filter(category => available.has(category.id));
+    if (state.category !== 'all' && !available.has(state.category)) state.category = 'all';
+    const section = el('section', 'category-section');
+    section.id = 'categories';
+    const heading = el('div', 'category-section-head');
+    heading.append(el('h2', 'category-heading', 'カテゴリーから探す'), el('span', 'category-meta', `${entries.length} 項目`));
+    const label = el('label', 'visually-hidden', 'ガイドのカテゴリーを選ぶ');
+    label.htmlFor = 'guide-category-select';
+    const select = el('select', 'document-category-select');
+    select.id = label.htmlFor;
+    select.addEventListener('change', () => { state.category = select.value; applyFilters(); });
+    const pills = el('div', 'category-pills');
+    pills.setAttribute('aria-label', 'ガイドのカテゴリー');
+    const pillButtons = new Map();
+    [{ id: 'all', label: 'すべて', shortLabel: 'すべて' }, ...categories].forEach(category => {
+      const pill = button(category.shortLabel || category.label, 'pill', () => { state.category = category.id; applyFilters(); });
+      pillButtons.set(category.id, pill);
+      pills.append(pill);
+      const option = el('option', '', category.label);
+      option.value = category.id;
+      select.append(option);
+    });
+    section.append(heading, label, select, pills);
+    return { section, categorySelect: select, pillButtons };
+  }
   function renderGuide() {
     readFiltersFromUrl();
-    state.category = 'all';
+    if (page !== 'guides') state.category = 'all';
     const info = pageInfo(page);
     const entries = pageRules(page).filter(rule => rule.status === 'published');
-    entries.forEach(rule => openRules.add(rule.id));
+    if (page !== 'guides') entries.forEach(rule => openRules.add(rule.id));
     const shell = el('div', `guide-page document-page ${page}-page`);
-    shell.append(documentHeading(info.title), guideNavigation());
+    const filters = page === 'guides' ? guideCategoryFilters(entries) : null;
+    shell.append(documentHeading(page === 'guides' ? 'にこぐらガイド' : info.title), filters ? filters.section : guideNavigation());
     const search = searchBox(page === 'law' ? 'このページの法律・罰金を検索' : `${info.title}の掲載情報を検索`, page === 'law' ? '違反名・罰金・刑務などで検索…' : 'このページの内容を検索…');
-    const hint = el('p', 'search-hint', page === 'law' ? 'ゲーム内の法律です。表は検索に一致する行を表示します。サーバールール違反への対応は「公式ルール」へ。' : (page === 'guides' ? 'ガイド全体から料金や使い方を検索できます。分野ごとに読む場合は上のカテゴリーを選んでください。' : '選択中のカテゴリー内を検索します。ほかの分野は上のカテゴリーから確認できます。'));
+    const hint = el('p', 'search-hint', page === 'law' ? 'ゲーム内の法律です。表は検索に一致する行を表示します。サーバールール違反への対応は「公式ルール」へ。' : (page === 'guides' ? 'カテゴリーを選び、読みたい項目を開いてください。料金や使い方は検索でも探せます。公式ルールは上の切り替えから確認できます。' : '選択中のカテゴリー内を検索します。ほかの分野は上のカテゴリーから確認できます。'));
     hint.id = 'search-hint';
     shell.append(search.box, hint);
     if (['join', 'contact'].includes(page)) {
@@ -752,12 +784,12 @@
     if (['ems', 'mechanic', 'shops', 'lifejobs', 'gangs'].includes(page)) related.append(link('経済・料金', 'economy/', 'button button-secondary', 'arrow'));
     shell.append(related);
     main.replaceChildren(shell);
-    views = { ...reading, mode: 'guide', entries, input: search.input, searchBox: search.box, clear: search.clear };
+    views = { ...reading, ...(filters || {}), mode: 'guide', entries, input: search.input, searchBox: search.box, clear: search.clear };
     renderGuideResults();
     window.addEventListener('hashchange', () => openDeepLink(true));
     window.addEventListener('popstate', () => {
       readFiltersFromUrl();
-      state.category = 'all';
+      if (page !== 'guides') state.category = 'all';
       views.input.value = state.query;
       renderGuideResults();
       openDeepLink(true);
@@ -909,9 +941,9 @@
       rule.tags.forEach(tag => tags.append(highlighted(tag, 'badge tag')));
       body.append(tags);
     }
-    const relatedRules = [...new Set(Array.isArray(rule.relatedRuleIds) ? rule.relatedRuleIds : [])]
-      .map(id => data.rules.find(item => item.id === id && item.id !== rule.id && item.status === 'published'))
-      .filter(Boolean);
+    const relatedRules = [...new Map((Array.isArray(rule.relatedRuleIds) ? rule.relatedRuleIds : [])
+      .map(findRule).filter(item => item && item.id !== rule.id && item.status === 'published')
+      .map(item => [item.id, item])).values()];
     if (relatedRules.length) {
       const related = el('nav', 'rule-related');
       related.setAttribute('aria-label', `${rule.title}の関連項目`);
@@ -984,10 +1016,15 @@
     renderToc(matches);
   }
   function renderGuideResults() {
+    if (views.categorySelect) views.categorySelect.value = state.category;
+    views.pillButtons?.forEach((node, id) => {
+      node.setAttribute('aria-pressed', String(state.category === id));
+      node.classList.toggle('is-active', state.category === id);
+    });
     tokens = [...new Set(normalize(state.query).trim().split(/\s+/u).filter(Boolean))];
-    const matches = views.entries.filter(rule => (!state.savedOnly || bookmarks.has(rule.id)) && tokens.every(token => rule._search.includes(token)));
+    const matches = views.entries.filter(rule => (state.category === 'all' || rule.category === state.category) && (!state.savedOnly || bookmarks.has(rule.id)) && tokens.every(token => rule._search.includes(token)));
     const rowCount = page === 'law' ? matches.reduce((count, rule) => count + rule.content.filter(block => block.type === 'table').reduce((sum, block) => sum + visibleTableRows(rule, block).length, 0), 0) : null;
-    views.count.replaceChildren(el('strong', '', String(matches.length)), document.createTextNode(` 項目${rowCount === null ? '' : ` · 表 ${rowCount} 行`}${state.savedOnly ? ' · 保存した項目' : ''}${tokens.length ? ' · 検索結果' : ''}`));
+    views.count.replaceChildren(el('strong', '', String(matches.length)), document.createTextNode(` 項目${rowCount === null ? '' : ` · 表 ${rowCount} 行`}${state.category !== 'all' ? ` · ${categoryMap.get(state.category)?.label || ''}` : ''}${state.savedOnly ? ' · 保存した項目' : ''}${tokens.length ? ' · 検索結果' : ''}`));
     views.saved.setAttribute('aria-pressed', String(state.savedOnly));
     views.saved.title = `保存済み ${bookmarks.size} 件`;
     views.clear.hidden = !state.query;
@@ -996,7 +1033,7 @@
     if (!matches.length) {
       const empty = el('div', 'empty-state');
       empty.append(icon(state.savedOnly ? 'star' : 'search'), el('h3', '', state.savedOnly ? 'このページに保存した項目はありません' : '一致する案内が見つかりませんでした'), el('p', '', state.savedOnly ? '各項目の「あとで読む」から保存できます。' : '短い言葉で検索するか、ガイド一覧からほかのカテゴリーをお試しください。'));
-      empty.append(button('絞り込みをリセット', 'button button-secondary', () => { state.query = ''; state.savedOnly = false; views.input.value = ''; applyFilters(); }), link('ガイド全体から探す', `guides/?q=${encodeURIComponent(state.query)}`, 'button button-secondary', 'search'), link('公式ルールから探す', `rules/?q=${encodeURIComponent(state.query)}`, 'button button-secondary', 'search'));
+      empty.append(button('絞り込みをリセット', 'button button-secondary', () => { state.query = ''; state.category = 'all'; state.savedOnly = false; views.input.value = ''; applyFilters(); }), link('ガイド全体から探す', `guides/?q=${encodeURIComponent(state.query)}`, 'button button-secondary', 'search'), link('公式ルールから探す', `rules/?q=${encodeURIComponent(state.query)}`, 'button button-secondary', 'search'));
       fragment.append(empty);
     }
     views.list.replaceChildren(fragment);
@@ -1053,8 +1090,9 @@
       scrollToNode(target);
       return true;
     }
-    const rule = data.rules.find(item => item.id === id);
+    const rule = findRule(id);
     if (!rule || rule.status !== 'published') return false;
+    id = rule.id;
     if (!views.entries.some(item => item.id === id)) {
       const destination = canonicalPage(rule);
       if (destination === page) return false;

@@ -37,10 +37,10 @@
         },
         {
           "type": "note",
-          "text": "EMS不在時にはNPC救急などを利用できる場合があります。利用方法はゲーム内の案内を確認してください。"
+          "text": "ダウン中で銀行残高から料金を支払える場合は、EMSの勤務人数にかかわらず /help で有料の救急処置を依頼できます。利用方法と料金は「緊急時の搬送と救済コマンド」を確認してください。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-03",
       "new": false,
       "featured": false,
       "status": "published",
@@ -159,9 +159,9 @@
       "contentKind": "guide"
     },
     {
-      "id": "ems-bandage",
+      "id": "ems-supplies",
       "number": 228,
-      "title": "包帯（EMS専売品）",
+      "title": "EMS専売品",
       "category": "ems",
       "tags": [
         "ガイド"
@@ -175,14 +175,21 @@
         "完治",
         "止血",
         "出血",
-        "症状再発"
+        "症状再発",
+        "鎮痛剤",
+        "痛み",
+        "症状",
+        "IFAK",
+        "体力",
+        "25％",
+        "回復"
       ],
       "severity": "guide",
-      "summary": "250,000円のEMS専売品です。一時的な止血のための応急処置用品です。",
+      "summary": "包帯・鎮痛剤・IFAKの価格と効果を確認できます。いずれも応急処置用品で、完治にはEMSの治療が必要です。",
       "content": [
         {
           "type": "table",
-          "caption": "包帯の価格と効果",
+          "caption": "EMS専売品の価格と効果",
           "headers": [
             "品目",
             "価格",
@@ -195,111 +202,13 @@
               "250,000円",
               "一時的な止血",
               "EMS専売品"
-            ]
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "包帯は完治ではありません。一時的に出血を抑えるもので、時間がたつと症状が再発する場合があります。"
-        },
-        {
-          "type": "note",
-          "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
-        }
-      ],
-      "updatedAt": "2026-11-02",
-      "new": true,
-      "featured": false,
-      "status": "published",
-      "contentKind": "guide"
-    },
-    {
-      "id": "ems-painkiller",
-      "number": 229,
-      "title": "鎮痛剤（EMS専売品）",
-      "category": "ems",
-      "tags": [
-        "ガイド"
-      ],
-      "keywords": [
-        "鎮痛剤",
-        "EMS",
-        "EMS専売品",
-        "応急処置",
-        "医療用品",
-        "完治",
-        "痛み",
-        "症状",
-        "症状再発"
-      ],
-      "severity": "guide",
-      "summary": "250,000円のEMS専売品です。痛み・症状の一時的な緩和のための応急処置用品です。",
-      "content": [
-        {
-          "type": "table",
-          "caption": "鎮痛剤の価格と効果",
-          "headers": [
-            "品目",
-            "価格",
-            "効果",
-            "販売区分"
-          ],
-          "rows": [
+            ],
             [
               "鎮痛剤",
               "250,000円",
               "痛み・症状の一時的な緩和",
               "EMS専売品"
-            ]
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "鎮痛剤は完治ではありません。一時的に症状を緩和するもので、時間がたつと症状が再発する場合があります。"
-        },
-        {
-          "type": "note",
-          "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
-        }
-      ],
-      "updatedAt": "2026-11-02",
-      "new": true,
-      "featured": false,
-      "status": "published",
-      "contentKind": "guide"
-    },
-    {
-      "id": "ems-ifak",
-      "number": 230,
-      "title": "IFAK（EMS専売品）",
-      "category": "ems",
-      "tags": [
-        "ガイド"
-      ],
-      "keywords": [
-        "IFAK",
-        "EMS",
-        "EMS専売品",
-        "応急処置",
-        "医療用品",
-        "完治",
-        "体力",
-        "25％",
-        "回復"
-      ],
-      "severity": "guide",
-      "summary": "200,000円のEMS専売品です。効果は体力25％回復のみで、根本的な治療ではありません。",
-      "content": [
-        {
-          "type": "table",
-          "caption": "IFAKの価格と効果",
-          "headers": [
-            "品目",
-            "価格",
-            "効果",
-            "販売区分"
-          ],
-          "rows": [
+            ],
             [
               "IFAK",
               "200,000円",
@@ -309,51 +218,36 @@
           ]
         },
         {
+          "type": "heading",
+          "text": "応急処置と治療の違い"
+        },
+        {
           "type": "paragraph",
-          "text": "IFAKは体力回復用の応急処置用品です。怪我や症状を完全に治療するものではありません。"
+          "text": "包帯は一時的に出血を抑え、鎮痛剤は痛み・症状を一時的に緩和します。完治ではなく、時間がたつと症状が再発する場合があります。"
+        },
+        {
+          "type": "paragraph",
+          "text": "IFAKは体力を25％回復する応急処置用品です。怪我や症状を完全に治療するものではありません。"
         },
         {
           "type": "note",
-          "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
+          "text": "怪我・出血・症状を完治させるには、EMSによる治療を受けてください。症状がある場合は、EMSへ相談してください。"
         }
       ],
-      "updatedAt": "2026-11-02",
-      "new": true,
-      "featured": false,
-      "status": "published",
-      "contentKind": "guide"
-    },
-    {
-      "id": "ems-injuries",
-      "number": 247,
-      "title": "怪我や出血はEMSで治療を受けよう",
-      "category": "ems",
-      "tags": [
-        "ガイド"
-      ],
-      "keywords": [],
-      "severity": "guide",
-      "summary": "EMS専売アイテムは応急処置です。怪我や出血を完全に治すにはEMSの治療が必要です。",
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "包帯・鎮痛剤などのEMS専売アイテムは、怪我や出血を一時的に緩和するためのものです。時間がたつと症状が再発する場合があります。"
-        },
-        {
-          "type": "paragraph",
-          "text": "IFAKは体力を25%回復するもので、怪我や症状を完全に治療するものではありません。症状がある場合は、EMSへ相談してください。"
-        }
-      ],
-      "updatedAt": "2026-11-02",
-      "new": true,
+      "updatedAt": "2026-11-03",
+      "new": false,
       "featured": false,
       "status": "published",
       "contentKind": "guide",
-      "relatedRuleIds": [
+      "aliases": [
         "ems-bandage",
         "ems-painkiller",
         "ems-ifak",
-        "ems-request"
+        "ems-injuries"
+      ],
+      "relatedRuleIds": [
+        "ems-request",
+        "ems-fees"
       ]
     },
     {
@@ -413,15 +307,15 @@
         },
         {
           "type": "heading",
-          "text": "/help：NPCによる救済"
+          "text": "/help：有料の救急処置"
         },
         {
           "type": "paragraph",
-          "text": "/help は /tpems とは別の機能で、ダウン中かつ勤務中のEMSがいない場合に、NPCによる救済を依頼できます。勤務中のEMSがいる場合は、ダウン画面の救護要請を利用してください。"
+          "text": "/help は /tpems とは別の機能です。ダウン中で銀行残高から料金を支払える場合に、有料の救急処置を依頼できます。EMSが勤務中でも利用できます。EMSへの救護要請は、引き続きダウン画面から送れます。"
         },
         {
           "type": "paragraph",
-          "text": "車内や、拘束・収監などの状態では利用できません。利用枠や銀行残高などの条件もあるため、画面の案内を確認してください。"
+          "text": "車内や拘束・収監中でも救急処置を依頼できます。手錠や収監などの状態が解除される機能ではありません。道路へ安全に移動できない場合は、その場で処置します。NPCを安全に配置できない場合や救助が重なった場合も、NPCの到着を待たずに処置を受けられます。画面の案内を確認してください。"
         },
         {
           "type": "paragraph",
@@ -432,7 +326,7 @@
           "text": "緊急救済の悪用は禁止です。EMS・PDから指示がある場合も、機能自体の利用条件に従ってください。"
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-03",
       "new": true,
       "featured": false,
       "status": "published",

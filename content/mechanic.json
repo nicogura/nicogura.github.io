@@ -12,7 +12,7 @@
     {
       "id": "mechanic-billing",
       "number": 28,
-      "title": "メカニックは車の修理・整備・改造を担当します",
+      "title": "修理・カスタムをメカニックに相談する",
       "category": "mechanic",
       "tags": [
         "ガイド"
@@ -22,29 +22,46 @@
         "修理",
         "整備",
         "カスタム",
-        "塗装"
+        "塗装",
+        "見積もり",
+        "車のカスタムを相談するとき",
+        "外装",
+        "ライト",
+        "ナンバー",
+        "請求",
+        "203"
       ],
       "severity": "guide",
-      "summary": "修理、車両整備、カスタム、塗装などを相談できます。",
+      "summary": "修理・整備・カスタム・塗装を相談できます。希望する仕上がり、作業箇所と料金・請求内容を確認してから依頼しましょう。",
       "content": [
         {
           "type": "paragraph",
-          "text": "メカニックは修理、車両整備、カスタム、塗装などを行います。依頼前に、希望する作業と料金を確認してください。"
+          "text": "メカニックには、修理・車両整備・カスタム・塗装などを相談できます。"
         },
         {
-          "type": "paragraph",
-          "text": "希望する部位や仕上がりを伝え、作業と請求の内容を担当者と確認しましょう。"
+          "type": "heading",
+          "text": "依頼する前に確認すること"
+        },
+        {
+          "type": "list",
+          "items": [
+            "料金表を確認し、希望する作業箇所・部位と仕上がりを伝えてください。",
+            "塗装、外装パーツ、ライト、ナンバーなど、変更したい内容を具体的に相談してください。",
+            "作業の範囲と料金の内訳・請求内容を担当者と確認し、納得してから依頼しましょう。"
+          ]
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-03",
       "new": false,
       "featured": false,
       "status": "published",
       "contentKind": "guide",
       "relatedRuleIds": [
         "mechanic-fees",
-        "pending-mechanic-fees",
         "job-authority-misuse"
+      ],
+      "aliases": [
+        "pending-mechanic-fees"
       ]
     },
     {
@@ -206,37 +223,6 @@
         "pending-mechanic-fees",
         "economy-consumable-prices"
       ]
-    },
-    {
-      "id": "pending-mechanic-fees",
-      "number": 203,
-      "title": "車のカスタムを相談するとき",
-      "category": "mechanic",
-      "tags": [
-        "ガイド"
-      ],
-      "keywords": [
-        "塗装",
-        "カスタム",
-        "見積もり"
-      ],
-      "severity": "guide",
-      "summary": "希望する作業と料金を確認し、納得してから依頼しましょう。",
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "メカニックには、塗装や外装パーツ、ライト、ナンバー、カスタムなどを相談できます。料金表を確認し、希望する仕上がりや作業箇所を伝えてください。"
-        },
-        {
-          "type": "paragraph",
-          "text": "作業の範囲と請求内容が分かるように、担当者と確認してから依頼しましょう。"
-        }
-      ],
-      "updatedAt": "2026-10-10",
-      "new": false,
-      "featured": false,
-      "status": "published",
-      "contentKind": "guide"
     },
     {
       "id": "mechanic-crime-limits",

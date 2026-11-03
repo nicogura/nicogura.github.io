@@ -98,6 +98,18 @@ export function validateData(data) {
       else text(block.text, `${bp}.text`, true);
     });
   });
+  const aliases = new Map();
+  if (Array.isArray(data.rules)) data.rules.forEach((rule, i) => {
+    if (!object(rule) || rule.aliases === undefined) return;
+    const path = `rules[${i}].aliases`;
+    if (!Array.isArray(rule.aliases) || rule.aliases.length > 100) { issue(path, '100件以内の旧ID配列にしてください'); return; }
+    for (const alias of rule.aliases) {
+      id(alias, path);
+      if (ruleIds.has(alias) || aliases.has(alias)) issue(path, '旧IDは現在のIDや別の旧IDと重複できません');
+      aliases.set(alias, rule.id);
+    }
+  });
+  const canonicalId = value => aliases.get(value) || value;
   if (Array.isArray(data.rules)) data.rules.forEach((rule, i) => {
     if (!object(rule)) return;
     if (rule.contentKind !== undefined && !['rule', 'guide', 'law'].includes(rule.contentKind)) issue(`rules[${i}].contentKind`, 'rule / guide / law にしてください');
@@ -106,8 +118,9 @@ export function validateData(data) {
       else {
         const seen = new Set();
         for (const related of rule.relatedRuleIds) {
-          if (!ruleIds.has(related) || related === rule.id || seen.has(related)) issue(`rules[${i}].relatedRuleIds`, '重複・自己参照を除いた、存在する別の項目IDを指定してください');
-          seen.add(related);
+          const target = canonicalId(related);
+          if (!ruleIds.has(target) || target === rule.id || seen.has(target)) issue(`rules[${i}].relatedRuleIds`, '重複・自己参照を除いた、存在する別の項目IDを指定してください');
+          seen.add(target);
         }
       }
     }
@@ -125,7 +138,7 @@ export function validateData(data) {
   else {
     if (!Number.isSafeInteger(data.settings.newBadgeDays) || data.settings.newBadgeDays < 0 || data.settings.newBadgeDays > 365) issue('settings.newBadgeDays', '0〜365の整数にしてください');
     if (!Array.isArray(data.settings.featuredRuleIds)) issue('settings.featuredRuleIds', 'ルールIDの配列にしてください');
-    else data.settings.featuredRuleIds.forEach((value, i) => { if (!ruleIds.has(value)) issue(`settings.featuredRuleIds[${i}]`, '存在するルールIDを指定してください'); });
+    else data.settings.featuredRuleIds.forEach((value, i) => { if (!ruleIds.has(canonicalId(value))) issue(`settings.featuredRuleIds[${i}]`, '存在するルールIDを指定してください'); });
   }
   if (data.pages !== undefined) {
     if (!object(data.pages)) issue('pages', 'ページ設定はオブジェクトにしてください');
@@ -137,9 +150,10 @@ export function validateData(data) {
       else {
         const seen = new Set();
         for (const value of page.ruleIds) {
-          if (!ruleIds.has(value)) issue(`pages.${key}.ruleIds`, '存在するルールIDを指定してください');
-          if (seen.has(value)) issue(`pages.${key}.ruleIds`, 'ルールIDが重複しています');
-          seen.add(value);
+          const target = canonicalId(value);
+          if (!ruleIds.has(target)) issue(`pages.${key}.ruleIds`, '存在するルールIDを指定してください');
+          if (seen.has(target)) issue(`pages.${key}.ruleIds`, 'ルールIDが重複しています');
+          seen.add(target);
         }
       }
     }

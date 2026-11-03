@@ -32,3 +32,27 @@ test('related entries must refer to distinct existing entries', () => {
   copy.rules[0].relatedRuleIds = [source.rules[1].id];
   assert.deepEqual(validateData(copy), []);
 });
+
+test('legacy aliases cannot collide with current IDs or another alias', () => {
+  for (const aliases of [[source.rules[0].id], ['same-id','same-id'], ['Bad ID'], 'not-an-array', Array(101).fill('old-id')]) {
+    const copy = structuredClone(source);
+    copy.rules[1].aliases = aliases;
+    assert.ok(validateData(copy).some(error => error.includes('.aliases')), JSON.stringify(aliases));
+  }
+  const copy = structuredClone(source);
+  copy.rules[0].aliases = ['shared-old-id'];
+  copy.rules[1].aliases = ['shared-old-id'];
+  assert.ok(validateData(copy).some(error => error.includes('.aliases')));
+});
+
+test('legacy related references resolve once and cannot alias a self-reference', () => {
+  const copy = structuredClone(source);
+  const supply = copy.rules.find(r => r.id === 'ems-supplies');
+  copy.rules[0].relatedRuleIds = ['ems-ifak'];
+  assert.deepEqual(validateData(copy), []);
+  copy.rules[0].relatedRuleIds = ['ems-ifak', 'ems-bandage'];
+  assert.ok(validateData(copy).some(error => error.includes('relatedRuleIds')));
+  copy.rules[0].relatedRuleIds = [];
+  supply.relatedRuleIds = ['ems-injuries'];
+  assert.ok(validateData(copy).some(error => error.includes('relatedRuleIds')));
+});

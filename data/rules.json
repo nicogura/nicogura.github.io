@@ -3,7 +3,7 @@
     "name": "NicoGura",
     "tagline": "あなたらしい物語が、この街から。",
     "version": "3.0.0",
-    "updatedAt": "2026-11-02",
+    "updatedAt": "2026-11-03",
     "notice": "難しく考えなくて大丈夫。最低限のライトRPとマナーを大切に、街での生活を楽しみましょう。",
     "links": {
       "discord": "https://discord.gg/Fzhhp34JJy",
@@ -852,7 +852,7 @@
       "contentKind": "guide",
       "relatedRuleIds": [
         "administration-contact-boundaries",
-        "crime-bug-options"
+        "crime-bug-response"
       ]
     },
     {
@@ -2390,7 +2390,7 @@
     {
       "id": "crime-bug-response",
       "number": 221,
-      "title": "犯罪中に不具合が発生した場合",
+      "title": "犯罪中の不具合対応・再実行・補填の手順",
       "category": "crime",
       "tags": [
         "注意"
@@ -2401,11 +2401,27 @@
         "進行不能",
         "リセット",
         "PD",
-        "ボディカメラ"
+        "ボディカメラ",
+        "再実行",
+        "続行",
+        "中断",
+        "回収フェーズ",
+        "逃走フェーズ",
+        "再発",
+        "2回目",
+        "不具合リセット前の選択",
+        "再度不具合が発生した場合",
+        "補填",
+        "222",
+        "223"
       ],
       "severity": "important",
-      "summary": "不具合で進行できなくなったら、PDへ連絡してシーンを一時中断してください。PDが現場を確認し、リセット可能か判断します。",
+      "summary": "進行不能になったらPDへ連絡して一時中断。現場確認後に再実行・続行・中断を選びます。再実行後の再発時は再リセットできず、補填申請にはチケットとボディカメラが必要です。",
       "content": [
+        {
+          "type": "heading",
+          "text": "1. PDへ連絡して現場確認"
+        },
         {
           "type": "paragraph",
           "text": "不具合などで犯罪の進行が不可能になった場合は、速やかにPDへ連絡し、シーンを一時中断してください。"
@@ -2419,41 +2435,9 @@
           "text": "進行不能と判断された事件では、状況確認のために犯罪者側へボディカメラの提出を求める場合があります。"
         },
         {
-          "type": "paragraph",
-          "text": "リセット前に「不具合リセット前の選択」を確認してください。"
-        }
-      ],
-      "updatedAt": "2026-11-02",
-      "new": true,
-      "featured": false,
-      "status": "published",
-      "contentKind": "rule",
-      "ruleChapter": 3,
-      "relatedRuleIds": [
-        "crime-bug-options",
-        "crime-bug-recurrence"
-      ]
-    },
-    {
-      "id": "crime-bug-options",
-      "number": 222,
-      "title": "不具合リセット前の選択",
-      "category": "crime",
-      "tags": [
-        "注意"
-      ],
-      "keywords": [
-        "不具合",
-        "リセット",
-        "再実行",
-        "続行",
-        "中断",
-        "回収フェーズ",
-        "逃走フェーズ"
-      ],
-      "severity": "important",
-      "summary": "PDはリセット前に犯罪者側へ今後の進行を確認してください。犯罪者側は「同じ犯罪を再実行」「そのまま続行」「中断」から選択します。",
-      "content": [
+          "type": "heading",
+          "text": "2. リセット前に進行方法を選ぶ"
+        },
         {
           "type": "paragraph",
           "text": "不具合リセットを行う前に、PDは犯罪者側へ今後の進行を確認してください。犯罪者側は、次のいずれかを選択します。"
@@ -2488,55 +2472,36 @@
           "text": "その犯罪を中断します。中断後は、他の犯罪者が同じ犯罪を実行できる状態にしてください。"
         },
         {
+          "type": "heading",
+          "text": "3. 再実行後に、再び不具合が発生したら"
+        },
+        {
           "type": "note",
           "text": "一度リセットして再実行した後に再び不具合が発生した場合は、②そのまま続行・③中断のどちらかを選択してください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "2回目以降は、再度リセットして最初からやり直す選択はできません。"
+        },
+        {
+          "type": "heading",
+          "text": "4. 成功後の補填を申請する場合"
         },
         {
           "type": "paragraph",
           "text": "不具合があった犯罪の成功後に補填を申請する場合は、チケットを発行し、ボディカメラを提出してください。ボディカメラの提出がない場合は補填できません。"
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-03",
       "new": true,
       "featured": false,
       "status": "published",
       "contentKind": "rule",
-      "ruleChapter": 3
-    },
-    {
-      "id": "crime-bug-recurrence",
-      "number": 223,
-      "title": "再度不具合が発生した場合",
-      "category": "crime",
-      "tags": [
-        "注意"
-      ],
-      "keywords": [
-        "不具合",
-        "再発",
-        "リセット",
-        "2回目",
-        "続行",
-        "中断"
-      ],
-      "severity": "important",
-      "summary": "リセットして再実行した後に再び不具合が発生した場合は、続行か中断を選択してください。2回目以降のリセットによるやり直しはできません。",
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "一度不具合リセットを行い、再実行後に再び不具合が発生した場合は、「そのまま続行」か「中断」のどちらかを選択してください。各選択の進め方は「不具合リセット前の選択」を確認してください。"
-        },
-        {
-          "type": "paragraph",
-          "text": "2回目以降は、再度リセットして最初からやり直す選択はできません。"
-        }
-      ],
-      "updatedAt": "2026-11-02",
-      "new": true,
-      "featured": false,
-      "status": "published",
-      "contentKind": "rule",
-      "ruleChapter": 3
+      "ruleChapter": 3,
+      "aliases": [
+        "crime-bug-options",
+        "crime-bug-recurrence"
+      ]
     },
     {
       "id": "crime-restart-window",
@@ -2962,6 +2927,69 @@
         "crime-public-rewards",
         "pending-crime-conditions"
       ]
+    },
+    {
+      "id": "crime-siege",
+      "number": 259,
+      "title": "中籠りと完全包囲の判定",
+      "category": "crime",
+      "tags": [
+        "ルール"
+      ],
+      "keywords": [
+        "中籠り",
+        "籠城",
+        "完全包囲",
+        "ラーク",
+        "5分",
+        "敗北"
+      ],
+      "severity": "important",
+      "summary": "対象の犯罪では、PDの完全包囲宣言から5分を計測します。呼びかけ等の条件をPDが確認し、犯罪者側の敗北を確定します。",
+      "content": [
+        {
+          "type": "heading",
+          "text": "対象の犯罪"
+        },
+        {
+          "type": "paragraph",
+          "text": "ランドリー、ヴァンジェ、パレト、ヒューメイン、ボブキャット、美術館、カジノ、ユニオン、地下、山岳。"
+        },
+        {
+          "type": "heading",
+          "text": "完全包囲から敗北判定まで"
+        },
+        {
+          "type": "list",
+          "items": [
+            "PDは現場を完全包囲したうえで、PDアプリの「完全包囲」ボタンから宣言します。ボタンで宣言した時点から5分を計測します。",
+            "PDは犯罪者側へ5回程度の呼びかけを行ってください。",
+            "宣言から5分が経過したら、PDが完全包囲・呼びかけ等の条件を確認し、犯罪者側の敗北を確定します。"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "宣言後のラーク介入は禁止"
+        },
+        {
+          "type": "paragraph",
+          "text": "PDが完全包囲を宣言した時点から、その犯罪へのラークの介入を禁止します。"
+        },
+        {
+          "type": "note",
+          "text": "犯罪参加者の画面中央上部に残り時間を表示します。5分経過後は「PD確認待ち」となり、時間到達だけで自動的に敗北が確定するわけではありません。"
+        }
+      ],
+      "relatedRuleIds": [
+        "crime-scene-conduct",
+        "crime-scene-end"
+      ],
+      "updatedAt": "2026-11-03",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3
     },
     {
       "id": "weapons-crime-use",
@@ -3772,10 +3800,10 @@
         },
         {
           "type": "note",
-          "text": "EMS不在時にはNPC救急などを利用できる場合があります。利用方法はゲーム内の案内を確認してください。"
+          "text": "ダウン中で銀行残高から料金を支払える場合は、EMSの勤務人数にかかわらず /help で有料の救急処置を依頼できます。利用方法と料金は「緊急時の搬送と救済コマンド」を確認してください。"
         }
       ],
-      "updatedAt": "2026-10-10",
+      "updatedAt": "2026-11-03",
       "new": false,
       "featured": false,
       "status": "published",
@@ -3894,9 +3922,9 @@
       "contentKind": "guide"
     },
     {
-      "id": "ems-bandage",
+      "id": "ems-supplies",
       "number": 228,
-      "title": "包帯（EMS専売品）",
+      "title": "EMS専売品",
       "category": "ems",
       "tags": [
         "ガイド"
@@ -3910,14 +3938,21 @@
         "完治",
         "止血",
         "出血",
-        "症状再発"
+        "症状再発",
+        "鎮痛剤",
+        "痛み",
+        "症状",
+        "IFAK",
+        "体力",
+        "25％",
+        "回復"
       ],
       "severity": "guide",
-      "summary": "250,000円のEMS専売品です。一時的な止血のための応急処置用品です。",
+      "summary": "包帯・鎮痛剤・IFAKの価格と効果を確認できます。いずれも応急処置用品で、完治にはEMSの治療が必要です。",
       "content": [
         {
           "type": "table",
-          "caption": "包帯の価格と効果",
+          "caption": "EMS専売品の価格と効果",
           "headers": [
             "品目",
             "価格",
@@ -3930,111 +3965,13 @@
               "250,000円",
               "一時的な止血",
               "EMS専売品"
-            ]
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "包帯は完治ではありません。一時的に出血を抑えるもので、時間がたつと症状が再発する場合があります。"
-        },
-        {
-          "type": "note",
-          "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
-        }
-      ],
-      "updatedAt": "2026-11-02",
-      "new": true,
-      "featured": false,
-      "status": "published",
-      "contentKind": "guide"
-    },
-    {
-      "id": "ems-painkiller",
-      "number": 229,
-      "title": "鎮痛剤（EMS専売品）",
-      "category": "ems",
-      "tags": [
-        "ガイド"
-      ],
-      "keywords": [
-        "鎮痛剤",
-        "EMS",
-        "EMS専売品",
-        "応急処置",
-        "医療用品",
-        "完治",
-        "痛み",
-        "症状",
-        "症状再発"
-      ],
-      "severity": "guide",
-      "summary": "250,000円のEMS専売品です。痛み・症状の一時的な緩和のための応急処置用品です。",
-      "content": [
-        {
-          "type": "table",
-          "caption": "鎮痛剤の価格と効果",
-          "headers": [
-            "品目",
-            "価格",
-            "効果",
-            "販売区分"
-          ],
-          "rows": [
+            ],
             [
               "鎮痛剤",
               "250,000円",
               "痛み・症状の一時的な緩和",
               "EMS専売品"
-            ]
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "鎮痛剤は完治ではありません。一時的に症状を緩和するもので、時間がたつと症状が再発する場合があります。"
-        },
-        {
-          "type": "note",
-          "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
-        }
-      ],
-      "updatedAt": "2026-11-02",
-      "new": true,
-      "featured": false,
-      "status": "published",
-      "contentKind": "guide"
-    },
-    {
-      "id": "ems-ifak",
-      "number": 230,
-      "title": "IFAK（EMS専売品）",
-      "category": "ems",
-      "tags": [
-        "ガイド"
-      ],
-      "keywords": [
-        "IFAK",
-        "EMS",
-        "EMS専売品",
-        "応急処置",
-        "医療用品",
-        "完治",
-        "体力",
-        "25％",
-        "回復"
-      ],
-      "severity": "guide",
-      "summary": "200,000円のEMS専売品です。効果は体力25％回復のみで、根本的な治療ではありません。",
-      "content": [
-        {
-          "type": "table",
-          "caption": "IFAKの価格と効果",
-          "headers": [
-            "品目",
-            "価格",
-            "効果",
-            "販売区分"
-          ],
-          "rows": [
+            ],
             [
               "IFAK",
               "200,000円",
@@ -4044,51 +3981,36 @@
           ]
         },
         {
+          "type": "heading",
+          "text": "応急処置と治療の違い"
+        },
+        {
           "type": "paragraph",
-          "text": "IFAKは体力回復用の応急処置用品です。怪我や症状を完全に治療するものではありません。"
+          "text": "包帯は一時的に出血を抑え、鎮痛剤は痛み・症状を一時的に緩和します。完治ではなく、時間がたつと症状が再発する場合があります。"
+        },
+        {
+          "type": "paragraph",
+          "text": "IFAKは体力を25％回復する応急処置用品です。怪我や症状を完全に治療するものではありません。"
         },
         {
           "type": "note",
-          "text": "怪我・症状を完治させるには、EMSによる治療を受けてください。"
+          "text": "怪我・出血・症状を完治させるには、EMSによる治療を受けてください。症状がある場合は、EMSへ相談してください。"
         }
       ],
-      "updatedAt": "2026-11-02",
-      "new": true,
-      "featured": false,
-      "status": "published",
-      "contentKind": "guide"
-    },
-    {
-      "id": "ems-injuries",
-      "number": 247,
-      "title": "怪我や出血はEMSで治療を受けよう",
-      "category": "ems",
-      "tags": [
-        "ガイド"
-      ],
-      "keywords": [],
-      "severity": "guide",
-      "summary": "EMS専売アイテムは応急処置です。怪我や出血を完全に治すにはEMSの治療が必要です。",
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "包帯・鎮痛剤などのEMS専売アイテムは、怪我や出血を一時的に緩和するためのものです。時間がたつと症状が再発する場合があります。"
-        },
-        {
-          "type": "paragraph",
-          "text": "IFAKは体力を25%回復するもので、怪我や症状を完全に治療するものではありません。症状がある場合は、EMSへ相談してください。"
-        }
-      ],
-      "updatedAt": "2026-11-02",
-      "new": true,
+      "updatedAt": "2026-11-03",
+      "new": false,
       "featured": false,
       "status": "published",
       "contentKind": "guide",
-      "relatedRuleIds": [
+      "aliases": [
         "ems-bandage",
         "ems-painkiller",
         "ems-ifak",
-        "ems-request"
+        "ems-injuries"
+      ],
+      "relatedRuleIds": [
+        "ems-request",
+        "ems-fees"
       ]
     },
     {
@@ -4148,15 +4070,15 @@
         },
         {
           "type": "heading",
-          "text": "/help：NPCによる救済"
+          "text": "/help：有料の救急処置"
         },
         {
           "type": "paragraph",
-          "text": "/help は /tpems とは別の機能で、ダウン中かつ勤務中のEMSがいない場合に、NPCによる救済を依頼できます。勤務中のEMSがいる場合は、ダウン画面の救護要請を利用してください。"
+          "text": "/help は /tpems とは別の機能です。ダウン中で銀行残高から料金を支払える場合に、有料の救急処置を依頼できます。EMSが勤務中でも利用できます。EMSへの救護要請は、引き続きダウン画面から送れます。"
         },
         {
           "type": "paragraph",
-          "text": "車内や、拘束・収監などの状態では利用できません。利用枠や銀行残高などの条件もあるため、画面の案内を確認してください。"
+          "text": "車内や拘束・収監中でも救急処置を依頼できます。手錠や収監などの状態が解除される機能ではありません。道路へ安全に移動できない場合は、その場で処置します。NPCを安全に配置できない場合や救助が重なった場合も、NPCの到着を待たずに処置を受けられます。画面の案内を確認してください。"
         },
         {
           "type": "paragraph",
@@ -4167,7 +4089,7 @@
           "text": "緊急救済の悪用は禁止です。EMS・PDから指示がある場合も、機能自体の利用条件に従ってください。"
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-03",
       "new": true,
       "featured": false,
       "status": "published",
@@ -4208,7 +4130,7 @@
     {
       "id": "mechanic-billing",
       "number": 28,
-      "title": "メカニックは車の修理・整備・改造を担当します",
+      "title": "修理・カスタムをメカニックに相談する",
       "category": "mechanic",
       "tags": [
         "ガイド"
@@ -4218,29 +4140,46 @@
         "修理",
         "整備",
         "カスタム",
-        "塗装"
+        "塗装",
+        "見積もり",
+        "車のカスタムを相談するとき",
+        "外装",
+        "ライト",
+        "ナンバー",
+        "請求",
+        "203"
       ],
       "severity": "guide",
-      "summary": "修理、車両整備、カスタム、塗装などを相談できます。",
+      "summary": "修理・整備・カスタム・塗装を相談できます。希望する仕上がり、作業箇所と料金・請求内容を確認してから依頼しましょう。",
       "content": [
         {
           "type": "paragraph",
-          "text": "メカニックは修理、車両整備、カスタム、塗装などを行います。依頼前に、希望する作業と料金を確認してください。"
+          "text": "メカニックには、修理・車両整備・カスタム・塗装などを相談できます。"
         },
         {
-          "type": "paragraph",
-          "text": "希望する部位や仕上がりを伝え、作業と請求の内容を担当者と確認しましょう。"
+          "type": "heading",
+          "text": "依頼する前に確認すること"
+        },
+        {
+          "type": "list",
+          "items": [
+            "料金表を確認し、希望する作業箇所・部位と仕上がりを伝えてください。",
+            "塗装、外装パーツ、ライト、ナンバーなど、変更したい内容を具体的に相談してください。",
+            "作業の範囲と料金の内訳・請求内容を担当者と確認し、納得してから依頼しましょう。"
+          ]
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-03",
       "new": false,
       "featured": false,
       "status": "published",
       "contentKind": "guide",
       "relatedRuleIds": [
         "mechanic-fees",
-        "pending-mechanic-fees",
         "job-authority-misuse"
+      ],
+      "aliases": [
+        "pending-mechanic-fees"
       ]
     },
     {
@@ -4399,40 +4338,9 @@
       "status": "published",
       "contentKind": "guide",
       "relatedRuleIds": [
-        "pending-mechanic-fees",
+        "mechanic-billing",
         "economy-consumable-prices"
       ]
-    },
-    {
-      "id": "pending-mechanic-fees",
-      "number": 203,
-      "title": "車のカスタムを相談するとき",
-      "category": "mechanic",
-      "tags": [
-        "ガイド"
-      ],
-      "keywords": [
-        "塗装",
-        "カスタム",
-        "見積もり"
-      ],
-      "severity": "guide",
-      "summary": "希望する作業と料金を確認し、納得してから依頼しましょう。",
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "メカニックには、塗装や外装パーツ、ライト、ナンバー、カスタムなどを相談できます。料金表を確認し、希望する仕上がりや作業箇所を伝えてください。"
-        },
-        {
-          "type": "paragraph",
-          "text": "作業の範囲と請求内容が分かるように、担当者と確認してから依頼しましょう。"
-        }
-      ],
-      "updatedAt": "2026-10-10",
-      "new": false,
-      "featured": false,
-      "status": "published",
-      "contentKind": "guide"
     },
     {
       "id": "mechanic-crime-limits",
@@ -5016,19 +4924,19 @@
       "summary": "参加できます。NicoGuraは初心者歓迎のライトRPサーバーです。",
       "content": [
         {
-          "text": "はい、参加できます。NicoGuraは初心者歓迎のライトRPサーバーです。",
-          "type": "paragraph"
-        },
-        {
-          "text": "完璧な演技や細かな設定は必要ありません。最低限、この街に暮らすキャラクターとして行動し、周りの市民との会話や出来事を楽しんでください。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "はい、参加できます。NicoGuraは初心者歓迎のライトRPサーバーです。完璧な演技は必要ありません。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-03",
       "new": true,
       "featured": false,
       "status": "published",
-      "contentKind": "guide"
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "rp-light",
+        "intro-reading"
+      ]
     },
     {
       "id": "faq-fivem-beginner",
@@ -5080,23 +4988,23 @@
       "summary": "1人のプレイヤーにつき、使用できるキャラクターは1人までです。",
       "content": [
         {
-          "text": "1人につき1キャラクター限定です。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "1人につき1キャラクター限定です。"
         },
         {
-          "text": "サブキャラクターや別アカウントを使用して、実質的に複数キャラクターを運用することはできません。",
-          "type": "paragraph"
-        },
-        {
-          "text": "キャラクターを作り直したい場合は、新しく追加で作成せず、事前に運営へご相談ください。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "作り直したい場合は、追加で作成せず、事前に運営へ相談してください。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-03",
       "new": true,
       "featured": false,
       "status": "published",
-      "contentKind": "guide"
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "character-identity",
+        "character-changes"
+      ]
     },
     {
       "id": "faq-whitelist-interview",
@@ -5118,23 +5026,23 @@
       "summary": "面接ではありません。Rxxxxコードの申請と運営承認の方式です。",
       "content": [
         {
-          "text": "いいえ、面接ではありません。質問への回答形式でもありません。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "いいえ、面接ではありません。質問への回答形式でもありません。"
         },
         {
-          "text": "FiveMへ初回接続した際に表示される、ご本人の「Rxxxx」コードをDiscordの「#ホワイトリスト申請」へ投稿してください。",
-          "type": "paragraph"
-        },
-        {
-          "text": "運営がtxAdmin Allowlistへ登録・承認した後、再接続すると入国できます。",
-          "type": "paragraph"
+          "type": "paragraph",
+          "text": "初回接続時に表示された本人のRxxxxコードを、公式Discordの「#ホワイトリスト申請」へ投稿してください。運営の承認後に再接続すると入国できます。"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-03",
       "new": true,
       "featured": false,
       "status": "published",
-      "contentKind": "guide"
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "join-whitelist",
+        "join-flow"
+      ]
     },
     {
       "id": "faq-rule-memory",
@@ -5156,17 +5064,17 @@
         {
           "text": "いいえ、ルールを全部暗記する必要はありません。基本的なマナーと禁止事項を理解していれば大丈夫です。",
           "type": "paragraph"
-        },
-        {
-          "text": "必要なときにこのサイトを確認してください。検索やカテゴリー、☆保存から、知りたい内容を読み返せます。",
-          "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-03",
       "new": true,
       "featured": false,
       "status": "published",
-      "contentKind": "guide"
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "intro-reading",
+        "faq-find-share"
+      ]
     },
     {
       "id": "faq-crime-ban",
@@ -5276,7 +5184,7 @@
       "contentKind": "guide",
       "relatedRuleIds": [
         "administration-report",
-        "crime-bug-options"
+        "crime-bug-response"
       ]
     },
     {
@@ -5299,17 +5207,16 @@
         {
           "text": "いいえ、何をしてもよいわけではありません。運営や市民を妨げる行為や、悪質な抜け穴利用には、運営が対応する場合があります。",
           "type": "paragraph"
-        },
-        {
-          "text": "個別に書かれていなくても、活動やRP、サーバー運営の妨げになると運営が判断した場合は、警告・キック・一時BAN・永久BAN等の対応を行うことがあります。",
-          "type": "paragraph"
         }
       ],
-      "updatedAt": "2026-10-11",
+      "updatedAt": "2026-11-03",
       "new": true,
       "featured": false,
       "status": "published",
-      "contentKind": "guide"
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "administration-response"
+      ]
     },
     {
       "id": "faq-client-mods",
@@ -5451,21 +5358,16 @@
       "content": [
         {
           "type": "paragraph",
-          "text": "包帯だけでは完治しません。包帯や鎮痛剤は一時的に症状を緩和する応急処置用品です。時間がたつと症状が再発する場合があります。"
-        },
-        {
-          "type": "paragraph",
-          "text": "怪我や出血を治療するには、EMSへ相談してください。"
+          "text": "包帯だけでは完治しません。包帯や鎮痛剤は一時的な応急処置で、時間がたつと症状が再発する場合があります。怪我や出血の治療はEMSへ相談してください。"
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-03",
       "new": true,
       "featured": false,
       "status": "published",
       "contentKind": "guide",
       "relatedRuleIds": [
-        "ems-injuries",
-        "ems-bandage"
+        "ems-supplies"
       ]
     },
     {
@@ -5490,21 +5392,31 @@
       "content": [
         {
           "type": "paragraph",
-          "text": "NicoGuraには、水曜日03:00から木曜日19:00まで（日本時間・JST）の基本定休日があります。定期メンテナンスのため、この時間帯は街を休止します。"
-        },
-        {
-          "type": "paragraph",
-          "text": "木曜日19:00から通常稼働を再開する予定です。最新の稼働情報は、公式Discordの「街からのお知らせ」等を確認してください。"
+          "text": "水曜日03:00から木曜日19:00まで（日本時間・JST）は、定期メンテナンスのための基本定休日です。木曜日19:00の再開予定や最新の稼働情報は、公式Discordの「街からのお知らせ」等を確認してください。"
         }
       ],
-      "updatedAt": "2026-10-12",
+      "updatedAt": "2026-11-03",
       "new": true,
       "featured": false,
       "status": "published",
-      "contentKind": "guide"
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "server-maintenance"
+      ]
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-03",
+      "type": "整理",
+      "title": "EMS専売品とガイドの探し方を整理",
+      "items": [
+        "包帯・鎮痛剤・IFAKの価格、効果と応急処置の注意を「EMS専売品」にまとめました。",
+        "にこぐらガイドで、カテゴリーを選んで記事を探せるようにしました。以前の記事リンクや保存済みの項目も引き続き利用できます。",
+        "対象犯罪の完全包囲宣言・5分計測・PDによる敗北判定と、宣言後のラーク介入禁止を追加しました。",
+        "犯罪中の不具合対応を1つの手順に整理し、メカニックの相談案内とFAQの重複説明をまとめました。条件・料金は変更していません。"
+      ]
+    },
     {
       "date": "2026-11-02",
       "type": "UPDATED",
@@ -5712,13 +5624,12 @@
         "crime-chase-attack-window",
         "crime-common-response",
         "crime-bug-response",
-        "crime-bug-options",
-        "crime-bug-recurrence",
         "crime-restart-window",
         "crime-scene-conduct",
         "crime-helicopter-limits",
         "crime-scene-colors",
         "crime-scene-end",
+        "crime-siege",
         "crime-probation",
         "pd-internal-rules",
         "ems-emergency-use",
@@ -5782,9 +5693,7 @@
         "economy-food-prices",
         "economy-fuel-prices",
         "ems-fees",
-        "ems-bandage",
-        "ems-painkiller",
-        "ems-ifak",
+        "ems-supplies",
         "mechanic-fees",
         "economy-consumable-prices"
       ]
@@ -5799,12 +5708,11 @@
         "crime-helicopter-limits",
         "crime-scene-colors",
         "crime-scene-end",
+        "crime-siege",
         "crime-chase-demands",
         "crime-chase-attack-window",
         "crime-common-response",
         "crime-bug-response",
-        "crime-bug-options",
-        "crime-bug-recurrence",
         "crime-restart-window",
         "crime-combat-log",
         "crime-down-information",
@@ -5851,10 +5759,7 @@
         "ems-request",
         "ems-care",
         "ems-fees",
-        "ems-bandage",
-        "ems-painkiller",
-        "ems-ifak",
-        "ems-injuries",
+        "ems-supplies",
         "ems-emergency-commands",
         "ems-beginner-ticket-planned",
         "faq-find-share",
@@ -5890,7 +5795,6 @@
         "lifejobs-overview",
         "mechanic-billing",
         "mechanic-fees",
-        "pending-mechanic-fees",
         "movement-glitches",
         "client-mod-consultation",
         "pd-authority",
@@ -5919,11 +5823,10 @@
         "crime-chase-attack-window",
         "crime-common-response",
         "crime-bug-response",
-        "crime-bug-options",
-        "crime-bug-recurrence",
         "vehicles-emergency-use",
         "vehicles-job-crime",
-        "job-authority-misuse"
+        "job-authority-misuse",
+        "crime-siege"
       ]
     },
     "ems": {
@@ -5934,10 +5837,7 @@
         "ems-request",
         "ems-care",
         "ems-fees",
-        "ems-bandage",
-        "ems-painkiller",
-        "ems-ifak",
-        "ems-injuries",
+        "ems-supplies",
         "ems-emergency-use",
         "ems-emergency-commands",
         "ems-beginner-ticket-planned",
@@ -5955,7 +5855,6 @@
       "ruleIds": [
         "mechanic-billing",
         "mechanic-fees",
-        "pending-mechanic-fees",
         "economy-consumable-prices",
         "mechanic-crime-limits",
         "job-authority-misuse"
