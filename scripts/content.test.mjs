@@ -14,7 +14,7 @@ const entry = id => { const r = data.rules.find(r => r.id === id); assert.ok(r, 
 test('published schema and page references', () => {
   assert.deepEqual(validateData(data), []);
   assert.ok(data.rules.every(r => r.status === 'published'));
-  assert.equal(data.site.updatedAt, '2026-11-03');
+  assert.equal(data.site.updatedAt, '2026-11-05');
   for (const key of Object.keys(routes)) { assert.ok(data.pages[key]); for (const id of data.pages[key].ruleIds) entry(id); }
 });
 test('official brand and no internal economics or obsolete joining flow', () => {
@@ -217,19 +217,19 @@ test('short FAQ answers lead to the authoritative detail and retain critical cav
   assert.match(JSON.stringify(entry('faq-bandage-treatment').content),/完治しません.*一時的.*再発.*EMS/);
   assert.match(JSON.stringify(entry('faq-wednesday-maintenance').content),/水曜日03:00.*木曜日19:00.*日本時間.*JST.*予定.*最新/);
 });
-test('meeting IC fines and probation periods are transcribed without inventing blank times', () => {
-  // Latest DOCX p825–904: 19 data rows (14 basic offences and five Heist classes).
+test('approved half fines preserve the official offences, probation periods and impound fees', () => {
+  // Official baseline (DOCX p825–904), fixed fines halved on 2026-11-05; relative assistance rule unchanged.
   assert.deepEqual(entry('penalties-basic-fines').content.find(b => b.type === 'table').rows, [
-    ['銃刀法違反','1,500,000円','5分','犯罪時に武器を所持していた場合に適用'],
-    ['誘拐拉致監禁罪','1,500,000円','—','—'],['NPC殺人罪','2,500,000円','5分','—'],
-    ['プレイヤー殺人・未遂罪','10,000,000円','10分','—'],['窃盗罪','1,000,000円','10分','車両窃盗に適用'],
-    ['重窃盗罪','50,000,000円','60分','公務員の窃盗に適用'],['公務執行妨害罪','2,000,000円','5分','—'],
-    ['テロ罪','5,000,000,000円','12時間','警察署襲撃など'],['汚職収賄罪','5,000,000,000円','60分','—'],
-    ['業務妨害罪','1,000,000,000円','60分','店舗オーナーと応相談'],['逃走補助罪','逃走補助をした犯罪の半額','30分','個人医のみ適用'],
-    ['セクハラ / カスハラ / パワハラ / 暴言','10,000,000,000円','1日','—'],['公然わいせつ罪','100円','24時間','—'],['詐欺罪','25,000,000円','15分','—']
+    ['銃刀法違反','750,000円','5分','犯罪時に武器を所持していた場合に適用'],
+    ['誘拐拉致監禁罪','750,000円','—','—'],['NPC殺人罪','1,250,000円','5分','—'],
+    ['プレイヤー殺人・未遂罪','5,000,000円','10分','—'],['窃盗罪','500,000円','10分','車両窃盗に適用'],
+    ['重窃盗罪','25,000,000円','60分','公務員の窃盗に適用'],['公務執行妨害罪','1,000,000円','5分','—'],
+    ['テロ罪','2,500,000,000円','12時間','警察署襲撃など'],['汚職収賄罪','2,500,000,000円','60分','—'],
+    ['業務妨害罪','500,000,000円','60分','店舗オーナーと応相談'],['逃走補助罪','逃走補助をした犯罪の罰金額の半額','30分','個人医のみ適用'],
+    ['セクハラ / カスハラ / パワハラ / 暴言','5,000,000,000円','1日','—'],['公然わいせつ罪','50円','24時間','—'],['詐欺罪','12,500,000円','15分','—']
   ]);
   assert.deepEqual(entry('penalties-heist-fines').content.find(b=>b.type==='table').rows, [
-    ['小型','1,400,000円','15分'],['準中型チェイス','7,000,000円','30分'],['準中型撃ち合い','12,000,000円','30分'],['中型','40,000,000円','45分'],['大型','80,000,000円','60分']
+    ['小型','700,000円','15分'],['準中型チェイス','3,500,000円','30分'],['準中型撃ち合い','6,000,000円','30分'],['中型','20,000,000円','45分'],['大型','40,000,000円','60分']
   ]);
   assert.deepEqual(entry('penalties-impound').content.find(b=>b.type==='table').rows, [['一般','500,000円','0分'],['犯罪','1,000,000円','0分']]);
   assert.match(JSON.stringify(entry('weapons-crime-use').content), /犯罪時.*所持/);
