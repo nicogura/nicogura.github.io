@@ -56,3 +56,41 @@ test('legacy related references resolve once and cannot alias a self-reference',
   supply.relatedRuleIds = ['ems-injuries'];
   assert.ok(validateData(copy).some(error => error.includes('relatedRuleIds')));
 });
+
+test('reader sections require the five ordered categories and valid groups', () => {
+  const mutate=fn=>{const copy=structuredClone(source);fn(copy);return validateData(copy);};
+  for(const change of [
+    copy=>{delete copy.settings.ruleSections;},
+    copy=>{copy.settings.ruleSections=[];},
+    copy=>{copy.settings.ruleSections[1].id='overview';},
+    copy=>{copy.settings.ruleSections[2]=null;},
+    copy=>{copy.settings.ruleSections[2].groups=[];},
+    copy=>{copy.settings.ruleSections[2].groups[0].ruleIds=[];},
+    copy=>{copy.settings.ruleSections[2].groups[0].ruleIds=['missing-article'];},
+    copy=>{copy.settings.ruleSections[2].groups.push(structuredClone(copy.settings.ruleSections[2].groups[0]));}
+  ]) assert.ok(mutate(change).some(error=>error.includes('ruleSections')));
+});
+
+test('reader sections reject duplicate aliases, missing coverage and hidden entries', () => {
+  const copy=structuredClone(source);
+  const section=copy.settings.ruleSections.find(s=>s.id==='ems');
+  const group=section.groups[0];
+  const item=copy.rules.find(rule=>rule.id===group.ruleIds[0]);
+  item.aliases=[...(item.aliases||[]),'reader-test-alias'];
+  group.ruleIds.push('reader-test-alias');
+  assert.ok(validateData(copy).some(error=>error.includes('ruleSections')&&error.includes('重複')));
+
+  const omitted=structuredClone(source);
+  const id=omitted.rules.find(rule=>rule.contentKind==='rule').id;
+  for(const section of omitted.settings.ruleSections) for(const group of section.groups) group.ruleIds=group.ruleIds.filter(value=>value!==id);
+  assert.ok(validateData(omitted).some(error=>error.includes('ruleSections')&&error.includes(id)));
+
+  const hidden=structuredClone(source);
+  const hiddenId=hidden.settings.ruleSections[0].groups[0].ruleIds[0];
+  hidden.rules.find(rule=>rule.id===hiddenId).status='pending';
+  assert.ok(validateData(hidden).some(error=>error.includes('ruleSections')&&error.includes('公開')));
+
+  const page=structuredClone(source);
+  page.pages.rules.ruleIds=page.pages.rules.ruleIds.filter(value=>value!==id);
+  assert.ok(validateData(page).some(error=>error.includes('pages.rules.ruleIds')&&error.includes(id)));
+});

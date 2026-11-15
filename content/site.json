@@ -20,7 +20,7 @@
     "name": "NicoGura",
     "tagline": "あなたらしい物語が、この街から。",
     "version": "3.0.0",
-    "updatedAt": "2026-11-05",
+    "updatedAt": "2026-11-15",
     "notice": "難しく考えなくて大丈夫。最低限のライトRPとマナーを大切に、街での生活を楽しみましょう。",
     "links": {
       "discord": "https://discord.gg/Fzhhp34JJy",
@@ -103,9 +103,340 @@
         "category": "join",
         "label": "入国手続き"
       }
+    ],
+    "ruleSections": [
+      {
+        "id": "overview",
+        "label": "ルールの要点",
+        "description": "最初に押さえたい約束を確認し、必要なルールの本文へ進めます。",
+        "groups": [
+          {
+            "id": "essentials",
+            "label": "まず確認したい約束",
+            "ruleIds": [
+              "basic-respect",
+              "character-identity",
+              "rp-metagaming",
+              "prohibited-cheating",
+              "prohibited-exploit",
+              "rp-rdm",
+              "vehicles-vdm",
+              "crime-current-list",
+              "crime-siege",
+              "job-authority-misuse",
+              "ems-emergency-use"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "general",
+        "label": "街の全体ルール",
+        "description": "立場にかかわらず、街で遊ぶ全員に共通する約束です。",
+        "groups": [
+          {
+            "id": "living-together",
+            "label": "街での基本・キャラクター・入国",
+            "ruleIds": [
+              "basic-respect",
+              "rp-back-and-forth",
+              "rp-no-pressure",
+              "character-identity",
+              "join-whitelist"
+            ]
+          },
+          {
+            "id": "fair-play",
+            "label": "不正・MOD・処分逃れの禁止",
+            "ruleIds": [
+              "prohibited-cheating",
+              "prohibited-exploit",
+              "client-mod-policy",
+              "prohibited-rmt",
+              "prohibited-ban-evasion",
+              "prohibited-evidence-fabrication"
+            ]
+          },
+          {
+            "id": "roleplay-and-respect",
+            "label": "情報共有・攻撃・嫌がらせ",
+            "ruleIds": [
+              "rp-metagaming",
+              "communication-external-vc",
+              "rp-rdm",
+              "vehicles-vdm",
+              "rp-powergaming",
+              "prohibited-harassment",
+              "prohibited-impersonation"
+            ]
+          },
+          {
+            "id": "jobs-and-vehicles",
+            "label": "職業・専用車両の扱い",
+            "ruleIds": [
+              "vehicles-emergency-use",
+              "vehicles-job-crime",
+              "vehicles-crime-banned",
+              "job-authority-misuse",
+              "job-employment-limits",
+              "mechanic-crime-limits"
+            ]
+          },
+          {
+            "id": "streaming-and-support",
+            "label": "配信・運営への連絡・違反対応",
+            "ruleIds": [
+              "streaming-respect",
+              "administration-contact-boundaries",
+              "administration-response"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "crime",
+        "label": "犯罪者側のルール",
+        "description": "準備から交渉・逃走・終了・罰金まで、犯罪に必要な公開ルールをまとめて確認できます。",
+        "groups": [
+          {
+            "id": "before-start",
+            "label": "始める前に：分類・人数・時間・職業制限",
+            "ruleIds": [
+              "crime-current-list",
+              "crime-types-guide",
+              "crime-restart-window",
+              "crime-probation",
+              "mechanic-crime-limits"
+            ]
+          },
+          {
+            "id": "vehicles-and-colors",
+            "label": "車両・ヘリ・服装のカラー",
+            "ruleIds": [
+              "vehicles-emergency-use",
+              "vehicles-job-crime",
+              "vehicles-crime-banned",
+              "crime-cruise-control",
+              "crime-helicopter-limits",
+              "crime-scene-colors",
+              "affiliation-colors"
+            ]
+          },
+          {
+            "id": "negotiation-and-scene",
+            "label": "人質交渉・チェイス・現場での行動",
+            "ruleIds": [
+              "crime-chase-demands",
+              "crime-chase-attack-window",
+              "crime-common-response",
+              "crime-scene-conduct"
+            ]
+          },
+          {
+            "id": "end-and-recovery",
+            "label": "完全包囲・シーン終了・ダウン・切断",
+            "ruleIds": [
+              "crime-siege",
+              "crime-scene-end",
+              "crime-rejoin-combat",
+              "crime-down-information",
+              "crime-combat-log",
+              "crime-third-party"
+            ]
+          },
+          {
+            "id": "bugs-and-rewards",
+            "label": "不具合・重複受注・報酬の確認",
+            "ruleIds": [
+              "crime-bug-response",
+              "heist-duplicate",
+              "crime-public-rewards"
+            ]
+          },
+          {
+            "id": "fines-and-law",
+            "label": "罪状・罰金・保護観察・押収",
+            "ruleIds": [
+              "weapons-crime-use",
+              "penalties-basic-fines",
+              "penalties-heist-fines",
+              "penalties-impound",
+              "law-police-station-attack",
+              "pd-community-service"
+            ]
+          },
+          {
+            "id": "crime-common-rules",
+            "label": "犯罪中にも守る街の共通ルール",
+            "ruleIds": [
+              "rp-metagaming",
+              "communication-external-vc",
+              "rp-rdm",
+              "vehicles-vdm",
+              "rp-powergaming",
+              "prohibited-cheating",
+              "prohibited-exploit",
+              "client-mod-policy",
+              "prohibited-harassment",
+              "prohibited-impersonation",
+              "prohibited-evidence-fabrication",
+              "streaming-respect"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pd",
+        "label": "PD側ルール",
+        "description": "PDの公開ルールと、犯罪対応・判定・処分に必要な共通規定です。",
+        "groups": [
+          {
+            "id": "pd-duty",
+            "label": "職務・兼業・専用車両",
+            "ruleIds": [
+              "pd-internal-rules",
+              "job-authority-misuse",
+              "job-employment-limits",
+              "vehicles-emergency-use",
+              "vehicles-job-crime"
+            ]
+          },
+          {
+            "id": "pd-scene",
+            "label": "現場の人数・ヘリ・カラー・共通行動",
+            "ruleIds": [
+              "crime-current-list",
+              "crime-types-guide",
+              "crime-helicopter-limits",
+              "crime-scene-colors",
+              "crime-scene-conduct",
+              "crime-cruise-control",
+              "crime-restart-window"
+            ]
+          },
+          {
+            "id": "pd-negotiation",
+            "label": "交渉・職務質問・逮捕・終了判定",
+            "ruleIds": [
+              "crime-chase-demands",
+              "crime-chase-attack-window",
+              "crime-common-response",
+              "crime-siege",
+              "crime-scene-end"
+            ]
+          },
+          {
+            "id": "pd-down-and-bugs",
+            "label": "ダウン・切断・第三者・不具合への対応",
+            "ruleIds": [
+              "crime-rejoin-combat",
+              "crime-down-information",
+              "crime-combat-log",
+              "crime-third-party",
+              "crime-bug-response",
+              "heist-duplicate"
+            ]
+          },
+          {
+            "id": "pd-penalties",
+            "label": "処分の説明・罰金・保護観察・押収",
+            "ruleIds": [
+              "pd-fines",
+              "weapons-crime-use",
+              "penalties-basic-fines",
+              "penalties-heist-fines",
+              "penalties-impound",
+              "law-police-station-attack",
+              "crime-probation",
+              "pd-community-service"
+            ]
+          },
+          {
+            "id": "pd-common-rules",
+            "label": "PDにも適用される街の共通ルール",
+            "ruleIds": [
+              "rp-metagaming",
+              "communication-external-vc",
+              "rp-rdm",
+              "vehicles-vdm",
+              "rp-powergaming",
+              "prohibited-cheating",
+              "prohibited-exploit",
+              "client-mod-policy",
+              "prohibited-harassment",
+              "prohibited-impersonation",
+              "prohibited-evidence-fabrication",
+              "streaming-respect"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ems",
+        "label": "EMSルール",
+        "description": "EMSの公開ルールと、救護・復帰・救済機能の扱いをまとめています。",
+        "groups": [
+          {
+            "id": "ems-duty",
+            "label": "職務・兼業・専用車両",
+            "ruleIds": [
+              "job-authority-misuse",
+              "job-employment-limits",
+              "vehicles-emergency-use",
+              "vehicles-job-crime"
+            ]
+          },
+          {
+            "id": "ems-emergency",
+            "label": "救済機能・現場への介入・復帰後のルール",
+            "ruleIds": [
+              "ems-emergency-use",
+              "crime-third-party",
+              "crime-rejoin-combat",
+              "crime-down-information",
+              "crime-combat-log"
+            ]
+          },
+          {
+            "id": "ems-care-guide",
+            "label": "救護・治療・料金の案内",
+            "ruleIds": [
+              "ems-request",
+              "ems-care",
+              "ems-fees",
+              "ems-supplies",
+              "ems-emergency-commands"
+            ]
+          },
+          {
+            "id": "ems-common-rules",
+            "label": "EMSにも適用される街の共通ルール",
+            "ruleIds": [
+              "rp-metagaming",
+              "communication-external-vc",
+              "prohibited-harassment",
+              "prohibited-impersonation",
+              "prohibited-cheating",
+              "prohibited-exploit",
+              "streaming-respect"
+            ]
+          }
+        ]
+      }
     ]
   },
   "changelog": [
+    {
+      "date": "2026-11-15",
+      "type": "整理",
+      "title": "公式ルールを5つの入口に整理しました",
+      "items": [
+        "ルールの要点、街の全体ルール、犯罪者側のルール、PD側ルール、EMSルールから探せるようにしました。",
+        "犯罪の人数・車両・交渉・終了条件・罰金を、犯罪者側のルール内でまとめて確認できます。",
+        "共通規定は同じ本文を参照し、参照先の見出し表記をそろえました。ルールの条件・人数・金額は変更していません。",
+        "完全包囲を、PDラジアルでの宣言・宣言時点から5分の計測・5回程度の呼びかけ・PDによる敗北確定の順で案内しました。宣言後のラーク介入禁止も明記しています。"
+      ]
+    },
     {
       "date": "2026-11-05",
       "type": "UPDATED",
@@ -228,53 +559,66 @@
       "ruleIds": [
         "basic-respect",
         "rp-back-and-forth",
+        "rp-no-pressure",
         "character-identity",
-        "rp-metagaming",
-        "rp-rdm",
+        "join-whitelist",
         "prohibited-cheating",
         "prohibited-exploit",
+        "client-mod-policy",
         "prohibited-rmt",
-        "prohibited-harassment",
-        "prohibited-impersonation",
-        "communication-external-vc",
-        "vehicles-vdm",
-        "crime-combat-log",
-        "crime-third-party",
-        "crime-rejoin-combat",
-        "rp-powergaming",
-        "rp-no-pressure",
-        "crime-down-information",
         "prohibited-ban-evasion",
         "prohibited-evidence-fabrication",
-        "client-mod-policy",
+        "rp-metagaming",
+        "communication-external-vc",
+        "rp-rdm",
+        "vehicles-vdm",
+        "rp-powergaming",
+        "prohibited-harassment",
+        "prohibited-impersonation",
         "vehicles-emergency-use",
         "vehicles-job-crime",
         "vehicles-crime-banned",
-        "crime-cruise-control",
-        "heist-duplicate",
+        "job-authority-misuse",
+        "job-employment-limits",
+        "mechanic-crime-limits",
+        "streaming-respect",
+        "administration-contact-boundaries",
+        "administration-response",
         "crime-current-list",
+        "crime-types-guide",
+        "crime-restart-window",
+        "crime-probation",
+        "crime-cruise-control",
+        "crime-helicopter-limits",
+        "crime-scene-colors",
+        "affiliation-colors",
         "crime-chase-demands",
         "crime-chase-attack-window",
         "crime-common-response",
-        "crime-bug-response",
-        "crime-restart-window",
         "crime-scene-conduct",
-        "crime-helicopter-limits",
-        "crime-scene-colors",
-        "crime-scene-end",
         "crime-siege",
-        "crime-probation",
-        "pd-internal-rules",
-        "ems-emergency-use",
-        "mechanic-crime-limits",
-        "job-authority-misuse",
-        "job-employment-limits",
-        "affiliation-colors",
-        "streaming-respect",
+        "crime-scene-end",
+        "crime-rejoin-combat",
+        "crime-down-information",
+        "crime-combat-log",
+        "crime-third-party",
+        "crime-bug-response",
+        "heist-duplicate",
+        "crime-public-rewards",
         "weapons-crime-use",
-        "administration-response",
-        "administration-contact-boundaries",
-        "join-whitelist"
+        "penalties-basic-fines",
+        "penalties-heist-fines",
+        "penalties-impound",
+        "law-police-station-attack",
+        "pd-community-service",
+        "pd-internal-rules",
+        "pd-fines",
+        "ems-emergency-use",
+        "ems-request",
+        "ems-care",
+        "ems-fees",
+        "ems-supplies",
+        "ems-emergency-commands"
       ]
     },
     "join": {

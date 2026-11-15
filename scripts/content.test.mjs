@@ -14,7 +14,7 @@ const entry = id => { const r = data.rules.find(r => r.id === id); assert.ok(r, 
 test('published schema and page references', () => {
   assert.deepEqual(validateData(data), []);
   assert.ok(data.rules.every(r => r.status === 'published'));
-  assert.equal(data.site.updatedAt, '2026-11-05');
+  assert.equal(data.site.updatedAt, '2026-11-15');
   for (const key of Object.keys(routes)) { assert.ok(data.pages[key]); for (const id of data.pages[key].ruleIds) entry(id); }
 });
 test('official brand and no internal economics or obsolete joining flow', () => {
@@ -235,7 +235,8 @@ test('approved half fines preserve the official offences, probation periods and 
   assert.match(JSON.stringify(entry('weapons-crime-use').content), /犯罪時.*所持/);
   assert.doesNotMatch(JSON.stringify(entry('weapons-crime-use').content), /所持だけ.*(?:違反|犯罪).*なりません|使用した時点/);
   for(const id of ['penalties-basic-fines','penalties-heist-fines','penalties-impound']) {
-    assert.ok(data.pages.law.ruleIds.includes(id)); assert.ok(!data.pages.rules.ruleIds.includes(id));
+    assert.ok(data.pages.law.ruleIds.includes(id)); assert.ok(data.pages.rules.ruleIds.includes(id));
+    assert.equal(entry(id).contentKind, 'law');
   }
 });
 
@@ -391,11 +392,59 @@ test('original article identities survive, with consolidated article IDs availab
   assert.equal(new Set(data.rules.map(r=>r.number)).size,data.rules.length);
   for(const r of data.rules) assert.ok(['rule','guide','law'].includes(r.contentKind),r.id);
   const sortedIds=kind=>data.rules.filter(r=>r.contentKind===kind).map(r=>r.id).sort();
-  assert.deepEqual([...data.pages.rules.ruleIds].sort(),sortedIds('rule'));
+  const sections=data.settings.ruleSections;
+  const detailIds=[...new Set(sections.filter(s=>s.id!=='overview').flatMap(s=>s.groups.flatMap(g=>g.ruleIds)))].sort();
+  assert.deepEqual([...data.pages.rules.ruleIds].sort(),detailIds);
+  for(const id of [...sortedIds('rule'),...sortedIds('law')]) assert.ok(detailIds.includes(id),`missing rule/law: ${id}`);
   assert.deepEqual([...data.pages.guides.ruleIds].sort(),sortedIds('guide'));
   for(const r of data.rules.filter(r=>r.contentKind==='law')) assert.ok(data.pages.law.ruleIds.includes(r.id),r.id);
-  for(const id of data.pages.rules.ruleIds) assert.ok(!data.pages.guides.ruleIds.includes(id),id);
+  for(const id of sortedIds('rule')) assert.ok(!data.pages.guides.ruleIds.includes(id),id);
   for(let chapter=1;chapter<=12;chapter++) assert.ok(data.rules.some(r=>r.contentKind==='rule' && r.ruleChapter===chapter),`chapter ${chapter}`);
+});
+
+test('five reader sections retain every rule and law without duplicate articles inside a section', () => {
+  const sections=data.settings.ruleSections;
+  assert.deepEqual(sections.map(s=>s.id),['overview','general','crime','pd','ems']);
+  assert.deepEqual(sections.map(s=>s.label),['ルールの要点','街の全体ルール','犯罪者側のルール','PD側ルール','EMSルール']);
+  const idsOf=section=>section.groups.flatMap(group=>group.ruleIds);
+  for(const section of sections) {
+    const ids=idsOf(section);
+    assert.equal(new Set(ids).size,ids.length,section.id);
+    assert.ok(ids.length,section.id);
+    for(const id of ids) assert.equal(entry(id).status,'published',id);
+  }
+  const allDetail=new Set(sections.slice(1).flatMap(idsOf));
+  for(const id of idsOf(sections[0])) assert.ok(allDetail.has(id),`overview must link to full text: ${id}`);
+  for(const r of data.rules.filter(r=>['rule','law'].includes(r.contentKind))) assert.ok(allDetail.has(r.id),r.id);
+  const crime=new Set(idsOf(sections.find(s=>s.id==='crime')));
+  const pd=new Set(idsOf(sections.find(s=>s.id==='pd')));
+  for(const r of data.rules.filter(r=>r.contentKind==='law')) {
+    assert.ok(crime.has(r.id),`criminal rules must include law: ${r.id}`);
+    assert.ok(pd.has(r.id),`PD rules must include law: ${r.id}`);
+  }
+});
+
+test('navigation-only reorganization preserves every approved table cell', () => {
+  const tables=data.rules.map(r=>[r.id,r.content.filter(block=>block.type==='table')]).filter(([,blocks])=>blocks.length).sort((a,b)=>a[0].localeCompare(b[0]));
+  assert.equal(tables.length,20);
+  assert.equal(createHash('sha256').update(JSON.stringify(tables)).digest('hex'),'cd1d3d85def7004bd085f008f6a0492de4f004cdee5025c6695524a4de54e2e6');
+});
+
+test('no-script rules show five categories and every canonical article only once', async () => {
+  const html=await read('rules/index.html');
+  const fallback=html.match(/<noscript>([\s\S]*?)<\/noscript>/)?.[1];
+  assert.ok(fallback);
+  for(const section of data.settings.ruleSections) {
+    assert.ok(fallback.includes(`href="#rulebook-${section.id}"`));
+    assert.ok(fallback.includes(`id="rulebook-${section.id}"`));
+    assert.ok(fallback.includes(section.label));
+  }
+  const found=[...fallback.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
+  assert.equal(new Set(found).size,found.length,'no duplicate DOM anchors');
+  for(const id of data.pages.rules.ruleIds) {
+    assert.equal(found.filter(value=>value===id).length,1,id);
+    for(const alias of entry(id).aliases||[]) assert.equal(found.filter(value=>value===alias).length,1,alias);
+  }
 });
 
 test('helicopter and scene rules preserve the meeting scope and exceptions', () => {
@@ -411,6 +460,24 @@ test('helicopter and scene rules preserve the meeting scope and exceptions', () 
   for(const term of ['振り切ってから5分','サイレン','PDヘリ','服装や車両','犯人と断定','10分以内']) assert.ok(end.includes(term),term);
   const mechanic=JSON.stringify(entry('mechanic-crime-limits').content);
   for(const term of ['中型','大型','ギャング']) assert.ok(mechanic.includes(term),term);
+});
+
+test('siege uses the radial declaration as the five-minute start and needs PD confirmation', () => {
+  const rule=entry('crime-siege');
+  const text=JSON.stringify(rule.content);
+  const target=rule.content.find(block=>block.type==='paragraph').text;
+  assert.equal(target,'ランドリー、ヴァンジェ、パレト、ヒューメイン、ボブキャット、美術館、カジノ、ユニオン、地下、山岳。');
+  assert.match(text,/PDラジアルメニュー/);
+  assert.match(text,/宣言した時点から5分/);
+  assert.match(text,/完全包囲.*宣言.*時点.*ラーク.*禁止/);
+  assert.match(text,/5回程度.*呼びかけ/);
+  assert.match(text,/PDが完全包囲・呼びかけ等の条件を確認/);
+  assert.match(text,/自動的に敗北が確定するわけではありません/);
+  assert.doesNotMatch(text,/PDアプリ/);
+  for(const id of ['crime','pd']) {
+    const section=data.settings.ruleSections.find(item=>item.id===id);
+    assert.ok(section.groups.some(group=>group.ruleIds.includes(rule.id)),id);
+  }
 });
 
 test('private PD timings and internal editing notes never enter published data', () => {

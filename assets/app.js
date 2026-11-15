@@ -35,7 +35,7 @@
   let views;
   let tokens = [];
   const openRules = new Set();
-  const state = { query: '', category: 'all', savedOnly: false };
+  const state = { query: '', category: 'all', section: 'overview', legacyCategory: '', savedOnly: false };
   const guidePages = {
     join: ['JOIN', '参加方法', 'Discordから入国まで、順番にご案内します。', ['join', 'basic']],
     server: ['SERVER INFO', 'サーバー情報', '通常再起動や定期メンテナンス、参加に必要な情報を確認できます。', ['server']],
@@ -61,6 +61,31 @@
   function findRule(id) {
     if (typeof id !== 'string') return undefined;
     return data.rules.find(rule => rule.id === id || (Array.isArray(rule.aliases) && rule.aliases.includes(id)));
+  }
+  function ruleSections() { return data.settings.ruleSections || []; }
+  function sectionRules(id) {
+    const section = ruleSections().find(item => item.id === id);
+    return [...new Map((section?.groups || []).flatMap(group => group.ruleIds).map(findRule)
+      .filter(rule => rule?.status === 'published').map(rule => [rule.id, rule])).values()];
+  }
+  function sectionForRule(rule, preferred = state.section) {
+    const contains = section => section.id !== 'overview' && section.groups.some(group => group.ruleIds.includes(rule.id));
+    const sections = ruleSections().filter(contains);
+    const primary = rule.id.startsWith('crime-') || ['crime', 'heist', 'law', 'penalties', 'gang'].includes(rule.category) ? 'crime'
+      : ['pd', 'ems'].includes(rule.category) ? rule.category : 'general';
+    return sections.find(section => section.id === preferred)?.id
+      || sections.find(section => section.id === primary)?.id || sections[0]?.id || 'general';
+  }
+  function rulePath(rule, preferred = state.section) {
+    const target = canonicalPage(rule);
+    return target === 'rules' ? `rules/?section=${sectionForRule(rule, preferred)}#${encodeURIComponent(rule.id)}`
+      : `${target}/#${encodeURIComponent(rule.id)}`;
+  }
+  function followRule(event, rule) {
+    if (page !== 'rules' || canonicalPage(rule) !== 'rules' || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    history.pushState({}, '', href(rulePath(rule)));
+    openDeepLink(true);
   }
   function pageRules(key) {
     const ids = data.pages?.[key]?.ruleIds;
@@ -574,7 +599,7 @@
     input.autocomplete = 'off';
     input.placeholder = placeholder;
     input.setAttribute('aria-describedby', 'search-hint');
-    const clear = button('', 'icon-button search-clear', () => { input.value = ''; state.query = ''; applyFilters(); input.focus(); }, 'close');
+    const clear = button('', 'icon-button search-clear', () => { input.value = ''; state.query = ''; state.legacyCategory = ''; applyFilters(); input.focus(); }, 'close');
     clear.setAttribute('aria-label', '検索をクリア');
     clear.hidden = !state.query;
     box.append(label, icon('search'), input, clear);
@@ -582,6 +607,7 @@
     input.addEventListener('input', () => {
       clearTimeout(filterTimer);
       state.query = input.value;
+      state.legacyCategory = '';
       clear.hidden = !state.query;
       filterTimer = setTimeout(applyFilters, 90);
     });
@@ -592,12 +618,30 @@
     state.query = (params.get('q') || '').slice(0, 500);
     state.category = categoryMap.has(params.get('category')) ? params.get('category') : 'all';
     state.savedOnly = params.get('saved') === '1';
+    if (page === 'rules') {
+      const legacy = params.get('category');
+      const mapped = legacy === 'intro' ? 'overview' : ['crime', 'heist', 'law', 'penalties', 'gang'].includes(legacy) ? 'crime'
+        : ['pd', 'ems'].includes(legacy) ? legacy : legacy && legacy !== 'all' ? 'general' : 'overview';
+      state.section = ruleSections().some(section => section.id === params.get('section')) ? params.get('section') : mapped;
+      state.legacyCategory = !params.has('section') && !state.query.trim()
+        && pageRules('rules').some(rule => rule.status === 'published' && rule.contentKind === 'rule' && rule.category === legacy) ? legacy : '';
+      state.category = 'all';
+    }
   }
   function reflectUrl() {
     const url = new URL(location.href);
     state.query.trim() ? url.searchParams.set('q', state.query.trim()) : url.searchParams.delete('q');
     state.category !== 'all' ? url.searchParams.set('category', state.category) : url.searchParams.delete('category');
     state.savedOnly ? url.searchParams.set('saved', '1') : url.searchParams.delete('saved');
+    if (page === 'rules') {
+      if (state.legacyCategory) {
+        url.searchParams.set('category', state.legacyCategory);
+        url.searchParams.delete('section');
+      } else {
+        url.searchParams.delete('category');
+        state.section !== 'overview' ? url.searchParams.set('section', state.section) : url.searchParams.delete('section');
+      }
+    }
     url.searchParams.delete('focus');
     history.replaceState({}, '', url);
   }
@@ -669,66 +713,64 @@
     readFiltersFromUrl();
     const focused = new URL(location.href).searchParams.get('focus') === 'search';
     const entries = pageRules('rules').filter(rule => rule.status === 'published');
-    const categoryIds = new Set(entries.map(rule => rule.category));
-    const categories = data.categories.filter(category => categoryIds.has(category.id));
-    const chapterOrder = new Map((Array.isArray(data.settings.ruleChapters) ? data.settings.ruleChapters : []).map(chapter => [chapter.category, chapter.number]));
-    categories.sort((a, b) => (chapterOrder.get(a.id) || 999) - (chapterOrder.get(b.id) || 999));
-    if (state.category !== 'all' && !categoryIds.has(state.category)) state.category = 'all';
-    entries.forEach(rule => openRules.add(rule.id));
-    const shell = el('div', 'rules-page document-page');
+    entries.forEach(rule => openRules.delete(rule.id));
+    const shell = el('div', 'rules-page document-page audience-rules');
     shell.append(documentHeading('公式ルール'));
-    const categorySection = el('section', 'category-section');
-    categorySection.id = 'categories';
-    const categoryTitle = el('div', 'category-section-head');
-    categoryTitle.append(el('h2', 'category-heading', 'カテゴリー'), el('span', 'category-meta', `${entries.length} 項目`));
-    const pills = el('div', 'category-pills');
-    pills.setAttribute('aria-label', 'ルールカテゴリー');
-    const pillButtons = new Map();
-    const selectLabel = el('label', 'visually-hidden', 'ルールのカテゴリーを選ぶ');
-    selectLabel.htmlFor = 'rule-category-select';
-    const categorySelect = el('select', 'document-category-select');
-    categorySelect.id = selectLabel.htmlFor;
-    categorySelect.addEventListener('change', () => {
-      state.category = categorySelect.value;
-      entries.filter(rule => state.category === 'all' || rule.category === state.category).forEach(rule => openRules.add(rule.id));
-      applyFilters();
-    });
-    [{ id: 'all', shortLabel: 'すべて' }, ...categories].forEach(category => {
-      const pill = button(category.shortLabel || category.label, 'pill', () => {
-        state.category = category.id;
-        entries.filter(rule => category.id === 'all' || rule.category === category.id).forEach(rule => openRules.add(rule.id));
-        applyFilters();
+    shell.append(el('p', 'rules-intro', '立場や知りたいことから選んで、必要なルールをひとまとめに。'));
+    const navigation = el('nav', 'rule-sections');
+    navigation.id = 'categories';
+    navigation.setAttribute('aria-label', '読むルールを選ぶ');
+    const sectionButtons = new Map();
+    ruleSections().forEach((section, index) => {
+      const node = button('', 'rule-section-button', () => {
+        state.section = section.id;
+        state.legacyCategory = '';
+        state.query = '';
+        state.savedOnly = false;
+        views.input.value = '';
+        const url = new URL(location.href);
+        url.hash = '';
+        url.search = '';
+        if (section.id !== 'overview') url.searchParams.set('section', section.id);
+        history.pushState({}, '', url);
+        renderResults();
       });
-      pill.setAttribute('aria-pressed', String(state.category === category.id));
-      pillButtons.set(category.id, pill);
-      pills.append(pill);
-      const option = el('option', '', category.label || category.shortLabel);
-      option.value = category.id;
-      option.selected = state.category === category.id;
-      categorySelect.append(option);
+      node.append(el('span', 'rule-section-index', String(index + 1).padStart(2, '0')),
+        el('span', 'rule-section-label', section.label), el('span', 'rule-section-description', section.description));
+      node.dataset.section = section.id;
+      node.setAttribute('aria-controls', 'rule-browse-content');
+      sectionButtons.set(section.id, node);
+      navigation.append(node);
     });
-    categorySection.append(categoryTitle, selectLabel, categorySelect, pills);
-    shell.append(categorySection);
-    const search = searchBox('公式ルール内を検索', '禁止事項・ルールを検索…');
-    const hint = el('p', 'search-hint');
+    shell.append(navigation);
+    const search = searchBox('ルール・罰金をまとめて検索', '例：人質、ヘリ、完全包囲、罰金…');
+    const hint = el('p', 'search-hint', '検索は5分類を横断します。気になる言葉を入力するか、下の目次から選んでください。');
     hint.id = 'search-hint';
-    hint.append(document.createTextNode('公式ルール内を検索します。料金・使い方は '), link('にこぐらガイド', 'guides/', 'inline-guide-link'), document.createTextNode('、罰金・刑期は '), link('ゲーム内法律', 'law/', 'inline-guide-link'), document.createTextNode(' へ。'));
     shell.append(search.box, hint);
+    const sectionHeading = el('div', 'rules-section-heading');
+    sectionHeading.id = 'rule-browse-content';
+    const sectionTitle = el('h2');
+    const sectionDescription = el('p');
+    const groupNavigation = el('nav', 'rules-group-navigation');
+    groupNavigation.setAttribute('aria-label', 'この分類の目次');
+    sectionHeading.append(sectionTitle, sectionDescription, groupNavigation);
+    shell.append(sectionHeading);
     const reading = readingLayout('公式ルール');
     shell.append(reading.layout);
     main.replaceChildren(shell);
-    views = { ...reading, mode: 'rules', entries, input: search.input, searchBox: search.box, clear: search.clear, pillButtons, categorySelect };
+    views = { ...reading, mode: 'rules', entries, input: search.input, searchBox: search.box, clear: search.clear,
+      sectionButtons, sectionTitle, sectionDescription, sectionHeading, groupNavigation };
     renderResults();
     window.addEventListener('hashchange', () => openDeepLink(true));
     window.addEventListener('popstate', () => {
       readFiltersFromUrl();
-      if (state.category !== 'all' && !categoryIds.has(state.category)) state.category = 'all';
       views.input.value = state.query;
       renderResults();
       openDeepLink(true);
     });
     if (!openDeepLink(false) && focused) { views.input.focus(); scrollToNode(views.searchBox); reflectUrl(); }
   }
+
   function guideCategoryFilters(entries) {
     const available = new Set(entries.map(rule => rule.category));
     const categories = data.categories.filter(category => available.has(category.id));
@@ -847,10 +889,10 @@
     summary.append(number);
     const copy = el('div', 'rule-summary-copy');
     const labels = el('div', 'rule-labels');
-    labels.append(highlighted(categoryMap.get(rule.category)?.label || rule.category, 'rule-category'));
+    labels.append(highlighted(page === 'rules' ? ({ law: 'ゲーム内法律', guide: '関連ガイド', rule: 'ルール' }[rule.contentKind] || 'ルール') : categoryMap.get(rule.category)?.label || rule.category, 'rule-category'));
     const badge = ruleBadge(rule);
     if (badge) labels.append(badge);
-    const recent = recentBadge(rule);
+    const recent = page === 'rules' ? null : recentBadge(rule);
     if (recent) labels.append(recent);
     (rule.tags || []).filter(tag => ['EMS専売品', '応急処置'].includes(tag)).forEach(tag => labels.append(highlighted(tag, `badge ${tag === '応急処置' ? 'badge-first-aid' : 'badge-ems'}`)));
     const targetPage = canonicalPage(rule);
@@ -952,7 +994,9 @@
       relatedRules.forEach(item => {
         const target = canonicalPage(item);
         const entry = el('li');
-        entry.append(link(`${pageInfo(target).title}：${item.title}`, `${target}/#${encodeURIComponent(item.id)}`, 'rule-related-link', 'arrow'));
+        const relatedLink = link(`${page === 'rules' && target === 'rules' ? '' : pageInfo(target).title + '：'}${item.title}`, rulePath(item), 'rule-related-link', 'arrow');
+        relatedLink.addEventListener('click', event => followRule(event, item));
+        entry.append(relatedLink);
         links.append(entry);
       });
       related.append(links);
@@ -989,32 +1033,82 @@
     return details;
   }
   function renderResults() {
-    if (views.categorySelect) views.categorySelect.value = state.category;
     tokens = [...new Set(normalize(state.query).trim().split(/\s+/u).filter(Boolean))];
-    const entries = views.entries;
-    const matches = entries.filter(rule => (state.category === 'all' || rule.category === state.category) && (!state.savedOnly || bookmarks.has(rule.id)) && tokens.every(token => rule._search.includes(token)));
-    const category = categoryMap.get(state.category);
-    const context = state.savedOnly ? '保存した項目' : category?.label || '公式ルール';
-    views.count.replaceChildren(el('strong', '', String(matches.length)), document.createTextNode(` 件 · ${context}${tokens.length ? ' / 検索結果' : ''}`));
+    const section = ruleSections().find(item => item.id === state.section) || ruleSections()[0];
+    const legacyCategory = categoryMap.get(state.legacyCategory);
+    const crossSection = tokens.length > 0 || state.savedOnly || Boolean(legacyCategory);
+    const overview = !crossSection && section.id === 'overview';
+    const entries = legacyCategory ? views.entries.filter(rule => rule.contentKind === 'rule' && rule.category === legacyCategory.id)
+      : crossSection ? views.entries : sectionRules(section.id);
+    const matches = entries.filter(rule => (!state.savedOnly || bookmarks.has(rule.id)) && tokens.every(token => rule._search.includes(token)));
+    const label = legacyCategory ? `${legacyCategory.label}の${state.savedOnly ? '保存した項目' : 'ルール'}`
+      : crossSection ? (state.savedOnly ? '保存した項目' : 'すべてのルールの検索結果') : section.label;
+    views.sectionTitle.textContent = label;
+    views.sectionDescription.textContent = legacyCategory ? 'この分野のルールをまとめて表示しています。ほかの分野は上の5分類から確認できます。'
+      : crossSection ? '分類をまたいで、同じ項目は1件にまとめて表示します。'
+      : overview ? 'まずは要点を確認。詳しい条件や例外は「本文を読む」から確認できます。' : section.description;
+    views.count.replaceChildren(el('strong', '', String(matches.length)), document.createTextNode(` ${overview ? '件の要点' : '項目'}${legacyCategory ? ` · ${legacyCategory.label}` : crossSection ? ' · 全分類から' : ''}`));
     views.saved.setAttribute('aria-pressed', String(state.savedOnly));
     views.saved.title = `保存済み ${bookmarks.size} 件`;
     views.clear.hidden = !state.query;
-    views.pillButtons.forEach((node, id) => {
-      node.setAttribute('aria-pressed', String(state.category === id));
-      node.classList.toggle('is-active', state.category === id);
-    });
+    views.sectionButtons.forEach((node, id) => node.setAttribute('aria-pressed', String(!legacyCategory && state.section === id)));
+    views.groupNavigation.replaceChildren();
+    views.groupNavigation.hidden = crossSection || overview;
+    views.mobileToc.hidden = overview;
+    views.expand.hidden = views.collapse.hidden = overview;
     const fragment = document.createDocumentFragment();
-    matches.forEach(rule => fragment.append(ruleCard(rule)));
+    if (crossSection) {
+      matches.forEach(rule => { if (tokens.length) openRules.add(rule.id); fragment.append(ruleCard(rule)); });
+    } else {
+      section.groups.forEach((group, index) => {
+        const rules = group.ruleIds.map(findRule).filter(rule => matches.includes(rule));
+        if (!rules.length) return;
+        const wrapper = el('section', overview ? 'rules-overview-group' : 'rules-topic-group');
+        wrapper.id = `rules-group-${section.id}-${group.id}`;
+        wrapper.tabIndex = -1;
+        const title = el('h3', 'rules-topic-title', group.label);
+        title.id = `${wrapper.id}-title`;
+        wrapper.setAttribute('aria-labelledby', title.id);
+        wrapper.append(title);
+        const cards = el('div', overview ? 'rules-overview-grid' : 'rules-topic-cards');
+        rules.forEach(rule => {
+          if (!overview) { cards.append(ruleCard(rule)); return; }
+          const card = el('article', 'rules-overview-card');
+          card.append(el('h4', '', rule.title), el('p', '', rule.summary));
+          const more = link('本文を読む', rulePath(rule), 'section-link', 'arrow');
+          more.setAttribute('aria-label', `${rule.title}の本文を読む`);
+          more.addEventListener('click', event => followRule(event, rule));
+          card.append(more);
+          cards.append(card);
+        });
+        wrapper.append(cards);
+        fragment.append(wrapper);
+        if (!overview) {
+          const jump = link(`${String(index + 1).padStart(2, '0')} ${group.label}`, `rules/?section=${section.id}#${wrapper.id}`, 'rules-topic-link');
+          jump.addEventListener('click', event => {
+            if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+            event.preventDefault();
+            history.pushState({}, '', jump.href);
+            scrollToNode(wrapper);
+            wrapper.focus({ preventScroll: true });
+          });
+          views.groupNavigation.append(jump);
+        }
+      });
+    }
     if (!matches.length) {
       const empty = el('div', 'empty-state');
-      empty.append(icon(state.savedOnly ? 'star' : 'search'), el('h3', '', state.savedOnly && !bookmarks.size ? '保存したルールはまだありません' : '一致するルールが見つかりませんでした'), el('p', '', state.savedOnly && !bookmarks.size ? '各カードの「あとで読む」から保存できます。' : '検索語を短くするか、カテゴリーを「すべて」にしてお試しください。'));
-      empty.append(button('絞り込みをリセット', 'button button-secondary', () => { state.query = ''; state.category = 'all'; state.savedOnly = false; views.input.value = ''; applyFilters(); }));
+      empty.append(icon(state.savedOnly ? 'star' : 'search'), el('h3', '', state.savedOnly ? '保存した項目はありません' : '一致する項目が見つかりませんでした'),
+        el('p', '', state.savedOnly ? '各項目の「あとで読む」から保存できます。' : '短い言葉に変えてお試しください。料金・操作案内は、にこぐらガイドでも探せます。'));
+      empty.append(button('検索と保存の絞り込みを解除', 'button button-secondary', () => { state.query = ''; state.savedOnly = false; views.input.value = ''; applyFilters(); }),
+        link('ガイドを検索', `guides/?q=${encodeURIComponent(state.query)}`, 'section-link', 'search'));
       fragment.append(empty);
     }
     views.list.replaceChildren(fragment);
     views.expand.disabled = views.collapse.disabled = !matches.length;
-    renderToc(matches);
+    renderToc(overview ? [] : matches);
   }
+
   function renderGuideResults() {
     if (views.categorySelect) views.categorySelect.value = state.category;
     views.pillButtons?.forEach((node, id) => {
@@ -1090,6 +1184,13 @@
       scrollToNode(target);
       return true;
     }
+    if (page === 'rules' && id?.startsWith('rules-group-')) {
+      const target = document.getElementById(id);
+      if (!target) return false;
+      scrollToNode(target);
+      if (focus) target.focus({ preventScroll: true });
+      return true;
+    }
     const rule = findRule(id);
     if (!rule || rule.status !== 'published') return false;
     id = rule.id;
@@ -1107,6 +1208,7 @@
     history.replaceState({}, '', resolved);
     state.query = '';
     state.category = 'all';
+    if (page === 'rules') { state.legacyCategory = ''; state.section = sectionForRule(rule); }
     state.savedOnly = false;
     views.input.value = '';
     openRules.add(id);
@@ -1120,9 +1222,7 @@
     return true;
   }
   async function copyRuleUrl(rule) {
-    const target = canonicalPage(rule);
-    const url = new URL(href(`${target}/`));
-    url.hash = rule.id;
+    const url = new URL(href(rulePath(rule)));
     try {
       if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
       await navigator.clipboard.writeText(url.href);

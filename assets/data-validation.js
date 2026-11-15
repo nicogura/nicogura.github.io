@@ -139,6 +139,49 @@ export function validateData(data) {
     if (!Number.isSafeInteger(data.settings.newBadgeDays) || data.settings.newBadgeDays < 0 || data.settings.newBadgeDays > 365) issue('settings.newBadgeDays', '0〜365の整数にしてください');
     if (!Array.isArray(data.settings.featuredRuleIds)) issue('settings.featuredRuleIds', 'ルールIDの配列にしてください');
     else data.settings.featuredRuleIds.forEach((value, i) => { if (!ruleIds.has(canonicalId(value))) issue(`settings.featuredRuleIds[${i}]`, '存在するルールIDを指定してください'); });
+    const sections = data.settings.ruleSections;
+    const sectionOrder = ['overview', 'general', 'crime', 'pd', 'ems'];
+    if (!Array.isArray(sections) || sections.length !== sectionOrder.length) {
+      issue('settings.ruleSections', '要点・街全体・犯罪者・PD・EMSの5分類を指定してください');
+    } else {
+      const entries = new Map((Array.isArray(data.rules) ? data.rules : []).filter(object).map(rule => [rule.id, rule]));
+      const detailed = new Set();
+      const overview = new Set();
+      sections.forEach((section, i) => {
+        const path = `settings.ruleSections[${i}]`;
+        if (!object(section)) { issue(path, '分類はオブジェクトにしてください'); return; }
+        if (section.id !== sectionOrder[i]) issue(`${path}.id`, '分類は overview / general / crime / pd / ems の順に指定してください');
+        text(section.label, `${path}.label`, true, 100);
+        text(section.description, `${path}.description`, true, 1000);
+        if (!Array.isArray(section.groups) || !section.groups.length || section.groups.length > 30) { issue(`${path}.groups`, '1〜30件の見出しグループを指定してください'); return; }
+        const groupIds = new Set();
+        const sectionEntries = new Set();
+        section.groups.forEach((group, j) => {
+          const gp = `${path}.groups[${j}]`;
+          if (!object(group)) { issue(gp, '見出しグループはオブジェクトにしてください'); return; }
+          id(group.id, `${gp}.id`);
+          if (groupIds.has(group.id)) issue(`${gp}.id`, '同じ分類内の見出しIDは重複できません');
+          groupIds.add(group.id);
+          text(group.label, `${gp}.label`, true, 200);
+          if (!Array.isArray(group.ruleIds) || !group.ruleIds.length || group.ruleIds.length > 200) { issue(`${gp}.ruleIds`, '1〜200件の公開項目IDを指定してください'); return; }
+          for (const value of group.ruleIds) {
+            const target = canonicalId(value);
+            const rule = entries.get(target);
+            if (!rule || rule.status !== 'published') issue(`${gp}.ruleIds`, '存在する公開項目を指定してください');
+            if (sectionEntries.has(target)) issue(`${gp}.ruleIds`, '同じ分類内では同一項目を重複掲載できません');
+            sectionEntries.add(target);
+            (section.id === 'overview' ? overview : detailed).add(target);
+          }
+        });
+      });
+      for (const rule of entries.values()) if (rule.status === 'published' && ['rule', 'law'].includes(rule.contentKind) && !detailed.has(rule.id)) issue('settings.ruleSections', `規定・法律を詳細分類に掲載してください: ${rule.id}`);
+      for (const value of overview) if (!detailed.has(value)) issue('settings.ruleSections', `要点から参照する本文が詳細分類にありません: ${value}`);
+      if (object(data.pages?.rules) && Array.isArray(data.pages.rules.ruleIds)) {
+        const listed = new Set(data.pages.rules.ruleIds.map(canonicalId));
+        for (const value of detailed) if (!listed.has(value)) issue('pages.rules.ruleIds', `分類の本文を公式ルールへ含めてください: ${value}`);
+        for (const value of listed) if (!detailed.has(value)) issue('settings.ruleSections', `公式ルールの掲載項目を詳細分類へ含めてください: ${value}`);
+      }
+    }
   }
   if (data.pages !== undefined) {
     if (!object(data.pages)) issue('pages', 'ページ設定はオブジェクトにしてください');

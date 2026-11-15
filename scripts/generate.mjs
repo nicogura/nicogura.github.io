@@ -13,9 +13,15 @@ const canonicalId = id => aliases.get(id) || id;
 const canonicalIds = ids => [...new Set(ids.map(canonicalId))];
 for (const rule of data.rules) if (Array.isArray(rule.relatedRuleIds)) rule.relatedRuleIds = canonicalIds(rule.relatedRuleIds).filter(id => id !== rule.id);
 data.settings.featuredRuleIds = canonicalIds(data.settings.featuredRuleIds);
+if (Array.isArray(data.settings.ruleSections)) for (const section of data.settings.ruleSections) {
+  if (!Array.isArray(section?.groups)) continue;
+  for (const group of section.groups) if (Array.isArray(group?.ruleIds)) group.ruleIds = group.ruleIds.map(canonicalId);
+}
 for (const [key, route] of Object.entries(routes)) {
   const selection = config.pages[key] || {};
-  const ruleIds = canonicalIds([...(selection.ruleIds || []), ...data.rules.filter(r => (selection.categories || []).includes(r.category)).map(r => r.id)]);
+  const sectionIds = key === 'rules' && Array.isArray(data.settings.ruleSections)
+    ? data.settings.ruleSections.flatMap(section => Array.isArray(section?.groups) ? section.groups.flatMap(group => Array.isArray(group?.ruleIds) ? group.ruleIds : []) : []) : [];
+  const ruleIds = canonicalIds([...(selection.ruleIds || []), ...data.rules.filter(r => (selection.categories || []).includes(r.category)).map(r => r.id), ...sectionIds]);
   data.pages[key] = { kicker: `NICOGURA / ${key.toUpperCase()}`, title: route[1], description: route[2], ruleIds };
 }
 const errors = validateData(data);
@@ -23,18 +29,39 @@ for (const [key, page] of Object.entries(data.pages)) for (const id of page.rule
 if (errors.length) throw new Error(errors.join('\n'));
 await writeFile(resolve(root, 'data/rules.json'), JSON.stringify(data, null, 2) + '\n');
 const escape = value => String(value).replace(/[&<>"']/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[char]);
-function blockHTML(b, base) {
+function blockHTML(b, base, heading = 3) {
   if (b.type === 'list') return `<ul>${b.items.map(i => `<li>${escape(i)}</li>`).join('')}</ul>`;
   if (b.type === 'image') return `<figure class="rule-image"><a href="${escape(base + b.src)}" target="_blank" rel="noopener noreferrer"><img src="${escape(base + b.src)}" alt="${escape(b.alt)}" loading="lazy" decoding="async" style="max-width:100%;height:auto"></a>${b.caption ? `<figcaption>${escape(b.caption)}</figcaption>` : ''}</figure>`;
   if (b.type === 'table') return `<table><caption>${escape(b.caption || '')}</caption><thead><tr>${b.headers.map(h => `<th>${escape(h)}</th>`).join('')}</tr></thead><tbody>${b.rows.map(row => `<tr>${row.map((cell,i) => `<td data-label="${escape(b.headers[i])}">${escape(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
-  return `<${b.type === 'heading' ? 'h3' : 'p'}>${escape(b.text)}</${b.type === 'heading' ? 'h3' : 'p'}>`;
+  const tag = b.type === 'heading' ? `h${heading}` : 'p';
+  return `<${tag}>${escape(b.text)}</${tag}>`;
+}
+function ruleHTML(rule, base, heading = 2) {
+  const kind = {rule:'街の規定',law:'ゲーム内法律',guide:'利用案内'}[rule.contentKind] || '';
+  return `<section id="${escape(rule.id)}">${(rule.aliases || []).map(alias => `<span id="${escape(alias)}" aria-hidden="true"></span>`).join('')}<h${heading}>${escape(rule.title)}</h${heading}><p>${escape(kind)}</p>${rule.content.map(b => blockHTML(b, base, heading + 1)).join('')}</section>`;
+}
+function rulebookHTML(base) {
+  const sections = data.settings.ruleSections;
+  const entries = new Map(data.rules.map(rule => [rule.id, rule]));
+  const rendered = new Set();
+  const nav = `<nav aria-label="ルールの5分類">${sections.map(section => `<a href="#rulebook-${escape(section.id)}">${escape(section.label)}</a>`).join(' / ')}</nav>`;
+  return nav + sections.map(section => {
+    const groups = section.groups.map(group => `<section id="rulebook-${escape(section.id)}-${escape(group.id)}"><h3>${escape(group.label)}</h3>${group.ruleIds.map(id => {
+      const rule = entries.get(id);
+      if (section.id === 'overview') return `<p><a href="#${escape(rule.id)}">${escape(rule.title)}</a> — ${escape(rule.summary)}</p>`;
+      if (rendered.has(rule.id)) return `<p><a href="#${escape(rule.id)}">${escape(rule.title)}（共通の本文）</a></p>`;
+      rendered.add(rule.id);
+      return ruleHTML(rule, base, 4);
+    }).join('')}</section>`).join('');
+    return `<section id="rulebook-${escape(section.id)}"><h2>${escape(section.label)}</h2><p>${escape(section.description)}</p>${groups}</section>`;
+  }).join('');
 }
 for (const [key, [path, label, description]] of Object.entries(routes)) {
   const base = path ? '../' : './';
   const title = key === 'home' ? label : `${label} | NicoGura にこぐら`;
   const canonical = `https://nicogura.github.io/${path ? path + '/' : ''}`;
   const ids = data.pages[key].ruleIds;
-  const fallback = ids.map(id => data.rules.find(r => r.id === id)).map(r => `<section id="${escape(r.id)}">${(r.aliases || []).map(alias => `<span id="${escape(alias)}" aria-hidden="true"></span>`).join('')}<h2>${escape(r.title)}</h2>${r.content.map(b => blockHTML(b, base)).join('')}</section>`).join('\n');
+  const fallback = key === 'rules' ? rulebookHTML(base) : ids.map(id => data.rules.find(r => r.id === id)).map(rule => ruleHTML(rule, base)).join('\n');
   const source = `<!DOCTYPE html>
 <html lang="ja">
 <head>
