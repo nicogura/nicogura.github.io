@@ -11,7 +11,7 @@
       "id": "penalties",
       "label": "法律と罰金",
       "shortLabel": "法律・罰金",
-      "description": "基本罰金・刑務、Heistの処分、インパウンドの案内。",
+      "description": "罪状別・Heist分類別の罰金と保護観察、インパウンドの案内。",
       "group": "ゲーム内法律"
     }
   ],
@@ -109,7 +109,7 @@
         "逃走補助"
       ],
       "severity": "important",
-      "summary": "ゲーム内の罪状ごとの罰金と保護観察時間です。",
+      "summary": "罪状別の基本罰金と、Heistの分類別の罰金・保護観察をまとめて確認できます。",
       "content": [
         {
           "type": "paragraph",
@@ -218,81 +218,11 @@
         {
           "type": "note",
           "text": "プレイヤー本人へのハラスメントなどは、サーバールール違反として運営が対応する場合もあります。"
-        }
-      ],
-      "updatedAt": "2026-11-05",
-      "new": false,
-      "featured": false,
-      "status": "published",
-      "contentKind": "law",
-      "ruleChapter": 10,
-      "relatedRuleIds": [
-        "pd-community-service",
-        "law-police-station-attack"
-      ]
-    },
-    {
-      "id": "pending-penalty-times",
-      "number": 205,
-      "title": "ゲーム内の処分を確認するとき",
-      "category": "penalties",
-      "tags": [
-        "ガイド"
-      ],
-      "keywords": [
-        "法律",
-        "処分",
-        "刑務",
-        "罰金",
-        "PD"
-      ],
-      "severity": "guide",
-      "summary": "適用された罪状・罰金・保護観察の内訳は、PDへ確認してください。",
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "ゲーム内法律の罰金や保護観察は、街の犯罪RPに対するPDの対応です。基本罰金・保護観察と、Heistの罰金・保護観察を確認してください。"
         },
         {
-          "type": "paragraph",
-          "text": "処分を受けたときは、適用された罪状、支払う金額、保護観察時間の説明を確認しましょう。分からない点はPDへ尋ねて大丈夫です。"
+          "type": "heading",
+          "text": "Heistの分類別の罰金・保護観察"
         },
-        {
-          "type": "note",
-          "text": "サーバールール違反への警告・キック・BANなどは運営が対応します。ゲーム内で罰金を支払ったことだけで、ルール違反への運営対応が終わるわけではありません。"
-        }
-      ],
-      "updatedAt": "2026-11-02",
-      "new": false,
-      "featured": false,
-      "status": "published",
-      "contentKind": "guide",
-      "relatedRuleIds": [
-        "penalties-basic-fines",
-        "penalties-heist-fines",
-        "pd-community-service"
-      ]
-    },
-    {
-      "id": "penalties-heist-fines",
-      "number": 213,
-      "title": "Heistの罰金と保護観察",
-      "category": "penalties",
-      "tags": [
-        "ゲーム内法律"
-      ],
-      "keywords": [
-        "Heist",
-        "罰金",
-        "刑務",
-        "小型",
-        "準中型",
-        "中型",
-        "大型"
-      ],
-      "severity": "important",
-      "summary": "犯罪の分類ごとの、ゲーム内罰金と保護観察時間です。",
-      "content": [
         {
           "type": "table",
           "caption": "Heistの罰金と保護観察",
@@ -328,18 +258,58 @@
               "60分"
             ]
           ]
-        },
-        {
-          "type": "paragraph",
-          "text": "適用された分類と処分は、PDの説明を確認してください。サーバールール違反への警告・キック・BANなどは、運営が対応します。"
         }
       ],
-      "updatedAt": "2026-11-05",
-      "new": true,
+      "updatedAt": "2026-11-16",
+      "new": false,
       "featured": false,
       "status": "published",
       "contentKind": "law",
       "ruleChapter": 10,
+      "relatedRuleIds": [
+        "pd-community-service",
+        "law-police-station-attack"
+      ],
+      "aliases": [
+        "penalties-heist-fines"
+      ]
+    },
+    {
+      "id": "pending-penalty-times",
+      "number": 205,
+      "title": "ゲーム内の処分を確認するとき",
+      "category": "penalties",
+      "tags": [
+        "ガイド"
+      ],
+      "keywords": [
+        "法律",
+        "処分",
+        "刑務",
+        "罰金",
+        "PD"
+      ],
+      "severity": "guide",
+      "summary": "適用された罪状・罰金・保護観察の内訳は、PDへ確認してください。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "ゲーム内法律の罰金や保護観察は、街の犯罪RPに対するPDの対応です。罪状別・Heist分類別の金額と時間は「ゲーム内法律・基本罰金と保護観察」で確認してください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "処分を受けたときは、適用された罪状、支払う金額、保護観察時間の説明を確認しましょう。分からない点はPDへ尋ねて大丈夫です。"
+        },
+        {
+          "type": "note",
+          "text": "サーバールール違反への警告・キック・BANなどは運営が対応します。ゲーム内で罰金を支払ったことだけで、ルール違反への運営対応が終わるわけではありません。"
+        }
+      ],
+      "updatedAt": "2026-11-16",
+      "new": false,
+      "featured": false,
+      "status": "published",
+      "contentKind": "guide",
       "relatedRuleIds": [
         "penalties-basic-fines",
         "pd-community-service"

@@ -14,7 +14,7 @@ const entry = id => { const r = data.rules.find(r => r.id === id); assert.ok(r, 
 test('published schema and page references', () => {
   assert.deepEqual(validateData(data), []);
   assert.ok(data.rules.every(r => r.status === 'published'));
-  assert.equal(data.site.updatedAt, '2026-11-15');
+  assert.equal(data.site.updatedAt, '2026-11-16');
   for (const key of Object.keys(routes)) { assert.ok(data.pages[key]); for (const id of data.pages[key].ruleIds) entry(id); }
 });
 test('official brand and no internal economics or obsolete joining flow', () => {
@@ -45,7 +45,7 @@ test('unchanged approved prices stay exact while meeting changes use their new v
   for (const [label,value] of [
     [/現金/, '10,000,000'],[/銀行/, '10,000,000'],[/空腹.*20/, '300,000'],[/空腹.*30.*水分.*30/, '700,000'],
     [/ストレス.*30/, '250,000'],[/一般車/, '100円'],[/高性能車/, '100円'],[/大型車/, '100円'],[/ヘリ/, '100円'],
-    [/通常治療/, '300,000'],[/院内蘇生/, '1,000,000'],[/現場蘇生/, '1,500,000'],[/牢屋/, '2,000,000'],[/NPC治療/, '800,000'],
+    [/通常治療/, '300,000'],[/院内蘇生/, '1,000,000'],[/現場蘇生/, '1,500,000'],[/牢屋/, '2,000,000'],[/NPC治療/, '300,000'],[/院内NPC蘇生/, '1,000,000'],[/\/help/, '1,500,000'],
     [/タイヤ/, '500,000'],[/通常修理/, '200,000'],[/全修理/, '1,400,000'],[/包帯/, '250,000'],[/鎮痛剤/, '250,000'],[/IFAK/, '200,000'],
     [/ニトロ補充/, '1,000,000'],[/塗装・外装/, '300,000'],[/RGB/, '600,000'],[/アンダーグロー/, '600,000'],[/特殊ナンバー/, '1,000,000,000']
   ]) price(label,value);
@@ -96,7 +96,7 @@ test('food stays unchanged and meeting EMS and mechanic tables match the source'
   // Latest DOCX p675–692. NPC service amendment and live /help are distinguished below.
   assert.deepEqual(tableRows('ems-fees').map(row => row.slice(0,2)), [
     ['通常治療','300,000円'],['院内蘇生','1,000,000円'],['現場蘇生・運搬','1,500,000円'],
-    ['牢屋対応','2,000,000円'],['NPC治療','800,000円']
+    ['牢屋対応','2,000,000円'],['NPC治療','300,000円'],['院内NPC蘇生','1,000,000円'],['/help（NPC救急）','1,500,000円']
   ]);
   // Latest DOCX p715–805, including the vertical-merge performance levels.
   assert.deepEqual(tableRows('mechanic-fees'), [
@@ -140,11 +140,13 @@ test('FAQ gives the requested direct answers before further guidance', () => {
   assert.equal(entry('faq-whitelist-interview').content[0].text, 'いいえ、面接ではありません。質問への回答形式でもありません。');
   assert.match(JSON.stringify(entry('faq-bug-report')), /PDへ連絡してシーンを一時中断/);
 });
-test('current JST schedules stay separate from the future beta change', () => {
+test('approved 24-hour maintenance uses JST and keeps daily restarts unchanged', () => {
   assert.deepEqual(entry('server-restarts').content.find(b=>b.type==='table').rows,[['03:00'],['11:00'],['19:00']]);
-  assert.deepEqual(entry('server-maintenance').content.find(b=>b.type==='table').rows,[['水曜日03:00','木曜日19:00']]);
-  assert.match(JSON.stringify(entry('server-maintenance')), /40時間/);
-  assert.doesNotMatch(JSON.stringify(entry('server-maintenance').content), /24時間/);
+  assert.deepEqual(entry('server-maintenance').content.find(b=>b.type==='table').rows,[['水曜日03:00','木曜日03:00']]);
+  assert.match(JSON.stringify(entry('server-maintenance')), /24時間/);
+  assert.doesNotMatch(JSON.stringify(entry('server-maintenance').content), /40時間|19:00|変更予定/);
+  assert.ok(entry('server-maintenance').aliases.includes('server-future-maintenance'));
+  assert.ok(!data.rules.some(r=>r.id==='server-future-maintenance'));
   for(const id of ['server-restarts','server-maintenance']) for(const page of ['home','server']) assert.ok(data.pages[page].ruleIds.includes(id));
 });
 test('MOD exceptions require prior consultation rather than a permitted-products list', () => {
@@ -215,7 +217,7 @@ test('short FAQ answers lead to the authoritative detail and retain critical cav
   assert.match(JSON.stringify(entry('faq-character-count').content),/追加で作成せず.*事前.*運営/);
   assert.match(JSON.stringify(entry('faq-whitelist-interview').content),/本人のRxxxx.*承認後.*再接続/);
   assert.match(JSON.stringify(entry('faq-bandage-treatment').content),/完治しません.*一時的.*再発.*EMS/);
-  assert.match(JSON.stringify(entry('faq-wednesday-maintenance').content),/水曜日03:00.*木曜日19:00.*日本時間.*JST.*予定.*最新/);
+  assert.match(JSON.stringify(entry('faq-wednesday-maintenance').content),/水曜日03:00.*木曜日03:00.*日本時間.*JST.*予定.*最新/);
 });
 test('approved half fines preserve the official offences, probation periods and impound fees', () => {
   // Official baseline (DOCX p825–904), fixed fines halved on 2026-11-05; relative assistance rule unchanged.
@@ -228,13 +230,15 @@ test('approved half fines preserve the official offences, probation periods and 
     ['業務妨害罪','500,000,000円','60分','店舗オーナーと応相談'],['逃走補助罪','逃走補助をした犯罪の罰金額の半額','30分','個人医のみ適用'],
     ['セクハラ / カスハラ / パワハラ / 暴言','5,000,000,000円','1日','—'],['公然わいせつ罪','50円','24時間','—'],['詐欺罪','12,500,000円','15分','—']
   ]);
-  assert.deepEqual(entry('penalties-heist-fines').content.find(b=>b.type==='table').rows, [
+  assert.deepEqual(entry('penalties-basic-fines').content.find(b=>b.type==='table' && b.caption==='Heistの罰金と保護観察').rows, [
     ['小型','700,000円','15分'],['準中型チェイス','3,500,000円','30分'],['準中型撃ち合い','6,000,000円','30分'],['中型','20,000,000円','45分'],['大型','40,000,000円','60分']
   ]);
   assert.deepEqual(entry('penalties-impound').content.find(b=>b.type==='table').rows, [['一般','500,000円','0分'],['犯罪','1,000,000円','0分']]);
   assert.match(JSON.stringify(entry('weapons-crime-use').content), /犯罪時.*所持/);
   assert.doesNotMatch(JSON.stringify(entry('weapons-crime-use').content), /所持だけ.*(?:違反|犯罪).*なりません|使用した時点/);
-  for(const id of ['penalties-basic-fines','penalties-heist-fines','penalties-impound']) {
+  assert.ok(entry('penalties-basic-fines').aliases.includes('penalties-heist-fines'));
+  assert.ok(!data.rules.some(r=>r.id==='penalties-heist-fines'));
+  for(const id of ['penalties-basic-fines','penalties-impound']) {
     assert.ok(data.pages.law.ruleIds.includes(id)); assert.ok(data.pages.rules.ruleIds.includes(id));
     assert.equal(entry(id).contentKind, 'law');
   }
@@ -269,18 +273,13 @@ test('named crime guide keeps all 33 old names without a second participant defi
   assert.ok(entry('crime-types-guide').relatedRuleIds.includes('crime-current-list'));
 });
 
-test('public rewards keep their five approved amounts and baseline conditions', () => {
-  const rewardTables = entry('crime-public-rewards').content.filter(block => block.type === 'table');
-  assert.equal(rewardTables.length, 1);
-  assert.deepEqual(rewardTables[0].headers, ['分類', '基準条件', '1人の報酬']);
-  assert.deepEqual(rewardTables[0].rows, [
-    ['小型', '1人報酬基準', '8,000,000円'],
-    ['準中（チェイス）', '1人報酬基準', '15,000,000円'],
-    ['準中（撃ち合い）', '6人時・1人あたり', '35,000,000円'],
-    ['中型', '8人時・1人あたり', '70,000,000円'],
-    ['大型', '15人時・1人あたり', '120,000,000円'],
-  ]);
-  assert.ok(rewardTables[0].rows.every(row => !['特殊', 'PDなし犯罪'].includes(row[0])), 'no unapproved reward category');
+test('internal reward standards are removed and the legacy link leads to preparation', () => {
+  assert.ok(!data.rules.some(r=>r.id==='crime-public-rewards'));
+  assert.ok(entry('pending-crime-conditions').aliases.includes('crime-public-rewards'));
+  const publicArticles=JSON.stringify(data.rules.map(({aliases,...r})=>r));
+  assert.doesNotMatch(publicArticles,/公開報酬基準|基準報酬|報酬表|1人報酬基準|1人の報酬|6人時・1人あたり|8人時・1人あたり|15人時・1人あたり/);
+  for(const id of ['crime-types-guide','pending-crime-conditions']) assert.ok(!JSON.stringify(entry(id).relatedRuleIds).includes('crime-public-rewards'));
+  for(const r of data.rules) for(const id of r.relatedRuleIds||[]) assert.ok(!['crime-public-rewards','penalties-heist-fines','server-future-maintenance'].includes(id));
 });
 
 // Original 0b3b10a snapshot, retained as a fixed compatibility contract.
@@ -380,14 +379,14 @@ const baselineIdsAndNumbers = {
 
 test('original article identities survive, with consolidated article IDs available as aliases', () => {
   assert.equal(Object.keys(baselineIdsAndNumbers).length,91);
-  const consolidated = { 'ems-bandage':'ems-supplies','ems-painkiller':'ems-supplies','ems-ifak':'ems-supplies',
+  const consolidated = { 'crime-public-rewards':'pending-crime-conditions','penalties-heist-fines':'penalties-basic-fines', 'ems-bandage':'ems-supplies','ems-painkiller':'ems-supplies','ems-ifak':'ems-supplies',
     'crime-bug-options':'crime-bug-response','crime-bug-recurrence':'crime-bug-response','pending-mechanic-fees':'mechanic-billing' };
   for(const [id, number] of Object.entries(baselineIdsAndNumbers)) {
     if (consolidated[id]) assert.ok(entry(consolidated[id]).aliases.includes(id));
     else assert.equal(entry(id).number,number,id);
   }
   assert.equal(entry('ems-supplies').number, 228);
-  for (const number of [229,230,247,222,223,203]) assert.ok(!data.rules.some(r => r.number === number), 'Do not reuse consolidated article numbers');
+  for (const number of [229,230,247,222,223,203,211,213,257]) assert.ok(!data.rules.some(r => r.number === number), 'Do not reuse consolidated article numbers');
   assert.equal(new Set(data.rules.map(r=>r.id)).size,data.rules.length);
   assert.equal(new Set(data.rules.map(r=>r.number)).size,data.rules.length);
   for(const r of data.rules) assert.ok(['rule','guide','law'].includes(r.contentKind),r.id);
@@ -424,10 +423,19 @@ test('five reader sections retain every rule and law without duplicate articles 
   }
 });
 
-test('navigation-only reorganization preserves every approved table cell', () => {
-  const tables=data.rules.map(r=>[r.id,r.content.filter(block=>block.type==='table')]).filter(([,blocks])=>blocks.length).sort((a,b)=>a[0].localeCompare(b[0]));
-  assert.equal(tables.length,20);
-  assert.equal(createHash('sha256').update(JSON.stringify(tables)).digest('hex'),'cd1d3d85def7004bd085f008f6a0492de4f004cdee5025c6695524a4de54e2e6');
+test('all unrelated table cells and both merged fine tables preserve the approved baseline', async () => {
+  const expected=JSON.parse(await read('scripts/fixtures/approved-tables-20261115.json'));
+  const unchanged={};
+  for (const r of data.rules) {
+    if (['ems-fees','server-maintenance'].includes(r.id)) continue;
+    const tables=r.content.filter(b=>b.type==='table');
+    if (r.id==='penalties-basic-fines') {
+      unchanged[r.id]=tables.filter(b=>b.caption!=='Heistの罰金と保護観察');
+      unchanged['penalties-heist-fines']=tables.filter(b=>b.caption==='Heistの罰金と保護観察');
+    } else if (tables.length) unchanged[r.id]=tables;
+  }
+  assert.equal(Object.keys(expected).length,17);
+  assert.deepEqual(unchanged,expected);
 });
 
 test('no-script rules show five categories and every canonical article only once', async () => {
@@ -488,12 +496,13 @@ test('private PD timings and internal editing notes never enter published data',
 });
 
 test('future beta changes remain explicitly future guidance, not current restrictions', () => {
-  for(const id of ['server-future-maintenance','ems-beginner-ticket-planned']) {
+  for(const id of ['ems-beginner-ticket-planned']) {
     const r=entry(id),text=JSON.stringify(r.content);
     assert.equal(r.contentKind,'guide'); assert.ok(!data.pages.rules.ruleIds.includes(id));
     for(const term of ['β','予定','開始日','現在']) assert.ok(text.includes(term),`${id}: ${term}`);
   }
-  assert.match(JSON.stringify(entry('server-future-maintenance').content),/24時間/);
+  assert.ok(entry('server-maintenance').aliases.includes('server-future-maintenance'));
+  assert.ok(!data.rules.some(r=>r.id==='server-future-maintenance'));
   assert.match(JSON.stringify(entry('ems-beginner-ticket-planned').content),/牢屋対応/);
   const currentRules=JSON.stringify(data.rules.filter(r=>r.contentKind==='rule'));
   assert.doesNotMatch(currentRules,/初心者EMS券|24時間.*メンテ/);
@@ -503,8 +512,9 @@ test('emergency commands distinguish transport, NPC rescue and actual current ch
   const text=JSON.stringify(entry('ems-emergency-commands').content);
   for(const term of ['/tpems','理由','運営が確認','蘇生や体力回復は行いません','/help','ダウン中','EMSが勤務中でも利用できます','車内','拘束','収監','銀行残高','その場で処置']) assert.ok(text.includes(term),term);
   const fees=JSON.stringify(entry('ems-fees').content);
-  assert.match(fees,/\/help/); assert.match(fees,/1,000,000円/); assert.match(fees,/800,000円/);
-  assert.match(fees,/現行|現在|現時点/); assert.match(fees,/反映/);
+  assert.match(fees,/\/help/); assert.match(fees,/1,500,000円/); assert.match(fees,/300,000円/);
+  assert.doesNotMatch(fees,/800,000円|まだ反映|現時点|改定料金/);
+  assert.match(text,/「医療サービスの料金」/);
   const controls=JSON.stringify(entry('guide-menu-controls').content);
   for(const term of ['F2','インベントリ','F5','タブレット']) assert.ok(controls.includes(term),term);
   assert.doesNotMatch(controls,/F2で街のメニュー/);
@@ -541,4 +551,25 @@ test('generated metadata and local links exist on every route', async () => {
       assert.ok((await stat(resolve(root, file.endsWith('/') ? file+'index.html' : file))).isFile(), `${path}: ${url}`);
     }
   }
+});
+
+test('safe-zone passage never permits shooting or criminal acts', () => {
+  const r=entry('safe-zone-conduct'),text=JSON.stringify(r);
+  assert.equal(r.contentKind,'rule');
+  assert.match(text,/セーフゾーン内.*発砲.*犯罪行為.*禁止/);
+  assert.match(text,/チェイス中.*経路.*通過.*できます/);
+  assert.match(text,/通過中も.*発砲・犯罪行為は禁止/);
+  for(const sectionId of ['general','crime','pd','ems']) assert.ok(data.settings.ruleSections.find(s=>s.id===sectionId).groups.some(g=>g.ruleIds.includes(r.id)),sectionId);
+});
+test('bulletproof clothing, station waiting and shop headcount use the approved scopes', () => {
+  const clothing=JSON.stringify(entry('clothing-bulletproof-ban').content);
+  assert.match(clothing,/防弾性能のある服装.*禁止/);
+  assert.match(clothing,/通常のアーマーアイテムの使用を禁止するものではありません/);
+  assert.match(JSON.stringify(entry('crime-police-station-waiting').content),/犯罪を始める前.*警察署の前.*待機.*禁止/);
+  assert.match(JSON.stringify(entry('shop-staff-limit').content),/店長1人・従業員5人.*合計6人まで/);
+  assert.doesNotMatch(JSON.stringify(data.rules),/立退き|立ち退き|立退料/);
+});
+test('crime colour uses main paint and applies to stolen cars without approximate neutral colours', () => {
+  const text=JSON.stringify(entry('crime-scene-colors').content);
+  for(const term of ['メインカラー','服装','盗難車','近似色','黒・白・グレー','認められません','PDへ確認']) assert.ok(text.includes(term),term);
 });

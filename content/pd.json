@@ -74,17 +74,16 @@
         },
         {
           "type": "note",
-          "text": "基本罰金・保護観察、Heistの罰金・保護観察、インパウンドの料金と待機時間は「ゲーム内法律・罰金」で確認できます。サーバールール違反は運営対応の対象です。"
+          "text": "罪状別・Heist分類別の罰金と保護観察は「ゲーム内法律・基本罰金と保護観察」で、インパウンドの料金と待機時間は「インパウンド」で確認できます。サーバールール違反は運営対応の対象です。"
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-16",
       "new": false,
       "featured": false,
       "status": "published",
       "contentKind": "guide",
       "relatedRuleIds": [
         "penalties-basic-fines",
-        "penalties-heist-fines",
         "penalties-impound"
       ]
     },
@@ -133,15 +132,14 @@
           "text": "適用された期間や制限の内容は、PDの説明を確認してください。罪状ごとの保護観察時間は「法律と罰金」で確認できます。"
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-16",
       "new": true,
       "featured": false,
       "status": "published",
       "contentKind": "guide",
       "relatedRuleIds": [
         "crime-probation",
-        "penalties-basic-fines",
-        "penalties-heist-fines"
+        "penalties-basic-fines"
       ]
     }
   ]

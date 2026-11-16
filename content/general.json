@@ -1199,6 +1199,80 @@
         "intro-reading",
         "join-flow"
       ]
+    },
+    {
+      "id": "safe-zone-conduct",
+      "number": 260,
+      "title": "セーフゾーンでの禁止行為と通過",
+      "category": "basic",
+      "tags": [
+        "ルール"
+      ],
+      "keywords": [
+        "セーフゾーン",
+        "安全地帯",
+        "発砲",
+        "犯罪",
+        "チェイス",
+        "通過"
+      ],
+      "severity": "important",
+      "summary": "セーフゾーン内での発砲・犯罪行為は禁止です。チェイスの経路として通過することはできます。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "セーフゾーン内では、銃の発砲や犯罪行為は禁止です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "チェイス中に、経路としてセーフゾーンを通過することはできます。ただし、通過中もセーフゾーン内での発砲・犯罪行為は禁止です。"
+        }
+      ],
+      "updatedAt": "2026-11-16",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 1,
+      "relatedRuleIds": [
+        "crime-scene-conduct"
+      ]
+    },
+    {
+      "id": "clothing-bulletproof-ban",
+      "number": 261,
+      "title": "防弾性能のある服装は禁止",
+      "category": "prohibited",
+      "tags": [
+        "ルール"
+      ],
+      "keywords": [
+        "服装",
+        "防弾",
+        "防弾服",
+        "アーマー"
+      ],
+      "severity": "important",
+      "summary": "防弾性能のある服装は着用できません。通常のアーマーアイテムを禁止する規定ではありません。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "防弾性能のある服装の着用は禁止です。見た目ではなく、防弾性能を持つ服装が対象です。"
+        },
+        {
+          "type": "paragraph",
+          "text": "この規定は服装の防弾性能を対象とします。通常のアーマーアイテムの使用を禁止するものではありません。"
+        }
+      ],
+      "updatedAt": "2026-11-16",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2,
+      "relatedRuleIds": [
+        "crime-scene-colors"
+      ]
     }
   ]
 }

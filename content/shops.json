@@ -132,12 +132,15 @@
           "text": "公務員は兼業禁止です。就職や採用については、担当者の案内を確認してください。"
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-16",
       "new": true,
       "featured": false,
       "status": "published",
       "contentKind": "rule",
-      "ruleChapter": 7
+      "ruleChapter": 7,
+      "relatedRuleIds": [
+        "shop-staff-limit"
+      ]
     },
     {
       "id": "shop-establishment",
@@ -160,13 +163,48 @@
           "text": "現在、飲食店・ジョイント店の開業申請は受け付けていません。募集再開の案内は、公式のお知らせを確認してください。"
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-16",
       "new": true,
       "featured": false,
       "status": "published",
       "contentKind": "guide",
       "relatedRuleIds": [
-        "administration-report"
+        "administration-report",
+        "shop-staff-limit"
+      ]
+    },
+    {
+      "id": "shop-staff-limit",
+      "number": 263,
+      "title": "店舗の在籍人数は合計6人まで",
+      "category": "business",
+      "tags": [
+        "ルール"
+      ],
+      "keywords": [
+        "店舗",
+        "店長",
+        "従業員",
+        "在籍",
+        "6人"
+      ],
+      "severity": "important",
+      "summary": "店舗に在籍できるのは、店長1人と従業員5人の合計6人までです。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "店舗に在籍できる人数は、店長1人・従業員5人の合計6人までです。"
+        }
+      ],
+      "updatedAt": "2026-11-16",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 7,
+      "relatedRuleIds": [
+        "job-employment-limits",
+        "shop-establishment"
       ]
     }
   ]

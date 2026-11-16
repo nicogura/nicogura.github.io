@@ -20,7 +20,7 @@
     "name": "NicoGura",
     "tagline": "あなたらしい物語が、この街から。",
     "version": "3.0.0",
-    "updatedAt": "2026-11-15",
+    "updatedAt": "2026-11-16",
     "notice": "難しく考えなくて大丈夫。最低限のライトRPとマナーを大切に、街での生活を楽しみましょう。",
     "links": {
       "discord": "https://discord.gg/Fzhhp34JJy",
@@ -124,7 +124,8 @@
               "crime-current-list",
               "crime-siege",
               "job-authority-misuse",
-              "ems-emergency-use"
+              "ems-emergency-use",
+              "safe-zone-conduct"
             ]
           }
         ]
@@ -154,7 +155,8 @@
               "client-mod-policy",
               "prohibited-rmt",
               "prohibited-ban-evasion",
-              "prohibited-evidence-fabrication"
+              "prohibited-evidence-fabrication",
+              "clothing-bulletproof-ban"
             ]
           },
           {
@@ -167,7 +169,8 @@
               "vehicles-vdm",
               "rp-powergaming",
               "prohibited-harassment",
-              "prohibited-impersonation"
+              "prohibited-impersonation",
+              "safe-zone-conduct"
             ]
           },
           {
@@ -179,7 +182,8 @@
               "vehicles-crime-banned",
               "job-authority-misuse",
               "job-employment-limits",
-              "mechanic-crime-limits"
+              "mechanic-crime-limits",
+              "shop-staff-limit"
             ]
           },
           {
@@ -206,7 +210,9 @@
               "crime-types-guide",
               "crime-restart-window",
               "crime-probation",
-              "mechanic-crime-limits"
+              "mechanic-crime-limits",
+              "crime-police-station-waiting",
+              "pending-crime-conditions"
             ]
           },
           {
@@ -219,7 +225,8 @@
               "crime-cruise-control",
               "crime-helicopter-limits",
               "crime-scene-colors",
-              "affiliation-colors"
+              "affiliation-colors",
+              "clothing-bulletproof-ban"
             ]
           },
           {
@@ -229,7 +236,8 @@
               "crime-chase-demands",
               "crime-chase-attack-window",
               "crime-common-response",
-              "crime-scene-conduct"
+              "crime-scene-conduct",
+              "safe-zone-conduct"
             ]
           },
           {
@@ -246,11 +254,10 @@
           },
           {
             "id": "bugs-and-rewards",
-            "label": "不具合・重複受注・報酬の確認",
+            "label": "不具合・重複受注への対応",
             "ruleIds": [
               "crime-bug-response",
-              "heist-duplicate",
-              "crime-public-rewards"
+              "heist-duplicate"
             ]
           },
           {
@@ -259,7 +266,6 @@
             "ruleIds": [
               "weapons-crime-use",
               "penalties-basic-fines",
-              "penalties-heist-fines",
               "penalties-impound",
               "law-police-station-attack",
               "pd-community-service"
@@ -311,7 +317,10 @@
               "crime-scene-colors",
               "crime-scene-conduct",
               "crime-cruise-control",
-              "crime-restart-window"
+              "crime-restart-window",
+              "crime-police-station-waiting",
+              "safe-zone-conduct",
+              "clothing-bulletproof-ban"
             ]
           },
           {
@@ -344,7 +353,6 @@
               "pd-fines",
               "weapons-crime-use",
               "penalties-basic-fines",
-              "penalties-heist-fines",
               "penalties-impound",
               "law-police-station-attack",
               "crime-probation",
@@ -418,7 +426,9 @@
               "prohibited-impersonation",
               "prohibited-cheating",
               "prohibited-exploit",
-              "streaming-respect"
+              "streaming-respect",
+              "safe-zone-conduct",
+              "clothing-bulletproof-ban"
             ]
           }
         ]
@@ -426,6 +436,18 @@
     ]
   },
   "changelog": [
+    {
+      "date": "2026-11-16",
+      "type": "更新",
+      "title": "街・犯罪・店舗のルールと医療案内を更新しました",
+      "items": [
+        "セーフゾーンの通過と禁止行為、防弾性能のある服装、犯罪前の警察署前待機、店舗の在籍人数を明記しました。",
+        "犯罪時は車両のメインカラーと服装を揃えることを明記しました。盗難車も対象です。",
+        "NPC治療・院内NPC蘇生・/helpを区別して、医療サービスの料金を一覧にまとめました。",
+        "定期メンテナンスは水曜日03:00から木曜日03:00までの24時間です。",
+        "犯罪の報酬基準表を公開ページから外しました。Heistの罰金・保護観察は基本罰金の記事へまとめ、金額や時間は変更していません。"
+      ]
+    },
     {
       "date": "2026-11-15",
       "type": "整理",
@@ -492,7 +514,7 @@
       "type": "UPDATED",
       "title": "サーバー情報・MOD規定・EMS用品の案内を更新しました",
       "items": [
-        "毎日の再起動時刻と、水曜03:00〜木曜19:00の基本定休日を掲載しました。",
+        "毎日の再起動時刻と基本定休日の案内を掲載しました。最新の日程は「街の基本定休日とメンテナンス」を確認してください。",
         "スピードブースト・グリッチロールの禁止と、当時のCitizen・Client MODの使用条件をまとめました。現在は最新の規定を確認してください。",
         "初期資金を現金・銀行それぞれ10,000,000円へ更新しました。",
         "医療用品をEMS専売品として案内し、応急処置と完治の違いを明記しました。廃止済みの医療サービスと旧商品を料金表から削除しました。",
@@ -568,6 +590,7 @@
         "prohibited-rmt",
         "prohibited-ban-evasion",
         "prohibited-evidence-fabrication",
+        "clothing-bulletproof-ban",
         "rp-metagaming",
         "communication-external-vc",
         "rp-rdm",
@@ -575,12 +598,14 @@
         "rp-powergaming",
         "prohibited-harassment",
         "prohibited-impersonation",
+        "safe-zone-conduct",
         "vehicles-emergency-use",
         "vehicles-job-crime",
         "vehicles-crime-banned",
         "job-authority-misuse",
         "job-employment-limits",
         "mechanic-crime-limits",
+        "shop-staff-limit",
         "streaming-respect",
         "administration-contact-boundaries",
         "administration-response",
@@ -588,6 +613,8 @@
         "crime-types-guide",
         "crime-restart-window",
         "crime-probation",
+        "crime-police-station-waiting",
+        "pending-crime-conditions",
         "crime-cruise-control",
         "crime-helicopter-limits",
         "crime-scene-colors",
@@ -604,10 +631,8 @@
         "crime-third-party",
         "crime-bug-response",
         "heist-duplicate",
-        "crime-public-rewards",
         "weapons-crime-use",
         "penalties-basic-fines",
-        "penalties-heist-fines",
         "penalties-impound",
         "law-police-station-attack",
         "pd-community-service",
@@ -669,13 +694,14 @@
         "crime-cruise-control",
         "pending-crime-conditions",
         "crime-types-guide",
-        "crime-public-rewards"
+        "crime-police-station-waiting",
+        "safe-zone-conduct",
+        "clothing-bulletproof-ban"
       ]
     },
     "law": {
       "ruleIds": [
         "penalties-basic-fines",
-        "penalties-heist-fines",
         "penalties-impound",
         "law-police-station-attack",
         "weapons-crime-use",
@@ -687,7 +713,6 @@
       "ruleIds": [
         "character-changes",
         "pending-crime-conditions",
-        "crime-public-rewards",
         "crime-types-guide",
         "economy-starting-funds",
         "economy-food-prices",
@@ -739,7 +764,6 @@
         "pd-community-service",
         "server-restarts",
         "server-maintenance",
-        "server-future-maintenance",
         "business-honest",
         "pending-job-conditions",
         "shop-establishment"
@@ -795,7 +819,8 @@
         "pending-job-conditions",
         "job-employment-limits",
         "job-authority-misuse",
-        "economy-food-prices"
+        "economy-food-prices",
+        "shop-staff-limit"
       ]
     },
     "lifejobs": {
@@ -831,7 +856,6 @@
       "ruleIds": [
         "server-restarts",
         "server-maintenance",
-        "server-future-maintenance",
         "crime-restart-window"
       ]
     },

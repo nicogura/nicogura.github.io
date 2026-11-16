@@ -142,7 +142,7 @@
           "text": "別のアカウントや立場を使って制限を回避しないでください。自分に適用される内容が分からない場合は、PDや運営へ確認してください。"
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-16",
       "new": false,
       "featured": false,
       "status": "published",
@@ -150,8 +150,7 @@
       "ruleChapter": 4,
       "relatedRuleIds": [
         "pd-community-service",
-        "penalties-basic-fines",
-        "penalties-heist-fines"
+        "penalties-basic-fines"
       ]
     },
     {
@@ -247,96 +246,36 @@
         "報酬"
       ],
       "severity": "guide",
-      "summary": "犯罪のカテゴリ・参加人数、公開報酬基準、ゲーム内の罰金・保護観察を確認して計画しましょう。",
+      "summary": "犯罪の分類・参加人数、必要道具、開始条件、罰金・保護観察を確認して計画しましょう。",
       "content": [
         {
           "type": "paragraph",
           "text": "犯罪RPはNicoGuraのゲームコンテンツです。街の仲間と計画し、警察とのやり取りやシーンを楽しみましょう。"
         },
         {
-          "type": "paragraph",
-          "text": "「犯罪カテゴリ・参加人数」で犯罪側の最低人数・最大人数を確認し、公開報酬基準とゲーム内法律の罰金・保護観察を読みましょう。その他の開始条件は、ゲーム内の案内を確認してください。"
-        },
-        {
-          "type": "note",
-          "text": "報酬表の「6人時」「8人時」「15人時」は報酬の基準条件です。犯罪側の参加人数は「犯罪カテゴリ・参加人数」の一覧を確認してください。"
+          "type": "list",
+          "items": [
+            "「犯罪カテゴリ・参加人数」で、犯罪側とPD側の人数条件を確認してください。",
+            "必要道具や受付状況などの開始条件は、ゲーム内の案内で確認してください。",
+            "犯罪を始める前に、車両・服装の色、現場での行動、終了条件を確認してください。",
+            "罪状や犯罪の分類に応じた罰金・保護観察は、「ゲーム内法律・基本罰金と保護観察」にまとめています。"
+          ]
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-16",
       "new": false,
       "featured": false,
       "status": "published",
-      "contentKind": "guide"
-    },
-    {
-      "id": "crime-public-rewards",
-      "number": 211,
-      "title": "犯罪の公開報酬基準",
-      "category": "crime",
-      "tags": [
-        "ガイド"
+      "contentKind": "guide",
+      "relatedRuleIds": [
+        "crime-current-list",
+        "crime-scene-colors",
+        "crime-scene-conduct",
+        "penalties-basic-fines"
       ],
-      "keywords": [
-        "犯罪",
-        "報酬",
-        "小型",
-        "準中型",
-        "中型",
-        "大型"
-      ],
-      "severity": "guide",
-      "summary": "犯罪の規模ごとの基準報酬です。人数条件とあわせて確認しましょう。",
-      "content": [
-        {
-          "type": "table",
-          "caption": "犯罪の基準報酬",
-          "headers": [
-            "分類",
-            "基準条件",
-            "1人の報酬"
-          ],
-          "rows": [
-            [
-              "小型",
-              "1人報酬基準",
-              "8,000,000円"
-            ],
-            [
-              "準中（チェイス）",
-              "1人報酬基準",
-              "15,000,000円"
-            ],
-            [
-              "準中（撃ち合い）",
-              "6人時・1人あたり",
-              "35,000,000円"
-            ],
-            [
-              "中型",
-              "8人時・1人あたり",
-              "70,000,000円"
-            ],
-            [
-              "大型",
-              "15人時・1人あたり",
-              "120,000,000円"
-            ]
-          ]
-        },
-        {
-          "type": "note",
-          "text": "この表は基準報酬の案内です。「6人時」「8人時」「15人時」は報酬の基準条件です。犯罪側の最低人数・最大人数は「犯罪カテゴリ・参加人数」で確認してください。"
-        },
-        {
-          "type": "paragraph",
-          "text": "犯罪を計画するときは、「犯罪カテゴリ・参加人数」とゲーム内法律の罰金・保護観察も確認しましょう。"
-        }
-      ],
-      "updatedAt": "2026-11-02",
-      "new": true,
-      "featured": false,
-      "status": "published",
-      "contentKind": "guide"
+      "aliases": [
+        "crime-public-rewards"
+      ]
     },
     {
       "id": "crime-current-list",
@@ -920,20 +859,28 @@
       "tags": [
         "注意"
       ],
-      "keywords": [],
+      "keywords": [
+        "メインカラー",
+        "服装",
+        "盗難車",
+        "近似色",
+        "黒",
+        "白",
+        "グレー"
+      ],
       "severity": "important",
-      "summary": "犯罪シーンでは、服装と車両のカラーを揃えてください。盗難車も対象です。",
+      "summary": "犯罪時は、車両のメインカラーと服装の色を揃えてください。盗難車も対象です。",
       "content": [
         {
           "type": "paragraph",
-          "text": "犯罪シーンでは、服装と車両のカラーを揃えてください。盗難車も対象です。"
+          "text": "犯罪時は、車両のメインカラーと服装の色を揃えてください。盗難車を使う場合も同じルールが適用されます。"
         },
         {
           "type": "paragraph",
-          "text": "近似色や、黒・白・グレーの使用は認められません。カラーの判断に迷う場合は、PDへ確認してください。"
+          "text": "近似色や、黒・白・グレーの使用は認められません。カラーの判断に迷う場合は、犯罪を始める前にPDへ確認してください。"
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-16",
       "new": true,
       "featured": false,
       "status": "published",
@@ -1140,14 +1087,13 @@
           "text": "参加人数は「犯罪カテゴリ・参加人数」で確認してください。この一覧は分類の案内です。現在の受付状況は、ゲーム内の案内を確認してください。"
         }
       ],
-      "updatedAt": "2026-11-02",
+      "updatedAt": "2026-11-16",
       "new": true,
       "featured": false,
       "status": "published",
       "contentKind": "guide",
       "relatedRuleIds": [
         "crime-current-list",
-        "crime-public-rewards",
         "pending-crime-conditions"
       ]
     },
@@ -1230,6 +1176,40 @@
       "status": "published",
       "contentKind": "rule",
       "ruleChapter": 3
+    },
+    {
+      "id": "crime-police-station-waiting",
+      "number": 262,
+      "title": "犯罪前に警察署の前で待機しない",
+      "category": "crime",
+      "tags": [
+        "ルール"
+      ],
+      "keywords": [
+        "警察署",
+        "PD",
+        "署前",
+        "待機",
+        "犯罪前"
+      ],
+      "severity": "important",
+      "summary": "犯罪を始める前に、警察署の前で待機する行為は禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "犯罪を始める前に、警察署の前で待機する行為は禁止です。"
+        }
+      ],
+      "updatedAt": "2026-11-16",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 3,
+      "relatedRuleIds": [
+        "crime-scene-conduct",
+        "law-police-station-attack"
+      ]
     }
   ]
 }
