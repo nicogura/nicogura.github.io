@@ -10,6 +10,42 @@
   ],
   "rules": [
     {
+      "id": "crime-probation",
+      "number": 21,
+      "title": "案内された参加制限を確認しよう",
+      "category": "pd",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "保護観察",
+        "制限",
+        "確認"
+      ],
+      "severity": "important",
+      "summary": "社会奉仕・保護観察の期間中は、案内された犯罪などの制限に従ってください。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "社会奉仕・保護観察の期間中は、犯罪などが制限されます。参加できる活動と適用期間を確認し、制限に従ってください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "別のアカウントや立場を使って制限を回避しないでください。自分に適用される内容が分からない場合は、PDや運営へ確認してください。"
+        }
+      ],
+      "updatedAt": "2026-11-16",
+      "new": false,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 4,
+      "relatedRuleIds": [
+        "pd-community-service",
+        "penalties-basic-fines"
+      ]
+    },
+    {
       "id": "pd-authority",
       "number": 23,
       "title": "PDは街の安全と犯罪対応を担当します",

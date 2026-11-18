@@ -220,7 +220,7 @@
       "status": "published",
       "contentKind": "guide",
       "relatedRuleIds": [
-        "pending-mechanic-fees",
+        "mechanic-billing",
         "economy-consumable-prices"
       ]
     },

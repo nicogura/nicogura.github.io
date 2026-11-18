@@ -10,39 +10,6 @@
   ],
   "rules": [
     {
-      "id": "character-identity",
-      "number": 12,
-      "title": "1人につき1キャラクター",
-      "category": "intro",
-      "tags": [
-        "注意"
-      ],
-      "keywords": [
-        "1人1キャラクター",
-        "一人一キャラ",
-        "サブキャラ",
-        "別アカウント",
-        "作り直し"
-      ],
-      "severity": "important",
-      "summary": "NicoGuraで使用できるキャラクターは、1人のプレイヤーにつき1人までです。",
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "NicoGuraで使用できるキャラクターは、1人のプレイヤーにつき1人までです。複数キャラクターや別アカウントを使い分けて、実質的に複数のキャラクターを使用することはできません。"
-        }
-      ],
-      "updatedAt": "2026-11-02",
-      "new": false,
-      "featured": true,
-      "status": "published",
-      "contentKind": "rule",
-      "ruleChapter": 1,
-      "relatedRuleIds": [
-        "character-changes"
-      ]
-    },
-    {
       "id": "character-changes",
       "number": 234,
       "title": "改名・キャラクターの相談と整形",

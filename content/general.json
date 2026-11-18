@@ -722,7 +722,7 @@
       "contentKind": "guide",
       "relatedRuleIds": [
         "administration-contact-boundaries",
-        "crime-bug-options"
+        "crime-bug-response"
       ]
     },
     {
@@ -1273,6 +1273,239 @@
       "relatedRuleIds": [
         "crime-scene-colors"
       ]
+    },
+    {
+      "id": "client-mod-policy",
+      "number": 225,
+      "title": "Citizen・Client側MODの使用条件",
+      "category": "prohibited",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "Citizen",
+        "Client MOD",
+        "Graphics MOD",
+        "軽量化",
+        "FPS",
+        "Texture",
+        "NVE",
+        "QuantV",
+        "ReShade",
+        "Sound Pack",
+        "Road Texture",
+        "No Bush",
+        "No Tree",
+        "No Prop",
+        "No Mountain",
+        "No Water",
+        "No Night",
+        "NoBush",
+        "NoTree",
+        "NoProp",
+        "NoMountain",
+        "NoWater",
+        "NoNight",
+        "Crosshair",
+        "Overlay",
+        "Hitbox",
+        "Damage",
+        "Tracer",
+        "KillFX",
+        "Stretched Resolution",
+        "Sound MOD",
+        "補償",
+        "お問い合わせ"
+      ],
+      "severity": "important",
+      "summary": "Citizen・Client側MODは原則禁止です。例外的な使用を希望する場合は、使用前にチケットでお問い合わせください。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Citizen・Client側MODは原則禁止です。例外的に使用を認める場合があるため、使用前に公式Discordのチケットで運営へお問い合わせください。"
+        },
+        {
+          "type": "paragraph",
+          "text": "軽量化や見た目・音の変更であっても、自己判断で使用できる例外にはなりません。導入したいMODの内容を伝え、運営の回答を確認してください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2,
+      "relatedRuleIds": [
+        "client-mod-consultation"
+      ]
+    },
+    {
+      "id": "character-identity",
+      "number": 12,
+      "title": "1人につき1キャラクター",
+      "category": "intro",
+      "tags": [
+        "注意"
+      ],
+      "keywords": [
+        "1人1キャラクター",
+        "一人一キャラ",
+        "サブキャラ",
+        "別アカウント",
+        "作り直し"
+      ],
+      "severity": "important",
+      "summary": "NicoGuraで使用できるキャラクターは、1人のプレイヤーにつき1人までです。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "NicoGuraで使用できるキャラクターは、1人のプレイヤーにつき1人までです。複数キャラクターや別アカウントを使い分けて、実質的に複数のキャラクターを使用することはできません。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": false,
+      "featured": true,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 1,
+      "relatedRuleIds": [
+        "character-changes"
+      ]
+    },
+    {
+      "id": "crime-combat-log",
+      "number": 18,
+      "title": "シーンから逃れるために退出しない",
+      "category": "prohibited",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "Combat Log",
+        "コンバットログ",
+        "退出",
+        "切断",
+        "クラッシュ",
+        "回線落ち"
+      ],
+      "severity": "prohibited",
+      "summary": "進行中のRPから逃げる目的で、故意にサーバーから退出するCombat Logは禁止です。",
+      "content": [
+        {
+          "text": "警察対応、犯罪、戦闘、交渉、その他進行中のRPの結果を避けたり、不利な状況をリセットしたりする目的で、故意に退出・切断しないでください。",
+          "type": "paragraph"
+        },
+        {
+          "text": "クラッシュ、回線落ち、FiveMエラーなどの不可抗力は区別します。可能であれば再接続してRPを続け、関係者へ状況を伝えてください。戻れない場合は、可能になった時点でDiscordの「お問い合わせ窓口」へ連絡してください。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": false,
+      "featured": true,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
+    },
+    {
+      "id": "crime-third-party",
+      "number": 19,
+      "title": "関係のないシーンを不正に壊さない",
+      "category": "prohibited",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "第三者",
+        "割り込み",
+        "妨害",
+        "不正な加勢"
+      ],
+      "severity": "prohibited",
+      "summary": "外部情報や無関係な攻撃で、進行中の犯罪や追跡を不正に有利にしたり妨げたりしないでください。",
+      "content": [
+        {
+          "text": "当事者とゲーム内での関わりがない場面へ、ゲーム外の情報を頼りに加勢したり、無関係な攻撃で結末を変えたりする行為は禁止です。",
+          "type": "paragraph"
+        },
+        {
+          "text": "通りかかること、通常の通報や救護まで一律に禁止するものではありません。助けに入るときは、その場の安全とゲーム内での関わりを確認してください。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": false,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
+    },
+    {
+      "id": "crime-rejoin-combat",
+      "number": 20,
+      "title": "ゾンビ行為をしない",
+      "category": "prohibited",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "復帰",
+        "蘇生",
+        "戦闘再参加",
+        "ダウン"
+      ],
+      "severity": "prohibited",
+      "summary": "ダウンから復帰して、同じ戦闘へ再参加する行為は禁止です。",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "ダウンから蘇生・復帰した後、同じ戦闘へ戻って再参加する行為は禁止です。治療や身柄の扱いは、その場の案内に従ってください。"
+        },
+        {
+          "type": "note",
+          "text": "クラッシュからの再接続は、ダウンからの復帰と区別します。再開方法が分からない場合は運営へ相談してください。"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": false,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
+    },
+    {
+      "id": "crime-down-information",
+      "number": 107,
+      "title": "ダウン中に戦況を伝えて有利にしない",
+      "category": "prohibited",
+      "tags": [
+        "禁止"
+      ],
+      "keywords": [
+        "ダウン",
+        "戦況",
+        "敵の位置",
+        "生存",
+        "無線"
+      ],
+      "severity": "prohibited",
+      "summary": "ダウン中に敵の位置・人数・移動方向・作戦などを、生存している仲間へ伝える行為は禁止です。",
+      "content": [
+        {
+          "text": "自分がダウンしている間に戦況を共有し、生きている仲間を有利にしないでください。ゲーム内の会話や無線、外部VCなど、連絡手段にかかわらず同じです。",
+          "type": "paragraph"
+        },
+        {
+          "text": "RP上自然な会話まで完全に禁止するものではありません。復帰直後に同じ戦闘へ戻ることについては「ゾンビ行為をしない」を確認してください。",
+          "type": "note"
+        }
+      ],
+      "updatedAt": "2026-11-02",
+      "new": true,
+      "featured": false,
+      "status": "published",
+      "contentKind": "rule",
+      "ruleChapter": 2
     }
   ]
 }
