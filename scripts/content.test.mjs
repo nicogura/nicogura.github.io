@@ -14,7 +14,7 @@ const entry = id => { const r = data.rules.find(r => r.id === id); assert.ok(r, 
 test('published schema and page references', () => {
   assert.deepEqual(validateData(data), []);
   assert.ok(data.rules.every(r => r.status === 'published'));
-  assert.equal(data.site.updatedAt, '2026-11-16');
+  assert.equal(data.site.updatedAt, '2026-11-18');
   for (const key of Object.keys(routes)) { assert.ok(data.pages[key]); for (const id of data.pages[key].ruleIds) entry(id); }
 });
 test('official brand and no internal economics or obsolete joining flow', () => {
