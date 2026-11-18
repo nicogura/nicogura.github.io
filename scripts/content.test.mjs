@@ -510,7 +510,8 @@ test('future beta changes remain explicitly future guidance, not current restric
 
 test('emergency commands distinguish transport, NPC rescue and actual current charge', () => {
   const text=JSON.stringify(entry('ems-emergency-commands').content);
-  for(const term of ['/tpems','理由','運営が確認','蘇生や体力回復は行いません','/help','ダウン中','EMSが勤務中でも利用できます','車内','拘束','収監','銀行残高','その場で処置']) assert.ok(text.includes(term),term);
+  for(const term of ['/tpems','理由','運営が確認','蘇生や体力回復は行いません','/help','ダウン中','車内','拘束','収監','銀行残高','その場で処置']) assert.ok(text.includes(term),term);
+  assert.doesNotMatch(text,/EMSが勤務中でも利用できます|EMSの勤務人数にかかわらず/);
   const fees=JSON.stringify(entry('ems-fees').content);
   assert.match(fees,/\/help/); assert.match(fees,/1,500,000円/); assert.match(fees,/300,000円/);
   assert.doesNotMatch(fees,/800,000円|まだ反映|現時点|改定料金/);
